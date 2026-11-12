@@ -1,0 +1,19 @@
+baseURL = "https://dannyliu.me/"
+languageCode = "zh-tw"
+title = "Danny Liu's Blog"
+theme = "PaperMod"
+timeZone = "Asia/Taipei"
+defaultContentLanguage = "zh-tw"
+
+[languages.zh-tw]
+  languageName = "繁體中文"
+  locale = "zh-TW"
+  weight = 1
+
+[params]
+  mainSections = ["posts"]
+  disableSpecial1stPost = true
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
