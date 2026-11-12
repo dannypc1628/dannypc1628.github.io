@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hyper-V on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/hyper-v/</link>
+    <description>Recent content in Hyper-V on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 27 Jan 2020 16:53:42 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hyper-v/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>幫Hyper-V虛擬機新增虛擬網路卡</title>
+      <link>http://localhost:1313/%E5%B9%ABhyper-v%E8%99%9B%E6%93%AC%E6%A9%9F%E6%96%B0%E5%A2%9E%E8%99%9B%E6%93%AC%E7%B6%B2%E8%B7%AF%E5%8D%A1/</link>
+      <pubDate>Mon, 27 Jan 2020 16:53:42 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%B9%ABhyper-v%E8%99%9B%E6%93%AC%E6%A9%9F%E6%96%B0%E5%A2%9E%E8%99%9B%E6%93%AC%E7%B6%B2%E8%B7%AF%E5%8D%A1/</guid>
+      <description>&lt;p&gt;今天要介紹的是在Hyper-V中增加虛擬網卡，要幫我們的虛擬機器(子機)增加虛擬網卡，首先要在運行Hyper-V的實體電腦(母機)增加一個虛擬交換器，並從母機設定有哪些子機可以使用新加入的虛擬交換器，設定完後進入虛擬機(子機)後就能看到新的虛擬網卡了。&lt;/p&gt;
+&lt;h1 id=&#34;先建立虛擬交換器&#34;&gt;先建立虛擬交換器&lt;/h1&gt;
+&lt;p&gt;首先，先打開Hyper-V管理員，Hyper-V管理員這個工具可以管理多個實體電腦(母機)中的多個虛擬電腦(子機)，左邊看到紅色框框有一台實體電腦(母機)，就是我的實體電腦，先點選這台的&lt;code&gt;實體電腦名稱&lt;/code&gt;後，中間列出這台實體電腦(母機)中有多少台虛擬機器(子機)，再至最右邊點紅色框框&lt;code&gt;虛擬交換器管理員&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV1-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;左側先選擇&lt;code&gt;新增虛擬交換器&lt;/code&gt;，右邊有三個選項，我這邊選擇&lt;code&gt;外部&lt;/code&gt;是希望這個虛擬交換器可以連線出母機外面 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV2-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;這邊介紹三個選項&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;外部 可以與連線至此交換器的子機與母機進行連線，並能與連接至此交換器的外部網路進行連線&lt;/li&gt;
+&lt;li&gt;內部 可以與連線至此交換器的子機與母機進行連線&lt;/li&gt;
+&lt;li&gt;私人 可以與連線至此交換器的子機進行連線&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我這邊將新增的虛擬交換器命名為150網段，並指定虛擬交換器使用我剛加裝的USB實體網路卡來連線至外部，並勾選&lt;code&gt;允許管理作業系統共用此網路介面卡&lt;/code&gt;讓母機也能連上此交換器，最後按下方&lt;code&gt;確定&lt;/code&gt;來完成 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV3-3.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果有跳出可能會中斷網路連線的警告訊息，按&lt;code&gt;是(Y)&lt;/code&gt;來完成設定 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV4.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;加入虛擬網卡&#34;&gt;加入虛擬網卡&lt;/h1&gt;
+&lt;p&gt;選擇要加入新網卡的虛擬機(子機)按滑鼠&lt;code&gt;右鍵&lt;/code&gt;選擇&lt;code&gt;設定&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV6.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;至左上角選擇&lt;code&gt;新增硬體&lt;/code&gt;，至中間選擇&lt;code&gt;網路介面卡&lt;/code&gt;，最後至右側點選&lt;code&gt;新增&lt;/code&gt;前往網路介面卡設定頁 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV7.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;點選&lt;code&gt;未連線&lt;/code&gt;選擇此網卡連線至剛剛新增的虛擬網路交換器後，按&lt;code&gt;確定&lt;/code&gt;即完成新增網路卡 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV8.png&#34;&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV9.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;進入虛擬機來設定ip&#34;&gt;進入虛擬機來設定IP&lt;/h1&gt;
+&lt;p&gt;剩下的設定方式就跟一般電腦設定網路卡的方式一樣，這邊快速帶過Windows的設定方式，如果是Linux可以看參考我先前寫的文章：&lt;a href=&#34;https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/&#34; title=&#34;CentOS 7 新增網卡並設定ip的方式&#34;&gt;CentOS 7 新增網卡並設定IP的方式&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;進入Win10虛擬機後，點選桌面右下角的&lt;code&gt;網路圖案&lt;/code&gt;，再點選&lt;code&gt;網際網路設定&lt;/code&gt;(隨著Windows更新位置與名稱可能不同)進入網路設定頁 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;點選&lt;code&gt;變更介面卡選項&lt;/code&gt;(隨著Windows更新位置與名稱可能不同) &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到新加入的網路卡名稱為乙太網路2，對其按&lt;code&gt;右鍵&lt;/code&gt;，點選&lt;code&gt;內容&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-6.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;1.點選左側中間的&lt;code&gt;網際網路通訊協定第4版&lt;/code&gt;，2.再至右側點選&lt;code&gt;使用下列的IP位址&lt;/code&gt;，3.輸入一組這個網卡接上的網段範圍可用IP(例：我設定的虛擬網路交換器是連上150網段)，4.點選&lt;code&gt;確定&lt;/code&gt;，5.點選確定即設定完成 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV14.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;現在便可以成功連上150網段上的其他服務 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N3.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

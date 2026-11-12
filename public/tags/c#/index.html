@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>C# | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/c%23/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/c%23/index.xml" title="rss">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/tags/c%23/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/tags/">Tags</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    C#
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C# 列舉器 IEnumerator 與 IEnumerable
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>今天要講的是列舉器，我們很常用到foreach來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？
+答案是因為，陣列有實作列舉器，所以我們可以使用 foreach 把陣列裡面的東西全部拿出來。簡而言之，若我們的自訂義的類別有實作列舉器。那就可以使用 foreach 來取出裡面的東西。
+class Program { static void Main(string[] args) { string[] 陣列 = { &#34;小明&#34;, &#34;小華&#34;, &#34;小花&#34; }; foreach(var item in 陣列) { Console.WriteLine(item); } Console.ReadKey(); } } 輸出結果：
+小明 小華 小花 列舉器 enumerator 列舉器會將陣列裡面的東西一個一個的依照順序取出來，不過 C# 裡面陣列是一個有指定大小的容器，定義陣列的大小後，裡面能放東西的數量就是固定的。所以廣泛來說，列舉器會把序列(不限定長度大小)裡面的東西一個一個取出來。 列舉器的實作方式也非常簡單，要做三個功能，1.拿出一個，2.判斷有沒有下一個，3.重頭開始(從零開始)
+在C#中有定義列舉器的interface IEnumerator，所以我們說陣列裡面有實作enumerator，就是擁有這三個功能
+public interface IEnumerator { bool MoveNext(); Object Current { get; } void Reset(); } 可列舉的enumerable 至於要怎麼知道這個物件有沒有列舉器，能不能使用foreach，就要看這個類別是不是可列舉的類別，類別有沒有繼承IEnumerable這介面。(補充：C#習慣在介面前面加上i，所以IEnumerable就是enumerable的interface，指的是可列舉的介面。)
+如果有繼承IEnumerable，就代表有實作GetEnumerator()這個方法來讓我們拿到列舉器。
+public interface IEnumerable { IEnumerator GetEnumerator(); } 所以剛剛的 foreach 程式可以改成以下使用列舉器的版本
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-03-22T23:37:09+08:00'>March 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to C# 列舉器 IEnumerator 與 IEnumerable" href="http://localhost:1313/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。
+不過我在做小專案時，選的是無驗證，想體驗[AuthorizeAttribute]的權限驗證功能，似乎最簡單的方式是使用.net早期的FormsAuthenticationu驗證，看別人的文章也講的很簡單，複製三段code，登入登出的功能就完成了。
+小弟不幸的一用之下，我的登入功能在登入成功後又重新導回登入畫面，形成無窮迴圈卡了一個小時。
+[HttpPost] [AllowAnonymous] [ValidateAntiForgeryToken] public ActionResult Login(LoginViewModel user) { if (ModelState.IsValid) { User u = _userService.Find(user.ID , user.Password); if(u != null) { FormsAuthenticationTicket ticket = new FormsAuthenticationTicket( 1, u.ID, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(90), isPersistent: true, userData: u.Name, cookiePath: FormsAuthentication.FormsCookiePath ); string encTicket = FormsAuthentication.Encrypt(ticket); var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Secure = true, HttpOnly = true }; Response.Cookies.Add(cookie); return RedirectToAction(&#34;Index&#34;, &#34;Lectures&#34;); } } ModelState.AddModelError(&#34;&#34;, &#34;無效的帳號或密碼。&#34;); return View(user); } 這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個Secure = true的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-01-02T14:55:40+08:00'>January 2, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法" href="http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C# 事件(下) – 加上event關鍵字
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>上篇文章中我們使用委派實作了事件處理機制，因為使用委派來實作非常方便，可以幫我們接受多筆客戶訂閱又能集結成冊，而執行委派又能實踐通知訂閱者者，一次幫助我們解決許多問題。 但是…
+委派要能讓外部客戶訂閱，就要能被外部使用，所以委派也有可能被外部執行而送出意料之外的通知。 使用event關鍵字 而這個問題並不是private、protected這類存取修飾字可以解決的，所以在C#中，提供了event關鍵字來解決這個問題，讓委派能被外部加入方法，又能禁止被外部執行。
+用法很簡單，只要在之前的程式碼上，在使用我們自定義的委派型別前加上event就可以了，程式碼如下：
+class 報社 { public delegate void 通知對象(string 新聞報導); public event 通知對象 最新新聞; //只有這一行有更改 public void 投稿新聞(string 新聞稿) { 最新新聞.Invoke(新聞稿); } } 加上event後，C#編譯器就會禁止外部來執行這個委派。 觸發事件時~ 當要執行委派，要記的檢查有沒有人訂閱(新聞事件)，若沒人訂閱委派，我們的訂閱名冊就會是null，執行時就會出現例外Null Reference Exception 若這個委派可能在內部多個地方都有可能觸發到，那可以包裝成一個方法，在C#與.NET中似乎習慣將觸發事件方法前面加上On，程式碼如下： C# 6.0可以使用?來簡化，是否為null的判斷：
+最新新聞?.Invoke(新聞); C#編譯器也會為我們提示 一些小改善 在以上範例能看到使用者訂閱新聞的過程，想當然地，一個使用者也能訂閱多個新聞，所以觸發事件的委派本身，要能讓訂閱者知道這是哪一間報社通知的新聞，所以.NET中會把委派本身當成參數傳給訂閱者的通知方法，讓使用者知道這次的通知是由哪個報社派送的。
+public delegate void 通知對象(報社 有間報社 ,string 新聞報導); 另外通知方法能接收的參數有多有少，每個委派的設定略有不同，我們可以將參數集合起來包裝成一個類別來傳遞。這樣以後要傳遞的參數需要修改或是數量增減也比較方便調整。
+public class 新聞 { public string 標題; public string 內容; } 如此一來，委派型別就可以精簡成只要兩個參數就好。
+public delegate void 通知對象(報社 有間報社 ,新聞 新聞報導); .NET中事件處理的慣例 上一節一些小改善可能會讓人納悶是否真的要如此，其實只是為了這一節做鋪陳。事件用的委派型別既然只要兩個參數就好的話，.NET類別庫本身也提供了現成的已經定義好的委派
+public delegate void EventHandler(object sender, EventArgs eventArgs); sender就是來源物件，型別是最廣泛的object，而傳遞參數集合宣告的型別是.NET類別庫定義好的EventArgs。所以要使用這個定義好的委派EventHandler，就要將我們定義好的新聞類別繼承自EventArgs。 但是訂閱者的通知方法可能要自己轉型，最後發行類別與訂閱類別就可以寫成如下：
+class 報社 { public string 名稱; public event EventHandler 最新新聞; public void 投稿新聞(string 訊息) { 新聞 new新聞 = new 新聞() { 標題 = &#34;最新快訊&#34;, 內容 = 訊息 }; On收到最新新聞時(this, new新聞); } protected void On收到最新新聞時(報社 報社, 新聞 新聞) { 最新新聞?.Invoke(報社, 新聞); } } class 訂閱者 { public string 名字 ; public void 通知我(object sender , EventArgs eventArgs) { 報社 報社 = sender as 報社; 新聞 新聞 = eventArgs as 新聞; Console.WriteLine($&#34;我是{名字}，我已經收到來自{來源.名稱}的{新聞.標題}：{新聞.內容}&#34;); } } 執行結果： 主程式： ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-11-02T00:19:24+08:00'>November 2, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to C# 事件(下) – 加上event關鍵字" href="http://localhost:1313/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C# 事件(上) - 使用委派來實作事件
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>C#的事件我在ASP.NET MVC中印像中是沒有看過，event應該是在視窗程式或WebForm上才會看到？。不過記得以前寫WebForm的過程中，雖然每個控制項都會用到事件，但記得我不用去了解event也可以把專案做起來，猶豫很久還是決定看看這個主題。
+今天的內容主要是參考電子書 C#本事 蔡煥麟
+事件驅動 平常我們撰寫程式時，都是自己主動使用某些物件提供的方法來得到結果。相反地，若物件的結果發生時間是隨機不固定的，我們可能不想自己一直主動詢問物件或一直等待，希望物件結果出來後主動通知我們，而物件結果出來這一件事情就是一種事件、一種改變、一種狀態發生，以上描述的這些算是一種事件驅動的程式設計。在WebForm中，每一個按鈕、控制項都是靠使用者點擊後觸發事件來執行後續程式。
+發行-訂閱模式 C#中的事件處理機制或者說.NET中的事件處理機制，整個機制其實是一種設計模式中–發行-訂閱模式(發行者-訂閱者模式)，概念是報社推出一份新報紙，會主動推送給有訂閱報紙的客戶，而不是客戶自己跑去問有沒有新報紙可以買。所以說推出新報紙時、發行新報紙時就會觸發事件，將新報紙送給有訂閱報紙的人。
+所以在發行-訂閱模式中，就有幾個關鍵內容
+訂閱者 發行者 訂閱名冊 (動作)依名冊通知已經訂閱的人 用委派實作發行/訂閱模式的事件機制 委派是方法的傳遞，我們可以把方法交給委派，由委派來執行我們的方法。相對地，我們可以把訂閱資料地址等資訊包裝成方法傳遞給委派，當事件發生時執行委派來通知我們這些訂閱者。
+先定義一個簡單的訂閱者，每個訂閱者都有名字與自己的通知方法：
+class 訂閱者 { public string 名字 ; public void 通知我(string 訊息) { Console.WriteLine($&#34;我是{名字}，我已經收到最新新聞：{訊息}&#34;); } } 接下來再實作發行者，並實作委派來通知訂閱對象 這裡就用C#1.0版的委派使用方式先定義委派
+public delegate void 通知對象(string 通知內容); 然後再宣告委派型別作為事件來使用，並且我們再撰寫一個新聞投稿方法，當有人投稿了新聞的那一刻，就要觸發事件去通知訂閱新聞的人。所以我定義了報社類別作為發行者如下：
+class 報社 { public delegate void 通知對象(string 新聞報導); public 通知對象 最新新聞; public void 投稿新聞(string 新聞稿) { //觸發事件 最新新聞.Invoke(新聞稿); } } 以上我們實作了發行者與訂閱者，並且用委派實作的事件驅動程式
+接下來是我們的主程式，包含訂閱新聞與投稿新聞來觸發事件：
+static void Main(string[] args) { 訂閱者 農夫 = new 訂閱者() { 名字 = &#34;農夫&#34; }; 訂閱者 商人 = new 訂閱者() { 名字 = &#34;商人&#34; }; 訂閱者 騎士 = new 訂閱者() { 名字 = &#34;騎士&#34; }; 報社 王國日報 = new 報社(); //訂閱 王國日報.最新新聞 &#43;= 農夫.通知我; 王國日報.最新新聞 &#43;= 商人.通知我; 王國日報.最新新聞 &#43;= 騎士.通知我; while (true) { Console.WriteLine(&#34;請輸入最新消息：&#34;); string 消息 = Console.ReadLine(); 王國日報.投稿新聞(消息); } } 執行結果： ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-10-31T10:57:58+08:00'>October 31, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to C# 事件(上) - 使用委派來實作事件" href="http://localhost:1313/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C# 3.0 擴充方法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>我們在處理某些類別的資料時，可能會專門做一個處理資料的類別或方法來處理。 例如，以下是沒有實作轉型運算子的溫度類別：
+[code] public class 攝氏 { public double 溫度; } public class 華氏 { public double 溫度; } [/code]
+這些類別可能是別人定義好的，若我們需要某些新功能，例如攝氏轉華視，在以前可能需要靠繼承，或是實作一個轉型用的類別才能達到。例如我定義了溫度轉型類別如下：
+因為我設定成靜態方法，在轉型時就是如下方式使用：
+擴充方法 而在C#3.0開始提供了擴充方法，讓我們在其他類別中撰寫的方法，能出現在目標類別的成員裡面。意思是說透過擴充方法，C#3.0可以把我們剛剛撰寫的溫度轉型類別的溫度轉型方法，偽裝成攝氏或華氏類別自己的方法。
+擴充方法的實作方式非常簡單，只要將方法透過this關鍵字指定需要偽裝的型別，就能成為該型別的擴充方法。當然還有兩單點但書：
+擴充方法本身需為靜態方法 擴充方法所在類別需為靜態類別 根據以上方式，我們可以快速的把我們剛剛在轉型類別中撰寫的轉型方法，快速成為擴充方法。而this是寫在方法第一個傳入型別前，C#會幫我們把該方法偽裝成第一個傳入型別的方法，在執行時還是執行轉型類別中的方法。所以我們只要做以下修改，就能轉成為擴充方法：
+使用這個方法時就能直接使用，C#會提示我們這是擴充方法，非常地方便。
+</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-10-22T18:02:06+08:00'>October 22, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to C# 3.0 擴充方法" href="http://localhost:1313/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">現成委派類 - Func &lt;T&gt; 與 Action &lt;T&gt;
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近開始會慢慢的把我在iT邦幫忙鐵人賽中的文章轉回自己的wordpress上
+前幾天提到委派時，在那時候用delegate設計了需要把外部方法傳入物件裡面的類別如下：
+我們建立委派類別來限制從外部傳入方法的傳入型別種類與數量，並且限制其回傳型別，上述程式碼中定義了能被委派的方法是無回傳值(void)，並且要接受一個int傳入值(int i)，這是以我們自行設定委派類別的動作。我們之前在泛型時提到過填入型別會產生對應型別的程式碼，而在.NET Framework 3.5類別庫(與C#3.0一同推出)已經透過泛型定義好委派類別讓我們直接使用，減少我們額外的宣告委派的動作。而這些定義好的泛型delegate類別就是今天要講的 Func 與 Action。
+現成委派類 - Func &lt;T&gt; 與 Action &lt;T&gt; Action - 接受沒有回傳值的void方法 Func - 接受有回傳值的方法 透過Action跟Func這些定義好的委派類別可以讓我們省略自己定義委派類別的步驟，而剛剛上述程式碼因為沒有回傳值所以要改用Action中的泛型Action＜T＞，並將傳入型別T改為int，結果如下：
+.NET Framework原始碼 最基本的Action-沒有傳入值也沒有回傳值 最基本的Func-有一個回傳值但沒有傳入值 以這個例子為例，如果我們要有string回傳值並且有int一個傳入值的方法，可以用Func&lt;T,TResult&gt;，前面的T寫傳入的型別，後面的TReult寫回傳的型別，
+public void 執行2(Func&lt;int,string&gt; 通知方法){int 結果 = 123;通知方法(結果);}.NET Framework還定義了其他不同傳入數量的Action與Func
+回頭看看 我們在使用這個計算類別時，因為C#2.0的語法省略宣告委派直接將方法傳入，如下：
+最後可以看到明明是透過delegate委派來傳遞方法，但是透過Func與Action來撰寫程式碼的過程中讓我們有種delegate已經消失的感覺。
+</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-10-19T20:19:03+08:00'>October 19, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 現成委派類 - Func 與 Action " href="http://localhost:1313/%E7%8F%BE%E6%88%90%E5%A7%94%E6%B4%BE%E9%A1%9E-func-%E8%88%87-action/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

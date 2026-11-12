@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>IIS on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/iis/</link>
+    <description>Recent content in IIS on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 02 Jan 2020 08:06:02 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/iis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Visual Studio 2017啟用IIS Express的Https</title>
+      <link>http://localhost:1313/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/</link>
+      <pubDate>Thu, 02 Jan 2020 08:06:02 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/</guid>
+      <description>&lt;p&gt;在寫asp.net時順手把cookie設定成Secure，想說偵錯模式時就改用Https來連線，一波三折就生出這篇文章。&lt;/p&gt;
+&lt;p&gt;我今天使用的是Visual Studio 2017 15.9.18，使用內建的IIS Express進行偵錯，預設.NET Core是有啟動HTTPS的，但.NET Framework則無。另外，要啟動Https的話在.NET Core中與.NET Framework兩者設定方式是不一樣的。另外還有IIS Express的&lt;code&gt;SSL port&lt;/code&gt;要注意。&lt;/p&gt;
+&lt;h1 id=&#34;aspnet-core&#34;&gt;ASP.NET Core&lt;/h1&gt;
+&lt;p&gt;net core是從方案總管，點選專案名稱按&lt;code&gt;右鍵&lt;/code&gt;，接著點選&lt;code&gt;屬性&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-33.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;來到屬性設定頁左側，點選&lt;code&gt;偵錯&lt;/code&gt;，再至Web伺服器設定勾選&lt;code&gt;啟用SSL&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-34.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;net-frameowrk-aspnet-mvc&#34;&gt;.NET Frameowrk ASP.NET MVC&lt;/h1&gt;
+&lt;p&gt;.net Framework是點選專案名稱後，至屬性視窗啟用SSL設為&lt;code&gt;True&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-35.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;屬性視窗的啟用方式&#34;&gt;屬性視窗的啟用方式&lt;/h1&gt;
+&lt;p&gt;左上角點選&lt;code&gt;檢視&lt;/code&gt;，再點選&lt;code&gt;屬性視窗&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-37.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;iis-express的ssl-port&#34;&gt;IIS Express的SSL Port&lt;/h1&gt;
+&lt;p&gt;IIS Express要啟動Https的話已經不需要以系統管理員的身分執行Visual studio，但是SSL Port已經鎖定在&lt;code&gt;44300 到 44399&lt;/code&gt;這個區間port號才能使用，若手動更改成這個區間以外的port將會無法啟動。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>系統 on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/categories/%E7%B3%BB%E7%B5%B1/</link>
+    <description>Recent content in 系統 on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 27 Jan 2020 16:53:42 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E7%B3%BB%E7%B5%B1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>幫Hyper-V虛擬機新增虛擬網路卡</title>
+      <link>http://localhost:1313/%E5%B9%ABhyper-v%E8%99%9B%E6%93%AC%E6%A9%9F%E6%96%B0%E5%A2%9E%E8%99%9B%E6%93%AC%E7%B6%B2%E8%B7%AF%E5%8D%A1/</link>
+      <pubDate>Mon, 27 Jan 2020 16:53:42 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%B9%ABhyper-v%E8%99%9B%E6%93%AC%E6%A9%9F%E6%96%B0%E5%A2%9E%E8%99%9B%E6%93%AC%E7%B6%B2%E8%B7%AF%E5%8D%A1/</guid>
+      <description>&lt;p&gt;今天要介紹的是在Hyper-V中增加虛擬網卡，要幫我們的虛擬機器(子機)增加虛擬網卡，首先要在運行Hyper-V的實體電腦(母機)增加一個虛擬交換器，並從母機設定有哪些子機可以使用新加入的虛擬交換器，設定完後進入虛擬機(子機)後就能看到新的虛擬網卡了。&lt;/p&gt;
+&lt;h1 id=&#34;先建立虛擬交換器&#34;&gt;先建立虛擬交換器&lt;/h1&gt;
+&lt;p&gt;首先，先打開Hyper-V管理員，Hyper-V管理員這個工具可以管理多個實體電腦(母機)中的多個虛擬電腦(子機)，左邊看到紅色框框有一台實體電腦(母機)，就是我的實體電腦，先點選這台的&lt;code&gt;實體電腦名稱&lt;/code&gt;後，中間列出這台實體電腦(母機)中有多少台虛擬機器(子機)，再至最右邊點紅色框框&lt;code&gt;虛擬交換器管理員&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV1-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;左側先選擇&lt;code&gt;新增虛擬交換器&lt;/code&gt;，右邊有三個選項，我這邊選擇&lt;code&gt;外部&lt;/code&gt;是希望這個虛擬交換器可以連線出母機外面 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV2-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;這邊介紹三個選項&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;外部 可以與連線至此交換器的子機與母機進行連線，並能與連接至此交換器的外部網路進行連線&lt;/li&gt;
+&lt;li&gt;內部 可以與連線至此交換器的子機與母機進行連線&lt;/li&gt;
+&lt;li&gt;私人 可以與連線至此交換器的子機進行連線&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我這邊將新增的虛擬交換器命名為150網段，並指定虛擬交換器使用我剛加裝的USB實體網路卡來連線至外部，並勾選&lt;code&gt;允許管理作業系統共用此網路介面卡&lt;/code&gt;讓母機也能連上此交換器，最後按下方&lt;code&gt;確定&lt;/code&gt;來完成 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV3-3.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果有跳出可能會中斷網路連線的警告訊息，按&lt;code&gt;是(Y)&lt;/code&gt;來完成設定 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV4.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;加入虛擬網卡&#34;&gt;加入虛擬網卡&lt;/h1&gt;
+&lt;p&gt;選擇要加入新網卡的虛擬機(子機)按滑鼠&lt;code&gt;右鍵&lt;/code&gt;選擇&lt;code&gt;設定&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV6.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;至左上角選擇&lt;code&gt;新增硬體&lt;/code&gt;，至中間選擇&lt;code&gt;網路介面卡&lt;/code&gt;，最後至右側點選&lt;code&gt;新增&lt;/code&gt;前往網路介面卡設定頁 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV7.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;點選&lt;code&gt;未連線&lt;/code&gt;選擇此網卡連線至剛剛新增的虛擬網路交換器後，按&lt;code&gt;確定&lt;/code&gt;即完成新增網路卡 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV8.png&#34;&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV9.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;進入虛擬機來設定ip&#34;&gt;進入虛擬機來設定IP&lt;/h1&gt;
+&lt;p&gt;剩下的設定方式就跟一般電腦設定網路卡的方式一樣，這邊快速帶過Windows的設定方式，如果是Linux可以看參考我先前寫的文章：&lt;a href=&#34;https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/&#34; title=&#34;CentOS 7 新增網卡並設定ip的方式&#34;&gt;CentOS 7 新增網卡並設定IP的方式&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;進入Win10虛擬機後，點選桌面右下角的&lt;code&gt;網路圖案&lt;/code&gt;，再點選&lt;code&gt;網際網路設定&lt;/code&gt;(隨著Windows更新位置與名稱可能不同)進入網路設定頁 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;點選&lt;code&gt;變更介面卡選項&lt;/code&gt;(隨著Windows更新位置與名稱可能不同) &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到新加入的網路卡名稱為乙太網路2，對其按&lt;code&gt;右鍵&lt;/code&gt;，點選&lt;code&gt;內容&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-6.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;1.點選左側中間的&lt;code&gt;網際網路通訊協定第4版&lt;/code&gt;，2.再至右側點選&lt;code&gt;使用下列的IP位址&lt;/code&gt;，3.輸入一組這個網卡接上的網段範圍可用IP(例：我設定的虛擬網路交換器是連上150網段)，4.點選&lt;code&gt;確定&lt;/code&gt;，5.點選確定即設定完成 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/HV14.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;現在便可以成功連上150網段上的其他服務 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/N3.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker初閱心得筆記！( Windows Container )</title>
+      <link>http://localhost:1313/docker%E5%88%9D%E9%96%B1%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98%EF%BC%81-windows-container/</link>
+      <pubDate>Thu, 24 Oct 2019 23:13:51 +0800</pubDate>
+      <guid>http://localhost:1313/docker%E5%88%9D%E9%96%B1%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98%EF%BC%81-windows-container/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/68747470733a2f2f692e696d6775722e636f6d2f674463537763732e706e67.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上週去聽保哥介紹操作Windows Container看起來超級炫的~~~&lt;/p&gt;
+&lt;p&gt;有一種以後只要透過container就能讓我們整個服務部屬能變得輕鬆容易~~~&lt;/p&gt;
+&lt;h1 id=&#34;虛擬化技術&#34;&gt;虛擬化技術&lt;/h1&gt;
+&lt;p&gt;container就是指現在常聽到的容器化技術，我先前一直以為docker就是container，或是要使用container就只能docker，聽完下來看來是我有點誤會了。&lt;/p&gt;
+&lt;p&gt;我們以前使用的VMware player 、VirtualBox或Hyper-V那種從安裝作業系統開始的虛擬化技術，是藉由VM提供硬體虛擬化隔離環境來讓我們安裝自訂CPU、硬碟、記憶體等等的虛擬電腦。&lt;/p&gt;
+&lt;p&gt;而container這種容器虛擬化技術，就是省略了硬體虛擬化，直接由現有作業系統來提供虛擬環境，執行特定應用程式，這種容器化技術很久以前就有廠商在研發。&lt;/p&gt;
+&lt;p&gt;不過最關鍵點應該是2013/2014年左右Linux作業系統核心提供了這種(官方級)虛擬化支援，讓container這種容器化技術備受矚目，又剛好docker公司首先推出對應服務，便讓docker成為container的代名詞。當然某角度來說是該公司把Docker開源專案提供給Linux 基金會，才有後續容器化技術風行的發生。&lt;/p&gt;
+&lt;p&gt;後來很多公司都推出自己的容器化技術，不過docker變成最廣泛的容器虛擬化格式，也不用依賴docker公司提供的docker工具才能使用，像是google的Kubernetes簡稱k8s也能管理並使用docker格式image來建置container。&lt;/p&gt;
+&lt;h1 id=&#34;container&#34;&gt;Container&lt;/h1&gt;
+&lt;p&gt;container這種容器化技術，讓我們少掉了安裝作業系統的時間與空間，省掉傳統虛擬化要提供專用CPU、硬碟、記憶體等等繁雜步驟。我們只要把我們執行的程式包裝成docker image靜態檔格式，執行(run)起來便成為一個獨立隔離執行環境的container了。也能讓系統中原本不能重複存在的程式，透過容器虛擬化來包裝後，執行多個容器而存在多個，彼此之間又因為被容器隔離而不會導致的互相干擾。&lt;/p&gt;
+&lt;p&gt;整個container的執行並不會影響到靜態image，刪除掉container便會把裡面的程式或變更一同刪掉，透過image檔再run起來便是一個新的container，有點像是遊戲的儲存點或記錄檔，透過image檔便能無限次重新開始。&lt;/p&gt;
+&lt;h1 id=&#34;windows-container&#34;&gt;Windows Container&lt;/h1&gt;
+&lt;p&gt;而Linux上面有了這種容器虛擬化技術後，微軟便與Docker公司合作推出windows上的容器化技術，而這一個成果就是我們可以安裝在Windows 10上的Docker Desktop。註1&lt;/p&gt;
+&lt;p&gt;Docker Desktop只能安裝在Windows 10 PRO或同級版本上，因為需用到Windows進階功能的Hyper-V和Container，所以家用版無法不能安裝。沒有啟用這兩個功能的話docker會提醒我們並幫我們啟用。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96dock.png&#34;&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Docker Desktop可以運行Linux container或是Windwos container，並且兩種可以同時運行。&lt;/p&gt;
+&lt;p&gt;特別的是Linux container是運行在Linux的Hyper-V的虛擬機裡面。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96hy.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;不過在指令管理時有個管理狀態，在Windows狀態下或Linux狀態下只能管理各自的容器，需透過選單中做切換。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-26-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;例如現在我在Windows container模式中下指令就只能看到基於Windows系統的docker image。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96images.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;另外Windows的image檔跟有跟Win 10的核心版本有相依，像是我的Win 10還是1809版(2018年9月)，就無法下載跟使用最新的1903版的container。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96image2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;感覺Windows上的容器化技術感覺離Linux container說的輕量感覺有很大的差異，不確定微軟怎麼實作的，聽保哥說Windows container執行環境有Process與Hyper-V兩種隔離模式。&lt;/p&gt;
+&lt;p&gt;像是我下載了微軟提供的iis image，雖然可以用來幫我們基於.NET Framework建立的Asp.net網站，改成透過容器來部署。但這個iis image是包在windows server縮小化版的server core image裡，靜態檔案大小就要5GB左右&amp;hellip;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;不過執行起來還是蠻快的，使用上看起來就是獨立的沒有圖形化介面的迷你windows系統。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96cmd.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;註1：Windows Server只能安裝Docker Enterprise 版，官方說明寫免費安裝，但沒說明能否免費商業使用XDD&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

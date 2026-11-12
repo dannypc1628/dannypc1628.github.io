@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Vue.js on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/vue.js/</link>
+    <description>Recent content in Vue.js on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sat, 01 Jun 2019 01:40:08 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue.js  jQuery在IE 11使用中文輸入法的小問題</title>
+      <link>http://localhost:1313/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</link>
+      <pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate>
+      <guid>http://localhost:1313/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</guid>
+      <description>&lt;p&gt;在學Vue.js時，真的覺得Vue.js操作起來很方便&lt;/p&gt;
+&lt;p&gt;之前寫的ToDoList專案中，遇到在IE11使用中文輸入法選字時，按Enter會觸發新增事項的method&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt; input v-model=&amp;quot;newToDo&amp;quot; v-on:keyup.enter=&amp;quot;addToDo&amp;quot; class=&amp;quot;form-control&amp;quot; placeholder=&amp;quot;新增事項&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;keyup是偵測放開按鍵時的事件，在Chrome跟Firefox上都正常，就是IE有問題真的昏倒&lt;/p&gt;
+&lt;p&gt;好險改用keypress就正常了&lt;/p&gt;
+&lt;p&gt;&lt;code&gt; &amp;lt;input v-model=&amp;quot;newToDo&amp;quot; v-on:keypress.enter=&amp;quot;addToDo&amp;quot; class=&amp;quot;form-control&amp;quot; placeholder=&amp;quot;新增事項&amp;quot; /&amp;gt; &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;這問題查了一下在jQuery或原生JavaScript也有&lt;/p&gt;
+&lt;p&gt;所以這應該是IE的js引擎有bug吧!?&lt;/p&gt;
+&lt;p&gt;JavaScript跟jQuery一樣改成keypress就好，例如:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt; &amp;lt;!-- JavaScript --&amp;gt;  &amp;amp;nbsp &amp;lt;input type=&amp;quot;text&amp;quot; onkeypress=&amp;quot;addToDo()&amp;quot;&amp;gt;   &amp;lt;!-- jQuery --&amp;gt;   $(&#39;#inputText&#39;).bind(&#39;keypress&#39;, function (event)   {   &amp;amp;nbsp 	 if (event.keyCode == 13)   &amp;amp;nbsp	 {   &amp;amp;nbsp &amp;amp;nbsp addToDo();   &amp;amp;nbsp  	 }   });&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;補充：keypress是按的過程中觸發，所以一直按住就會一直觸發，而keyup只會在放開按鍵時觸發一次&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[asp.net][Vue.js]待辦事項網頁</title>
+      <link>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</link>
+      <pubDate>Sun, 16 Dec 2018 14:13:35 +0800</pubDate>
+      <guid>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</guid>
+      <description>&lt;p&gt;聽聞現在前端框架提供強大功能，改善前端開發速度 省了很多寫純JavaScript的功夫 落後時代的我邊挑了Vue.js來開發一個待辦事項服務看看&lt;/p&gt;
+&lt;p&gt;使用到了Vue.js、jQuery、asp.net MVC(&amp;amp;api)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://todolistusingasp.azurewebsites.net&#34;&gt;https://todolistusingasp.azurewebsites.net&lt;/a&gt; 來賓帳號，guest guest&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

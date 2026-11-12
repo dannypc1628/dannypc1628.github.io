@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Visual Studio on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 02 Jan 2020 14:55:40 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法</title>
+      <link>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</link>
+      <pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</guid>
+      <description>&lt;p&gt;ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。&lt;/p&gt;
+&lt;p&gt;不過我在做小專案時，選的是無驗證，想體驗&lt;code&gt;[AuthorizeAttribute]&lt;/code&gt;的權限驗證功能，似乎最簡單的方式是使用.net早期的FormsAuthenticationu驗證，看別人的文章也講的很簡單，複製三段code，登入登出的功能就完成了。&lt;/p&gt;
+&lt;p&gt;小弟不幸的一用之下，我的登入功能在登入成功後又重新導回登入畫面，形成無窮迴圈卡了一個小時。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[HttpPost]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[AllowAnonymous]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[ValidateAntiForgeryToken]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ActionResult Login(LoginViewModel user)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (ModelState.IsValid)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        User u = _userService.Find(user.ID , user.Password);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(u != &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            FormsAuthenticationTicket ticket = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; FormsAuthenticationTicket(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                u.ID,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow.AddMinutes(&lt;span style=&#34;color:#ae81ff&#34;&gt;90&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                isPersistent: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                userData: u.Name,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                cookiePath: FormsAuthentication.FormsCookiePath
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                );
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; encTicket = FormsAuthentication.Encrypt(ticket);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; cookie = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Secure = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,         
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                HttpOnly = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Response.Cookies.Add(cookie);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; RedirectToAction(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Index&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lectures&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ModelState.AddModelError(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;無效的帳號或密碼。&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; View(user);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個&lt;code&gt;Secure = true&lt;/code&gt;的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>在Visual Studio 2017啟用IIS Express的Https</title>
+      <link>http://localhost:1313/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/</link>
+      <pubDate>Thu, 02 Jan 2020 08:06:02 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/</guid>
+      <description>&lt;p&gt;在寫asp.net時順手把cookie設定成Secure，想說偵錯模式時就改用Https來連線，一波三折就生出這篇文章。&lt;/p&gt;
+&lt;p&gt;我今天使用的是Visual Studio 2017 15.9.18，使用內建的IIS Express進行偵錯，預設.NET Core是有啟動HTTPS的，但.NET Framework則無。另外，要啟動Https的話在.NET Core中與.NET Framework兩者設定方式是不一樣的。另外還有IIS Express的&lt;code&gt;SSL port&lt;/code&gt;要注意。&lt;/p&gt;
+&lt;h1 id=&#34;aspnet-core&#34;&gt;ASP.NET Core&lt;/h1&gt;
+&lt;p&gt;net core是從方案總管，點選專案名稱按&lt;code&gt;右鍵&lt;/code&gt;，接著點選&lt;code&gt;屬性&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-33.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;來到屬性設定頁左側，點選&lt;code&gt;偵錯&lt;/code&gt;，再至Web伺服器設定勾選&lt;code&gt;啟用SSL&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-34.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;net-frameowrk-aspnet-mvc&#34;&gt;.NET Frameowrk ASP.NET MVC&lt;/h1&gt;
+&lt;p&gt;.net Framework是點選專案名稱後，至屬性視窗啟用SSL設為&lt;code&gt;True&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-35.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;屬性視窗的啟用方式&#34;&gt;屬性視窗的啟用方式&lt;/h1&gt;
+&lt;p&gt;左上角點選&lt;code&gt;檢視&lt;/code&gt;，再點選&lt;code&gt;屬性視窗&lt;/code&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/01/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-37.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;iis-express的ssl-port&#34;&gt;IIS Express的SSL Port&lt;/h1&gt;
+&lt;p&gt;IIS Express要啟動Https的話已經不需要以系統管理員的身分執行Visual studio，但是SSL Port已經鎖定在&lt;code&gt;44300 到 44399&lt;/code&gt;這個區間port號才能使用，若手動更改成這個區間以外的port將會無法啟動。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>離線安裝 Visual Studio 2017 安裝失敗的解決辦法</title>
+      <link>http://localhost:1313/fix-visual-studio-2017-offline-install-error/</link>
+      <pubDate>Sat, 03 Nov 2018 16:33:28 +0800</pubDate>
+      <guid>http://localhost:1313/fix-visual-studio-2017-offline-install-error/</guid>
+      <description>&lt;p&gt;因為有在沒辦法上網的電腦中安裝Visual Studio的需求 依照官方的教學 &lt;a href=&#34;https://docs.microsoft.com/zh-tw/visualstudio/install/create-an-offline-installation-of-visual-studio?view=vs-2017&#34;&gt;建立 Visual Studio 2017 的離線安裝&lt;/a&gt; 2017版好像並無提供iso安裝，需要對Visual Studio下載器下指令來建立離線安裝包 例如Visual Studio Community版的下載器就是vs_community.exe這支檔案 對這個檔案所在資料夾空白處按住Shift後按滑鼠右鍵，點選&amp;quot;在此處開啟命令視窗&amp;quot;，輸入指令來建立離線安裝包 使用官方教學中第一個指令建立包含繁體中文的桌面程式、網頁程式、Github套件的Visual Studio離線安裝包 輸出位置會在c:\vs2017layout [code] vs_community.exe &amp;ndash;layout c:\vs2017layout &amp;ndash;add Microsoft.VisualStudio.Workload.ManagedDesktop &amp;ndash;add Microsoft.VisualStudio.Workload.NetWeb &amp;ndash;add Component.GitHub.VisualStudio &amp;ndash;includeOptional &amp;ndash;lang zh-TW [/code] 把vs2017layout資料夾整包移到需要離線安裝的電腦中後，到vs2017layout資料夾裡再下指令 讓vs_community.exe進行包含桌面程式、網頁程式、Github套件的Visual Studio離線安裝(此時指令不用再下zh-TW) [code] vs_community.exe &amp;ndash;add Microsoft.VisualStudio.Workload.ManagedDesktop &amp;ndash;add Microsoft.VisualStudio.Workload.NetWeb &amp;ndash;add Component.GitHub.VisualStudio &amp;ndash;includeOptional [/code] 結果在我安裝的過程中，一直出現缺少套件無法連到網路下載的錯誤訊息 &lt;img alt=&#34;Can not download!!!&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2018/11/234.jpg&#34; title=&#34;Can not download!!!&#34;&gt; 起初以為是離線安裝包中，所包含的版本號不同而導致這個錯誤 真的補上這個套件後，才發現是離線安包中套件的資料夾名稱後面有缺漏，把字補上之後重下安裝指令就可以正常安裝了 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2018/11/123456789.jpg&#34;&gt; 但是回去原電腦看vs2017layout內容卻是正常的，這問題可能是光碟載具或燒錄軟體的限制所造成的&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

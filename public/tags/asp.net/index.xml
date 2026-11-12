@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ASP.net on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/asp.net/</link>
+    <description>Recent content in ASP.net on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 02 Jan 2020 14:55:40 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/asp.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法</title>
+      <link>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</link>
+      <pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</guid>
+      <description>&lt;p&gt;ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。&lt;/p&gt;
+&lt;p&gt;不過我在做小專案時，選的是無驗證，想體驗&lt;code&gt;[AuthorizeAttribute]&lt;/code&gt;的權限驗證功能，似乎最簡單的方式是使用.net早期的FormsAuthenticationu驗證，看別人的文章也講的很簡單，複製三段code，登入登出的功能就完成了。&lt;/p&gt;
+&lt;p&gt;小弟不幸的一用之下，我的登入功能在登入成功後又重新導回登入畫面，形成無窮迴圈卡了一個小時。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[HttpPost]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[AllowAnonymous]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[ValidateAntiForgeryToken]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ActionResult Login(LoginViewModel user)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (ModelState.IsValid)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        User u = _userService.Find(user.ID , user.Password);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(u != &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            FormsAuthenticationTicket ticket = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; FormsAuthenticationTicket(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                u.ID,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow.AddMinutes(&lt;span style=&#34;color:#ae81ff&#34;&gt;90&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                isPersistent: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                userData: u.Name,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                cookiePath: FormsAuthentication.FormsCookiePath
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                );
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; encTicket = FormsAuthentication.Encrypt(ticket);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; cookie = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Secure = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,         
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                HttpOnly = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Response.Cookies.Add(cookie);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; RedirectToAction(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Index&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lectures&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ModelState.AddModelError(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;無效的帳號或密碼。&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; View(user);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個&lt;code&gt;Secure = true&lt;/code&gt;的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ASP.NET MVC 下拉式選單的用法</title>
+      <link>http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 13 Jun 2019 21:27:12 +0800</pubDate>
+      <guid>http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <description>&lt;p&gt;筆記ASP.net MVC 下拉式選單的用法，免得一陣子沒用就忘了&amp;hellip;&lt;/p&gt;
+&lt;p&gt;ASP.net MVC中 View提供了HTML Helpers來幫我們自動產生部分HTML程式碼&lt;/p&gt;
+&lt;p&gt;其中 &lt;code&gt;@Html.DropDownList&lt;/code&gt; 可以幫我們生成下拉式選單&lt;/p&gt;
+&lt;p&gt;先在Controller中用ViewBag準備要傳給下拉式選單的資料，指定名稱為&lt;strong&gt;銀行選單&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; BankList = &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; b &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; db.Bank &lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt; b; &lt;span style=&#34;color:#75715e&#34;&gt;//要做成下拉式選單的資料表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//新一個SelectList物件(資料表, 指定資料表中Value的欄位 ,  指定資料表中顯示文字的欄位)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ViewBag.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;銀行選單&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//如果資料表中有預先勾選的資料，就在後面加入預先選擇的value銀行代碼&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ViewBag.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;銀行選單&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;預先選擇的&lt;/span&gt;value銀行代碼);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在view中給DropDownList的第一個name欄位命名同為&lt;strong&gt;銀行選單&lt;/strong&gt;，就會自動帶入ViewBag.銀行選單的資料了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Html.DropDownList(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, htmlAttributes: &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; { @class = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你的DropDownList要的SelectList資料不是Controller給的而是在View中，就填入第二個欄位，但我們是從Controller拿所以填null 要自訂下拉式選單的class或id等屬性則寫在htmlAttributes: new { }大括號裡面，比較特別的是class是C#保留字，所以要在前面標上@，避免判斷失敗&lt;/p&gt;
+&lt;p&gt;如果你的DropDownList要顯示- - -請選擇一個項目- - -，就這樣做&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Html.DropDownList(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-----請選擇一個項目-----&amp;#34;&lt;/span&gt;,htmlAttributes: &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; { @class = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>[asp.net][Vue.js]待辦事項網頁</title>
+      <link>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</link>
+      <pubDate>Sun, 16 Dec 2018 14:13:35 +0800</pubDate>
+      <guid>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</guid>
+      <description>&lt;p&gt;聽聞現在前端框架提供強大功能，改善前端開發速度 省了很多寫純JavaScript的功夫 落後時代的我邊挑了Vue.js來開發一個待辦事項服務看看&lt;/p&gt;
+&lt;p&gt;使用到了Vue.js、jQuery、asp.net MVC(&amp;amp;api)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://todolistusingasp.azurewebsites.net&#34;&gt;https://todolistusingasp.azurewebsites.net&lt;/a&gt; 來賓帳號，guest guest&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Docker | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/docker/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/docker/index.xml" title="rss">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/tags/docker/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/tags/">Tags</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Docker
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker初閱心得筆記！( Windows Container )
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+上週去聽保哥介紹操作Windows Container看起來超級炫的~~~
+有一種以後只要透過container就能讓我們整個服務部屬能變得輕鬆容易~~~
+虛擬化技術 container就是指現在常聽到的容器化技術，我先前一直以為docker就是container，或是要使用container就只能docker，聽完下來看來是我有點誤會了。
+我們以前使用的VMware player 、VirtualBox或Hyper-V那種從安裝作業系統開始的虛擬化技術，是藉由VM提供硬體虛擬化隔離環境來讓我們安裝自訂CPU、硬碟、記憶體等等的虛擬電腦。
+而container這種容器虛擬化技術，就是省略了硬體虛擬化，直接由現有作業系統來提供虛擬環境，執行特定應用程式，這種容器化技術很久以前就有廠商在研發。
+不過最關鍵點應該是2013/2014年左右Linux作業系統核心提供了這種(官方級)虛擬化支援，讓container這種容器化技術備受矚目，又剛好docker公司首先推出對應服務，便讓docker成為container的代名詞。當然某角度來說是該公司把Docker開源專案提供給Linux 基金會，才有後續容器化技術風行的發生。
+後來很多公司都推出自己的容器化技術，不過docker變成最廣泛的容器虛擬化格式，也不用依賴docker公司提供的docker工具才能使用，像是google的Kubernetes簡稱k8s也能管理並使用docker格式image來建置container。
+Container container這種容器化技術，讓我們少掉了安裝作業系統的時間與空間，省掉傳統虛擬化要提供專用CPU、硬碟、記憶體等等繁雜步驟。我們只要把我們執行的程式包裝成docker image靜態檔格式，執行(run)起來便成為一個獨立隔離執行環境的container了。也能讓系統中原本不能重複存在的程式，透過容器虛擬化來包裝後，執行多個容器而存在多個，彼此之間又因為被容器隔離而不會導致的互相干擾。
+整個container的執行並不會影響到靜態image，刪除掉container便會把裡面的程式或變更一同刪掉，透過image檔再run起來便是一個新的container，有點像是遊戲的儲存點或記錄檔，透過image檔便能無限次重新開始。
+Windows Container 而Linux上面有了這種容器虛擬化技術後，微軟便與Docker公司合作推出windows上的容器化技術，而這一個成果就是我們可以安裝在Windows 10上的Docker Desktop。註1
+Docker Desktop只能安裝在Windows 10 PRO或同級版本上，因為需用到Windows進階功能的Hyper-V和Container，所以家用版無法不能安裝。沒有啟用這兩個功能的話docker會提醒我們並幫我們啟用。
+Docker Desktop可以運行Linux container或是Windwos container，並且兩種可以同時運行。
+特別的是Linux container是運行在Linux的Hyper-V的虛擬機裡面。
+不過在指令管理時有個管理狀態，在Windows狀態下或Linux狀態下只能管理各自的容器，需透過選單中做切換。
+例如現在我在Windows container模式中下指令就只能看到基於Windows系統的docker image。
+另外Windows的image檔跟有跟Win 10的核心版本有相依，像是我的Win 10還是1809版(2018年9月)，就無法下載跟使用最新的1903版的container。
+感覺Windows上的容器化技術感覺離Linux container說的輕量感覺有很大的差異，不確定微軟怎麼實作的，聽保哥說Windows container執行環境有Process與Hyper-V兩種隔離模式。
+像是我下載了微軟提供的iis image，雖然可以用來幫我們基於.NET Framework建立的Asp.net網站，改成透過容器來部署。但這個iis image是包在windows server縮小化版的server core image裡，靜態檔案大小就要5GB左右……
+不過執行起來還是蠻快的，使用上看起來就是獨立的沒有圖形化介面的迷你windows系統。
+註1：Windows Server只能安裝Docker Enterprise 版，官方說明寫免費安裝，但沒說明能否免費商業使用XDD
+</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-10-24T23:13:51+08:00'>October 24, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to Docker初閱心得筆記！( Windows Container )" href="http://localhost:1313/docker%E5%88%9D%E9%96%B1%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98%EF%BC%81-windows-container/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

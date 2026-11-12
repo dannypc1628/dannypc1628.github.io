@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Fri, 24 Dec 2021 16:55:10 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.NET</title>
+      <link>http://localhost:1313/tags/.net/</link>
+      <pubDate>Fri, 24 Dec 2021 16:55:10 +0800</pubDate>
+      <guid>http://localhost:1313/tags/.net/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Entity Framework</title>
+      <link>http://localhost:1313/tags/entity-framework/</link>
+      <pubDate>Fri, 24 Dec 2021 16:55:10 +0800</pubDate>
+      <guid>http://localhost:1313/tags/entity-framework/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>EF Core</title>
+      <link>http://localhost:1313/tags/ef-core/</link>
+      <pubDate>Mon, 13 Dec 2021 19:33:59 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ef-core/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>http://localhost:1313/tags/git/</link>
+      <pubDate>Sun, 25 Jul 2021 02:11:44 +0800</pubDate>
+      <guid>http://localhost:1313/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rest-Client</title>
+      <link>http://localhost:1313/tags/rest-client/</link>
+      <pubDate>Sun, 30 May 2021 01:27:52 +0800</pubDate>
+      <guid>http://localhost:1313/tags/rest-client/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>商業思維學院</title>
+      <link>http://localhost:1313/tags/%E5%95%86%E6%A5%AD%E6%80%9D%E7%B6%AD%E5%AD%B8%E9%99%A2/</link>
+      <pubDate>Mon, 19 Apr 2021 21:48:15 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%95%86%E6%A5%AD%E6%80%9D%E7%B6%AD%E5%AD%B8%E9%99%A2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>專案管理</title>
+      <link>http://localhost:1313/tags/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Mon, 19 Apr 2021 21:48:15 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C#</title>
+      <link>http://localhost:1313/tags/c%23/</link>
+      <pubDate>Sun, 22 Mar 2020 23:37:09 +0800</pubDate>
+      <guid>http://localhost:1313/tags/c%23/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Angular</title>
+      <link>http://localhost:1313/tags/angular/</link>
+      <pubDate>Sun, 16 Feb 2020 22:48:13 +0800</pubDate>
+      <guid>http://localhost:1313/tags/angular/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>http://localhost:1313/tags/azure/</link>
+      <pubDate>Sat, 08 Feb 2020 17:57:50 +0800</pubDate>
+      <guid>http://localhost:1313/tags/azure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>證照</title>
+      <link>http://localhost:1313/tags/%E8%AD%89%E7%85%A7/</link>
+      <pubDate>Sat, 08 Feb 2020 17:57:50 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E8%AD%89%E7%85%A7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hyper-V</title>
+      <link>http://localhost:1313/tags/hyper-v/</link>
+      <pubDate>Mon, 27 Jan 2020 16:53:42 +0800</pubDate>
+      <guid>http://localhost:1313/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CentOS</title>
+      <link>http://localhost:1313/tags/centos/</link>
+      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
+      <guid>http://localhost:1313/tags/centos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenSSH</title>
+      <link>http://localhost:1313/tags/openssh/</link>
+      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
+      <guid>http://localhost:1313/tags/openssh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSH</title>
+      <link>http://localhost:1313/tags/ssh/</link>
+      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ssh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ubuntu</title>
+      <link>http://localhost:1313/tags/ubuntu/</link>
+      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ASP.net</title>
+      <link>http://localhost:1313/tags/asp.net/</link>
+      <pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate>
+      <guid>http://localhost:1313/tags/asp.net/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visual Studio</title>
+      <link>http://localhost:1313/tags/visual-studio/</link>
+      <pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate>
+      <guid>http://localhost:1313/tags/visual-studio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IIS</title>
+      <link>http://localhost:1313/tags/iis/</link>
+      <pubDate>Thu, 02 Jan 2020 08:06:02 +0800</pubDate>
+      <guid>http://localhost:1313/tags/iis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/tags/docker/</link>
+      <pubDate>Thu, 24 Oct 2019 23:13:51 +0800</pubDate>
+      <guid>http://localhost:1313/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>容器化</title>
+      <link>http://localhost:1313/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/</link>
+      <pubDate>Thu, 24 Oct 2019 23:13:51 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>小說</title>
+      <link>http://localhost:1313/tags/%E5%B0%8F%E8%AA%AA/</link>
+      <pubDate>Wed, 23 Oct 2019 15:30:20 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%B0%8F%E8%AA%AA/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>電影</title>
+      <link>http://localhost:1313/tags/%E9%9B%BB%E5%BD%B1/</link>
+      <pubDate>Wed, 23 Oct 2019 15:30:20 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%9B%BB%E5%BD%B1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Arduino</title>
+      <link>http://localhost:1313/tags/arduino/</link>
+      <pubDate>Sat, 17 Aug 2019 12:16:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/arduino/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>E-Ink</title>
+      <link>http://localhost:1313/tags/e-ink/</link>
+      <pubDate>Sat, 17 Aug 2019 12:16:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/e-ink/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MVC</title>
+      <link>http://localhost:1313/tags/mvc/</link>
+      <pubDate>Thu, 13 Jun 2019 21:27:12 +0800</pubDate>
+      <guid>http://localhost:1313/tags/mvc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JavaScript</title>
+      <link>http://localhost:1313/tags/javascript/</link>
+      <pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate>
+      <guid>http://localhost:1313/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JQuery</title>
+      <link>http://localhost:1313/tags/jquery/</link>
+      <pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate>
+      <guid>http://localhost:1313/tags/jquery/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vue.js</title>
+      <link>http://localhost:1313/tags/vue.js/</link>
+      <pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate>
+      <guid>http://localhost:1313/tags/vue.js/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Proxy</title>
+      <link>http://localhost:1313/tags/proxy/</link>
+      <pubDate>Mon, 14 Jan 2019 15:06:05 +0800</pubDate>
+      <guid>http://localhost:1313/tags/proxy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>代理伺服器</title>
+      <link>http://localhost:1313/tags/%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</link>
+      <pubDate>Mon, 14 Jan 2019 15:06:05 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>.Net Core</title>
+      <link>http://localhost:1313/tags/.net-core/</link>
+      <pubDate>Mon, 27 Aug 2018 01:16:13 +0800</pubDate>
+      <guid>http://localhost:1313/tags/.net-core/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>長庚冷知識</title>
+      <link>http://localhost:1313/tags/%E9%95%B7%E5%BA%9A%E5%86%B7%E7%9F%A5%E8%AD%98/</link>
+      <pubDate>Tue, 17 May 2016 20:59:45 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%95%B7%E5%BA%9A%E5%86%B7%E7%9F%A5%E8%AD%98/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DNS</title>
+      <link>http://localhost:1313/tags/dns/</link>
+      <pubDate>Tue, 05 Apr 2016 23:47:13 +0800</pubDate>
+      <guid>http://localhost:1313/tags/dns/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSL</title>
+      <link>http://localhost:1313/tags/ssl/</link>
+      <pubDate>Tue, 05 Apr 2016 23:47:13 +0800</pubDate>
+      <guid>http://localhost:1313/tags/ssl/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

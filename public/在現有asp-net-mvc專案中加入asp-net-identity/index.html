@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>在現有ASP.NET MVC專案中加入ASP.NET Identity個別使用者帳戶驗證範本 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="不曉得有多少人在使用ASP.NET Identity作為網站的登入系統驗證，自己在寫專案的時候常常是事後才想到(或才知道)要有登錄系統，之前都是在MVC中使用ASP.NET的表單驗證 (FormsAuthentication)，這個方法做起來很快，也比較容易理解與上手。不過
+既然ASP.NET MVC的預設專案範本的個別使用者帳戶驗證是使用ASP.NET Identity，也實作好登入驗證、註冊與登出等控制流程。我也希望專案中改用ASP.NET Identity比較輕鬆愉快。本篇文章中會介紹如何把專案範本中個別使用者帳戶驗證的相關功能模組移入現有專案。
+安裝套件
+在MVC中要使用ASP.NET Identity，需要用NuGet安裝以下三個套件到現有專案中：
+
+Microsoft.AspNet.Identity.EntityFramework
+Microsoft.AspNet.Identity.OWIN
+Microsoft.Owin.Host.SystemWeb
+
+安裝的過程中會連同每個套件的相依套件一併安裝，所以最後安裝下來的套件數就不只三個，此外在NuGet上可以找到這三個套件相對應的繁體中文套件(名稱後方加上.zh-Hant)安裝結果是一樣的只是多中文套件而已。安裝套件結果可以看packages.config
+&lt;package id=&#34;Owin&#34; version=&#34;1.0&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin.Host.SystemWeb&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin.Host.SystemWeb.zh-Hant&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin.Security&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin.Security.Cookies&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.Owin.Security.OAuth&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.AspNet.Identity.Core&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.AspNet.Identity.EntityFramework&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.AspNet.Identity.Owin&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt;
+&lt;package id=&#34;Microsoft.AspNet.Identity.Owin.zh-Hant&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt;
+加入現有項目
+安裝完套件後，接者就是把專案範本中的個別使用者帳戶驗證的相關功能例如設定檔、控制器、模型、檢視等搬到現有專案，若兩個專案名稱都取一樣的名字就可以省去更改命名空間namespace的功夫。這邊準備了專案，是我將無驗證的MVC專案範本與有使用個別使用者帳戶驗證的專案範本兩個合併的比較差異，可以比較出使用個別使用者帳戶驗證的範本相對於無驗證範本多出了哪些檔案。下列檔案我就用方案總管全部搬到新專案去。
+Startup.cs
+App_Start\IdentityConfig.cs
+App_Start\Startup.Auth.cs
+Controller\AccountController.cs
+Controller\ManageController.cs
+Models\AccountViewModels.cs
+Models\IdentityModels.cs
+Models\ManageViewModels.cs
+Views\Account\*.cshtml
+Views\Manage\*.cshtml
+Views\Shared\Lockout.cshtml
+Views\Shared\_LoginPartial.cshtml
+更改設定
+另外還有Web.config、IdentityModels.cs和_Layout.cshtml需要手動修改
+更改_Layout.cshtml
+改Layout比較簡單，就是將登入註冊按鈕的_LoginPartial.cshtml加入置頂列中
+&lt;div class=&#34;navbar-collapse collapse&#34;&gt;
+                &lt;ul class=&#34;nav navbar-nav&#34;&gt;
+                    &lt;li&gt;@Html.ActionLink(&#34;首頁&#34;, &#34;Index&#34;, &#34;Home&#34;)&lt;/li&gt;
+                    &lt;li&gt;@Html.ActionLink(&#34;關於&#34;, &#34;About&#34;, &#34;Home&#34;)&lt;/li&gt;
+                    &lt;li&gt;@Html.ActionLink(&#34;連絡人&#34;, &#34;Contact&#34;, &#34;Home&#34;)&lt;/li&gt;
+                &lt;/ul&gt;
+                @Html.Partial(&#34;_LoginPartial&#34;)
+            &lt;/div&gt;
+更改Web.config
+而在Web.config中要增加CodeFirst資料庫連結字串，如果用DBfirst產生的資料庫連線字串如下，providerName是System.Data.EntityClient這個組件，連線字串還包含著metadata、MultipleActiveResultSets與App參數
+&lt;connectionStrings&gt;
+    &lt;add name=&#34;MyDBEntities&#34; connectionString=&#34;metadata=res://*/Models.MyDBModel.csdl|res://*/Models.MyDBModel.ssdl|res://*/Models.MyDBModel.msl;provider=System.Data.SqlClient;
+provider connection string=&#34;data source=(local)\SQLEXPRESS;initial catalog=MyDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&#34;&#34; providerName=&#34;System.Data.EntityClient&#34; /&gt;
+&lt;/connectionStrings&gt;
+若直接使用DataBaseFirst的連線字串可能會出現的錯誤訊息有不支援關鍵字: &#39;metadata&#39;或是System.InvalidOperationException: The entity type ApplicationUser is not part of the model for the current context.又或者是System.Data.Entity.Core.MetadataException: Unable to load the specified metadata resource等等">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/%E5%9C%A8%E7%8F%BE%E6%9C%89asp-net-mvc%E5%B0%88%E6%A1%88%E4%B8%AD%E5%8A%A0%E5%85%A5asp-net-identity/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/%E5%9C%A8%E7%8F%BE%E6%9C%89asp-net-mvc%E5%B0%88%E6%A1%88%E4%B8%AD%E5%8A%A0%E5%85%A5asp-net-identity/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      在現有ASP.NET MVC專案中加入ASP.NET Identity個別使用者帳戶驗證範本
+    </h1>
+    <div class="post-meta">
+
+<span title='2020-02-22T21:05:25+08:00'>February 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>不曉得有多少人在使用ASP.NET Identity作為網站的登入系統驗證，自己在寫專案的時候常常是事後才想到(或才知道)要有登錄系統，之前都是在MVC中使用ASP.NET的表單驗證 (FormsAuthentication)，這個方法做起來很快，也比較容易理解與上手。不過</p>
+<p>既然ASP.NET MVC的預設專案範本的個別使用者帳戶驗證是使用ASP.NET Identity，也實作好登入驗證、註冊與登出等控制流程。我也希望專案中改用ASP.NET Identity比較輕鬆愉快。本篇文章中會介紹如何把專案範本中個別使用者帳戶驗證的相關功能模組移入現有專案。</p>
+<h1 id="安裝套件">安裝套件<a hidden class="anchor" aria-hidden="true" href="#安裝套件">#</a></h1>
+<p>在MVC中要使用ASP.NET Identity，需要用NuGet安裝以下三個套件到現有專案中：</p>
+<ul>
+<li>Microsoft.AspNet.Identity.EntityFramework</li>
+<li>Microsoft.AspNet.Identity.OWIN</li>
+<li>Microsoft.Owin.Host.SystemWeb</li>
+</ul>
+<p>安裝的過程中會連同每個套件的相依套件一併安裝，所以最後安裝下來的套件數就不只三個，此外在NuGet上可以找到這三個套件相對應的繁體中文套件(名稱後方加上<code>.zh-Hant</code>)安裝結果是一樣的只是多中文套件而已。安裝套件結果可以看<code>packages.config</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Owin&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;1.0&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;4.1.0&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin.Host.SystemWeb&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;4.1.0&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin.Host.SystemWeb.zh-Hant&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;4.1.0&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin.Security&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;3.0.1&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin.Security.Cookies&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;3.0.1&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.Owin.Security.OAuth&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;3.0.1&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.AspNet.Identity.Core&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;2.2.3&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.AspNet.Identity.EntityFramework&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;2.2.3&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.AspNet.Identity.Owin&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;2.2.3&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;Microsoft.AspNet.Identity.Owin.zh-Hant&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;2.2.3&#34;</span> <span style="color:#a6e22e">targetFramework=</span><span style="color:#e6db74">&#34;net472&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span></code></pre></div><h1 id="加入現有項目">加入現有項目<a hidden class="anchor" aria-hidden="true" href="#加入現有項目">#</a></h1>
+<p>安裝完套件後，接者就是把專案範本中的個別使用者帳戶驗證的相關功能例如設定檔、控制器、模型、檢視等搬到現有專案，若兩個專案名稱都取一樣的名字就可以省去更改命名空間namespace的功夫。這邊準備了<a href="https://github.com/dannypc1628/AspNetIdentityTest/commits/master" title="專案">專案</a>，是我將無驗證的MVC專案範本與有使用個別使用者帳戶驗證的專案範本兩個合併的比較差異，可以比較出使用個別使用者帳戶驗證的範本相對於無驗證範本多出了哪些檔案。下列檔案我就用方案總管全部搬到新專案去。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Startup.cs
+</span></span><span style="display:flex;"><span>App_Start<span style="color:#ae81ff">\I</span>dentityConfig.cs
+</span></span><span style="display:flex;"><span>App_Start<span style="color:#ae81ff">\S</span>tartup.Auth.cs
+</span></span><span style="display:flex;"><span>Controller<span style="color:#ae81ff">\A</span>ccountController.cs
+</span></span><span style="display:flex;"><span>Controller<span style="color:#ae81ff">\M</span>anageController.cs
+</span></span><span style="display:flex;"><span>Models<span style="color:#ae81ff">\A</span>ccountViewModels.cs
+</span></span><span style="display:flex;"><span>Models<span style="color:#ae81ff">\I</span>dentityModels.cs
+</span></span><span style="display:flex;"><span>Models<span style="color:#ae81ff">\M</span>anageViewModels.cs
+</span></span><span style="display:flex;"><span>Views<span style="color:#ae81ff">\A</span>ccount<span style="color:#ae81ff">\*</span>.cshtml
+</span></span><span style="display:flex;"><span>Views<span style="color:#ae81ff">\M</span>anage<span style="color:#ae81ff">\*</span>.cshtml
+</span></span><span style="display:flex;"><span>Views<span style="color:#ae81ff">\S</span>hared<span style="color:#ae81ff">\L</span>ockout.cshtml
+</span></span><span style="display:flex;"><span>Views<span style="color:#ae81ff">\S</span>hared<span style="color:#ae81ff">\_</span>LoginPartial.cshtml
+</span></span></code></pre></div><h1 id="更改設定">更改設定<a hidden class="anchor" aria-hidden="true" href="#更改設定">#</a></h1>
+<p>另外還有<code>Web.config</code>、<code>IdentityModels.cs</code>和<code>_Layout.cshtml</code>需要手動修改</p>
+<h2 id="更改_layoutcshtml">更改_Layout.cshtml<a hidden class="anchor" aria-hidden="true" href="#更改_layoutcshtml">#</a></h2>
+<p>改Layout比較簡單，就是將登入註冊按鈕的_LoginPartial.cshtml加入置頂列中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>&lt;div class=<span style="color:#e6db74">&#34;navbar-collapse collapse&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;ul class=<span style="color:#e6db74">&#34;nav navbar-nav&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;li&gt;@Html.ActionLink(<span style="color:#e6db74">&#34;首頁&#34;</span>, <span style="color:#e6db74">&#34;Index&#34;</span>, <span style="color:#e6db74">&#34;Home&#34;</span>)&lt;/li&gt;
+</span></span><span style="display:flex;"><span>                    &lt;li&gt;@Html.ActionLink(<span style="color:#e6db74">&#34;關於&#34;</span>, <span style="color:#e6db74">&#34;About&#34;</span>, <span style="color:#e6db74">&#34;Home&#34;</span>)&lt;/li&gt;
+</span></span><span style="display:flex;"><span>                    &lt;li&gt;@Html.ActionLink(<span style="color:#e6db74">&#34;連絡人&#34;</span>, <span style="color:#e6db74">&#34;Contact&#34;</span>, <span style="color:#e6db74">&#34;Home&#34;</span>)&lt;/li&gt;
+</span></span><span style="display:flex;"><span>                &lt;/ul&gt;
+</span></span><span style="display:flex;"><span>                @Html.Partial(<span style="color:#e6db74">&#34;_LoginPartial&#34;</span>)
+</span></span><span style="display:flex;"><span>            &lt;/div&gt;
+</span></span></code></pre></div><h2 id="更改webconfig">更改Web.config<a hidden class="anchor" aria-hidden="true" href="#更改webconfig">#</a></h2>
+<p>而在Web.config中要增加CodeFirst資料庫連結字串，如果用DBfirst產生的資料庫連線字串如下，providerName是System.Data.EntityClient這個組件，連線字串還包含著metadata、MultipleActiveResultSets與App參數</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;connectionStrings&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;add</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;MyDBEntities&#34;</span> <span style="color:#a6e22e">connectionString=</span><span style="color:#e6db74">&#34;metadata=res://*/Models.MyDBModel.csdl|res://*/Models.MyDBModel.ssdl|res://*/Models.MyDBModel.msl;provider=System.Data.SqlClient;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">provider connection string=&#34;</span><span style="color:#960050;background-color:#1e0010">data</span> <span style="color:#a6e22e">source=</span><span style="color:#e6db74">(local)\SQLEXPRESS;initial</span> <span style="color:#a6e22e">catalog=</span><span style="color:#e6db74">MyDB;integrated</span> <span style="color:#a6e22e">security=</span><span style="color:#e6db74">True;MultipleActiveResultSets=True;App=EntityFramework&#34;&#34;</span> <span style="color:#a6e22e">providerName=</span><span style="color:#e6db74">&#34;System.Data.EntityClient&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/connectionStrings&gt;</span>
+</span></span></code></pre></div><p>若直接使用DataBaseFirst的連線字串可能會出現的錯誤訊息有<code>不支援關鍵字: 'metadata'</code>或是<code>System.InvalidOperationException: The entity type ApplicationUser is not part of the model for the current context.</code>又或者是<code>System.Data.Entity.Core.MetadataException: Unable to load the specified metadata resource</code>等等</p>
+<p>所以，這邊我們在<code>connectionStrings</code>裡面加入我們CodeFirst用的連線字串，並更改為我們自己用的資料庫路徑</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;connectionStrings&gt;</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;add</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CodeFirstEntities&#34;</span> <span style="color:#a6e22e">connectionString=</span><span style="color:#e6db74">&#34;data source=(Local)\sqlexpress;initial catalog=AspNetIdentityTest20200222;integrated security=True;&#34;</span> <span style="color:#a6e22e">providerName=</span><span style="color:#e6db74">&#34;System.Data.SqlClient&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/connectionStrings&gt;</span>
+</span></span></code></pre></div><h2 id="更改identitymodelscs">更改IdentityModels.cs<a hidden class="anchor" aria-hidden="true" href="#更改identitymodelscs">#</a></h2>
+<p>然後再至<code>Models\IdentityModels.cs</code>檔案，更改使用的資料庫連結自串為我們剛剛設定的CodeFirst用連線字串</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApplicationDbContext</span> : IdentityDbContext&lt;ApplicationUser&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ApplicationDbContext()
+</span></span><span style="display:flex;"><span>        : <span style="color:#66d9ef">base</span>(<span style="color:#e6db74">&#34;CodeFirstEntities&#34;</span>, throwIfV1Schema: <span style="color:#66d9ef">false</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="執行專案">執行專案<a hidden class="anchor" aria-hidden="true" href="#執行專案">#</a></h1>
+<h2 id="查看資料庫">查看資料庫<a hidden class="anchor" aria-hidden="true" href="#查看資料庫">#</a></h2>
+<p>現在啟動專案，便可以看到系統已經幫我們自動建立ASP.NET Identity所需要的資料表，並在<code>__MigrationHistory</code>資料表中留下更動紀錄</p>
+<p><img loading="lazy" src="/wp-content/uploads/2020/02/aspIdentityDBtable.png"> <img loading="lazy" src="/wp-content/uploads/2020/02/aspIdentityDBtableMigrationHistory.png"></p>
+<h2 id="測試註冊登入">測試註冊、登入<a hidden class="anchor" aria-hidden="true" href="#測試註冊登入">#</a></h2>
+<p>可以看動我們的專案已經有註冊、登入等功能可以使用了 <img loading="lazy" src="/wp-content/uploads/2020/02/aspIdentityLogin.png"> <img loading="lazy" src="/wp-content/uploads/2020/02/aspIdentityReg.png"> <img loading="lazy" src="/wp-content/uploads/2020/02/aspIdentityLoginSecc.png"></p>
+<p>參考資料： <a href="https://zerotiem22.blogspot.com/2017/12/c-aspnet-mvc-identity.html" title="C# ASP.NET MVC 手動將 Identity 加入現有專案 ">C# ASP.NET MVC 手動將 Identity 加入現有專案</a> <a href="https://blog.yowko.com/add-aspnet-identity-empty-project/" title="將 ASP.NET Identity 加至 ASP.NET MVC Empty 專案中">將 ASP.NET Identity 加至 ASP.NET MVC Empty 專案中</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/%E7%94%A8-net-core%E5%81%9A%E7%B6%B2%E9%A0%81%E7%88%AC%E8%9F%B2%E6%8A%93%E5%8F%96%E8%B3%87%E6%96%99-%E4%BD%BF%E7%94%A8httpclicent%E8%88%87anglesharp/">
+    <span class="title">« 上一頁</span>
+    <span>用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp</span>
+  </a>
+  <a class="next" href="http://localhost:1313/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/">
+    <span class="title">下一頁 »</span>
+    <span>在Angular 9中使用Leaflet js 與 OpenStreetMap地圖</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

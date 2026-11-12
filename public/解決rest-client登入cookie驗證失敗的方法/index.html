@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>解決REST-Client登入Cookie驗證失敗的方法 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="Rest-Client">
+<meta name="description" content="使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。
+往往最後還是要打開Postman的窘境。還一度考慮是否要更換測試工具。但是REST-Client真是太好用了，是我開發API的過程中，就能幫我快速檢驗API是否正確的小工具。
+我跟前輩一直想找出問題的原因，最近終於發現問題所在了。
+使用REST-Client的產生cURL的功能看到的Cookie值，的確是使用我設定的Cookie。
+但用後端程式的偵錯模式一看，收到的Cookie卻不是我在Rest-Client設定的Cookeie。
+我找跟Cookie有關的issue:New cookie is not set and provide ability to clear cookies #117才發現問題所在！！！
+在測試API的過程中，後端可能會回傳Set-Cookie回來，Rest-Client會自動儲存起來，並在下次打API的時候使用這把新Cookie。
+所以在測API的時候明明有設定的Cookie A，但在後端收到的卻是Cooke B，因為Rest-Client實際傳送的是Set-Cookie的Cookie B。
+所以要解決這個問題就非常簡單了！
+首先去VS Code的設定中，搜尋Cookie相關的功能，找到Remember Cookies For Subsequent Requests選項，並取消勾選
+
+第二步驟是前往電腦的家目錄尋找把~/.rest-client/cookie.json儲存Cookie的檔案刪掉，就大功告成了。
+(在我的Windows上檔案路徑會是C:\Users\長庚\.rest-client\cookie.json)
+有自動儲存的Cookie都是放在cookie.json裡，內容格式如下
+{
+    &#34;www.mywebsite.com&#34;: {
+        &#34;/&#34;: {
+            &#34;.AspNet.Cookies&#34;: {
+                &#34;key&#34;: &#34;.AspNet.Cookies&#34;,
+                &#34;value&#34;: &#34;qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111&#34;,
+                &#34;domain&#34;: &#34;www.mywebsite.com&#34;,
+                &#34;path&#34;: &#34;/&#34;,
+                &#34;secure&#34;: true,
+                &#34;httpOnly&#34;: true,
+                &#34;hostOnly&#34;: true,
+                &#34;creation&#34;: &#34;2021-05-29T17:28:38.405Z&#34;,
+                &#34;lastAccessed&#34;: &#34;2021-05-29T17:28:38.405Z&#34;
+            }
+        }
+    }
+}
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      解決REST-Client登入Cookie驗證失敗的方法
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-05-30T01:27:52+08:00'>May 30, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。</p>
+<p>往往最後還是要打開Postman的窘境。還一度考慮是否要更換測試工具。但是REST-Client真是太好用了，是我開發API的過程中，就能幫我快速檢驗API是否正確的小工具。</p>
+<p>我跟前輩一直想找出問題的原因，最近終於發現問題所在了。</p>
+<p>使用REST-Client的產生cURL的功能看到的Cookie值，的確是使用我設定的Cookie。</p>
+<p>但用後端程式的偵錯模式一看，收到的Cookie卻不是我在Rest-Client設定的Cookeie。</p>
+<p>我找跟Cookie有關的issue:<a href="https://github.com/Huachao/vscode-restclient/issues/117">New cookie is not set and provide ability to clear cookies #117</a>才發現問題所在！！！</p>
+<p>在測試API的過程中，後端可能會回傳Set-Cookie回來，Rest-Client會自動儲存起來，並在下次打API的時候使用這把新Cookie。</p>
+<p>所以在測API的時候明明有設定的Cookie A，但在後端收到的卻是Cooke B，因為Rest-Client實際傳送的是Set-Cookie的Cookie B。</p>
+<p>所以要解決這個問題就非常簡單了！</p>
+<p>首先去VS Code的設定中，搜尋Cookie相關的功能，找到<code>Remember Cookies For Subsequent Requests</code>選項，並取消勾選</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/05/image-1622308699517.png"></p>
+<p>第二步驟是前往電腦的家目錄尋找把<code>~/.rest-client/cookie.json</code>儲存Cookie的檔案刪掉，就大功告成了。</p>
+<p>(在我的Windows上檔案路徑會是<code>C:\Users\長庚\.rest-client\cookie.json</code>)</p>
+<p>有自動儲存的Cookie都是放在cookie.json裡，內容格式如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;www.mywebsite.com&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;/&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;.AspNet.Cookies&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;.AspNet.Cookies&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;www.mywebsite.com&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;secure&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;httpOnly&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;hostOnly&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;creation&#34;</span>: <span style="color:#e6db74">&#34;2021-05-29T17:28:38.405Z&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;lastAccessed&#34;</span>: <span style="color:#e6db74">&#34;2021-05-29T17:28:38.405Z&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/rest-client/">Rest-Client</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/">
+    <span class="title">« 上一頁</span>
+    <span>Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04</span>
+  </a>
+  <a class="next" href="http://localhost:1313/%E5%95%86%E6%A5%AD%E6%80%9D%E7%B6%AD%E5%AD%B8%E9%99%A2%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%9A%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC/">
+    <span class="title">下一頁 »</span>
+    <span>[商業思維學院]專案管理學習筆記：專案管理的基本觀念</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ASP.NET MVC 下拉式選單的用法 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="ASP.net, MVC">
+<meta name="description" content="筆記ASP.net MVC 下拉式選單的用法，免得一陣子沒用就忘了&hellip;
+ASP.net MVC中 View提供了HTML Helpers來幫我們自動產生部分HTML程式碼
+其中 @Html.DropDownList 可以幫我們生成下拉式選單
+先在Controller中用ViewBag準備要傳給下拉式選單的資料，指定名稱為銀行選單
+var BankList = from b in db.Bank select b; //要做成下拉式選單的資料表
+//新一個SelectList物件(資料表, 指定資料表中Value的欄位 ,  指定資料表中顯示文字的欄位)
+ViewBag.銀行選單 = new SelectList(BankList , &#34;銀行代碼&#34;, &#34;銀行名稱&#34;);
+
+//如果資料表中有預先勾選的資料，就在後面加入預先選擇的value銀行代碼
+ViewBag.銀行選單 = new SelectList(BankList , &#34;銀行代碼&#34;, &#34;銀行名稱&#34;, 預先選擇的value銀行代碼);
+在view中給DropDownList的第一個name欄位命名同為銀行選單，就會自動帶入ViewBag.銀行選單的資料了
+@Html.DropDownList(&#34;銀行選單&#34;, null, htmlAttributes: new { @class = &#34;form-control&#34;, id = &#34;銀行&#34; })
+如果你的DropDownList要的SelectList資料不是Controller給的而是在View中，就填入第二個欄位，但我們是從Controller拿所以填null 要自訂下拉式選單的class或id等屬性則寫在htmlAttributes: new { }大括號裡面，比較特別的是class是C#保留字，所以要在前面標上@，避免判斷失敗
+如果你的DropDownList要顯示- - -請選擇一個項目- - -，就這樣做
+@Html.DropDownList(&#34;銀行選單&#34;, null, &#34;-----請選擇一個項目-----&#34;,htmlAttributes: new { @class = &#34;form-control&#34;, id = &#34;銀行&#34; })
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      ASP.NET MVC 下拉式選單的用法
+    </h1>
+    <div class="post-meta">
+
+<span title='2019-06-13T21:27:12+08:00'>June 13, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>筆記ASP.net MVC 下拉式選單的用法，免得一陣子沒用就忘了&hellip;</p>
+<p>ASP.net MVC中 View提供了HTML Helpers來幫我們自動產生部分HTML程式碼</p>
+<p>其中 <code>@Html.DropDownList</code> 可以幫我們生成下拉式選單</p>
+<p>先在Controller中用ViewBag準備要傳給下拉式選單的資料，指定名稱為<strong>銀行選單</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> BankList = <span style="color:#66d9ef">from</span> b <span style="color:#66d9ef">in</span> db.Bank <span style="color:#66d9ef">select</span> b; <span style="color:#75715e">//要做成下拉式選單的資料表</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//新一個SelectList物件(資料表, 指定資料表中Value的欄位 ,  指定資料表中顯示文字的欄位)</span>
+</span></span><span style="display:flex;"><span>ViewBag.<span style="color:#960050;background-color:#1e0010">銀行選單</span> = <span style="color:#66d9ef">new</span> SelectList(BankList , <span style="color:#e6db74">&#34;銀行代碼&#34;</span>, <span style="color:#e6db74">&#34;銀行名稱&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//如果資料表中有預先勾選的資料，就在後面加入預先選擇的value銀行代碼</span>
+</span></span><span style="display:flex;"><span>ViewBag.<span style="color:#960050;background-color:#1e0010">銀行選單</span> = <span style="color:#66d9ef">new</span> SelectList(BankList , <span style="color:#e6db74">&#34;銀行代碼&#34;</span>, <span style="color:#e6db74">&#34;銀行名稱&#34;</span>, <span style="color:#960050;background-color:#1e0010">預先選擇的</span>value銀行代碼);
+</span></span></code></pre></div><p>在view中給DropDownList的第一個name欄位命名同為<strong>銀行選單</strong>，就會自動帶入ViewBag.銀行選單的資料了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>@Html.DropDownList(<span style="color:#e6db74">&#34;銀行選單&#34;</span>, <span style="color:#66d9ef">null</span>, htmlAttributes: <span style="color:#66d9ef">new</span> { @class = <span style="color:#e6db74">&#34;form-control&#34;</span>, id = <span style="color:#e6db74">&#34;銀行&#34;</span> })
+</span></span></code></pre></div><p>如果你的DropDownList要的SelectList資料不是Controller給的而是在View中，就填入第二個欄位，但我們是從Controller拿所以填null 要自訂下拉式選單的class或id等屬性則寫在htmlAttributes: new { }大括號裡面，比較特別的是class是C#保留字，所以要在前面標上@，避免判斷失敗</p>
+<p>如果你的DropDownList要顯示- - -請選擇一個項目- - -，就這樣做</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>@Html.DropDownList(<span style="color:#e6db74">&#34;銀行選單&#34;</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#34;-----請選擇一個項目-----&#34;</span>,htmlAttributes: <span style="color:#66d9ef">new</span> { @class = <span style="color:#e6db74">&#34;form-control&#34;</span>, id = <span style="color:#e6db74">&#34;銀行&#34;</span> })
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/asp.net/">ASP.net</a></li>
+      <li><a href="http://localhost:1313/tags/mvc/">MVC</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/%E4%B8%8D%E9%96%83%E5%B1%8F%E6%98%AF%E4%B8%8D%E9%96%83%E4%BB%80%E9%BA%BC%EF%BC%9F%E8%B7%9F%E8%9E%A2%E5%B9%95%E6%9B%B4%E6%96%B0%E9%A0%BB%E7%8E%87%E4%B8%8D%E4%B8%80%E6%A8%A3%EF%BC%9F/">
+    <span class="title">« 上一頁</span>
+    <span>不閃屏是不閃什麼？跟螢幕更新頻率不一樣？</span>
+  </a>
+  <a class="next" href="http://localhost:1313/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/">
+    <span class="title">下一頁 »</span>
+    <span>Vue.js  jQuery在IE 11使用中文輸入法的小問題</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

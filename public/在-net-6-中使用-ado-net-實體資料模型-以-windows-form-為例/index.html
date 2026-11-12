@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content=".NET, Entity Framework">
+<meta name="description" content="前幾天被詢問 WinForm 在 .NET 5 能否使用 Entity Framework，從微軟提供的資料來說，只要安裝 EF 6.3 以上的版本就可以運行在 .NET Core 3 與最新的.NET 5 /.NET 6 上面， 雖說是可以運行，但開發的過程中就無法使用 Visual Studio 中的 ADO.NET 實體資料模型 功能，來自動產生資料庫模型。會出現專案的目標 Framework 不包含 Entity Framework 執行階段組件。請在專案屬性頁面中，檢視目標Framework資訊。這樣的錯誤訊息。
+
+變成 .NET Core 3 以上的版本，雖然可讀edmx、可讀context，但是不能幫你產模型，如果不想自己手動寫的話，微軟有提供一個範例程式，大概的意思是，在方案中開了一個 NET Core 的專案後，再加入一個 NET Framework 專案，用來使用ADO.NET 實體資料模型產 Model ，讓 NET Core 的專案參考產出後的 Model 就可以了。
+雖然我沒寫過 Windows Form ，不過資料存取這方面在 .NET 是大同小異，本文的方法在 .NET Core 3、 .NET 5 與 .NET 6 都是一樣的，這邊我用 .NET 6 建立一個 WinForms 專案來示範，已經知道如何使用 ADO.NET 實體資料模型 的同學可以直接跳到在 NET 6 專案中使用 NuGet 安裝 EntityFramework小節">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-12-24T16:55:10+08:00'>December 24, 2021</span>&nbsp;·&nbsp;<span>2 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>前幾天被詢問 WinForm 在 .NET 5 能否使用 Entity Framework，從微軟提供的<a href="https://docs.microsoft.com/en-us/ef/ef6/what-is-new/#ef-designer-support" title="資料">資料</a>來說，只要安裝 EF 6.3 以上的版本就可以運行在 .NET Core 3 與最新的.NET 5 /.NET 6 上面， 雖說是可以運行，但開發的過程中就無法使用 Visual Studio 中的 <code>ADO.NET 實體資料模型</code> 功能，來自動產生資料庫模型。會出現<code>專案的目標 Framework 不包含 Entity Framework 執行階段組件。請在專案屬性頁面中，檢視目標Framework資訊。</code>這樣的錯誤訊息。</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1639392825706.png"></p>
+<p>變成 .NET Core 3 以上的版本，雖然可讀<code>edmx</code>、可讀<code>context</code>，但是不能幫你產模型，如果不想自己手動寫的話，微軟有提供一個<a href="https://github.com/efcore/EdmxDotNetCoreSample/" title="範例">範例程式</a>，大概的意思是，在方案中開了一個 NET Core 的專案後，再加入一個 NET Framework 專案，用來使用<code>ADO.NET 實體資料模型</code>產 Model ，讓 NET Core 的專案參考產出後的 Model 就可以了。</p>
+<p>雖然我沒寫過 Windows Form ，不過資料存取這方面在 .NET 是大同小異，本文的方法在 .NET Core 3、 .NET 5 與 .NET 6 都是一樣的，這邊我用 .NET 6 建立一個 WinForms 專案來示範，已經知道如何使用 <code>ADO.NET 實體資料模型</code> 的同學可以直接跳到<a href="/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/#%e5%9c%a8_NET_6_%e5%b0%88%e6%a1%88%e4%b8%ad%e4%bd%bf%e7%94%a8_NuGet_%e5%ae%89%e8%a3%9d_EntityFramework">在 NET 6 專案中使用 NuGet 安裝 EntityFramework</a>小節</p>
+<h2 id="使用-adonet-實體資料模型">使用 ADO.NET 實體資料模型<a hidden class="anchor" aria-hidden="true" href="#使用-adonet-實體資料模型">#</a></h2>
+<p>並且在方案總管中，對方案按 右鍵 &gt; 加入 &gt; 新增專案</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640062047858.png"></p>
+<p>這邊我選擇建立一個.NET Framework的類別庫</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640062242139.png"></p>
+<p>按下一步之後，可以看到 .NET Framework 的版本是 4.7.2，最後按建立 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640062265297.png"></p>
+<p>建立完之後，可以看到專案中只有一個 Class.cs 檔，這個檔案我們用不到，可以直接刪除。 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640063858470.png"></p>
+<p>接下來就是使用 <code>ADO.NET 實體資料模型</code> ，這裡對 ClassLibrary1 按<code>右鍵</code> &gt; <code>加入</code> &gt; <code>新增項目</code>。點選左邊的<code>資料</code>後點選<code>ADO.NET 實體資料模型</code>，輸入名稱後按右下角的<code>新增</code></p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640064134583.png"></p>
+<p>這裡我選<code>來自資料庫的EF Designer</code>，再按下一步 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640064166561.png"></p>
+<p>會出現選擇資料庫連線的畫面，選擇完按<code>下一步</code>就可以選擇 EF 的版本。 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640073998225.png"></p>
+<p>若沒有出現資料庫連線選項，可以按<code>新增連接</code>，依你的資料庫來源選擇資料來源產生相對應的連線字串，詳細內容可以跳至<a href="/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/#%e6%96%b0%e5%a2%9e%e8%b3%87%e6%96%99%e5%ba%ab%e9%80%a3%e7%b5%90" title="新增資料庫連結">新增資料庫連結</a>。</p>
+<p>選擇 Entity Framework 6.x 版本 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640075358664.png"></p>
+<p>依需求選擇要使用到的物件，這邊我全選資料表 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640075424429.png"></p>
+<p>使用T4自動產生程式碼功能時，都會跳出這類安全提示，詢問是否確定執行，這邊選確定 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640075451747.png"></p>
+<p>執行完成後可以看到我們的 <code>edmx</code> 與資料庫的資料表所對應的物件 <code>User.cs</code>已經在專案中 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640076331201.png"></p>
+<h3 id="新增資料庫連結">新增資料庫連結<a hidden class="anchor" aria-hidden="true" href="#新增資料庫連結">#</a></h3>
+<p>選擇資料來源後按繼續 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640074096387.png"></p>
+<p>輸入你的資料庫伺服器名稱，並選擇登入方式後按左下角的<code>測試連結</code>，測試成功後就可以選擇連到我的<code>TestDB</code>資料庫了，完成後按<code>確定</code>就會回到<code>選擇資料庫連線</code>的畫面</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640074461624.png"></p>
+<h2 id="在-net-6-專案中使用-nuget-安裝-entityframework">在 .NET 6 專案中使用 NuGet 安裝 EntityFramework<a hidden class="anchor" aria-hidden="true" href="#在-net-6-專案中使用-nuget-安裝-entityframework">#</a></h2>
+<p>一樣我們對專案按<code>右鍵</code> &gt; <code>管理 NuGet 套件</code> <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283045182.png"></p>
+<p>選擇 <code>瀏覽</code> &gt; 輸入搜尋關鍵字 &gt; 選擇 <code>EntityFramework</code> 最新版本來<code>安裝</code>，這邊我安裝的最新版本是 6.4.4 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283243038.png"></p>
+<p>安裝時會詢問是否同意安裝相關套件，這邊點選同意 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283382797.png"></p>
+<p>並同意授權條款 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283407433.png"></p>
+<h2 id="讓-net-6-專案參考生成資料模型">讓 .NET 6 專案參考生成資料模型<a hidden class="anchor" aria-hidden="true" href="#讓-net-6-專案參考生成資料模型">#</a></h2>
+<p>現在讓我們修改 .NET 6 的專案檔 <code>.csproj</code> 檔，使之參考 <code>ClassLibrary1</code> 資料夾中生成的物件模型，為該 .NET 6 專案的檔案。因為 .NET Core 3 以上的版本參考<code>edmx</code>檔時，需要手動更改參數，這邊就無法使用 Visual Studio 的加入專案參考功能。對專案按右鍵，選擇編輯專案檔</p>
+<p><a href="/wp-content/uploads/2021/12/%E7%B7%A8%E8%BC%AF%E5%B0%88%E6%A1%88%E6%AA%94.png"><img loading="lazy" src="/wp-content/uploads/2021/12/%E7%B7%A8%E8%BC%AF%E5%B0%88%E6%A1%88%E6%AA%94.png"></a></p>
+<p>應該會出現這樣的畫面 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283888339.png"></p>
+<p>接著在<code>&lt;Project&gt;&lt;/Project&gt;</code>裡面插入以下程式碼，<code>Compile</code>的意思是該專案編譯時，要將<code>Include</code>路徑中的檔案，<code>Link</code>為當前專案指定路徑中的檔案，而<code>.edmx</code>檔需要使用<code>EntityDeploy</code>來進行特殊的編譯(<a href="https://docs.microsoft.com/zh-tw/ef/ef6/what-is-new/#ef-designer-support" title="詳細資料">詳細資料</a>)。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;ItemGroup&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;EntityDeploy</span> <span style="color:#a6e22e">Include=</span><span style="color:#e6db74">&#34;..\ClassLibrary1\Model1.edmx&#34;</span> <span style="color:#a6e22e">Link=</span><span style="color:#e6db74">&#34;Model\Model1.edmx&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;Compile</span> <span style="color:#a6e22e">Include=</span><span style="color:#e6db74">&#34;..\ClassLibrary1\Model1.Context.cs&#34;</span> <span style="color:#a6e22e">Link=</span><span style="color:#e6db74">&#34;Model\Model1.Context.cs&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;Compile</span> <span style="color:#a6e22e">Include=</span><span style="color:#e6db74">&#34;..\ClassLibrary1\Users.cs&#34;</span> <span style="color:#a6e22e">Link=</span><span style="color:#e6db74">&#34;Model\User.cs&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/ItemGroup&gt;</span>
+</span></span></code></pre></div><p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640283954046.png"></p>
+<p>設定完按重新建置後，應可以在方案總管中看到，物件模型已在Model資料夾中，並且檔案前面標示著捷徑箭頭圖案 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640284036132.png"></p>
+<h3 id="若出現編譯錯誤">若出現編譯錯誤<a hidden class="anchor" aria-hidden="true" href="#若出現編譯錯誤">#</a></h3>
+<p>若出現以下編譯錯誤，請確定是否有用 NuGet 安裝 Entity Framework 套件 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640281818574.png"></p>
+<h3 id="簡潔的參考撰寫方式">簡潔的參考撰寫方式<a hidden class="anchor" aria-hidden="true" href="#簡潔的參考撰寫方式">#</a></h3>
+<p>如果你有多個資料模型<code>.cs</code>檔，不想一個一個寫參考，這裡找到一個<a href="https://stackoverflow.com/questions/4623304/can-i-use-both-wildcard-and-link-element-inside-the-compile-element">方法</a>用微軟後來加入的參數就可以解決這個問題。可以用<code>*.cs</code>將所有<code>.cs</code>檔，參考至<code>LinkBase</code>所指定的資料夾路徑中</p>
+<pre tabindex="0"><code>&lt;Compile Include=&#34;..\ClassLibrary1\*.cs&#34; LinkBase=&#34;Model&#34; /&gt;
+</code></pre><p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640284429973.png"></p>
+<h2 id="使用-entity-framework-將資料庫指定資料表內容顯示在-datagridview">使用 Entity Framework 將資料庫指定資料表內容顯示在 DataGridView<a hidden class="anchor" aria-hidden="true" href="#使用-entity-framework-將資料庫指定資料表內容顯示在-datagridview">#</a></h2>
+<p>先開啟 From1.cs檔 ，從左側的工具箱中，拖曳 DataGridView 物件到 Form1 畫面中，並在灰色區塊外的白色地方左鍵點擊兩下，會跳至程式碼區塊</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640284760657.png"></p>
+<p>接者撰寫以下程式碼，來使用 EF 連到資料庫，物件名稱為 <code>Context.cs</code> 中所生成的類別名稱，若跳出紅色底下，可以使用燈泡圖示來修正，引用我實際資料模型所在的 ClassLibrary1 命名空間</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640285277493.png"></p>
+<p>我們在<code>Form1_Load()</code>這個方法中將資料庫中的 Users 資料表讀取後，餵到剛剛新增的 DataGridView 的資料來源中，寫完按 F5 執行測錯，應該可以看到錯誤畫面(哈哈 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640285979243.png"></p>
+<p>錯誤訊息是：<code>System.InvalidOperationException: 'No connection string named 'TestDBEntities' could be found in the application config file.'</code></p>
+<h2 id="加入資料庫連線字串">加入資料庫連線字串<a hidden class="anchor" aria-hidden="true" href="#加入資料庫連線字串">#</a></h2>
+<p>因為使用<code>ADO.NET 實體資料模型</code>時所建立的資料庫連線字串，儲存在我們的<code>ClassLibary1</code>內的<code>App.Config</code>檔案裡面，我們剛剛並沒有設定要參考到該檔案，我也不建議直接參考，因為裡面除了連線字串外，可能含有些我們 .NET 6 專案用不到的參數或設定。而資料庫連線字串其實會隨著你的部屬環境而變動，例如正式環境與測試環境用的是不同資料庫。所以這裡我們不直接參考<code>ClassLibary1</code>裡面的<code>App.Config</code>，而是對我們的 .NET 6 專案中，另外新增一個<code>App.Config</code>檔案來儲存。(你也可以偷懶複製<code>ClassLibary1</code>內的<code>App.Config</code>檔案到 .NET 6 專案內，刪除不必要的設定，只保留連線字串)</p>
+<p>下圖是<code>ClassLibary1</code>內的<code>App.Config</code>內容 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640333882793.png"></p>
+<p>.NET 6 專案內的<code>App.Config</code>只包含連線字串的話應該如下，另外因為我們的 Model1 檔案室放在 Model 資料夾下，所以我其中的<code>res</code>參數路徑需要額外加上 Model資料夾名稱(<a href="https://github.com/efcore/EdmxDotNetCoreSample/blob/master/EdmxDotNetCoreSample/App.Config" title="資料來源">資料來源</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;configuration&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;connectionStrings&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;add</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TestDBEntities&#34;</span> <span style="color:#a6e22e">connectionString=</span><span style="color:#e6db74">&#34;metadata=res://*/Model.Model1.csdl|res://*/Model.Model1.ssdl|res://*/Model.Model1.msl;provider=System.Data.SqlClient;provider connection string=&#34;</span><span style="color:#960050;background-color:#1e0010">data</span> <span style="color:#a6e22e">source=</span><span style="color:#e6db74">DANNY-LIU-ASUS;initial</span> <span style="color:#a6e22e">catalog=</span><span style="color:#e6db74">TestDB;integrated</span> <span style="color:#a6e22e">security=</span><span style="color:#e6db74">True;MultipleActiveResultSets=True;App=EntityFramework&#34;&#34;</span> <span style="color:#a6e22e">providerName=</span><span style="color:#e6db74">&#34;System.Data.EntityClient&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/connectionStrings&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/configuration&gt;</span>
+</span></span></code></pre></div><p>補充：若出現<code>System.Data.Entity.Core.MetadataException: 'Unable to load the specified metadata resource.'</code>這類錯誤訊息，請確認連線字串的參數或路徑是否有改錯 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640335725310.png"></p>
+<p>設定完後，按F5重新執行，在 DataGridView 中應可以正常顯示資料 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/12/image-1640335620948.png"></p>
+<p>大功告成，謝謝大家收看</p>
+<p>延伸閱讀： <a href="https://dannyliu.me/%e5%9c%a8-net-5-6%e7%9a%84-windowsform-%e4%b8%ad%e4%bd%bf%e7%94%a8-ef-core/">在.NET 5 / 6的 Windows Form 中使用 EF Core</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/.net/">.NET</a></li>
+      <li><a href="http://localhost:1313/tags/entity-framework/">Entity Framework</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+    <span class="title">« 上一頁</span>
+    <span>Angular 元件的生命週期</span>
+  </a>
+  <a class="next" href="http://localhost:1313/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/">
+    <span class="title">下一頁 »</span>
+    <span>在 .NET 5 / 6的 Windows Form 中使用 EF Core</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

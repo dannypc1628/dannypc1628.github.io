@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>使用 acme.sh 幫個人網站取得免費的 SSL 憑證 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="上篇文章講了使用 Certbot 取 Let&rsquo;s Encrypt SSL 憑證失敗的故事，文末有說這次就介紹改用 acme.sh 來取得免費的 SSL 憑證，不過我在設定的過程中發生了小小的事故，因為 acme.sh 預設取得的憑證為 ZeroSSL 簽發的憑證，我是安裝完新憑證才發現的，也懶得改了，如果讀者想拿到 Let&rsquo;s Encrypt 的 SSL 憑證，本文中有一行指令務必要執行喔。
+安裝
+首先要安裝 acme.sh ，安裝方法並不是我們常見的apt-install，而是取得官方腳本並執行，可以使用curl、wget、git clone的方式取腳本
+這邊我依照官方文件，使用以下指令來安裝，第一次使用 acme.sh時需要時要輸入自己的email信箱，可以在這時順便設定
+curl https://get.acme.sh | sh -s email=my@email.com
+安裝完畢後，就可以輸入acme.sh -v指令來來看看是否有安裝成功
+danny@dannyServer:~$ acme.sh -v
+https://github.com/acmesh-official/acme.sh
+v3.0.0
+如果剛剛執行腳本時忘了順便設定信箱，可以使用以下指令來進行設定
+acme.sh --register-account -m my@email.com
+接下來就可以去申請憑證了
+設定預設CA
+現在acme.sh預設的憑證機構為 ZeroSSL ，可以用以下指令更換為Let&#39;s Encrypt
+acme.sh --set-default-ca  --server  letsencrypt
+申請憑證
+我們要幫自己的網站申請憑證時，最重要的是向憑證機構證明自己是網站的擁有者，主要有兩個方式，HTTP驗證、DNS驗證。
+HTTP 驗證
+如果走 HTTP 驗證的方式的話，憑證機構會給我們一個驗證用的檔案並要求我們將該檔案放在該網站的根目錄上，然後驗證機構就會連到網站上看有沒有這個檔案內容有沒有一樣，有的話就能證明我們是該網站的擁有者。
+假設驗證用的檔案叫apple.text，我的網站dannyliu.me，如果走 HTTP 驗證，當憑證機構連到dannyliu.me/apple.text，應能取得到該檔案，並且內容正確。驗證成功的話就可以拿到憑證了。
+以上過程可以在acme.sh中可以用一行指令一鍵完成
+acme.sh --issue -d 網站網址 -w 網站根目錄位置
+acme.sh --issue -d dannyliu.me -w /home/danny/wordpress/
+理論上執行完這一步就可以拿到憑證了，並且可以享受到acme.sh提供的自動更新憑證功能。可惜天不人願，我的站台走HTTP驗證都未通過，所以改走DNS驗證。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/%E4%BD%BF%E7%94%A8acme-sh%E5%B9%AB%E5%80%8B%E4%BA%BA%E7%B6%B2%E7%AB%99%E5%8F%96%E5%BE%97%E5%85%8D%E8%B2%BB%E7%9A%84ssl-%E6%86%91%E8%AD%89/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/%E4%BD%BF%E7%94%A8acme-sh%E5%B9%AB%E5%80%8B%E4%BA%BA%E7%B6%B2%E7%AB%99%E5%8F%96%E5%BE%97%E5%85%8D%E8%B2%BB%E7%9A%84ssl-%E6%86%91%E8%AD%89/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      使用 acme.sh 幫個人網站取得免費的 SSL 憑證
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-08-08T22:01:29+08:00'>August 8, 2021</span>&nbsp;·&nbsp;<span>2 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>上篇文章講了使用 Certbot 取 Let&rsquo;s Encrypt SSL 憑證失敗的故事，文末有說這次就介紹改用 acme.sh 來取得免費的 SSL 憑證，不過我在設定的過程中發生了小小的事故，因為 acme.sh 預設取得的憑證為 ZeroSSL 簽發的憑證，我是安裝完新憑證才發現的，也懶得改了，如果讀者想拿到 Let&rsquo;s Encrypt 的 SSL 憑證，本文中有一行指令務必要執行喔。</p>
+<h2 id="安裝">安裝<a hidden class="anchor" aria-hidden="true" href="#安裝">#</a></h2>
+<p>首先要安裝 acme.sh ，安裝方法並不是我們常見的<code>apt-install</code>，而是取得官方腳本並執行，可以使用<code>curl</code>、<code>wget</code>、<code>git clone</code>的方式取腳本</p>
+<p>這邊我依照官方文件，使用以下指令來安裝，第一次使用 acme.sh時需要時要輸入自己的email信箱，可以在這時順便設定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl https://get.acme.sh | sh -s email<span style="color:#f92672">=</span>my@email.com
+</span></span></code></pre></div><p>安裝完畢後，就可以輸入<code>acme.sh -v</code>指令來來看看是否有安裝成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>danny@dannyServer:~$ acme.sh -v
+</span></span><span style="display:flex;"><span>https://github.com/acmesh-official/acme.sh
+</span></span><span style="display:flex;"><span>v3.0.0
+</span></span></code></pre></div><p>如果剛剛執行腳本時忘了順便設定信箱，可以使用以下指令來進行設定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --register-account -m my@email.com
+</span></span></code></pre></div><p>接下來就可以去申請憑證了</p>
+<h3 id="設定預設ca">設定預設CA<a hidden class="anchor" aria-hidden="true" href="#設定預設ca">#</a></h3>
+<p>現在<code>acme.sh</code>預設的憑證機構為 ZeroSSL ，可以用以下指令更換為<code>Let's Encrypt</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --set-default-ca  --server  letsencrypt
+</span></span></code></pre></div><h2 id="申請憑證">申請憑證<a hidden class="anchor" aria-hidden="true" href="#申請憑證">#</a></h2>
+<p>我們要幫自己的網站申請憑證時，最重要的是向憑證機構證明自己是網站的擁有者，主要有兩個方式，HTTP驗證、DNS驗證。</p>
+<h3 id="http-驗證">HTTP 驗證<a hidden class="anchor" aria-hidden="true" href="#http-驗證">#</a></h3>
+<p>如果走 HTTP 驗證的方式的話，憑證機構會給我們一個驗證用的檔案並要求我們將該檔案放在該網站的根目錄上，然後驗證機構就會連到網站上看有沒有這個檔案內容有沒有一樣，有的話就能證明我們是該網站的擁有者。</p>
+<p>假設驗證用的檔案叫<code>apple.text</code>，我的網站<code>dannyliu.me</code>，如果走 HTTP 驗證，當憑證機構連到<code>dannyliu.me/apple.text</code>，應能取得到該檔案，並且內容正確。驗證成功的話就可以拿到憑證了。</p>
+<p>以上過程可以在<code>acme.sh</code>中可以用一行指令一鍵完成</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --issue -d 網站網址 -w 網站根目錄位置
+</span></span><span style="display:flex;"><span>acme.sh --issue -d dannyliu.me -w /home/danny/wordpress/
+</span></span></code></pre></div><p>理論上執行完這一步就可以拿到憑證了，並且可以享受到acme.sh提供的自動更新憑證功能。可惜天不人願，我的站台走HTTP驗證都未通過，所以改走DNS驗證。</p>
+<h4 id="補充懶人模式-apache-模式與-nginx-模式">補充懶人模式： Apache 模式與 Nginx 模式<a hidden class="anchor" aria-hidden="true" href="#補充懶人模式-apache-模式與-nginx-模式">#</a></h4>
+<p>如果自己不曉得網站根目錄放在哪裡，只知道是用<code>Apache</code>或<code>Nginx</code>架的網站，acme也提供以下指令幫你完成Http驗證(前提要你是root權限的網站管理員)</p>
+<p>Apache：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --issue --apache -d 網站網址
+</span></span></code></pre></div><p>Nginx:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --issue --nginx -d 網站網址
+</span></span></code></pre></div><h3 id="dns-驗證">DNS 驗證<a hidden class="anchor" aria-hidden="true" href="#dns-驗證">#</a></h3>
+<p>DNS驗證跟HTTP驗證的原理也是一樣的，只是要驗證的資料改放到DNS上面，但是後續取得憑證與更新憑證都要重新輸入指令。</p>
+<p>輸入以下指令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --issue -d 網站網址 --dns
+</span></span><span style="display:flex;"><span>acme.sh --issue -d dannyliu.me --dns
+</span></span></code></pre></div><p>送出後應該會看到如下結果並且告訴你要怎麼設定DNS：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Using CA: https://acme.zerossl.com/v2/DV90
+</span></span><span style="display:flex;"><span>Single domain<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dannyliu.me&#39;</span>
+</span></span><span style="display:flex;"><span>Getting domain auth token <span style="color:#66d9ef">for</span> each domain
+</span></span><span style="display:flex;"><span>Getting webroot <span style="color:#66d9ef">for</span> domain<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dannyliu.me&#39;</span>
+</span></span><span style="display:flex;"><span>Add the following TXT record:
+</span></span><span style="display:flex;"><span>Domain: <span style="color:#e6db74">&#39;_acme-challenge.dannyliu.me&#39;</span>
+</span></span><span style="display:flex;"><span>TXT value: <span style="color:#e6db74">&#39;OOOXXXXXOOOXXXXOOOOXXXXX&#39;</span>
+</span></span><span style="display:flex;"><span>Please be aware that you prepend _acme-challenge. before your domain
+</span></span><span style="display:flex;"><span>so the resulting subdomain will be: _acme-challenge.dannyliu.me
+</span></span><span style="display:flex;"><span>Please add the TXT records to the domains, and re-run with --renew.
+</span></span><span style="display:flex;"><span>Please add <span style="color:#e6db74">&#39;--debug&#39;</span> or <span style="color:#e6db74">&#39;--log&#39;</span> to check more details.
+</span></span><span style="display:flex;"><span>See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh
+</span></span></code></pre></div><p>之後前往自己網域的 DNS 設定頁面，新增一個 TXT 類型，名稱為<code>_acme-challenge</code>，內容值就複製貼上，按下儲存，就可以回到我們的主機上繼續輸入指令了 <img alt="file" loading="lazy" src="/wp-content/uploads/2021/08/image-1628414971910.png"></p>
+<h3 id="取得憑證">取得憑證<a hidden class="anchor" aria-hidden="true" href="#取得憑證">#</a></h3>
+<p>因為我的站台使用HTTP驗證的方式一直失敗，所以改使用DNS驗證，就會多這一個使用<code>--renew</code>參數的步驟，並且<a href="https://github.com/acmesh-official/acme.sh/issues/1029">後來</a>的<code>acme.sh</code>還要求使用者額外輸入以下參數<code>--yes-I-know-dns-manual-mode-enough-go-ahead-please</code>，來確定你是否真的了解使用DNS模式要每三個月自己手動更新憑證</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --renew -d 網站網址 --yes-I-know-dns-manual-mode-enough-go-ahead-please
+</span></span></code></pre></div><p>輸入完後應能完成DNS驗證，並且憑證已經下載至acme.sh資料夾中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Your cert is in  /root/.acme.sh/dannyliu.me/dannyliu.me.cer
+</span></span><span style="display:flex;"><span>Your cert key is in  /root/.acme.sh/dannyliu.me/dannyliu.me.key
+</span></span><span style="display:flex;"><span>The intermediate CA cert is in  /root/.acme.sh/dannyliu.me/ca.cer
+</span></span><span style="display:flex;"><span>And the full chain certs is there:  /root/.acme.sh/dannyliu.me/fullchain.cer
+</span></span></code></pre></div><p>這邊有第二個指令，能幫你把憑證相關檔案複製並重新命名至自己指定的位置。可以剛好命名為你的網站伺服器憑證路徑，最後的<code>--reloadcmd</code>可以寫上叫網站伺服器指令，這邊我是讓我的apache2重新啟動，(注意這邊重啟是用<code>force-reload</code>這樣才會重新載入新憑證)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>acme.sh --install-cert -d dannyliu.me <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--cert-file      /home/danny/ssl/dannyliu.me.cer  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--key-file       /home/danny/ssl/dannyliu.me.key  <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--fullchain-file /home/danny/ssl/fullchain.cer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--reloadcmd     <span style="color:#e6db74">&#34;service apache2 force-reload&#34;</span>
+</span></span></code></pre></div><p>執行完成後，重新開啟自己的網站，應該可以看到憑證已經更新了:) <img alt="file" loading="lazy" src="/wp-content/uploads/2021/08/image-1628429638712.png"></p>
+<h4 id="補充">補充<a hidden class="anchor" aria-hidden="true" href="#補充">#</a></h4>
+<p>你可以在<code>/etc/apache2/sites-available/</code>中找的你的網站設定檔，檔案中就可以看到自己憑證放置的位置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#960050;background-color:#1e0010">*:443</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>    SSLEngine on
+</span></span><span style="display:flex;"><span>    SSLCertificateFile &#34;/home/danny/ssl/dannyliu.me.cer&#34;
+</span></span><span style="display:flex;"><span>    SSLCertificateKeyFile &#34;/home/danny/ssl/dannyliu.me.key&#34;
+</span></span><span style="display:flex;"><span>    SSLCertificateChainFile  &#34;/home/danny/ssl/fullchain.cer&#34;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/VirtualHost&gt;</span>
+</span></span></code></pre></div><h2 id="相關資料">相關資料：<a hidden class="anchor" aria-hidden="true" href="#相關資料">#</a></h2>
+<p><a href="https://github.com/acmesh-official/acme.sh#readme" title="GitHub上的acme.sh/readme">GitHub上的acme.sh/readme</a></p>
+<p>頁首圖片Photo by <a href="https://unsplash.com/@igormiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Igor Miske</a> on <a href="https://unsplash.com/s/photos/website?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/%E7%94%A8-google-sheet-%E4%BD%9C-json-%E8%B3%87%E6%96%99%E4%BE%86%E6%BA%90%EF%BC%8C%E8%A7%A3%E6%B1%BA-403-%E6%88%96-404-%E9%8C%AF%E8%AA%A4/">
+    <span class="title">« 上一頁</span>
+    <span>用 Google Sheet 作 JSON 資料來源，解決 403 或 404 錯誤</span>
+  </a>
+  <a class="next" href="http://localhost:1313/%E5%9C%A8windows%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%85%A8%E5%9F%9F%E7%9A%84git-ignore/">
+    <span class="title">下一頁 »</span>
+    <span>在Windows上設定全域的git ignore</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Entity Framework on Danny Liu&#39;s Blog</title>
+    <link>http://localhost:1313/tags/entity-framework/</link>
+    <description>Recent content in Entity Framework on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Fri, 24 Dec 2021 16:55:10 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/entity-framework/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例</title>
+      <link>http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/</link>
+      <pubDate>Fri, 24 Dec 2021 16:55:10 +0800</pubDate>
+      <guid>http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/</guid>
+      <description>&lt;p&gt;前幾天被詢問 WinForm 在 .NET 5 能否使用 Entity Framework，從微軟提供的&lt;a href=&#34;https://docs.microsoft.com/en-us/ef/ef6/what-is-new/#ef-designer-support&#34; title=&#34;資料&#34;&gt;資料&lt;/a&gt;來說，只要安裝 EF 6.3 以上的版本就可以運行在 .NET Core 3 與最新的.NET 5 /.NET 6 上面， 雖說是可以運行，但開發的過程中就無法使用 Visual Studio 中的 &lt;code&gt;ADO.NET 實體資料模型&lt;/code&gt; 功能，來自動產生資料庫模型。會出現&lt;code&gt;專案的目標 Framework 不包含 Entity Framework 執行階段組件。請在專案屬性頁面中，檢視目標Framework資訊。&lt;/code&gt;這樣的錯誤訊息。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2021/12/image-1639392825706.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;變成 .NET Core 3 以上的版本，雖然可讀&lt;code&gt;edmx&lt;/code&gt;、可讀&lt;code&gt;context&lt;/code&gt;，但是不能幫你產模型，如果不想自己手動寫的話，微軟有提供一個&lt;a href=&#34;https://github.com/efcore/EdmxDotNetCoreSample/&#34; title=&#34;範例&#34;&gt;範例程式&lt;/a&gt;，大概的意思是，在方案中開了一個 NET Core 的專案後，再加入一個 NET Framework 專案，用來使用&lt;code&gt;ADO.NET 實體資料模型&lt;/code&gt;產 Model ，讓 NET Core 的專案參考產出後的 Model 就可以了。&lt;/p&gt;
+&lt;p&gt;雖然我沒寫過 Windows Form ，不過資料存取這方面在 .NET 是大同小異，本文的方法在 .NET Core 3、 .NET 5 與 .NET 6 都是一樣的，這邊我用 .NET 6 建立一個 WinForms 專案來示範，已經知道如何使用 &lt;code&gt;ADO.NET 實體資料模型&lt;/code&gt; 的同學可以直接跳到&lt;a href=&#34;http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/#%e5%9c%a8_NET_6_%e5%b0%88%e6%a1%88%e4%b8%ad%e4%bd%bf%e7%94%a8_NuGet_%e5%ae%89%e8%a3%9d_EntityFramework&#34;&gt;在 NET 6 專案中使用 NuGet 安裝 EntityFramework&lt;/a&gt;小節&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
