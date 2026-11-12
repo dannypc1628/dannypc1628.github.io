@@ -17,3 +17,6 @@ defaultContentLanguage = "zh-tw"
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
+
+  [privacy.youTube]
+  privacyEnhanced = true
