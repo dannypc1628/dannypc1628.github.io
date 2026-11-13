@@ -20,3 +20,7 @@ defaultContentLanguage = "zh-tw"
 
   [privacy.youTube]
   privacyEnhanced = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
