@@ -114,6 +114,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">設定 CentOS 7 開機時自動執行重啟網卡指令
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>我用hyper-v裝的CentOS每次開機或重新開機都沒網路，也不曉得其他Linux會不會也這樣 雖然些先前文章中｢遇到CentOS 7 在Hyper-V虛擬機中，沒有自動取得IP的修復方法」 知道重啟網卡就好，只是每次都要開虛擬機覺得太麻煩 不如讓系統自己開機時就重新下ifdown ifup 來重新啟動網卡 以下都是以root身份來操作 去 /var/log 資料夾 下指令看messages這個記錄檔
+grep -n &#39;eth0&#39; messages 第1049行可以看到每次開機時，網卡eth0 總是disconnected 要讓Linux開機時執行自訂的腳本和指令都是放在 /etc/rc.d/rc.local 這個檔案裡 而現在最新版的CentOS設定是放在 /etc/systemd/system 要讓開機時，系統程式systemd會執行/etc/rc.d/rc.local裡面寫的腳本和指令，需要做以下設定 確定systemd的rc-local.service中的檔案位置為/etc/rc.d/rc.local
+systemctl status rc-local.service 但是rc.local檔預設是不可執行，所以rc-local.service這個服務並不會啟動 移動到/etc/rc.d/資料夾 設定rc.local檔案為可執行
+chmod &#43;x rc.local 修改rc.local內容，寫入讓eth0網卡重新啟動的指令 讓systemd設定檔重新載入
+systemctl daemon-reload 檢查systemd啟動時要執行的服務有沒有顯示rc-local.service
+systemctl list-dependencies multi-user.target | grep rc-local重開機後，遠端連線成功看一下message記錄檔grep -n &#39;eth0\|rc.local&#39; messages成功，灑花 </p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2019-01-06T16:25:45+08:00'>January 6, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 設定 CentOS 7 開機時自動執行重啟網卡指令" href="http://localhost:1313/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">[asp.net][Vue.js]待辦事項網頁
     </h2>
   </header>
@@ -253,21 +272,6 @@ libunwind libuuid 用 su - 提升到root權限 用 yum list installed 查詢現�
 
 <span title='2017-05-06T17:35:58+08:00'>May 6, 2017</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
   <a class="entry-link" aria-label="post link to [舊物感想] SONY Walkman E463" href="http://localhost:1313/%E8%88%8A%E7%89%A9%E6%84%9F%E6%83%B3-sony-walkman-e463/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">[不推薦心得] Benq WiT MindDuo 親子閱讀檯燈
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>個人覺得WiT MindDuo 親子閱讀檯燈 並不適合閱讀使用，LED光線不夠柔和，光線均勻度不夠理想，使用上會發生疊影 燈罩深度不夠，眼睛容易直視到LED 雖然把燈頭角度壓低，可以避免眼睛直射，如果搭配電腦螢幕也會有螢幕反光的小問題 燈頭與燈臂處也會造成反光，視覺上會受到影響 另外一個部分我拍照拍不太出來，雖然MindDuo強調左右光線寬廣，但是我覺得MindDuo光線前後還蠻窄的，明確的說整個書本上最亮的部分，就是檯燈正下方的長條形區域，調整燈頭角度就會注意到了 輸出光線不是均勻的面光源，能明確感受到是多個點光源組成的
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2017-04-22T18:56:57+08:00'>April 22, 2017</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to [不推薦心得] Benq WiT MindDuo 親子閱讀檯燈" href="http://localhost:1313/%E5%BF%83%E5%BE%97-benq-wit-mindduo-%E8%A6%AA%E5%AD%90%E9%96%B1%E8%AE%80%E6%AA%AF%E7%87%88-%E4%B8%8D%E6%8E%A8%E8%96%A6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

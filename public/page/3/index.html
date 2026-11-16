@@ -104,6 +104,29 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">在現有ASP.NET MVC專案中加入ASP.NET Identity個別使用者帳戶驗證範本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>不曉得有多少人在使用ASP.NET Identity作為網站的登入系統驗證，自己在寫專案的時候常常是事後才想到(或才知道)要有登錄系統，之前都是在MVC中使用ASP.NET的表單驗證 (FormsAuthentication)，這個方法做起來很快，也比較容易理解與上手。不過
+既然ASP.NET MVC的預設專案範本的個別使用者帳戶驗證是使用ASP.NET Identity，也實作好登入驗證、註冊與登出等控制流程。我也希望專案中改用ASP.NET Identity比較輕鬆愉快。本篇文章中會介紹如何把專案範本中個別使用者帳戶驗證的相關功能模組移入現有專案。
+安裝套件 在MVC中要使用ASP.NET Identity，需要用NuGet安裝以下三個套件到現有專案中：
+Microsoft.AspNet.Identity.EntityFramework Microsoft.AspNet.Identity.OWIN Microsoft.Owin.Host.SystemWeb 安裝的過程中會連同每個套件的相依套件一併安裝，所以最後安裝下來的套件數就不只三個，此外在NuGet上可以找到這三個套件相對應的繁體中文套件(名稱後方加上.zh-Hant)安裝結果是一樣的只是多中文套件而已。安裝套件結果可以看packages.config
+&lt;package id=&#34;Owin&#34; version=&#34;1.0&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin.Host.SystemWeb&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin.Host.SystemWeb.zh-Hant&#34; version=&#34;4.1.0&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin.Security&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin.Security.Cookies&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.Owin.Security.OAuth&#34; version=&#34;3.0.1&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.AspNet.Identity.Core&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.AspNet.Identity.EntityFramework&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.AspNet.Identity.Owin&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt; &lt;package id=&#34;Microsoft.AspNet.Identity.Owin.zh-Hant&#34; version=&#34;2.2.3&#34; targetFramework=&#34;net472&#34; /&gt; 加入現有項目 安裝完套件後，接者就是把專案範本中的個別使用者帳戶驗證的相關功能例如設定檔、控制器、模型、檢視等搬到現有專案，若兩個專案名稱都取一樣的名字就可以省去更改命名空間namespace的功夫。這邊準備了專案，是我將無驗證的MVC專案範本與有使用個別使用者帳戶驗證的專案範本兩個合併的比較差異，可以比較出使用個別使用者帳戶驗證的範本相對於無驗證範本多出了哪些檔案。下列檔案我就用方案總管全部搬到新專案去。
+Startup.cs App_Start\IdentityConfig.cs App_Start\Startup.Auth.cs Controller\AccountController.cs Controller\ManageController.cs Models\AccountViewModels.cs Models\IdentityModels.cs Models\ManageViewModels.cs Views\Account\*.cshtml Views\Manage\*.cshtml Views\Shared\Lockout.cshtml Views\Shared\_LoginPartial.cshtml 更改設定 另外還有Web.config、IdentityModels.cs和_Layout.cshtml需要手動修改
+更改_Layout.cshtml 改Layout比較簡單，就是將登入註冊按鈕的_LoginPartial.cshtml加入置頂列中
+&lt;div class=&#34;navbar-collapse collapse&#34;&gt; &lt;ul class=&#34;nav navbar-nav&#34;&gt; &lt;li&gt;@Html.ActionLink(&#34;首頁&#34;, &#34;Index&#34;, &#34;Home&#34;)&lt;/li&gt; &lt;li&gt;@Html.ActionLink(&#34;關於&#34;, &#34;About&#34;, &#34;Home&#34;)&lt;/li&gt; &lt;li&gt;@Html.ActionLink(&#34;連絡人&#34;, &#34;Contact&#34;, &#34;Home&#34;)&lt;/li&gt; &lt;/ul&gt; @Html.Partial(&#34;_LoginPartial&#34;) &lt;/div&gt; 更改Web.config 而在Web.config中要增加CodeFirst資料庫連結字串，如果用DBfirst產生的資料庫連線字串如下，providerName是System.Data.EntityClient這個組件，連線字串還包含著metadata、MultipleActiveResultSets與App參數
+&lt;connectionStrings&gt; &lt;add name=&#34;MyDBEntities&#34; connectionString=&#34;metadata=res://*/Models.MyDBModel.csdl|res://*/Models.MyDBModel.ssdl|res://*/Models.MyDBModel.msl;provider=System.Data.SqlClient; provider connection string=&#34;data source=(local)\SQLEXPRESS;initial catalog=MyDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&#34;&#34; providerName=&#34;System.Data.EntityClient&#34; /&gt; &lt;/connectionStrings&gt; 若直接使用DataBaseFirst的連線字串可能會出現的錯誤訊息有不支援關鍵字: &#39;metadata&#39;或是System.InvalidOperationException: The entity type ApplicationUser is not part of the model for the current context.又或者是System.Data.Entity.Core.MetadataException: Unable to load the specified metadata resource等等
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-02-22T21:05:25+08:00'>February 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 在現有ASP.NET MVC專案中加入ASP.NET Identity個別使用者帳戶驗證範本" href="http://localhost:1313/%E5%9C%A8%E7%8F%BE%E6%9C%89asp-net-mvc%E5%B0%88%E6%A1%88%E4%B8%AD%E5%8A%A0%E5%85%A5asp-net-identity/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">在Angular 9中使用Leaflet js 與 OpenStreetMap地圖
     </h2>
   </header>
@@ -303,25 +326,6 @@ Docker Desktop可以運行Linux container或是Windwos container，並且兩種�
 
 <span title='2019-10-24T23:13:51+08:00'>October 24, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
   <a class="entry-link" aria-label="post link to Docker初閱心得筆記！( Windows Container )" href="http://localhost:1313/docker%E5%88%9D%E9%96%B1%E5%BF%83%E5%BE%97%E7%AD%86%E8%A8%98%EF%BC%81-windows-container/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">[電影不劇透心得]青春豬頭少年不會夢見懷夢美少女
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-終於趕在下檔前，前往電影院觀看青《春豬頭少年不會夢見懷夢美少女》
-只能說原作輕小說《青春豬頭少年》系列應該只有第一卷才是青春戀愛喜劇，文字之中帶有人生現實的淡淡哀愁，每一卷都以新登場人物為主軸，描述現實環境困境的無力感，而產生這如果有如果般，貫穿全系列，帶有神祕色彩的思春期症候群。
-TV動畫版的劇情包含第一卷到第五卷，電影版省略了前情提要，直接從第六卷接續下去到第七卷結束，將TV版一路埋下伏筆的初戀對象祥子小姐進行收尾，雖然因為時間限制電影沒辦法完整呈現原作細節，但劇情呈現節奏緊湊又十分流暢，音樂呈現恰到好處，讓我眼淚流的不要不要的，推薦大家在下檔前趕快去看。
-吐嘲一下京站威秀，完全沒有看板海報可以拍照，每張海報都是即將上映，完全找不到現檔也太雷了…
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-10-23T15:30:20+08:00'>October 23, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to [電影不劇透心得]青春豬頭少年不會夢見懷夢美少女" href="http://localhost:1313/%E9%9B%BB%E5%BD%B1%E5%BF%83%E5%BE%97%E9%9D%92%E6%98%A5%E8%B1%AC%E9%A0%AD%E5%B0%91%E5%B9%B4%E4%B8%8D%E6%9C%83%E5%A4%A2%E8%A6%8B%E6%87%B7%E5%A4%A2%E7%BE%8E%E5%B0%91%E5%A5%B3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
