@@ -1,13 +1,12 @@
 baseURL = "https://dannyliu.me/"
-languageCode = "zh-tw"
 title = "Danny Liu's Blog"
 theme = "PaperMod"
 timeZone = "Asia/Taipei"
 defaultContentLanguage = "zh-tw"
 
 [languages.zh-tw]
-  languageName = "繁體中文"
   locale = "zh-TW"
+  label = "繁體中文"
   weight = 1
 
 [params]
@@ -18,8 +17,12 @@ defaultContentLanguage = "zh-tw"
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
 
+  [params.assets]
+    favicon = "/favicon.png"
+    favicon32x32 = "/favicon.png"
+
   [privacy.youTube]
-  privacyEnhanced = true
+    privacyEnhanced = true
 
 [caches]
   [caches.images]

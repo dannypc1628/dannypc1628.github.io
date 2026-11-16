@@ -1,22 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>.Net Core on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/tags/.net-core/</link>
-    <description>Recent content in .Net Core on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Mon, 27 Aug 2018 01:16:13 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/.net-core/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法</title>
-      <link>http://localhost:1313/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</link>
-      <pubDate>Mon, 27 Aug 2018 01:16:13 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</guid>
-      <description>&lt;p&gt;今天在Linux上按照微軟的&lt;a href=&#34;https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial&#34;&gt;安裝步驟&lt;/a&gt;安裝完.net Core 2.1 用&lt;code&gt;dotnet --version&lt;/code&gt; 檢查有無安裝成功卻出現以下的錯誤訊息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Failed to bind to CoreCLR at &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;google到的可能&lt;a href=&#34;https://github.com/Azure/azure-functions-core-tools/issues/468&#34;&gt;原因&lt;/a&gt;是還有些套件沒有安裝，微軟網站上有需要安裝的套件&lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x#ubuntu&#34;&gt;列表&lt;/a&gt;，但依照這個說明NET Core 2.1應該是不用安裝&lt;code&gt;libunwind&lt;/code&gt;和&lt;code&gt;libuuid&lt;/code&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>.Net Core on Danny Liu's Blog</title><link>https://dannyliu.me/tags/.net-core/</link><description>Recent content in .Net Core on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Mon, 27 Aug 2018 01:16:13 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/.net-core/index.xml" rel="self" type="application/rss+xml"/><item><title>在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法</title><link>https://dannyliu.me/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</link><pubDate>Mon, 27 Aug 2018 01:16:13 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</guid><description>&lt;p&gt;今天在Linux上按照微軟的&lt;a href="https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial"&gt;安裝步驟&lt;/a&gt;安裝完.net Core 2.1 用&lt;code&gt;dotnet --version&lt;/code&gt; 檢查有無安裝成功卻出現以下的錯誤訊息&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Failed to bind to CoreCLR at &lt;span style="color:#e6db74"&gt;&amp;#39;/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;google到的可能&lt;a href="https://github.com/Azure/azure-functions-core-tools/issues/468"&gt;原因&lt;/a&gt;是還有些套件沒有安裝，微軟網站上有需要安裝的套件&lt;a href="https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x#ubuntu"&gt;列表&lt;/a&gt;，但依照這個說明NET Core 2.1應該是不用安裝&lt;code&gt;libunwind&lt;/code&gt;和&lt;code&gt;libuuid&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CentOS distributions require the following libraries installed:&lt;/p&gt;
 &lt;ul&gt;
@@ -34,9 +19,6 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;用 &lt;code&gt;su -&lt;/code&gt; 提升到root權限 用 &lt;code&gt;yum list installed&lt;/code&gt; 查詢現在已安裝的套件清單&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2018/08/%E6%93%B7%E5%8F%9621.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2018/08/%E6%93%B7%E5%8F%9621.png"&gt;&lt;/p&gt;
 &lt;p&gt;不過列出的套件太多&lt;/p&gt;
-&lt;p&gt;改用&lt;code&gt;grep&lt;/code&gt;各別搜尋清單中有無該套件，若無再進行安裝&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;p&gt;改用&lt;code&gt;grep&lt;/code&gt;各別搜尋清單中有無該套件，若無再進行安裝&lt;/p&gt;</description></item></channel></rss>

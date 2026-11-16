@@ -1,208 +1,32 @@
-<!DOCTYPE html>
-<html lang="zh-tw" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>.NET | Danny Liu&#39;s Blog</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/categories/.net/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/.net/index.xml" title="rss">
-<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/categories/.net/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-</head>
-<body class="list" id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">首頁</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/categories/">Categories</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-  <h1>
-    .NET
-  </h1>
-</header>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
+<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>.NET | Danny Liu's Blog</title><meta name=keywords content><meta name=description content><meta name=author content><link rel=canonical href=https://dannyliu.me/categories/.net/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dannyliu.me/categories/.net/index.xml title=rss><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/categories/.net/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/categories/.net/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content=".NET"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content=".NET"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/categories/>Categories</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>.NET</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤</h2></header><div class=entry-content><p>在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
 文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD
 安裝 在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，
 在專案中直接用 NuGet 安裝 [MailKit] 就可以了(https://github.com/jstedfast/MailKit)。 程式碼範例 GitHub
-var message = new MimeMessage(); var fromEmail = new MailboxAddress(&#34;劉長庚&#34;, &#34;dannyliu@test.com&#34;); var toEmail = new MailboxAddress(&#34;測試信箱&#34;, &#34;dannytest@test.com&#34;); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = &#34;主旨：測試 MimeKit&#34;; var builder = new BodyBuilder { HtmlBody = @&#34;&lt;p&gt;使用 MimeKit 進行 SMTP 寄信&lt;/p&gt;&#34; }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect(&#34;123.234.222.113&#34;, 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential(&#34;dannyliu@test.com&#34;, &#34;yourPassword&#34;)); client.Send(message); Console.WriteLine($&#34;成功：寄給 {toEmail.Name} 主旨：{message.Subject}&#34;); } catch (Exception ex) { Console.WriteLine(&#34;失敗！&#34;); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2023-07-12T14:43:13+08:00'>July 12, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤" href="http://localhost:1313/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前幾天被詢問 WinForm 在 .NET 5 能否使用 Entity Framework，從微軟提供的資料來說，只要安裝 EF 6.3 以上的版本就可以運行在 .NET Core 3 與最新的.NET 5 /.NET 6 上面， 雖說是可以運行，但開發的過程中就無法使用 Visual Studio 中的 ADO.NET 實體資料模型 功能，來自動產生資料庫模型。會出現專案的目標 Framework 不包含 Entity Framework 執行階段組件。請在專案屬性頁面中，檢視目標Framework資訊。這樣的錯誤訊息。
+var message = new MimeMessage(); var fromEmail = new MailboxAddress("劉長庚", "dannyliu@test.com"); var toEmail = new MailboxAddress("測試信箱", "dannytest@test.com"); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = "主旨：測試 MimeKit"; var builder = new BodyBuilder { HtmlBody = @"&lt;p>使用 MimeKit 進行 SMTP 寄信&lt;/p>" }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect("123.234.222.113", 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential("dannyliu@test.com", "yourPassword")); client.Send(message); Console.WriteLine($"成功：寄給 {toEmail.Name} 主旨：{message.Subject}"); } catch (Exception ex) { Console.WriteLine("失敗！"); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：
+...</p></div><footer class=entry-footer><span title=2023-07-12T14:43:13+08:00>July 12, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤" href=https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例</h2></header><div class=entry-content><p>前幾天被詢問 WinForm 在 .NET 5 能否使用 Entity Framework，從微軟提供的資料來說，只要安裝 EF 6.3 以上的版本就可以運行在 .NET Core 3 與最新的.NET 5 /.NET 6 上面， 雖說是可以運行，但開發的過程中就無法使用 Visual Studio 中的 ADO.NET 實體資料模型 功能，來自動產生資料庫模型。會出現專案的目標 Framework 不包含 Entity Framework 執行階段組件。請在專案屬性頁面中，檢視目標Framework資訊。這樣的錯誤訊息。
 變成 .NET Core 3 以上的版本，雖然可讀edmx、可讀context，但是不能幫你產模型，如果不想自己手動寫的話，微軟有提供一個範例程式，大概的意思是，在方案中開了一個 NET Core 的專案後，再加入一個 NET Framework 專案，用來使用ADO.NET 實體資料模型產 Model ，讓 NET Core 的專案參考產出後的 Model 就可以了。
 雖然我沒寫過 Windows Form ，不過資料存取這方面在 .NET 是大同小異，本文的方法在 .NET Core 3、 .NET 5 與 .NET 6 都是一樣的，這邊我用 .NET 6 建立一個 WinForms 專案來示範，已經知道如何使用 ADO.NET 實體資料模型 的同學可以直接跳到在 NET 6 專案中使用 NuGet 安裝 EntityFramework小節
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2021-12-24T16:55:10+08:00'>December 24, 2021</span>&nbsp;·&nbsp;<span>2 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例" href="http://localhost:1313/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在 .NET 5 / 6的 Windows Form 中使用 EF Core
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>現在的.NET 5 / 6，已經可以建立 WindowsForm 專案了，我這邊使用 Visual Studio 2022 以 NET 6 建立一個全新的 WindowsForm 範本，並示範如何在 WindowsForm 中使用 EF Core。若你是使用 Visual Studio 2019 則能建立的最高板本是 .NET 5，兩者的安裝方式相同，可以安心服用。
+...</p></div><footer class=entry-footer><span title=2021-12-24T16:55:10+08:00>December 24, 2021</span>&nbsp;·&nbsp;<span>2 分鐘</span></footer><a class=entry-link aria-label="post link to 在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例" href=https://dannyliu.me/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在 .NET 5 / 6的 Windows Form 中使用 EF Core</h2></header><div class=entry-content><p>現在的.NET 5 / 6，已經可以建立 WindowsForm 專案了，我這邊使用 Visual Studio 2022 以 NET 6 建立一個全新的 WindowsForm 範本，並示範如何在 WindowsForm 中使用 EF Core。若你是使用 Visual Studio 2019 則能建立的最高板本是 .NET 5，兩者的安裝方式相同，可以安心服用。
 點選 Visual Studio 右側的方案總管，對方案按右鍵後，點選管理 NuGet 套件 這邊要安裝兩個套件，若是.NET 5，就安裝5.x版本，若是.NET 6，就安裝6.x版本，
 Microsoft.EntityFrameworkCore.SqlServer Microsoft.EntityFrameworkCore.Tools 補充：若你要使用的資料庫是Sqlite，那就是安裝Microsoft.EntityFrameworkCore.Sqlite，其他資料庫請參考 EF Core 資料庫提供者。Tools這個套件是使用 Visual Studio 產生資料庫模型的工具。
 安裝過程中會出現安裝其他相關套件的詢問，都按確定 接著開啟套件管理主控台，輸入以下指令來從資料庫產生來產生資料模型，請以自己的資料庫更改連線字串
-Scaffold-DbContext &#39;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&#39; Microsoft.EntityFrameworkCore.SqlServer 右鍵貼上並執行後，你可以看到在方案總管中多了 TestDBContext 與 User
+Scaffold-DbContext 'Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True' Microsoft.EntityFrameworkCore.SqlServer 右鍵貼上並執行後，你可以看到在方案總管中多了 TestDBContext 與 User
 在TestDBContext可以看到資料庫的連線字串，若想要移除可參考微軟提供的連結
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) { #warning #To protect potentially sensitive information in your connection string, you should move it out of source code. #You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration # - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263. optionsBuilder.UseSqlServer(&#34;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&#34;); } } 回到 Windows Form 視窗，這邊新增了一個DataGridView，並拖曳進Form1視窗中
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2021-12-13T19:33:59+08:00'>December 13, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在 .NET 5 / 6的 Windows Form 中使用 EF Core" href="http://localhost:1313/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">C# 列舉器 IEnumerator 與 IEnumerable
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>今天要講的是列舉器，我們很常用到foreach來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { if (!optionsBuilder.IsConfigured) { #warning #To protect potentially sensitive information in your connection string, you should move it out of source code. #You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration # - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263. optionsBuilder.UseSqlServer("Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True"); } } 回到 Windows Form 視窗，這邊新增了一個DataGridView，並拖曳進Form1視窗中
+...</p></div><footer class=entry-footer><span title=2021-12-13T19:33:59+08:00>December 13, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在 .NET 5 / 6的 Windows Form 中使用 EF Core" href=https://dannyliu.me/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>C# 列舉器 IEnumerator 與 IEnumerable</h2></header><div class=entry-content><p>今天要講的是列舉器，我們很常用到foreach來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？
 答案是因為，陣列有實作列舉器，所以我們可以使用 foreach 把陣列裡面的東西全部拿出來。簡而言之，若我們的自訂義的類別有實作列舉器。那就可以使用 foreach 來取出裡面的東西。
-class Program { static void Main(string[] args) { string[] 陣列 = { &#34;小明&#34;, &#34;小華&#34;, &#34;小花&#34; }; foreach(var item in 陣列) { Console.WriteLine(item); } Console.ReadKey(); } } 輸出結果：
+class Program { static void Main(string[] args) { string[] 陣列 = { "小明", "小華", "小花" }; foreach(var item in 陣列) { Console.WriteLine(item); } Console.ReadKey(); } } 輸出結果：
 小明 小華 小花 列舉器 enumerator 列舉器會將陣列裡面的東西一個一個的依照順序取出來，不過 C# 裡面陣列是一個有指定大小的容器，定義陣列的大小後，裡面能放東西的數量就是固定的。所以廣泛來說，列舉器會把序列(不限定長度大小)裡面的東西一個一個取出來。 列舉器的實作方式也非常簡單，要做三個功能，1.拿出一個，2.判斷有沒有下一個，3.重頭開始(從零開始)
 在C#中有定義列舉器的interface IEnumerator，所以我們說陣列裡面有實作enumerator，就是擁有這三個功能
 public interface IEnumerator { bool MoveNext(); Object Current { get; } void Reset(); } 可列舉的enumerable 至於要怎麼知道這個物件有沒有列舉器，能不能使用foreach，就要看這個類別是不是可列舉的類別，類別有沒有繼承IEnumerable這介面。(補充：C#習慣在介面前面加上i，所以IEnumerable就是enumerable的interface，指的是可列舉的介面。)
 如果有繼承IEnumerable，就代表有實作GetEnumerator()這個方法來讓我們拿到列舉器。
 public interface IEnumerable { IEnumerator GetEnumerator(); } 所以剛剛的 foreach 程式可以改成以下使用列舉器的版本
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2020-03-22T23:37:09+08:00'>March 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to C# 列舉器 IEnumerator 與 IEnumerable" href="http://localhost:1313/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>一隻可以抓取指定網頁中資料的程式，我們習慣稱呼為爬蟲程式。聽過很多人講爬蟲程式都是使用python來撰寫。不過既然小弟現在主要已寫C#為主，當然要寫一隻運行在.NET的C#爬蟲程式。
+...</p></div><footer class=entry-footer><span title=2020-03-22T23:37:09+08:00>March 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to C# 列舉器 IEnumerator 與 IEnumerable" href=https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp</h2></header><div class=entry-content><p>一隻可以抓取指定網頁中資料的程式，我們習慣稱呼為爬蟲程式。聽過很多人講爬蟲程式都是使用python來撰寫。不過既然小弟現在主要已寫C#為主，當然要寫一隻運行在.NET的C#爬蟲程式。
 現在微軟的.NET Core已經可以正式的運行在Linux平台上，我想寫個爬蟲希望可以同值時運行在Windows平台與Linux平台上的話，當然選擇使用.net Core而不是.net Framework。
 我們用瀏覽器在點擊一個連結、或是打開一個網頁時，輸入的http://或https://開頭的網址，都會發送Http請求到對應的網頁伺服器中，對方的網頁伺服器就回傳訊息給我們，其中Content欄位就是該網頁的HTML格式資料，瀏覽器解析HTML格式資料後我們便可以在瀏覽器上瀏覽這個網頁。
 所以在爬蟲程式中，我們要模擬瀏覽器行為發送一個Http請求來取得網頁資料，再來就是使用AngleSharp這個套件來尋找Html的DOM元素來取得特定內容。 關於在.NET中發送Http請求 在.NET裡面可以使用WebClient 、HttpWebRequest、HttpClient這三種類別來發送Http請求到遠端伺服器去取得資料。其中，HttpClient是.NET Framework 4.5開始加入的類別，也是NET Core中官方建議使用的類別。
@@ -211,56 +35,13 @@ public interface IEnumerable { IEnumerator GetEnumerator(); } 所以剛剛的 fo
 延伸閱讀：HttpClient，該 using 還是 static?
 建立專案 這邊我們使用命令列來建立一個新的.NET Core console專案，並命名為Console1
 dotnet new console -n Console1 使用HttpClicent取得網頁資料 我們就依照官方的建議，使用HttpClient來取的網頁資料。(關於async Task Main()與await請看註一)
-using System; using System.Net.Http; using System.Threading.Tasks; namespace ConsoleApp1 { class Program { static async Task Main(string[] args) { HttpClient httpClient = new HttpClient(); string url = &#34;https://dannyliu.me&#34;; var responseMessage = await httpClient.GetAsync(url); //發送請求 //檢查回應的伺服器狀態StatusCode是否是200 OK if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK) { string responseResult = responseMessage.Content.ReadAsStringAsync().Result;//取得內容 Console.WriteLine(responseResult); } Console.ReadKey(); } } } ...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2020-03-01T23:53:43+08:00'>March 1, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp" href="http://localhost:1313/%E7%94%A8-net-core%E5%81%9A%E7%B6%B2%E9%A0%81%E7%88%AC%E8%9F%B2%E6%8A%93%E5%8F%96%E8%B3%87%E6%96%99-%E4%BD%BF%E7%94%A8httpclicent%E8%88%87anglesharp/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。
+using System; using System.Net.Http; using System.Threading.Tasks; namespace ConsoleApp1 { class Program { static async Task Main(string[] args) { HttpClient httpClient = new HttpClient(); string url = "https://dannyliu.me"; var responseMessage = await httpClient.GetAsync(url); //發送請求 //檢查回應的伺服器狀態StatusCode是否是200 OK if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK) { string responseResult = responseMessage.Content.ReadAsStringAsync().Result;//取得內容 Console.WriteLine(responseResult); } Console.ReadKey(); } } } ...</p></div><footer class=entry-footer><span title=2020-03-01T23:53:43+08:00>March 1, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp" href=https://dannyliu.me/%E7%94%A8-net-core%E5%81%9A%E7%B6%B2%E9%A0%81%E7%88%AC%E8%9F%B2%E6%8A%93%E5%8F%96%E8%B3%87%E6%96%99-%E4%BD%BF%E7%94%A8httpclicent%E8%88%87anglesharp/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法</h2></header><div class=entry-content><p>ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。
 不過我在做小專案時，選的是無驗證，想體驗[AuthorizeAttribute]的權限驗證功能，似乎最簡單的方式是使用.net早期的FormsAuthenticationu驗證，看別人的文章也講的很簡單，複製三段code，登入登出的功能就完成了。
 小弟不幸的一用之下，我的登入功能在登入成功後又重新導回登入畫面，形成無窮迴圈卡了一個小時。
-[HttpPost] [AllowAnonymous] [ValidateAntiForgeryToken] public ActionResult Login(LoginViewModel user) { if (ModelState.IsValid) { User u = _userService.Find(user.ID , user.Password); if(u != null) { FormsAuthenticationTicket ticket = new FormsAuthenticationTicket( 1, u.ID, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(90), isPersistent: true, userData: u.Name, cookiePath: FormsAuthentication.FormsCookiePath ); string encTicket = FormsAuthentication.Encrypt(ticket); var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Secure = true, HttpOnly = true }; Response.Cookies.Add(cookie); return RedirectToAction(&#34;Index&#34;, &#34;Lectures&#34;); } } ModelState.AddModelError(&#34;&#34;, &#34;無效的帳號或密碼。&#34;); return View(user); } 這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個Secure = true的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2020-01-02T14:55:40+08:00'>January 2, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法" href="http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在Visual Studio 2017啟用IIS Express的Https
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在寫asp.net時順手把cookie設定成Secure，想說偵錯模式時就改用Https來連線，一波三折就生出這篇文章。
+[HttpPost] [AllowAnonymous] [ValidateAntiForgeryToken] public ActionResult Login(LoginViewModel user) { if (ModelState.IsValid) { User u = _userService.Find(user.ID , user.Password); if(u != null) { FormsAuthenticationTicket ticket = new FormsAuthenticationTicket( 1, u.ID, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(90), isPersistent: true, userData: u.Name, cookiePath: FormsAuthentication.FormsCookiePath ); string encTicket = FormsAuthentication.Encrypt(ticket); var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Secure = true, HttpOnly = true }; Response.Cookies.Add(cookie); return RedirectToAction("Index", "Lectures"); } } ModelState.AddModelError("", "無效的帳號或密碼。"); return View(user); } 這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個Secure = true的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。
+...</p></div><footer class=entry-footer><span title=2020-01-02T14:55:40+08:00>January 2, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法" href=https://dannyliu.me/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在Visual Studio 2017啟用IIS Express的Https</h2></header><div class=entry-content><p>在寫asp.net時順手把cookie設定成Secure，想說偵錯模式時就改用Https來連線，一波三折就生出這篇文章。
 我今天使用的是Visual Studio 2017 15.9.18，使用內建的IIS Express進行偵錯，預設.NET Core是有啟動HTTPS的，但.NET Framework則無。另外，要啟動Https的話在.NET Core中與.NET Framework兩者設定方式是不一樣的。另外還有IIS Express的SSL port要注意。
-ASP.NET Core net core是從方案總管，點選專案名稱按右鍵，接著點選屬性 來到屬性設定頁左側，點選偵錯，再至Web伺服器設定勾選啟用SSL .NET Frameowrk ASP.NET MVC .net Framework是點選專案名稱後，至屬性視窗啟用SSL設為True 屬性視窗的啟用方式 左上角點選檢視，再點選屬性視窗 IIS Express的SSL Port IIS Express要啟動Https的話已經不需要以系統管理員的身分執行Visual studio，但是SSL Port已經鎖定在44300 到 44399這個區間port號才能使用，若手動更改成這個區間以外的port將會無法啟動。
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2020-01-02T08:06:02+08:00'>January 2, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在Visual Studio 2017啟用IIS Express的Https" href="http://localhost:1313/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">C# 事件(下) – 加上event關鍵字
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>上篇文章中我們使用委派實作了事件處理機制，因為使用委派來實作非常方便，可以幫我們接受多筆客戶訂閱又能集結成冊，而執行委派又能實踐通知訂閱者者，一次幫助我們解決許多問題。 但是…
+ASP.NET Core net core是從方案總管，點選專案名稱按右鍵，接著點選屬性 來到屬性設定頁左側，點選偵錯，再至Web伺服器設定勾選啟用SSL .NET Frameowrk ASP.NET MVC .net Framework是點選專案名稱後，至屬性視窗啟用SSL設為True 屬性視窗的啟用方式 左上角點選檢視，再點選屬性視窗 IIS Express的SSL Port IIS Express要啟動Https的話已經不需要以系統管理員的身分執行Visual studio，但是SSL Port已經鎖定在44300 到 44399這個區間port號才能使用，若手動更改成這個區間以外的port將會無法啟動。</p></div><footer class=entry-footer><span title=2020-01-02T08:06:02+08:00>January 2, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在Visual Studio 2017啟用IIS Express的Https" href=https://dannyliu.me/%E5%9C%A8visual-studio-2017%E5%95%9F%E7%94%A8iis-express%E7%9A%84https/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>C# 事件(下) – 加上event關鍵字</h2></header><div class=entry-content><p>上篇文章中我們使用委派實作了事件處理機制，因為使用委派來實作非常方便，可以幫我們接受多筆客戶訂閱又能集結成冊，而執行委派又能實踐通知訂閱者者，一次幫助我們解決許多問題。 但是…
 委派要能讓外部客戶訂閱，就要能被外部使用，所以委派也有可能被外部執行而送出意料之外的通知。 使用event關鍵字 而這個問題並不是private、protected這類存取修飾字可以解決的，所以在C#中，提供了event關鍵字來解決這個問題，讓委派能被外部加入方法，又能禁止被外部執行。
 用法很簡單，只要在之前的程式碼上，在使用我們自定義的委派型別前加上event就可以了，程式碼如下：
 class 報社 { public delegate void 通知對象(string 新聞報導); public event 通知對象 最新新聞; //只有這一行有更改 public void 投稿新聞(string 新聞稿) { 最新新聞.Invoke(新聞稿); } } 加上event後，C#編譯器就會禁止外部來執行這個委派。 觸發事件時~ 當要執行委派，要記的檢查有沒有人訂閱(新聞事件)，若沒人訂閱委派，我們的訂閱名冊就會是null，執行時就會出現例外Null Reference Exception 若這個委派可能在內部多個地方都有可能觸發到，那可以包裝成一個方法，在C#與.NET中似乎習慣將觸發事件方法前面加上On，程式碼如下： C# 6.0可以使用?來簡化，是否為null的判斷：
@@ -269,164 +50,26 @@ public delegate void 通知對象(報社 有間報社 ,string 新聞報導); 另
 public class 新聞 { public string 標題; public string 內容; } 如此一來，委派型別就可以精簡成只要兩個參數就好。
 public delegate void 通知對象(報社 有間報社 ,新聞 新聞報導); .NET中事件處理的慣例 上一節一些小改善可能會讓人納悶是否真的要如此，其實只是為了這一節做鋪陳。事件用的委派型別既然只要兩個參數就好的話，.NET類別庫本身也提供了現成的已經定義好的委派
 public delegate void EventHandler(object sender, EventArgs eventArgs); sender就是來源物件，型別是最廣泛的object，而傳遞參數集合宣告的型別是.NET類別庫定義好的EventArgs。所以要使用這個定義好的委派EventHandler，就要將我們定義好的新聞類別繼承自EventArgs。 但是訂閱者的通知方法可能要自己轉型，最後發行類別與訂閱類別就可以寫成如下：
-class 報社 { public string 名稱; public event EventHandler 最新新聞; public void 投稿新聞(string 訊息) { 新聞 new新聞 = new 新聞() { 標題 = &#34;最新快訊&#34;, 內容 = 訊息 }; On收到最新新聞時(this, new新聞); } protected void On收到最新新聞時(報社 報社, 新聞 新聞) { 最新新聞?.Invoke(報社, 新聞); } } class 訂閱者 { public string 名字 ; public void 通知我(object sender , EventArgs eventArgs) { 報社 報社 = sender as 報社; 新聞 新聞 = eventArgs as 新聞; Console.WriteLine($&#34;我是{名字}，我已經收到來自{來源.名稱}的{新聞.標題}：{新聞.內容}&#34;); } } 執行結果： 主程式： ...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-11-02T00:19:24+08:00'>November 2, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to C# 事件(下) – 加上event關鍵字" href="http://localhost:1313/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">C# 事件(上) - 使用委派來實作事件
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>C#的事件我在ASP.NET MVC中印像中是沒有看過，event應該是在視窗程式或WebForm上才會看到？。不過記得以前寫WebForm的過程中，雖然每個控制項都會用到事件，但記得我不用去了解event也可以把專案做起來，猶豫很久還是決定看看這個主題。
+class 報社 { public string 名稱; public event EventHandler 最新新聞; public void 投稿新聞(string 訊息) { 新聞 new新聞 = new 新聞() { 標題 = "最新快訊", 內容 = 訊息 }; On收到最新新聞時(this, new新聞); } protected void On收到最新新聞時(報社 報社, 新聞 新聞) { 最新新聞?.Invoke(報社, 新聞); } } class 訂閱者 { public string 名字 ; public void 通知我(object sender , EventArgs eventArgs) { 報社 報社 = sender as 報社; 新聞 新聞 = eventArgs as 新聞; Console.WriteLine($"我是{名字}，我已經收到來自{來源.名稱}的{新聞.標題}：{新聞.內容}"); } } 執行結果： 主程式： ...</p></div><footer class=entry-footer><span title=2019-11-02T00:19:24+08:00>November 2, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to C# 事件(下) – 加上event關鍵字" href=https://dannyliu.me/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>C# 事件(上) - 使用委派來實作事件</h2></header><div class=entry-content><p>C#的事件我在ASP.NET MVC中印像中是沒有看過，event應該是在視窗程式或WebForm上才會看到？。不過記得以前寫WebForm的過程中，雖然每個控制項都會用到事件，但記得我不用去了解event也可以把專案做起來，猶豫很久還是決定看看這個主題。
 今天的內容主要是參考電子書 C#本事 蔡煥麟
 事件驅動 平常我們撰寫程式時，都是自己主動使用某些物件提供的方法來得到結果。相反地，若物件的結果發生時間是隨機不固定的，我們可能不想自己一直主動詢問物件或一直等待，希望物件結果出來後主動通知我們，而物件結果出來這一件事情就是一種事件、一種改變、一種狀態發生，以上描述的這些算是一種事件驅動的程式設計。在WebForm中，每一個按鈕、控制項都是靠使用者點擊後觸發事件來執行後續程式。
 發行-訂閱模式 C#中的事件處理機制或者說.NET中的事件處理機制，整個機制其實是一種設計模式中–發行-訂閱模式(發行者-訂閱者模式)，概念是報社推出一份新報紙，會主動推送給有訂閱報紙的客戶，而不是客戶自己跑去問有沒有新報紙可以買。所以說推出新報紙時、發行新報紙時就會觸發事件，將新報紙送給有訂閱報紙的人。
 所以在發行-訂閱模式中，就有幾個關鍵內容
 訂閱者 發行者 訂閱名冊 (動作)依名冊通知已經訂閱的人 用委派實作發行/訂閱模式的事件機制 委派是方法的傳遞，我們可以把方法交給委派，由委派來執行我們的方法。相對地，我們可以把訂閱資料地址等資訊包裝成方法傳遞給委派，當事件發生時執行委派來通知我們這些訂閱者。
 先定義一個簡單的訂閱者，每個訂閱者都有名字與自己的通知方法：
-class 訂閱者 { public string 名字 ; public void 通知我(string 訊息) { Console.WriteLine($&#34;我是{名字}，我已經收到最新新聞：{訊息}&#34;); } } 接下來再實作發行者，並實作委派來通知訂閱對象 這裡就用C#1.0版的委派使用方式先定義委派
+class 訂閱者 { public string 名字 ; public void 通知我(string 訊息) { Console.WriteLine($"我是{名字}，我已經收到最新新聞：{訊息}"); } } 接下來再實作發行者，並實作委派來通知訂閱對象 這裡就用C#1.0版的委派使用方式先定義委派
 public delegate void 通知對象(string 通知內容); 然後再宣告委派型別作為事件來使用，並且我們再撰寫一個新聞投稿方法，當有人投稿了新聞的那一刻，就要觸發事件去通知訂閱新聞的人。所以我定義了報社類別作為發行者如下：
 class 報社 { public delegate void 通知對象(string 新聞報導); public 通知對象 最新新聞; public void 投稿新聞(string 新聞稿) { //觸發事件 最新新聞.Invoke(新聞稿); } } 以上我們實作了發行者與訂閱者，並且用委派實作的事件驅動程式
 接下來是我們的主程式，包含訂閱新聞與投稿新聞來觸發事件：
-static void Main(string[] args) { 訂閱者 農夫 = new 訂閱者() { 名字 = &#34;農夫&#34; }; 訂閱者 商人 = new 訂閱者() { 名字 = &#34;商人&#34; }; 訂閱者 騎士 = new 訂閱者() { 名字 = &#34;騎士&#34; }; 報社 王國日報 = new 報社(); //訂閱 王國日報.最新新聞 &#43;= 農夫.通知我; 王國日報.最新新聞 &#43;= 商人.通知我; 王國日報.最新新聞 &#43;= 騎士.通知我; while (true) { Console.WriteLine(&#34;請輸入最新消息：&#34;); string 消息 = Console.ReadLine(); 王國日報.投稿新聞(消息); } } 執行結果： ...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-10-31T10:57:58+08:00'>October 31, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to C# 事件(上) - 使用委派來實作事件" href="http://localhost:1313/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">C# 3.0 擴充方法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我們在處理某些類別的資料時，可能會專門做一個處理資料的類別或方法來處理。 例如，以下是沒有實作轉型運算子的溫度類別：
+static void Main(string[] args) { 訂閱者 農夫 = new 訂閱者() { 名字 = "農夫" }; 訂閱者 商人 = new 訂閱者() { 名字 = "商人" }; 訂閱者 騎士 = new 訂閱者() { 名字 = "騎士" }; 報社 王國日報 = new 報社(); //訂閱 王國日報.最新新聞 += 農夫.通知我; 王國日報.最新新聞 += 商人.通知我; 王國日報.最新新聞 += 騎士.通知我; while (true) { Console.WriteLine("請輸入最新消息："); string 消息 = Console.ReadLine(); 王國日報.投稿新聞(消息); } } 執行結果： ...</p></div><footer class=entry-footer><span title=2019-10-31T10:57:58+08:00>October 31, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to C# 事件(上) - 使用委派來實作事件" href=https://dannyliu.me/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>C# 3.0 擴充方法</h2></header><div class=entry-content><p>我們在處理某些類別的資料時，可能會專門做一個處理資料的類別或方法來處理。 例如，以下是沒有實作轉型運算子的溫度類別：
 [code] public class 攝氏 { public double 溫度; } public class 華氏 { public double 溫度; } [/code]
 這些類別可能是別人定義好的，若我們需要某些新功能，例如攝氏轉華視，在以前可能需要靠繼承，或是實作一個轉型用的類別才能達到。例如我定義了溫度轉型類別如下：
 因為我設定成靜態方法，在轉型時就是如下方式使用：
 擴充方法 而在C#3.0開始提供了擴充方法，讓我們在其他類別中撰寫的方法，能出現在目標類別的成員裡面。意思是說透過擴充方法，C#3.0可以把我們剛剛撰寫的溫度轉型類別的溫度轉型方法，偽裝成攝氏或華氏類別自己的方法。
 擴充方法的實作方式非常簡單，只要將方法透過this關鍵字指定需要偽裝的型別，就能成為該型別的擴充方法。當然還有兩單點但書：
 擴充方法本身需為靜態方法 擴充方法所在類別需為靜態類別 根據以上方式，我們可以快速的把我們剛剛在轉型類別中撰寫的轉型方法，快速成為擴充方法。而this是寫在方法第一個傳入型別前，C#會幫我們把該方法偽裝成第一個傳入型別的方法，在執行時還是執行轉型類別中的方法。所以我們只要做以下修改，就能轉成為擴充方法：
-使用這個方法時就能直接使用，C#會提示我們這是擴充方法，非常地方便。
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-10-22T18:02:06+08:00'>October 22, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to C# 3.0 擴充方法" href="http://localhost:1313/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="next" href="http://localhost:1313/categories/.net/page/2/">下一頁&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        
-        let menuScrollTimeout;
-        menu.addEventListener("scroll", function () {
-            clearTimeout(menuScrollTimeout);
-            menuScrollTimeout = setTimeout(function () {
-                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-            }, 150);
-        }, { passive: true });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                target.scrollIntoView();
-            }
-            
-            
-            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
-                target.setAttribute("tabindex", "-1");
-            }
-            target.focus({ preventScroll: true });
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    var scrollTicking = false;
-    
-    window.addEventListener("scroll", function () {
-        if (scrollTicking) {
-            return;
-        }
-        scrollTicking = true;
-        requestAnimationFrame(function () {
-            const scrollThreshold = window.innerHeight;
-            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
-            toplink.classList.toggle("hidden", !shown);
-            scrollTicking = false;
-        });
-    }, { passive: true });
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
+使用這個方法時就能直接使用，C#會提示我們這是擴充方法，非常地方便。</p></div><footer class=entry-footer><span title=2019-10-22T18:02:06+08:00>October 22, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to C# 3.0 擴充方法" href=https://dannyliu.me/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://dannyliu.me/categories/.net/page/2/>下一頁&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-tw" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤 | Danny Liu&#39;s Blog</title>
-<meta name="keywords" content="">
-<meta name="description" content="在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
+<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤 | Danny Liu's Blog</title><meta name=keywords content><meta name=description content='在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
 
 文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD
 安裝
@@ -16,15 +7,15 @@
 程式碼範例
 GitHub
 var message = new MimeMessage();
-var fromEmail = new MailboxAddress(&#34;劉長庚&#34;, &#34;dannyliu@test.com&#34;);
-var toEmail = new MailboxAddress(&#34;測試信箱&#34;, &#34;dannytest@test.com&#34;);
+var fromEmail = new MailboxAddress("劉長庚", "dannyliu@test.com");
+var toEmail = new MailboxAddress("測試信箱", "dannytest@test.com");
 message.From.Add(fromEmail);
 message.To.Add(toEmail);
-message.Subject = &#34;主旨：測試 MimeKit&#34;;
+message.Subject = "主旨：測試 MimeKit";
 
 var builder = new BodyBuilder
 {
-    HtmlBody = @&#34;&lt;p&gt;使用 MimeKit 進行 SMTP 寄信&lt;/p&gt;&#34;
+    HtmlBody = @"<p>使用 MimeKit 進行 SMTP 寄信</p>"
 };
 message.Body = builder.ToMessageBody();
 
@@ -32,350 +23,72 @@ using (var client = new MailKit.Net.Smtp.SmtpClient())
 {
     try
     {
-        client.Connect(&#34;123.234.222.113&#34;, 465, true);
+        client.Connect("123.234.222.113", 465, true);
         // 設定傳送人的信箱帳號密碼
         // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段...
-        client.Authenticate(new System.Net.NetworkCredential(&#34;dannyliu@test.com&#34;, &#34;yourPassword&#34;));
+        client.Authenticate(new System.Net.NetworkCredential("dannyliu@test.com", "yourPassword"));
 
         client.Send(message);
 
-        Console.WriteLine($&#34;成功：寄給 {toEmail.Name} 主旨：{message.Subject}&#34;);
+        Console.WriteLine($"成功：寄給 {toEmail.Name} 主旨：{message.Subject}");
     }
     catch (Exception ex)
     {
-        Console.WriteLine(&#34;失敗！&#34;);
+        Console.WriteLine("失敗！");
         Console.WriteLine(ex.ToString());
     }
 }
 遇到 The SMTP server does not support authentication 錯誤
-錯誤訊息：">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">首頁</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/posts/">Posts</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤
-    </h1>
-    <div class="post-meta">
-
-<span title='2023-07-12T14:43:13+08:00'>July 12, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span>
-
-</div>
-  </header> 
-  <div class="post-content md-content"><p>在 NET Core 上面，連到 SMTP Server 進行寄信操作，<a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.net.mail.smtpclient?view=net-7.0" title="微軟">微軟</a>已經不推薦使用System.Net.Mail.SmtpClient 來進行。</p>
-<p><img alt="file" loading="lazy" src="/wp-content/uploads/2023/07/image-1689131860940.png"></p>
-<p>文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD</p>
-<h2 id="安裝">安裝<a hidden class="anchor" aria-hidden="true" href="#安裝">#</a></h2>
-<p>在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，</p>
-<p>在專案中直接用 NuGet 安裝 [MailKit] 就可以了(<a href="https://github.com/jstedfast/MailKit">https://github.com/jstedfast/MailKit</a>)。 <img alt="file" loading="lazy" src="/wp-content/uploads/2023/07/image-1689141549733.png"></p>
-<h2 id="程式碼範例">程式碼範例<a hidden class="anchor" aria-hidden="true" href="#程式碼範例">#</a></h2>
-<p><a href="https://github.com/dannypc1628/MailKitDemo">GitHub</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> message = <span style="color:#66d9ef">new</span> MimeMessage();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> fromEmail = <span style="color:#66d9ef">new</span> MailboxAddress(<span style="color:#e6db74">&#34;劉長庚&#34;</span>, <span style="color:#e6db74">&#34;dannyliu@test.com&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> toEmail = <span style="color:#66d9ef">new</span> MailboxAddress(<span style="color:#e6db74">&#34;測試信箱&#34;</span>, <span style="color:#e6db74">&#34;dannytest@test.com&#34;</span>);
-</span></span><span style="display:flex;"><span>message.From.Add(fromEmail);
-</span></span><span style="display:flex;"><span>message.To.Add(toEmail);
-</span></span><span style="display:flex;"><span>message.Subject = <span style="color:#e6db74">&#34;主旨：測試 MimeKit&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> builder = <span style="color:#66d9ef">new</span> BodyBuilder
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    HtmlBody = <span style="color:#e6db74">@&#34;&lt;p&gt;使用 MimeKit 進行 SMTP 寄信&lt;/p&gt;&#34;</span>
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>message.Body = builder.ToMessageBody();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> MailKit.Net.Smtp.SmtpClient())
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        client.Connect(<span style="color:#e6db74">&#34;123.234.222.113&#34;</span>, <span style="color:#ae81ff">465</span>, <span style="color:#66d9ef">true</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 設定傳送人的信箱帳號密碼</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段...</span>
-</span></span><span style="display:flex;"><span>        client.Authenticate(<span style="color:#66d9ef">new</span> System.Net.NetworkCredential(<span style="color:#e6db74">&#34;dannyliu@test.com&#34;</span>, <span style="color:#e6db74">&#34;yourPassword&#34;</span>));
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        client.Send(message);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        Console.WriteLine(<span style="color:#e6db74">$&#34;成功：寄給 {toEmail.Name} 主旨：{message.Subject}&#34;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">catch</span> (Exception ex)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        Console.WriteLine(<span style="color:#e6db74">&#34;失敗！&#34;</span>);
-</span></span><span style="display:flex;"><span>        Console.WriteLine(ex.ToString());
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h1 id="遇到-the-smtp-server-does-not-support-authentication-錯誤">遇到 The SMTP server does not support authentication 錯誤<a hidden class="anchor" aria-hidden="true" href="#遇到-the-smtp-server-does-not-support-authentication-錯誤">#</a></h1>
-<p>錯誤訊息：</p>
-<blockquote>
-<p>“title”: “The SMTP server does not support authentication.”, “status”: 500, “detail”: &quot; at MailKit.Net.Smtp.SmtpClient.ValidateArguments(Encoding encoding, ICredentials credentials) at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken) at MailKit.MailService.Authenticate(ICredentials credentials, CancellationToken cancellationToken)</p>
-</blockquote>
-<p>一開始看到這個訊息其實滿頭問號，查到的答案是 IIS SMTP Server 預設不會驗證帳號密碼 當不需要密碼時仍傳密碼的話，傳統的 SmtpClient 是可以正常使用 但 Mailkit 這邊會報錯&hellip;，直接註解 <code>client.Authenticate()</code> 這段就可以了</p>
-<p><a href="https://shaurong.blogspot.com/2019/10/caspnet-mailkit-mimekit_11.html">資料來源</a></p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="http://localhost:1313/%E5%B0%8F%E5%B7%A5%E5%85%B7%E5%8F%B0%E6%8C%87%E6%9C%9F%E8%B2%A8%E6%90%8D%E7%9B%8A%E8%A8%88%E7%AE%97%E6%A9%9F/">
-    <span class="title">« 上一頁</span>
-    <span>小工具台指期貨損益計算機</span>
-  </a>
-  <a class="next" href="http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/">
-    <span class="title">下一頁 »</span>
-    <span>acme.sh 未正確更新憑證的 Bug</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        
-        let menuScrollTimeout;
-        menu.addEventListener("scroll", function () {
-            clearTimeout(menuScrollTimeout);
-            menuScrollTimeout = setTimeout(function () {
-                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-            }, 150);
-        }, { passive: true });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                target.scrollIntoView();
-            }
-            
-            
-            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
-                target.setAttribute("tabindex", "-1");
-            }
-            target.focus({ preventScroll: true });
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    var scrollTicking = false;
-    
-    window.addEventListener("scroll", function () {
-        if (scrollTicking) {
-            return;
-        }
-        scrollTicking = true;
-        requestAnimationFrame(function () {
-            const scrollThreshold = window.innerHeight;
-            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
-            toplink.classList.toggle("hidden", !shown);
-            scrollTicking = false;
-        });
-    }, { passive: true });
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '複製';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已複製！';
-            setTimeout(() => {
-                copybutton.innerHTML = '複製';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+錯誤訊息：'><meta name=author content><link rel=canonical href=https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤"><meta property="og:description" content='在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
+文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD
+安裝 在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，
+在專案中直接用 NuGet 安裝 [MailKit] 就可以了(https://github.com/jstedfast/MailKit)。 程式碼範例 GitHub
+var message = new MimeMessage(); var fromEmail = new MailboxAddress("劉長庚", "dannyliu@test.com"); var toEmail = new MailboxAddress("測試信箱", "dannytest@test.com"); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = "主旨：測試 MimeKit"; var builder = new BodyBuilder { HtmlBody = @"<p>使用 MimeKit 進行 SMTP 寄信</p>" }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect("123.234.222.113", 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential("dannyliu@test.com", "yourPassword")); client.Send(message); Console.WriteLine($"成功：寄給 {toEmail.Name} 主旨：{message.Subject}"); } catch (Exception ex) { Console.WriteLine("失敗！"); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：'><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-07-12T14:43:13+08:00"><meta property="article:modified_time" content="2023-07-12T14:43:13+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤"><meta name=twitter:description content='在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。
+文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD
+安裝 在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，
+在專案中直接用 NuGet 安裝 [MailKit] 就可以了(https://github.com/jstedfast/MailKit)。 程式碼範例 GitHub
+var message = new MimeMessage(); var fromEmail = new MailboxAddress("劉長庚", "dannyliu@test.com"); var toEmail = new MailboxAddress("測試信箱", "dannytest@test.com"); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = "主旨：測試 MimeKit"; var builder = new BodyBuilder { HtmlBody = @"<p>使用 MimeKit 進行 SMTP 寄信</p>" }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect("123.234.222.113", 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential("dannyliu@test.com", "yourPassword")); client.Send(message); Console.WriteLine($"成功：寄給 {toEmail.Name} 主旨：{message.Subject}"); } catch (Exception ex) { Console.WriteLine("失敗！"); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"},{"@type":"ListItem","position":2,"name":"在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤","item":"https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤","name":"在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤","description":"在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。\n文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD\n安裝 在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，\n在專案中直接用 NuGet 安裝 [MailKit] 就可以了(https://github.com/jstedfast/MailKit)。 程式碼範例 GitHub\nvar message = new MimeMessage(); var fromEmail = new MailboxAddress(\u0026#34;劉長庚\u0026#34;, \u0026#34;dannyliu@test.com\u0026#34;); var toEmail = new MailboxAddress(\u0026#34;測試信箱\u0026#34;, \u0026#34;dannytest@test.com\u0026#34;); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = \u0026#34;主旨：測試 MimeKit\u0026#34;; var builder = new BodyBuilder { HtmlBody = @\u0026#34;\u0026lt;p\u0026gt;使用 MimeKit 進行 SMTP 寄信\u0026lt;/p\u0026gt;\u0026#34; }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect(\u0026#34;123.234.222.113\u0026#34;, 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential(\u0026#34;dannyliu@test.com\u0026#34;, \u0026#34;yourPassword\u0026#34;)); client.Send(message); Console.WriteLine($\u0026#34;成功：寄給 {toEmail.Name} 主旨：{message.Subject}\u0026#34;); } catch (Exception ex) { Console.WriteLine(\u0026#34;失敗！\u0026#34;); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：\n","keywords":[],"articleBody":"在 NET Core 上面，連到 SMTP Server 進行寄信操作，微軟已經不推薦使用System.Net.Mail.SmtpClient 來進行。\n文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD\n安裝 在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，\n在專案中直接用 NuGet 安裝 [MailKit] 就可以了(https://github.com/jstedfast/MailKit)。 程式碼範例 GitHub\nvar message = new MimeMessage(); var fromEmail = new MailboxAddress(\"劉長庚\", \"dannyliu@test.com\"); var toEmail = new MailboxAddress(\"測試信箱\", \"dannytest@test.com\"); message.From.Add(fromEmail); message.To.Add(toEmail); message.Subject = \"主旨：測試 MimeKit\"; var builder = new BodyBuilder { HtmlBody = @\" 使用 MimeKit 進行 SMTP 寄信\n\" }; message.Body = builder.ToMessageBody(); using (var client = new MailKit.Net.Smtp.SmtpClient()) { try { client.Connect(\"123.234.222.113\", 465, true); // 設定傳送人的信箱帳號密碼 // IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段... client.Authenticate(new System.Net.NetworkCredential(\"dannyliu@test.com\", \"yourPassword\")); client.Send(message); Console.WriteLine($\"成功：寄給 {toEmail.Name} 主旨：{message.Subject}\"); } catch (Exception ex) { Console.WriteLine(\"失敗！\"); Console.WriteLine(ex.ToString()); } } 遇到 The SMTP server does not support authentication 錯誤 錯誤訊息：\n“title”: “The SMTP server does not support authentication.”, “status”: 500, “detail”: \" at MailKit.Net.Smtp.SmtpClient.ValidateArguments(Encoding encoding, ICredentials credentials) at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken) at MailKit.MailService.Authenticate(ICredentials credentials, CancellationToken cancellationToken)\n一開始看到這個訊息其實滿頭問號，查到的答案是 IIS SMTP Server 預設不會驗證帳號密碼 當不需要密碼時仍傳密碼的話，傳統的 SmtpClient 是可以正常使用 但 Mailkit 這邊會報錯…，直接註解 client.Authenticate() 這段就可以了\n資料來源\n","wordCount":"164","inLanguage":"zh-tw","datePublished":"2023-07-12T14:43:13+08:00","dateModified":"2023-07-12T14:43:13+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dannyliu.me/%E5%9C%A8-net-7-%E4%B8%AD%EF%BC%8C%E7%94%A8-mailkit-%E5%AF%84%E4%BF%A1%E9%81%87%E5%88%B0-the-smtp-server-does-not-support-authentication-%E9%8C%AF%E8%AA%A4/"},"publisher":{"@type":"Organization","name":"Danny Liu's Blog","logo":{"@type":"ImageObject","url":"https://dannyliu.me/favicon.png"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/posts/>Posts</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">在 .NET 7 中，用 MailKit 寄信遇到 The SMTP server does not support authentication 錯誤</h1><div class=post-meta><span title=2023-07-12T14:43:13+08:00>July 12, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span></div></header><div class="post-content md-content"><p>在 NET Core 上面，連到 SMTP Server 進行寄信操作，<a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.net.mail.smtpclient?view=net-7.0" title=微軟>微軟</a>已經不推薦使用System.Net.Mail.SmtpClient 來進行。</p><p><img alt=file loading=lazy src=/wp-content/uploads/2023/07/image-1689131860940.png></p><p>文中簡單寫的理由也只是 SmtpClient 不支援許多新式的通訊協定。 其對我現在做的內部服務來說，急迫性不高。 不過換一下不會花多少時間，也能避免未來可能被弱點掃描當成扣分的項目XD</p><h2 id=安裝>安裝<a hidden class=anchor aria-hidden=true href=#安裝>#</a></h2><p>在安裝時可能會看到 MimeKit 、 MailKit 名字相似。 MailKit 底層就是呼叫 MimeKit 這個 C# Libary，</p><p>在專案中直接用 NuGet 安裝 [MailKit] 就可以了(<a href=https://github.com/jstedfast/MailKit>https://github.com/jstedfast/MailKit</a>)。 <img alt=file loading=lazy src=/wp-content/uploads/2023/07/image-1689141549733.png></p><h2 id=程式碼範例>程式碼範例<a hidden class=anchor aria-hidden=true href=#程式碼範例>#</a></h2><p><a href=https://github.com/dannypc1628/MailKitDemo>GitHub</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>var</span> message = <span style=color:#66d9ef>new</span> MimeMessage();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> fromEmail = <span style=color:#66d9ef>new</span> MailboxAddress(<span style=color:#e6db74>&#34;劉長庚&#34;</span>, <span style=color:#e6db74>&#34;dannyliu@test.com&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> toEmail = <span style=color:#66d9ef>new</span> MailboxAddress(<span style=color:#e6db74>&#34;測試信箱&#34;</span>, <span style=color:#e6db74>&#34;dannytest@test.com&#34;</span>);
+</span></span><span style=display:flex><span>message.From.Add(fromEmail);
+</span></span><span style=display:flex><span>message.To.Add(toEmail);
+</span></span><span style=display:flex><span>message.Subject = <span style=color:#e6db74>&#34;主旨：測試 MimeKit&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> builder = <span style=color:#66d9ef>new</span> BodyBuilder
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    HtmlBody = <span style=color:#e6db74>@&#34;&lt;p&gt;使用 MimeKit 進行 SMTP 寄信&lt;/p&gt;&#34;</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>message.Body = builder.ToMessageBody();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> (<span style=color:#66d9ef>var</span> client = <span style=color:#66d9ef>new</span> MailKit.Net.Smtp.SmtpClient())
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        client.Connect(<span style=color:#e6db74>&#34;123.234.222.113&#34;</span>, <span style=color:#ae81ff>465</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 設定傳送人的信箱帳號密碼</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// IIS SMTP 預設不用帳號密碼，跟用舊的 SmtpClient 不同， 此時在 Mailkit 中仍傳驗證的話會報錯，此時可直接註解這段...</span>
+</span></span><span style=display:flex><span>        client.Authenticate(<span style=color:#66d9ef>new</span> System.Net.NetworkCredential(<span style=color:#e6db74>&#34;dannyliu@test.com&#34;</span>, <span style=color:#e6db74>&#34;yourPassword&#34;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        client.Send(message);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;成功：寄給 {toEmail.Name} 主旨：{message.Subject}&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>catch</span> (Exception ex)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>&#34;失敗！&#34;</span>);
+</span></span><span style=display:flex><span>        Console.WriteLine(ex.ToString());
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=遇到-the-smtp-server-does-not-support-authentication-錯誤>遇到 The SMTP server does not support authentication 錯誤<a hidden class=anchor aria-hidden=true href=#遇到-the-smtp-server-does-not-support-authentication-錯誤>#</a></h1><p>錯誤訊息：</p><blockquote><p>“title”: “The SMTP server does not support authentication.”, “status”: 500, “detail”: " at MailKit.Net.Smtp.SmtpClient.ValidateArguments(Encoding encoding, ICredentials credentials) at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken) at MailKit.MailService.Authenticate(ICredentials credentials, CancellationToken cancellationToken)</p></blockquote><p>一開始看到這個訊息其實滿頭問號，查到的答案是 IIS SMTP Server 預設不會驗證帳號密碼 當不需要密碼時仍傳密碼的話，傳統的 SmtpClient 是可以正常使用 但 Mailkit 這邊會報錯&mldr;，直接註解 <code>client.Authenticate()</code> 這段就可以了</p><p><a href=https://shaurong.blogspot.com/2019/10/caspnet-mailkit-mimekit_11.html>資料來源</a></p></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://dannyliu.me/%E5%B0%8F%E5%B7%A5%E5%85%B7%E5%8F%B0%E6%8C%87%E6%9C%9F%E8%B2%A8%E6%90%8D%E7%9B%8A%E8%A8%88%E7%AE%97%E6%A9%9F/><span class=title>« 上一頁</span>
+<span>小工具台指期貨損益計算機</span>
+</a><a class=next href=https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/><span class=title>下一頁 »</span>
+<span>acme.sh 未正確更新憑證的 Bug</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="複製";function s(){t.innerHTML="已複製！",setTimeout(()=>{t.innerHTML="複製"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

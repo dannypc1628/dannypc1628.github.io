@@ -1,25 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>證照 on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E8%AD%89%E7%85%A7/</link>
-    <description>Recent content in 證照 on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Sat, 08 Feb 2020 17:57:50 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E8%AD%89%E7%85%A7/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AZ-900 Azure Fundamentals 考試心得</title>
-      <link>http://localhost:1313/az-900-azure-fundamentals-%E8%80%83%E8%A9%A6%E5%BF%83%E5%BE%97/</link>
-      <pubDate>Sat, 08 Feb 2020 17:57:50 +0800</pubDate>
-      <guid>http://localhost:1313/az-900-azure-fundamentals-%E8%80%83%E8%A9%A6%E5%BF%83%E5%BE%97/</guid>
-      <description>&lt;p&gt;上個月參加台灣微軟所舉辦的Azure Training Day: Fundamentals講座，有送參加的同學一次AZ-900認證的測驗機會。幸運地，本週一前往恆逸測驗中心考試完現場就馬上得知已通過測驗。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/02/azure-fundamentals-600x600-300x300.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Azure Training Day: Fundamentals主要是談論Azure的基本概念，包含架構與各項服務，讓我們對Azure有初步的通盤了解。不過我會報名這台課主要是希望能更進一步瞭繳如何降低在Azure上架站的費用成本。不過上完的感想是以架站來說成本很難再降低，至少不管流量大小，不管網站有人看沒人看一個資料庫一個月150元是跑不掉，租虛擬機像是我們這種個人用戶只能用隨用隨付的費率，沒辦法用年繳的方式享Azure網站介紹的折扣。要用Azure的話大概只能認命貢獻&lt;a href=&#34;https://www.ithome.com.tw/news/135571&#34; title=&#34;Azure營收&#34;&gt;Azure營收&lt;/a&gt;XD&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>證照 on Danny Liu's Blog</title><link>https://dannyliu.me/tags/%E8%AD%89%E7%85%A7/</link><description>Recent content in 證照 on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Sat, 08 Feb 2020 17:57:50 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/%E8%AD%89%E7%85%A7/index.xml" rel="self" type="application/rss+xml"/><item><title>AZ-900 Azure Fundamentals 考試心得</title><link>https://dannyliu.me/az-900-azure-fundamentals-%E8%80%83%E8%A9%A6%E5%BF%83%E5%BE%97/</link><pubDate>Sat, 08 Feb 2020 17:57:50 +0800</pubDate><guid>https://dannyliu.me/az-900-azure-fundamentals-%E8%80%83%E8%A9%A6%E5%BF%83%E5%BE%97/</guid><description>&lt;p&gt;上個月參加台灣微軟所舉辦的Azure Training Day: Fundamentals講座，有送參加的同學一次AZ-900認證的測驗機會。幸運地，本週一前往恆逸測驗中心考試完現場就馬上得知已通過測驗。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/02/azure-fundamentals-600x600-300x300.png"&gt;&lt;/p&gt;
+&lt;p&gt;Azure Training Day: Fundamentals主要是談論Azure的基本概念，包含架構與各項服務，讓我們對Azure有初步的通盤了解。不過我會報名這台課主要是希望能更進一步瞭繳如何降低在Azure上架站的費用成本。不過上完的感想是以架站來說成本很難再降低，至少不管流量大小，不管網站有人看沒人看一個資料庫一個月150元是跑不掉，租虛擬機像是我們這種個人用戶只能用隨用隨付的費率，沒辦法用年繳的方式享Azure網站介紹的折扣。要用Azure的話大概只能認命貢獻&lt;a href="https://www.ithome.com.tw/news/135571" title="Azure營收"&gt;Azure營收&lt;/a&gt;XD&lt;/p&gt;
 &lt;p&gt;原本我以為會是微軟的工程師來授課，不過現場參加才知道是恆逸的講師。上課的教材是微軟原廠的AZ-900教材。老師上課的時候也會特別著重AZ900的考試重點，也會提醒測驗中可能的出題方式，對於應考AZ-900的幫助是非常大的。我在使用Azure時都只注意找尋我有需要的功能，在文件上也都是選擇性閱讀，透過這個課程算是比較有了Azure全面性的基本了解。&lt;/p&gt;
 &lt;p&gt;考試方式有是非題、單擇題，多選題、選擇服務圖片題和連連看。題目敘述會帶有情境，例如某某需求使用A方案能否達成，如果不能達成要改成哪一個方案。報考的題目是全英文題目，題目約40來題。連線到微軟的伺服器來做測驗，題目與選項都是隨機的。&lt;/p&gt;
 &lt;p&gt;Microsoft Learn有Azure Fundamentals的線上文字課程可以收看，中文英文都有，我知道題目是英文出題後，中英文版對照著看，可以幫助自己知道哪個對應單字的意思。每個單元總結部分有測驗可以寫可以幫助學習，做題目很重要，因為題目跟課程的思維方式是相反的，可以幫助你把A跟B的關係做雙向綁定。資策會的AZ-900線上課程我應考前看已經是關閉無法觀看的。&lt;/p&gt;
 &lt;p&gt;除非是工作上已經非常熟悉Azure的工程師，不然像我這種對Azure不夠熟悉的小小SOHO工程師建議可以報名台灣微軟的Azure Training Day，大概每兩個月就會舉辦一次(報名免費)。主要是Azure上面有非常多的服務與功能，並不是每一個功能都會用到，像是安全性、政策性相關的功能在大公司有多人來管理就會非常重要。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/02/AZ900-2.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/02/AZ900-2.png"&gt;&lt;/p&gt;</description></item></channel></rss>

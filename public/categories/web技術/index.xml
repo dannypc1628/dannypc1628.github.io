@@ -1,185 +1,115 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Web技術 on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/categories/web%E6%8A%80%E8%A1%93/</link>
-    <description>Recent content in Web技術 on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Mon, 16 Nov 2026 16:20:32 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/web%E6%8A%80%E8%A1%93/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>將十年老 WordPress 部落格搬遷至 Hugo &#43; GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄</title>
-      <link>http://localhost:1313/hello-world/</link>
-      <pubDate>Mon, 16 Nov 2026 16:20:32 +0800</pubDate>
-      <guid>http://localhost:1313/hello-world/</guid>
-      <description>&lt;h1 id=&#34;將十年老-wordpress-部落格搬遷至-hugo--github-pages從-ubuntu-1404-到免費靜態網站的完整紀錄&#34;&gt;將十年老 WordPress 部落格搬遷至 Hugo + GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄&lt;/h1&gt;
-&lt;p&gt;十年前還在大學的時候，為了學習 Linux、PHP 與網站架設，我在 DigitalOcean 租了一台 VPS，自己安裝 Ubuntu、Apache、MySQL 和 WordPress，架設了個人技術部落格 &lt;a href=&#34;https://dannyliu.me/&#34;&gt;dannyliu.me&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;當年的自己應該沒想到，這台伺服器竟然會一直運作到 2026 年。🤣&lt;/p&gt;
-&lt;p&gt;隨著工作越來越忙，部落格逐漸荒廢，作業系統、PHP、WordPress 及外掛也很久沒有更新。&lt;/p&gt;
-&lt;p&gt;最近看到一些 PHP 和 WordPress 的資安議題，突然想到自己還有一台十年沒認真維護的伺服器，決定趁這個機會重新整理網站。&lt;/p&gt;
-&lt;p&gt;原本只是打算更新 WordPress，沒想到最後直接把整個網站從動態架構搬到 Hugo + GitHub Pages。&lt;/p&gt;
-&lt;p&gt;這篇文章記錄完整的搬遷過程、遇到的問題，以及最後的處理方式。&lt;/p&gt;
-&lt;p&gt;2018年的首頁還是用中美堂的照片&lt;/p&gt;
-&lt;p&gt;後來才換成 Bootstrap 的版型，看看第一篇文章發布日期是 &lt;code&gt;2016-03-24&lt;/code&gt; 這個部落格真的有 10 年了 🤣&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;用 &lt;a href=&#34;https://web.archive.org/web/20180830191142/https://dannyliu.me/&#34;&gt;Wayback Machine&lt;/a&gt; 看 2018 年的首頁還是用中美堂的照片&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;2018 年的首頁&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/hello-world/2018.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;那時候還在當兵，後來才換成現在 Bootstrap 的版型。&lt;/p&gt;
-&lt;p&gt;看第一篇文章發布日期是 &lt;code&gt;2016-03-24&lt;/code&gt; 這個部落格是真的有 10 年了 🤣&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;第一篇文章&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/hello-world/first.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;一原本的-wordpress-環境有多古老&#34;&gt;一、原本的 WordPress 環境有多古老？&lt;/h2&gt;
-&lt;p&gt;先透過 SSH 登入 DigitalOcean Droplet，確認目前環境。&lt;/p&gt;
-&lt;h3 id=&#34;ubuntu-與-kernel&#34;&gt;Ubuntu 與 Kernel&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat /etc/os-release
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;uname -a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查詢結果：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>acme.sh 未正確更新憑證的 Bug</title>
-      <link>http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</link>
-      <pubDate>Wed, 03 May 2023 23:09:49 +0800</pubDate>
-      <guid>http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</guid>
-      <description>&lt;p&gt;因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。&lt;/p&gt;
-&lt;p&gt;憑證過期沒換的話，當你用瀏覽器瀏覽到憑證過期的網站，就會出現網站不安全的錯誤訊息。 &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2023/05/image-1683125427452.png&#34;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Web技術 on Danny Liu's Blog</title><link>https://dannyliu.me/categories/web%E6%8A%80%E8%A1%93/</link><description>Recent content in Web技術 on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Mon, 16 Nov 2026 16:20:32 +0800</lastBuildDate><atom:link href="https://dannyliu.me/categories/web%E6%8A%80%E8%A1%93/index.xml" rel="self" type="application/rss+xml"/><item><title>將十年老 WordPress 部落格搬遷至 Hugo + GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄</title><link>https://dannyliu.me/wordpress-to-hugo-migration/</link><pubDate>Mon, 16 Nov 2026 16:20:32 +0800</pubDate><guid>https://dannyliu.me/wordpress-to-hugo-migration/</guid><description>記錄將十年老舊的 WordPress 部落格，從 Ubuntu 14.04、PHP 7.0、MySQL 5.5 搬遷到 Hugo + GitHub Pages 的完整過程，以及遇到的問題與解決方式。</description></item><item><title>acme.sh 未正確更新憑證的 Bug</title><link>https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</link><pubDate>Wed, 03 May 2023 23:09:49 +0800</pubDate><guid>https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</guid><description>&lt;p&gt;因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。&lt;/p&gt;
+&lt;p&gt;憑證過期沒換的話，當你用瀏覽器瀏覽到憑證過期的網站，就會出現網站不安全的錯誤訊息。 &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2023/05/image-1683125427452.png"&gt;&lt;/p&gt;
 &lt;p&gt;然後我的部落格已經半年沒更換憑證了 XDD&lt;/p&gt;
 &lt;p&gt;之前上班太忙，沒太寫文章。部落格也只是下 acme.sh 指令更新一下。然後就沒看了 XDD&lt;/p&gt;
 &lt;p&gt;現在是懶得寫，畢竟是流水帳寫的又臭又長好麻煩。&lt;/p&gt;
 &lt;p&gt;回歸正題。自動更新功能我一直打不開，就只能每三個月上線手動更新一下。&lt;/p&gt;
 &lt;p&gt;明明指令顯示的結果是更新成功，檔案的更新時間也是當下最新。結果網站看到的結果還是憑證過期 XD。&lt;/p&gt;
 &lt;p&gt;誒&amp;hellip;..一拖就拖了半年。終於有時間好好看這個問題了。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/acmesh-official/acme.sh/issues/4041&#34; title=&#34;GitHub Issue&#34;&gt;GitHub Issue&lt;/a&gt;！！！結果問題是套件官方的問題。Renew 憑證成功，但是返回的憑證還是舊的。 從去年四月到現在一年過去了，這個 isuue 還是 open 的&amp;hellip;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/acmesh-official/acme.sh/issues/4041" title="GitHub Issue"&gt;GitHub Issue&lt;/a&gt;！！！結果問題是套件官方的問題。Renew 憑證成功，但是返回的憑證還是舊的。 從去年四月到現在一年過去了，這個 isuue 還是 open 的&amp;hellip;.&lt;/p&gt;
 &lt;p&gt;目前看來更新了 acme.sh 套件還是會有一樣的問題。可能之後要考慮更換套件。&lt;/p&gt;
 &lt;p&gt;不過可以照 issue 討論的解法，去&lt;code&gt;~/.acme.sh/網站域名/網站域名.conf&lt;/code&gt;找到你的域名的設定檔。 把內容中的以下項目刪除掉後，存檔，重新執行 renew 指令。就可以正確更新憑證。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_OrderFinalize
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_LinkOrder
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_LinkCert
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_CertCreateTime
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_CertCreateTimeStr
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_NextRenewTimeStr
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_NextRenewTime
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>解決REST-Client登入Cookie驗證失敗的方法</title>
-      <link>http://localhost:1313/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Sun, 30 May 2021 01:27:52 +0800</pubDate>
-      <guid>http://localhost:1313/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_OrderFinalize
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_LinkOrder
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_LinkCert
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_CertCreateTime
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_CertCreateTimeStr
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_NextRenewTimeStr
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_NextRenewTime
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>解決REST-Client登入Cookie驗證失敗的方法</title><link>https://dannyliu.me/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 30 May 2021 01:27:52 +0800</pubDate><guid>https://dannyliu.me/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/</guid><description>&lt;p&gt;使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。&lt;/p&gt;
 &lt;p&gt;往往最後還是要打開Postman的窘境。還一度考慮是否要更換測試工具。但是REST-Client真是太好用了，是我開發API的過程中，就能幫我快速檢驗API是否正確的小工具。&lt;/p&gt;
 &lt;p&gt;我跟前輩一直想找出問題的原因，最近終於發現問題所在了。&lt;/p&gt;
 &lt;p&gt;使用REST-Client的產生cURL的功能看到的Cookie值，的確是使用我設定的Cookie。&lt;/p&gt;
 &lt;p&gt;但用後端程式的偵錯模式一看，收到的Cookie卻不是我在Rest-Client設定的Cookeie。&lt;/p&gt;
-&lt;p&gt;我找跟Cookie有關的issue:&lt;a href=&#34;https://github.com/Huachao/vscode-restclient/issues/117&#34;&gt;New cookie is not set and provide ability to clear cookies #117&lt;/a&gt;才發現問題所在！！！&lt;/p&gt;
+&lt;p&gt;我找跟Cookie有關的issue:&lt;a href="https://github.com/Huachao/vscode-restclient/issues/117"&gt;New cookie is not set and provide ability to clear cookies #117&lt;/a&gt;才發現問題所在！！！&lt;/p&gt;
 &lt;p&gt;在測試API的過程中，後端可能會回傳Set-Cookie回來，Rest-Client會自動儲存起來，並在下次打API的時候使用這把新Cookie。&lt;/p&gt;
 &lt;p&gt;所以在測API的時候明明有設定的Cookie A，但在後端收到的卻是Cooke B，因為Rest-Client實際傳送的是Set-Cookie的Cookie B。&lt;/p&gt;
 &lt;p&gt;所以要解決這個問題就非常簡單了！&lt;/p&gt;
 &lt;p&gt;首先去VS Code的設定中，搜尋Cookie相關的功能，找到&lt;code&gt;Remember Cookies For Subsequent Requests&lt;/code&gt;選項，並取消勾選&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2021/05/image-1622308699517.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/05/image-1622308699517.png"&gt;&lt;/p&gt;
 &lt;p&gt;第二步驟是前往電腦的家目錄尋找把&lt;code&gt;~/.rest-client/cookie.json&lt;/code&gt;儲存Cookie的檔案刪掉，就大功告成了。&lt;/p&gt;
 &lt;p&gt;(在我的Windows上檔案路徑會是&lt;code&gt;C:\Users\長庚\.rest-client\cookie.json&lt;/code&gt;)&lt;/p&gt;
 &lt;p&gt;有自動儲存的Cookie都是放在cookie.json裡，內容格式如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;www.mywebsite.com&amp;#34;&lt;/span&gt;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;.AspNet.Cookies&amp;#34;&lt;/span&gt;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;key&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.AspNet.Cookies&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;domain&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;www.mywebsite.com&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;secure&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;httpOnly&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;hostOnly&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;creation&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2021-05-29T17:28:38.405Z&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;lastAccessed&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2021-05-29T17:28:38.405Z&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>在Angular 9中使用Leaflet js 與 OpenStreetMap地圖</title>
-      <link>http://localhost:1313/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/</link>
-      <pubDate>Sun, 16 Feb 2020 22:48:13 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/</guid>
-      <description>&lt;p&gt;最近剛看保哥的Angular線上課程，剛好六角學院的老師與同學們跟上時事在做口罩地圖，就試著用Angular做作看口罩地圖&lt;a href=&#34;https://dannypc1628.github.io/face-mask-map/&#34; title=&#34;DEMO展示&#34;&gt;點此看DEMO展示&lt;/a&gt;或&lt;a href=&#34;https://github.com/dannypc1628/face-mask-map/&#34; title=&#34;GitHub原始碼&#34;&gt;看GitHub原始碼&lt;/a&gt;，本文就簡單講解在Angular上如何使用Leaflet js 與 OpenStreetMap。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;www.mywebsite.com&amp;#34;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;/&amp;#34;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;.AspNet.Cookies&amp;#34;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;key&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;.AspNet.Cookies&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;value&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;domain&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;www.mywebsite.com&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;/&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;secure&amp;#34;&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;httpOnly&amp;#34;&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;hostOnly&amp;#34;&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;creation&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;2021-05-29T17:28:38.405Z&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;&amp;#34;lastAccessed&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;2021-05-29T17:28:38.405Z&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>在Angular 9中使用Leaflet js 與 OpenStreetMap地圖</title><link>https://dannyliu.me/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/</link><pubDate>Sun, 16 Feb 2020 22:48:13 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/</guid><description>&lt;p&gt;最近剛看保哥的Angular線上課程，剛好六角學院的老師與同學們跟上時事在做口罩地圖，就試著用Angular做作看口罩地圖&lt;a href="https://dannypc1628.github.io/face-mask-map/" title="DEMO展示"&gt;點此看DEMO展示&lt;/a&gt;或&lt;a href="https://github.com/dannypc1628/face-mask-map/" title="GitHub原始碼"&gt;看GitHub原始碼&lt;/a&gt;，本文就簡單講解在Angular上如何使用Leaflet js 與 OpenStreetMap。&lt;/p&gt;
 &lt;p&gt;因為現在Google Map Api已經開使在收費了，雖然有免費額度，但超過額度就要收費，也不曉得會不會有惡意瀏覽來超過額度這種攻擊荷包的方式，這次便改用Leaflet.js 與OpenStreetMap組合而成的替代方案。&lt;/p&gt;
 &lt;p&gt;OpenStreetMap是一個非營利基金會營運的開放地圖，提供大眾使用、編輯、共享地圖資訊。OpenStreetMap提供了圖資，而如何使用圖資呢？，例如：以某個中心點為座標顯示地圖、放大縮小地圖、在地圖上標示圖案等等，這些與使用這有關的操作與互動鳩跟Leaflet.js有關了。Leaflet.js是開源的JavaScript地圖函式庫，我們可以將圖資傳給Leaflet.js，藉由操作Leaflet.js來達成剛剛所述的控制地圖、放大、縮小、顯示圖標等操作。&lt;/p&gt;
-&lt;h1 id=&#34;建立專案&#34;&gt;建立專案&lt;/h1&gt;
+&lt;h1 id="建立專案"&gt;建立專案&lt;/h1&gt;
 &lt;p&gt;首先先新增一個專案&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ng new appname --routing --style css
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ng new appname --routing --style css
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用npm安裝leaflet&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm install leaflet --save
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;npm install leaflet --save
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;建立元建並命名為map&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ng g c map
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;使用leaflet&#34;&gt;使用leaflet&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ng g c map
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="使用leaflet"&gt;使用leaflet&lt;/h1&gt;
 &lt;p&gt;在map元件map.component.html中清除&lt;code&gt;&amp;lt;p&amp;gt;map works!&amp;lt;/p&amp;gt;&lt;/code&gt;並改成 &lt;code&gt; &amp;lt;div id=&amp;quot;map&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt; 在map元件map.component.ts中載入leaflet全部組件並命名為&lt;code&gt;L&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;L&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;leaflet&amp;#39;&lt;/span&gt;;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;import&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;as&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;L&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;from&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;leaflet&amp;#39;&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;constructor()之前加入map成員，並在map元件map.component.ts的初始化方法ngOnInit()中。使用leaflet建立map圖層並載入OpenStreetMap圖資後加進map圖層&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MapComponent&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;implements&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;OnInit&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;constructor&lt;/span&gt;() { }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;ngOnInit&lt;/span&gt;()&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;L&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;map&amp;#39;&lt;/span&gt;, { &lt;span style=&#34;color:#a6e22e&#34;&gt;center&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;25.0249211&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;121.5075035&lt;/span&gt;], &lt;span style=&#34;color:#a6e22e&#34;&gt;zoom&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt; });&lt;span style=&#34;color:#75715e&#34;&gt;//指定欲繪製地圖在id為map的元素中，中心座標為[25.0249211,121.5075035]，縮放程度為16
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tiles&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;L&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;tileLayer&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&amp;#39;&lt;/span&gt;, {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;maxZoom&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;19&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;attribution&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;© &amp;lt;a href=&amp;#34;http://www.openstreetmap.org/copyright&amp;#34;&amp;gt;OpenStreetMap&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;tiles&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addTo&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;export&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;MapComponent&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;implements&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;OnInit&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;map&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;constructor&lt;/span&gt;() { }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;ngOnInit&lt;/span&gt;()&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;map&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;L&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;map&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#39;map&amp;#39;&lt;/span&gt;, { &lt;span style="color:#a6e22e"&gt;center&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;25.0249211&lt;/span&gt;,&lt;span style="color:#ae81ff"&gt;121.5075035&lt;/span&gt;], &lt;span style="color:#a6e22e"&gt;zoom&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;16&lt;/span&gt; });&lt;span style="color:#75715e"&gt;//指定欲繪製地圖在id為map的元素中，中心座標為[25.0249211,121.5075035]，縮放程度為16
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;tiles&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;L&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;tileLayer&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&amp;#39;&lt;/span&gt;, {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;maxZoom&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;19&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;attribution&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;© &amp;lt;a href=&amp;#34;http://www.openstreetmap.org/copyright&amp;#34;&amp;gt;OpenStreetMap&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; });
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;tiles&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;addTo&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;map&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;隨後到app.component.html中，清除原先生成內容後，把我們的map元件加入近來&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-map&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-map&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;現在開啟ng serve應該可以看到網頁地圖，但是呈現破碎狀，東缺西缺一塊 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/02/map111.png&#34;&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&amp;lt;&lt;span style="color:#f92672"&gt;app-map&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style="color:#f92672"&gt;app-map&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;現在開啟ng serve應該可以看到網頁地圖，但是呈現破碎狀，東缺西缺一塊 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/02/map111.png"&gt;&lt;/p&gt;
 &lt;p&gt;因為缺少leaflet的CSS檔 我這邊直接在styles.css檔中把leaflet.css import進來，並直接設定#map、html,body的高度都為100%(不然地圖會顯示不出來)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~leaflet/dist/leaflet.css&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;height&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;%;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#map {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;height&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;%&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;設定完CSS後就可以看到地圖了 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/02/map222.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ASP.NET MVC 下拉式選單的用法</title>
-      <link>http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</link>
-      <pubDate>Thu, 13 Jun 2019 21:27:12 +0800</pubDate>
-      <guid>http://localhost:1313/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
-      <description>&lt;p&gt;筆記ASP.net MVC 下拉式選單的用法，免得一陣子沒用就忘了&amp;hellip;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-css" data-lang="css"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;@&lt;span style="color:#66d9ef"&gt;import&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;~leaflet/dist/leaflet.css&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;html&lt;/span&gt;&lt;span style="color:#f92672"&gt;,&lt;/span&gt;&lt;span style="color:#f92672"&gt;body&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;height&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#f92672"&gt;100&lt;/span&gt;&lt;span style="color:#f92672"&gt;%;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#map {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;height&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;100&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;%&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;設定完CSS後就可以看到地圖了 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/02/map222.png"&gt;&lt;/p&gt;</description></item><item><title>ASP.NET MVC 下拉式選單的用法</title><link>https://dannyliu.me/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</link><pubDate>Thu, 13 Jun 2019 21:27:12 +0800</pubDate><guid>https://dannyliu.me/asp-net-mvc-%E4%B8%8B%E6%8B%89%E5%BC%8F%E9%81%B8%E5%96%AE%E7%9A%84%E7%94%A8%E6%B3%95/</guid><description>&lt;p&gt;筆記ASP.net MVC 下拉式選單的用法，免得一陣子沒用就忘了&amp;hellip;&lt;/p&gt;
 &lt;p&gt;ASP.net MVC中 View提供了HTML Helpers來幫我們自動產生部分HTML程式碼&lt;/p&gt;
 &lt;p&gt;其中 &lt;code&gt;@Html.DropDownList&lt;/code&gt; 可以幫我們生成下拉式選單&lt;/p&gt;
 &lt;p&gt;先在Controller中用ViewBag準備要傳給下拉式選單的資料，指定名稱為&lt;strong&gt;銀行選單&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; BankList = &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; b &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; db.Bank &lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt; b; &lt;span style=&#34;color:#75715e&#34;&gt;//要做成下拉式選單的資料表&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//新一個SelectList物件(資料表, 指定資料表中Value的欄位 ,  指定資料表中顯示文字的欄位)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ViewBag.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;銀行選單&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//如果資料表中有預先勾選的資料，就在後面加入預先選擇的value銀行代碼&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ViewBag.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;銀行選單&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;預先選擇的&lt;/span&gt;value銀行代碼);
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; BankList = &lt;span style="color:#66d9ef"&gt;from&lt;/span&gt; b &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; db.Bank &lt;span style="color:#66d9ef"&gt;select&lt;/span&gt; b; &lt;span style="color:#75715e"&gt;//要做成下拉式選單的資料表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//新一個SelectList物件(資料表, 指定資料表中Value的欄位 , 指定資料表中顯示文字的欄位)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ViewBag.&lt;span style="color:#960050;background-color:#1e0010"&gt;銀行選單&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style="color:#e6db74"&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;//如果資料表中有預先勾選的資料，就在後面加入預先選擇的value銀行代碼&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ViewBag.&lt;span style="color:#960050;background-color:#1e0010"&gt;銀行選單&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; SelectList(BankList , &lt;span style="color:#e6db74"&gt;&amp;#34;銀行代碼&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;銀行名稱&amp;#34;&lt;/span&gt;, &lt;span style="color:#960050;background-color:#1e0010"&gt;預先選擇的&lt;/span&gt;value銀行代碼);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在view中給DropDownList的第一個name欄位命名同為&lt;strong&gt;銀行選單&lt;/strong&gt;，就會自動帶入ViewBag.銀行選單的資料了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Html.DropDownList(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, htmlAttributes: &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; { @class = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;@Html.DropDownList(&lt;span style="color:#e6db74"&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;, htmlAttributes: &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; { @class = &lt;span style="color:#e6db74"&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style="color:#e6db74"&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你的DropDownList要的SelectList資料不是Controller給的而是在View中，就填入第二個欄位，但我們是從Controller拿所以填null 要自訂下拉式選單的class或id等屬性則寫在htmlAttributes: new { }大括號裡面，比較特別的是class是C#保留字，所以要在前面標上@，避免判斷失敗&lt;/p&gt;
 &lt;p&gt;如果你的DropDownList要顯示- - -請選擇一個項目- - -，就這樣做&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Html.DropDownList(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-----請選擇一個項目-----&amp;#34;&lt;/span&gt;,htmlAttributes: &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; { @class = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>Vue.js  jQuery在IE 11使用中文輸入法的小問題</title>
-      <link>http://localhost:1313/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</link>
-      <pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate>
-      <guid>http://localhost:1313/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</guid>
-      <description>&lt;p&gt;在學Vue.js時，真的覺得Vue.js操作起來很方便&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;@Html.DropDownList(&lt;span style="color:#e6db74"&gt;&amp;#34;銀行選單&amp;#34;&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;-----請選擇一個項目-----&amp;#34;&lt;/span&gt;,htmlAttributes: &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; { @class = &lt;span style="color:#e6db74"&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt;, id = &lt;span style="color:#e6db74"&gt;&amp;#34;銀行&amp;#34;&lt;/span&gt; })
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Vue.js jQuery在IE 11使用中文輸入法的小問題</title><link>https://dannyliu.me/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 01 Jun 2019 01:40:08 +0800</pubDate><guid>https://dannyliu.me/vue-js-jquery%E5%9C%A8ie-11%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95%E7%9A%84%E5%B0%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;p&gt;在學Vue.js時，真的覺得Vue.js操作起來很方便&lt;/p&gt;
 &lt;p&gt;之前寫的ToDoList專案中，遇到在IE11使用中文輸入法選字時，按Enter會觸發新增事項的method&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt; input v-model=&amp;quot;newToDo&amp;quot; v-on:keyup.enter=&amp;quot;addToDo&amp;quot; class=&amp;quot;form-control&amp;quot; placeholder=&amp;quot;新增事項&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;keyup是偵測放開按鍵時的事件，在Chrome跟Firefox上都正常，就是IE有問題真的昏倒&lt;/p&gt;
@@ -188,17 +118,16 @@
 &lt;p&gt;這問題查了一下在jQuery或原生JavaScript也有&lt;/p&gt;
 &lt;p&gt;所以這應該是IE的js引擎有bug吧!?&lt;/p&gt;
 &lt;p&gt;JavaScript跟jQuery一樣改成keypress就好，例如:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt; &amp;lt;!-- JavaScript --&amp;gt;  &amp;amp;nbsp &amp;lt;input type=&amp;quot;text&amp;quot; onkeypress=&amp;quot;addToDo()&amp;quot;&amp;gt;   &amp;lt;!-- jQuery --&amp;gt;   $(&#39;#inputText&#39;).bind(&#39;keypress&#39;, function (event)   {   &amp;amp;nbsp 	 if (event.keyCode == 13)   &amp;amp;nbsp	 {   &amp;amp;nbsp &amp;amp;nbsp addToDo();   &amp;amp;nbsp  	 }   });&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;補充：keypress是按的過程中觸發，所以一直按住就會一直觸發，而keyup只會在放開按鍵時觸發一次&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>[asp.net][Vue.js]待辦事項網頁</title>
-      <link>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</link>
-      <pubDate>Sun, 16 Dec 2018 14:13:35 +0800</pubDate>
-      <guid>http://localhost:1313/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</guid>
-      <description>&lt;p&gt;聽聞現在前端框架提供強大功能，改善前端開發速度 省了很多寫純JavaScript的功夫 落後時代的我邊挑了Vue.js來開發一個待辦事項服務看看&lt;/p&gt;
+&lt;p&gt;&lt;code&gt; &amp;lt;!-- JavaScript --&amp;gt;
+&amp;amp;nbsp &amp;lt;input type=&amp;quot;text&amp;quot; onkeypress=&amp;quot;addToDo()&amp;quot;&amp;gt;
+&amp;lt;!-- jQuery --&amp;gt;
+$('#inputText').bind('keypress', function (event)
+{
+&amp;amp;nbsp if (event.keyCode == 13)
+&amp;amp;nbsp {
+&amp;amp;nbsp &amp;amp;nbsp addToDo();
+&amp;amp;nbsp }
+});&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;補充：keypress是按的過程中觸發，所以一直按住就會一直觸發，而keyup只會在放開按鍵時觸發一次&lt;/p&gt;</description></item><item><title>[asp.net][Vue.js]待辦事項網頁</title><link>https://dannyliu.me/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</link><pubDate>Sun, 16 Dec 2018 14:13:35 +0800</pubDate><guid>https://dannyliu.me/asp-netvue-js%E5%BE%85%E8%BE%A6%E4%BA%8B%E9%A0%85%E7%B6%B2%E9%A0%81/</guid><description>&lt;p&gt;聽聞現在前端框架提供強大功能，改善前端開發速度 省了很多寫純JavaScript的功夫 落後時代的我邊挑了Vue.js來開發一個待辦事項服務看看&lt;/p&gt;
 &lt;p&gt;使用到了Vue.js、jQuery、asp.net MVC(&amp;amp;api)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://todolistusingasp.azurewebsites.net&#34;&gt;https://todolistusingasp.azurewebsites.net&lt;/a&gt; 來賓帳號，guest guest&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;p&gt;&lt;a href="https://todolistusingasp.azurewebsites.net"&gt;https://todolistusingasp.azurewebsites.net&lt;/a&gt; 來賓帳號，guest guest&lt;/p&gt;</description></item></channel></rss>

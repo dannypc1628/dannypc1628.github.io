@@ -1,39 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Ubuntu on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ubuntu/</link>
-    <description>Recent content in Ubuntu on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Tue, 14 Jan 2020 22:31:34 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法</title>
-      <link>http://localhost:1313/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</link>
-      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
-      <guid>http://localhost:1313/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</guid>
-      <description>&lt;p&gt;依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。&lt;/p&gt;
-&lt;p&gt;這個問題的相關內容可以看到Will保哥在部落格文中&lt;a href=&#34;https://blog.miniasp.com/post/2013/04/28/CentOS-64-unable-login-with-keys-due-to-SELinux&#34; title=&#34;Will保哥:CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&#34;&gt;CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&lt;/a&gt;中，解釋問題的原因是SELinux這個增強Linux安全性的模組所導致。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ubuntu on Danny Liu's Blog</title><link>https://dannyliu.me/tags/ubuntu/</link><description>Recent content in Ubuntu on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Tue, 14 Jan 2020 22:31:34 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法</title><link>https://dannyliu.me/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</link><pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate><guid>https://dannyliu.me/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</guid><description>&lt;p&gt;依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。&lt;/p&gt;
+&lt;p&gt;這個問題的相關內容可以看到Will保哥在部落格文中&lt;a href="https://blog.miniasp.com/post/2013/04/28/CentOS-64-unable-login-with-keys-due-to-SELinux" title="Will保哥:CentOS 6.4 安裝後以金鑰登入出現 Server refused our key"&gt;CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&lt;/a&gt;中，解釋問題的原因是SELinux這個增強Linux安全性的模組所導致。&lt;/p&gt;
 &lt;p&gt;不過保哥本人是手動建立.ssh資料夾，我則是取巧以danny身分在CentOS中下了ssh指令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssh localhost
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ssh localhost
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;再度遠端連線到本機，讓ssh自動幫我產生.ssh相關資料夾，所以我的資料夾與檔案的SELinux Tag應該是正確的。&lt;/p&gt;
 &lt;p&gt;但是要看SELinux標籤的話，&lt;code&gt;ls&lt;/code&gt;要多下一個&lt;code&gt;Z&lt;/code&gt;參數&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;danny@localhost .ssh&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;$ ls -laFZ
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:ssh_home_t:s0 ./
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:user_home_dir_t:s0 ../
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-rw-r--. danny danny unconfined_u:object_r:ssh_home_t:s0 authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-r--r--. danny danny unconfined_u:object_r:ssh_home_t:s0 known_hosts
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;danny@localhost .ssh&lt;span style="color:#f92672"&gt;]&lt;/span&gt;$ ls -laFZ
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:ssh_home_t:s0 ./
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:user_home_dir_t:s0 ../
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-rw-rw-r--. danny danny unconfined_u:object_r:ssh_home_t:s0 authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-rw-r--r--. danny danny unconfined_u:object_r:ssh_home_t:s0 known_hosts
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;看起來標籤都正確，擔心自己眼殘，在家目錄下用以下指令重設SELinux安全強化標籤的預設值&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;restorecon -R -v .ssh/
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;restorecon -R -v .ssh/
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用後，依然無法登入。&lt;/p&gt;
-&lt;h1 id=&#34;乖乖地先看ssh登入紀錄&#34;&gt;乖乖地，先看SSH登入紀錄&lt;/h1&gt;
+&lt;h1 id="乖乖地先看ssh登入紀錄"&gt;乖乖地，先看SSH登入紀錄&lt;/h1&gt;
 &lt;p&gt;CentOS7中要找ssh登入紀錄要去&lt;code&gt;/var/log/&lt;/code&gt;找&lt;code&gt;secure&lt;/code&gt;這個記錄檔&lt;/p&gt;
 &lt;p&gt;記得切到root帳號，再用cat查看secure紀錄&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat /var/log/secure
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /var/log/secure
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到最後一筆是剛剛ssh連線的紀錄&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jan  &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt; 23:45:47 localhost sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;147675&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Authentication refused: bad ownership or modes &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; file /home/danny/.ssh/authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告訴我們驗證被拒絕：因為使用者danny的authorized_keys這個檔案所有權或模式錯誤。第一時間會想到是檔案權限的問題，查詢其他設定金鑰的教學設定會要求要設定authorized_keys權限為&lt;code&gt;600&lt;/code&gt;，改成600後真的可以登入成功，至於為什麼呢？&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Jan &lt;span style="color:#ae81ff"&gt;8&lt;/span&gt; 23:45:47 localhost sshd&lt;span style="color:#f92672"&gt;[&lt;/span&gt;147675&lt;span style="color:#f92672"&gt;]&lt;/span&gt;: Authentication refused: bad ownership or modes &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; file /home/danny/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告訴我們驗證被拒絕：因為使用者danny的authorized_keys這個檔案所有權或模式錯誤。第一時間會想到是檔案權限的問題，查詢其他設定金鑰的教學設定會要求要設定authorized_keys權限為&lt;code&gt;600&lt;/code&gt;，改成600後真的可以登入成功，至於為什麼呢？&lt;/p&gt;</description></item></channel></rss>

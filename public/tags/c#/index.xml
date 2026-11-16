@@ -1,211 +1,148 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>C# on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/tags/c%23/</link>
-    <description>Recent content in C# on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Mon, 16 Nov 2026 16:20:32 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/c%23/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>將十年老 WordPress 部落格搬遷至 Hugo &#43; GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄</title>
-      <link>http://localhost:1313/hello-world/</link>
-      <pubDate>Mon, 16 Nov 2026 16:20:32 +0800</pubDate>
-      <guid>http://localhost:1313/hello-world/</guid>
-      <description>&lt;h1 id=&#34;將十年老-wordpress-部落格搬遷至-hugo--github-pages從-ubuntu-1404-到免費靜態網站的完整紀錄&#34;&gt;將十年老 WordPress 部落格搬遷至 Hugo + GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄&lt;/h1&gt;
-&lt;p&gt;十年前還在大學的時候，為了學習 Linux、PHP 與網站架設，我在 DigitalOcean 租了一台 VPS，自己安裝 Ubuntu、Apache、MySQL 和 WordPress，架設了個人技術部落格 &lt;a href=&#34;https://dannyliu.me/&#34;&gt;dannyliu.me&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;當年的自己應該沒想到，這台伺服器竟然會一直運作到 2026 年。🤣&lt;/p&gt;
-&lt;p&gt;隨著工作越來越忙，部落格逐漸荒廢，作業系統、PHP、WordPress 及外掛也很久沒有更新。&lt;/p&gt;
-&lt;p&gt;最近看到一些 PHP 和 WordPress 的資安議題，突然想到自己還有一台十年沒認真維護的伺服器，決定趁這個機會重新整理網站。&lt;/p&gt;
-&lt;p&gt;原本只是打算更新 WordPress，沒想到最後直接把整個網站從動態架構搬到 Hugo + GitHub Pages。&lt;/p&gt;
-&lt;p&gt;這篇文章記錄完整的搬遷過程、遇到的問題，以及最後的處理方式。&lt;/p&gt;
-&lt;p&gt;2018年的首頁還是用中美堂的照片&lt;/p&gt;
-&lt;p&gt;後來才換成 Bootstrap 的版型，看看第一篇文章發布日期是 &lt;code&gt;2016-03-24&lt;/code&gt; 這個部落格真的有 10 年了 🤣&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;用 &lt;a href=&#34;https://web.archive.org/web/20180830191142/https://dannyliu.me/&#34;&gt;Wayback Machine&lt;/a&gt; 看 2018 年的首頁還是用中美堂的照片&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;2018 年的首頁&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/hello-world/2018.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;那時候還在當兵，後來才換成現在 Bootstrap 的版型。&lt;/p&gt;
-&lt;p&gt;看第一篇文章發布日期是 &lt;code&gt;2016-03-24&lt;/code&gt; 這個部落格是真的有 10 年了 🤣&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;第一篇文章&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/hello-world/first.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;一原本的-wordpress-環境有多古老&#34;&gt;一、原本的 WordPress 環境有多古老？&lt;/h2&gt;
-&lt;p&gt;先透過 SSH 登入 DigitalOcean Droplet，確認目前環境。&lt;/p&gt;
-&lt;h3 id=&#34;ubuntu-與-kernel&#34;&gt;Ubuntu 與 Kernel&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat /etc/os-release
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;uname -a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查詢結果：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>C# 列舉器 IEnumerator 與 IEnumerable</title>
-      <link>http://localhost:1313/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/</link>
-      <pubDate>Sun, 22 Mar 2020 23:37:09 +0800</pubDate>
-      <guid>http://localhost:1313/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/</guid>
-      <description>&lt;p&gt;今天要講的是列舉器，我們很常用到&lt;code&gt;foreach&lt;/code&gt;來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>C# on Danny Liu's Blog</title><link>https://dannyliu.me/tags/c%23/</link><description>Recent content in C# on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Mon, 16 Nov 2026 16:20:32 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/c%23/index.xml" rel="self" type="application/rss+xml"/><item><title>將十年老 WordPress 部落格搬遷至 Hugo + GitHub Pages：從 Ubuntu 14.04 到免費靜態網站的完整紀錄</title><link>https://dannyliu.me/wordpress-to-hugo-migration/</link><pubDate>Mon, 16 Nov 2026 16:20:32 +0800</pubDate><guid>https://dannyliu.me/wordpress-to-hugo-migration/</guid><description>記錄將十年老舊的 WordPress 部落格，從 Ubuntu 14.04、PHP 7.0、MySQL 5.5 搬遷到 Hugo + GitHub Pages 的完整過程，以及遇到的問題與解決方式。</description></item><item><title>C# 列舉器 IEnumerator 與 IEnumerable</title><link>https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/</link><pubDate>Sun, 22 Mar 2020 23:37:09 +0800</pubDate><guid>https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/</guid><description>&lt;p&gt;今天要講的是列舉器，我們很常用到&lt;code&gt;foreach&lt;/code&gt;來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？&lt;/p&gt;
 &lt;p&gt;答案是因為，陣列有實作列舉器，所以我們可以使用 foreach 把陣列裡面的東西全部拿出來。簡而言之，若我們的自訂義的類別有實作列舉器。那就可以使用 foreach 來取出裡面的東西。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Program&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;陣列&lt;/span&gt; = { &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;小明&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;小華&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;小花&amp;#34;&lt;/span&gt; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; item &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;陣列&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(item);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.ReadKey();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Program&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;static&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; Main(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;[] &lt;span style="color:#960050;background-color:#1e0010"&gt;陣列&lt;/span&gt; = { &lt;span style="color:#e6db74"&gt;&amp;#34;小明&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;小華&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;小花&amp;#34;&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;foreach&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; item &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;陣列&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(item);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.ReadKey();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;輸出結果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;小明&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;小華&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;小花&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;列舉器-enumerator&#34;&gt;列舉器 enumerator&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;小明&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;小華&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;小花&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="列舉器-enumerator"&gt;列舉器 enumerator&lt;/h1&gt;
 &lt;p&gt;列舉器會將陣列裡面的東西一個一個的依照順序取出來，不過 C# 裡面陣列是一個有指定大小的容器，定義陣列的大小後，裡面能放東西的數量就是固定的。所以廣泛來說，列舉器會把序列(不限定長度大小)裡面的東西一個一個取出來。 列舉器的實作方式也非常簡單，要做三個功能，1.拿出一個，2.判斷有沒有下一個，3.重頭開始(從零開始)&lt;/p&gt;
 &lt;p&gt;在C#中有定義列舉器的interface IEnumerator，所以我們說陣列裡面有實作enumerator，就是擁有這三個功能&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IEnumerator&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; MoveNext();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Object Current { &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Reset();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;可列舉的enumerable&#34;&gt;可列舉的enumerable&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;IEnumerator&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt; MoveNext();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Object Current { &lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; Reset();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="可列舉的enumerable"&gt;可列舉的enumerable&lt;/h1&gt;
 &lt;p&gt;至於要怎麼知道這個物件有沒有列舉器，能不能使用foreach，就要看這個類別是不是可列舉的類別，類別有沒有繼承&lt;code&gt;IEnumerable&lt;/code&gt;這介面。(補充：C#習慣在介面前面加上i，所以&lt;code&gt;IEnumerable&lt;/code&gt;就是&lt;code&gt;enumerable&lt;/code&gt;的interface，指的是可列舉的介面。)&lt;/p&gt;
 &lt;p&gt;如果有繼承IEnumerable，就代表有實作&lt;code&gt;GetEnumerator()&lt;/code&gt;這個方法來讓我們拿到列舉器。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IEnumerable&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    IEnumerator GetEnumerator();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以剛剛的 foreach 程式可以改成以下使用列舉器的版本&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法</title>
-      <link>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</link>
-      <pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</guid>
-      <description>&lt;p&gt;ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;IEnumerable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; IEnumerator GetEnumerator();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以剛剛的 foreach 程式可以改成以下使用列舉器的版本&lt;/p&gt;</description></item><item><title>在ASP.NET MVC中使用FormsAuthenticationu驗證一直卡在登入畫面的原因解法</title><link>https://dannyliu.me/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</link><pubDate>Thu, 02 Jan 2020 14:55:40 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8asp-net-mvc%E4%B8%AD%E4%BD%BF%E7%94%A8formsauthenticationu%E9%A9%97%E8%AD%89%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8%E7%99%BB%E5%85%A5%E7%95%AB%E9%9D%A2%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%A7%A3/</guid><description>&lt;p&gt;ASP.NET MVC 5在登入與權限控管中，微軟似乎是推薦使用ASP.NET Identity，最簡單的使用方式就是在新建專案時就將預設的無驗證改成第二項的個別使用者帳戶功能。&lt;/p&gt;
 &lt;p&gt;不過我在做小專案時，選的是無驗證，想體驗&lt;code&gt;[AuthorizeAttribute]&lt;/code&gt;的權限驗證功能，似乎最簡單的方式是使用.net早期的FormsAuthenticationu驗證，看別人的文章也講的很簡單，複製三段code，登入登出的功能就完成了。&lt;/p&gt;
 &lt;p&gt;小弟不幸的一用之下，我的登入功能在登入成功後又重新導回登入畫面，形成無窮迴圈卡了一個小時。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[HttpPost]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[AllowAnonymous]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[ValidateAntiForgeryToken]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ActionResult Login(LoginViewModel user)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{            
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (ModelState.IsValid)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        User u = _userService.Find(user.ID , user.Password);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(u != &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            FormsAuthenticationTicket ticket = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; FormsAuthenticationTicket(
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                u.ID,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                DateTime.UtcNow.AddMinutes(&lt;span style=&#34;color:#ae81ff&#34;&gt;90&lt;/span&gt;),
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                isPersistent: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                userData: u.Name,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                cookiePath: FormsAuthentication.FormsCookiePath
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                );
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; encTicket = FormsAuthentication.Encrypt(ticket);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; cookie = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Secure = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,         
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                HttpOnly = &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Response.Cookies.Add(cookie);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; RedirectToAction(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Index&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lectures&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }        
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ModelState.AddModelError(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;無效的帳號或密碼。&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; View(user);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個&lt;code&gt;Secure = true&lt;/code&gt;的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>C# 事件(下) – 加上event關鍵字</title>
-      <link>http://localhost:1313/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/</link>
-      <pubDate>Sat, 02 Nov 2019 00:19:24 +0800</pubDate>
-      <guid>http://localhost:1313/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/</guid>
-      <description>&lt;p&gt;上篇文章中我們使用委派實作了事件處理機制，因為使用委派來實作非常方便，可以幫我們接受多筆客戶訂閱又能集結成冊，而執行委派又能實踐通知訂閱者者，一次幫助我們解決許多問題。 但是&amp;hellip;&lt;/p&gt;
-&lt;p&gt;委派要能讓外部客戶訂閱，就要能被外部使用，所以委派也有可能被外部執行而送出意料之外的通知。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event1.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;使用event關鍵字&#34;&gt;使用event關鍵字&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;[HttpPost]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;[AllowAnonymous]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;[ValidateAntiForgeryToken]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; ActionResult Login(LoginViewModel user)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (ModelState.IsValid)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; User u = _userService.Find(user.ID , user.Password);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(u != &lt;span style="color:#66d9ef"&gt;null&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; FormsAuthenticationTicket ticket = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; FormsAuthenticationTicket(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; u.ID,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; DateTime.UtcNow,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; DateTime.UtcNow.AddMinutes(&lt;span style="color:#ae81ff"&gt;90&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; isPersistent: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; userData: u.Name,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cookiePath: FormsAuthentication.FormsCookiePath
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; );
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; encTicket = FormsAuthentication.Encrypt(ticket);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; cookie = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Secure = &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; HttpOnly = &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Response.Cookies.Add(cookie);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; RedirectToAction(&lt;span style="color:#e6db74"&gt;&amp;#34;Index&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;Lectures&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ModelState.AddModelError(&lt;span style="color:#e6db74"&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#34;無效的帳號或密碼。&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; View(user);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個問題關鍵字很難下，一眼看過去會覺得大家的程式碼差不多，但問題發生的原因是在於我的程式碼比別人的Cookies有多了一個&lt;code&gt;Secure = true&lt;/code&gt;的設定，當下還真的覺得沒什麼，安全很重要，認為這是一個正常的設定，結果眉角在這裡。&lt;/p&gt;</description></item><item><title>C# 事件(下) – 加上event關鍵字</title><link>https://dannyliu.me/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/</link><pubDate>Sat, 02 Nov 2019 00:19:24 +0800</pubDate><guid>https://dannyliu.me/c%E4%BA%8B%E4%BB%B6-%E5%8A%A0%E4%B8%8Aevent%E9%97%9C%E9%8D%B5%E5%AD%97/</guid><description>&lt;p&gt;上篇文章中我們使用委派實作了事件處理機制，因為使用委派來實作非常方便，可以幫我們接受多筆客戶訂閱又能集結成冊，而執行委派又能實踐通知訂閱者者，一次幫助我們解決許多問題。 但是&amp;hellip;&lt;/p&gt;
+&lt;p&gt;委派要能讓外部客戶訂閱，就要能被外部使用，所以委派也有可能被外部執行而送出意料之外的通知。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event1.png"&gt;&lt;/p&gt;
+&lt;h1 id="使用event關鍵字"&gt;使用event關鍵字&lt;/h1&gt;
 &lt;p&gt;而這個問題並不是private、protected這類存取修飾字可以解決的，所以在C#中，提供了event關鍵字來解決這個問題，讓委派能被外部加入方法，又能禁止被外部執行。&lt;/p&gt;
 &lt;p&gt;用法很簡單，只要在之前的程式碼上，在使用我們自定義的委派型別前加上&lt;code&gt;event&lt;/code&gt;就可以了，程式碼如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞報導&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;event&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//只有這一行有更改&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;投稿新聞&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞稿&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;.Invoke(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞稿&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加上event後，C#編譯器就會禁止外部來執行這個委派。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event2.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;觸發事件時&#34;&gt;觸發事件時~&lt;/h1&gt;
-&lt;p&gt;當要執行委派，要記的檢查有沒有人訂閱(&lt;del&gt;新聞&lt;/del&gt;事件)，若沒人訂閱委派，我們的訂閱名冊就會是null，執行時就會出現例外Null Reference Exception &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event3.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;若這個委派可能在內部多個地方都有可能觸發到，那可以包裝成一個方法，在C#與.NET中似乎習慣將觸發事件方法前面加上&lt;code&gt;On&lt;/code&gt;，程式碼如下： &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event4.png&#34;&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞報導&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;event&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;; &lt;span style="color:#75715e"&gt;//只有這一行有更改&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;投稿新聞&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞稿&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;.Invoke(&lt;span style="color:#960050;background-color:#1e0010"&gt;新聞稿&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加上event後，C#編譯器就會禁止外部來執行這個委派。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event2.png"&gt;&lt;/p&gt;
+&lt;h1 id="觸發事件時"&gt;觸發事件時~&lt;/h1&gt;
+&lt;p&gt;當要執行委派，要記的檢查有沒有人訂閱(&lt;del&gt;新聞&lt;/del&gt;事件)，若沒人訂閱委派，我們的訂閱名冊就會是null，執行時就會出現例外Null Reference Exception &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event3.png"&gt;&lt;/p&gt;
+&lt;p&gt;若這個委派可能在內部多個地方都有可能觸發到，那可以包裝成一個方法，在C#與.NET中似乎習慣將觸發事件方法前面加上&lt;code&gt;On&lt;/code&gt;，程式碼如下： &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event4.png"&gt;&lt;/p&gt;
 &lt;p&gt;C# 6.0可以使用?來簡化，是否為null的判斷：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;?.Invoke(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;C#編譯器也會為我們提示 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event5.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;一些小改善&#34;&gt;一些小改善&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;?.Invoke(&lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;C#編譯器也會為我們提示 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event5.png"&gt;&lt;/p&gt;
+&lt;h1 id="一些小改善"&gt;一些小改善&lt;/h1&gt;
 &lt;p&gt;在以上範例能看到使用者訂閱新聞的過程，想當然地，一個使用者也能訂閱多個新聞，所以觸發事件的委派本身，要能讓訂閱者知道這是哪一間報社通知的新聞，所以.NET中會把委派本身當成參數傳給訂閱者的通知方法，讓使用者知道這次的通知是由哪個報社派送的。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt;(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;有間報社&lt;/span&gt; ,&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞報導&lt;/span&gt;);
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt;(&lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;有間報社&lt;/span&gt; ,&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞報導&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外通知方法能接收的參數有多有少，每個委派的設定略有不同，我們可以將參數集合起來包裝成一個類別來傳遞。這樣以後要傳遞的參數需要修改或是數量增減也比較方便調整。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;標題&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;內容&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;標題&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;內容&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如此一來，委派型別就可以精簡成只要兩個參數就好。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt;(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;有間報社&lt;/span&gt; ,&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞報導&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;net中事件處理的慣例&#34;&gt;.NET中事件處理的慣例&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt;(&lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;有間報社&lt;/span&gt; ,&lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞報導&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id="net中事件處理的慣例"&gt;.NET中事件處理的慣例&lt;/h1&gt;
 &lt;p&gt;上一節&lt;code&gt;一些小改善&lt;/code&gt;可能會讓人納悶是否真的要如此，其實只是為了這一節做鋪陳。事件用的委派型別既然只要兩個參數就好的話，.NET類別庫本身也提供了現成的已經定義好的委派&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; EventHandler(&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; sender, EventArgs eventArgs);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;sender就是來源物件，型別是最廣泛的object，而傳遞參數集合宣告的型別是.NET類別庫定義好的EventArgs。所以要使用這個定義好的委派EventHandler，就要將我們定義好的新聞類別繼承自EventArgs。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event6.png&#34;&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; EventHandler(&lt;span style="color:#66d9ef"&gt;object&lt;/span&gt; sender, EventArgs eventArgs);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;sender就是來源物件，型別是最廣泛的object，而傳遞參數集合宣告的型別是.NET類別庫定義好的EventArgs。所以要使用這個定義好的委派EventHandler，就要將我們定義好的新聞類別繼承自EventArgs。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event6.png"&gt;&lt;/p&gt;
 &lt;p&gt;但是訂閱者的通知方法可能要自己轉型，最後發行類別與訂閱類別就可以寫成如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名稱&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;event&lt;/span&gt;  EventHandler &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;投稿新聞&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訊息&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt; new新聞 = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;() { &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;標題&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;最新快訊&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;內容&lt;/span&gt; = &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訊息&lt;/span&gt; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                On收到最新新聞時(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, new新聞);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; On收到最新新聞時(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;, &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;?.Invoke(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;, &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名字&lt;/span&gt; ;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知我&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; sender , EventArgs eventArgs)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; = sender &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt; = eventArgs &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;我是{名字}，我已經收到來自{來源.名稱}的{新聞.標題}：{新聞.內容}&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;執行結果： &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event8.png&#34;&gt; 主程式： &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event7.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>C# 事件(上) - 使用委派來實作事件</title>
-      <link>http://localhost:1313/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/</link>
-      <pubDate>Thu, 31 Oct 2019 10:57:58 +0800</pubDate>
-      <guid>http://localhost:1313/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/</guid>
-      <description>&lt;p&gt;C#的事件我在ASP.NET MVC中印像中是沒有看過，event應該是在視窗程式或WebForm上才會看到？。不過記得以前寫WebForm的過程中，雖然每個控制項都會用到事件，但記得我不用去了解event也可以把專案做起來，猶豫很久還是決定看看這個主題。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;名稱&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;event&lt;/span&gt; EventHandler &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;投稿新聞&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訊息&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt; new新聞 = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;() { &lt;span style="color:#960050;background-color:#1e0010"&gt;標題&lt;/span&gt; = &lt;span style="color:#e6db74"&gt;&amp;#34;最新快訊&amp;#34;&lt;/span&gt;, &lt;span style="color:#960050;background-color:#1e0010"&gt;內容&lt;/span&gt; = &lt;span style="color:#960050;background-color:#1e0010"&gt;訊息&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; On收到最新新聞時(&lt;span style="color:#66d9ef"&gt;this&lt;/span&gt;, new新聞);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;protected&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; On收到最新新聞時(&lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;, &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;?.Invoke(&lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;, &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;名字&lt;/span&gt; ;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知我&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;object&lt;/span&gt; sender , EventArgs eventArgs)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; = sender &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt; = eventArgs &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(&lt;span style="color:#e6db74"&gt;$&amp;#34;我是{名字}，我已經收到來自{來源.名稱}的{新聞.標題}：{新聞.內容}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;執行結果： &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event8.png"&gt; 主程式： &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/11/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B6event7.png"&gt;&lt;/p&gt;</description></item><item><title>C# 事件(上) - 使用委派來實作事件</title><link>https://dannyliu.me/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/</link><pubDate>Thu, 31 Oct 2019 10:57:58 +0800</pubDate><guid>https://dannyliu.me/c-%E4%BA%8B%E4%BB%B6%E4%B8%8A-%E4%BD%BF%E7%94%A8%E5%A7%94%E6%B4%BE%E4%BE%86%E5%AF%A6%E4%BD%9C%E4%BA%8B%E4%BB%B6/</guid><description>&lt;p&gt;C#的事件我在ASP.NET MVC中印像中是沒有看過，event應該是在視窗程式或WebForm上才會看到？。不過記得以前寫WebForm的過程中，雖然每個控制項都會用到事件，但記得我不用去了解event也可以把專案做起來，猶豫很久還是決定看看這個主題。&lt;/p&gt;
 &lt;p&gt;今天的內容主要是參考電子書 C#本事 蔡煥麟&lt;/p&gt;
-&lt;h1 id=&#34;事件驅動&#34;&gt;事件驅動&lt;/h1&gt;
+&lt;h1 id="事件驅動"&gt;事件驅動&lt;/h1&gt;
 &lt;p&gt;平常我們撰寫程式時，都是自己主動使用某些物件提供的方法來得到結果。相反地，若物件的結果發生時間是隨機不固定的，我們可能不想自己一直主動詢問物件或一直等待，希望物件結果出來後主動通知我們，而物件結果出來這一件事情就是一種事件、一種改變、一種狀態發生，以上描述的這些算是一種事件驅動的程式設計。在WebForm中，每一個按鈕、控制項都是靠使用者點擊後觸發事件來執行後續程式。&lt;/p&gt;
-&lt;h1 id=&#34;發行-訂閱模式&#34;&gt;發行-訂閱模式&lt;/h1&gt;
+&lt;h1 id="發行-訂閱模式"&gt;發行-訂閱模式&lt;/h1&gt;
 &lt;p&gt;C#中的事件處理機制或者說.NET中的事件處理機制，整個機制其實是一種設計模式中&amp;ndash;發行-訂閱模式(發行者-訂閱者模式)，概念是報社推出一份新報紙，會主動推送給有訂閱報紙的客戶，而不是客戶自己跑去問有沒有新報紙可以買。所以說推出新報紙時、發行新報紙時就會觸發事件，將新報紙送給有訂閱報紙的人。&lt;/p&gt;
 &lt;p&gt;所以在發行-訂閱模式中，就有幾個關鍵內容&lt;/p&gt;
 &lt;ol&gt;
@@ -214,71 +151,64 @@
 &lt;li&gt;訂閱名冊&lt;/li&gt;
 &lt;li&gt;(動作)依名冊通知已經訂閱的人&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;用委派實作發行訂閱模式的事件機制&#34;&gt;用委派實作發行/訂閱模式的事件機制&lt;/h1&gt;
+&lt;h1 id="用委派實作發行訂閱模式的事件機制"&gt;用委派實作發行/訂閱模式的事件機制&lt;/h1&gt;
 &lt;p&gt;委派是方法的傳遞，我們可以把方法交給委派，由委派來執行我們的方法。相對地，我們可以把訂閱資料地址等資訊包裝成方法傳遞給委派，當事件發生時執行委派來通知我們這些訂閱者。&lt;/p&gt;
 &lt;p&gt;先定義一個簡單的訂閱者，每個訂閱者都有名字與自己的通知方法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名字&lt;/span&gt; ;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知我&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訊息&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;我是{名字}，我已經收到最新新聞：{訊息}&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;名字&lt;/span&gt; ;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知我&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訊息&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(&lt;span style="color:#e6db74"&gt;$&amp;#34;我是{名字}，我已經收到最新新聞：{訊息}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下來再實作發行者，並實作委派來通知訂閱對象 這裡就用C#1.0版的委派使用方式先定義委派&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知內容&lt;/span&gt;);
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知內容&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然後再宣告委派型別作為事件來使用，並且我們再撰寫一個新聞投稿方法，當有人投稿了新聞的那一刻，就要觸發事件去通知訂閱新聞的人。所以我定義了報社類別作為發行者如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞報導&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知對象&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;投稿新聞&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞稿&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//觸發事件&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt;.Invoke(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;新聞稿&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;delegate&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞報導&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;通知對象&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;投稿新聞&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;新聞稿&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;//觸發事件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt;.Invoke(&lt;span style="color:#960050;background-color:#1e0010"&gt;新聞稿&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以上我們實作了發行者與訂閱者，並且用委派實作的事件驅動程式&lt;/p&gt;
 &lt;p&gt;接下來是我們的主程式，包含訂閱新聞與投稿新聞來觸發事件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;農夫&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt;() { &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名字&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;農夫&amp;#34;&lt;/span&gt; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;商人&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt;() { &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名字&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;商人&amp;#34;&lt;/span&gt; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;騎士&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;訂閱者&lt;/span&gt;() { &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;名字&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;騎士&amp;#34;&lt;/span&gt; };
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;王國日報&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;報社&lt;/span&gt;();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//訂閱&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;王國日報&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt; += &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;農夫&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知我&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;王國日報&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt; += &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;商人&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知我&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;王國日報&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;最新新聞&lt;/span&gt; += &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;騎士&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;通知我&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;請輸入最新消息：&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;消息&lt;/span&gt; = Console.ReadLine();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;王國日報&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;投稿新聞&lt;/span&gt;(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;消息&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;執行結果： &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B62.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>C# 3.0 擴充方法</title>
-      <link>http://localhost:1313/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Tue, 22 Oct 2019 18:02:06 +0800</pubDate>
-      <guid>http://localhost:1313/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;我們在處理某些類別的資料時，可能會專門做一個處理資料的類別或方法來處理。 例如，以下是沒有實作轉型運算子的溫度類別：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;static&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; Main(&lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;農夫&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt;() { &lt;span style="color:#960050;background-color:#1e0010"&gt;名字&lt;/span&gt; = &lt;span style="color:#e6db74"&gt;&amp;#34;農夫&amp;#34;&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;商人&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt;() { &lt;span style="color:#960050;background-color:#1e0010"&gt;名字&lt;/span&gt; = &lt;span style="color:#e6db74"&gt;&amp;#34;商人&amp;#34;&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;騎士&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;訂閱者&lt;/span&gt;() { &lt;span style="color:#960050;background-color:#1e0010"&gt;名字&lt;/span&gt; = &lt;span style="color:#e6db74"&gt;&amp;#34;騎士&amp;#34;&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;王國日報&lt;/span&gt; = &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;報社&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;//訂閱&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;王國日報&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt; += &lt;span style="color:#960050;background-color:#1e0010"&gt;農夫&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;通知我&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;王國日報&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt; += &lt;span style="color:#960050;background-color:#1e0010"&gt;商人&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;通知我&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;王國日報&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;最新新聞&lt;/span&gt; += &lt;span style="color:#960050;background-color:#1e0010"&gt;騎士&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;通知我&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;while&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Console.WriteLine(&lt;span style="color:#e6db74"&gt;&amp;#34;請輸入最新消息：&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;消息&lt;/span&gt; = Console.ReadLine();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;王國日報&lt;/span&gt;.&lt;span style="color:#960050;background-color:#1e0010"&gt;投稿新聞&lt;/span&gt;(&lt;span style="color:#960050;background-color:#1e0010"&gt;消息&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;執行結果： &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E4%BA%8B%E4%BB%B62.png"&gt;&lt;/p&gt;</description></item><item><title>C# 3.0 擴充方法</title><link>https://dannyliu.me/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/</link><pubDate>Tue, 22 Oct 2019 18:02:06 +0800</pubDate><guid>https://dannyliu.me/c-3-0-%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%95/</guid><description>&lt;p&gt;我們在處理某些類別的資料時，可能會專門做一個處理資料的類別或方法來處理。 例如，以下是沒有實作轉型運算子的溫度類別：&lt;/p&gt;
 &lt;p&gt;[code] public class 攝氏 { public double 溫度; } public class 華氏 { public double 溫度; } [/code]&lt;/p&gt;
 &lt;p&gt;這些類別可能是別人定義好的，若我們需要某些新功能，例如攝氏轉華視，在以前可能需要靠繼承，或是實作一個轉型用的類別才能達到。例如我定義了溫度轉型類別如下：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%952.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%952.png"&gt;&lt;/p&gt;
 &lt;p&gt;因為我設定成靜態方法，在轉型時就是如下方式使用：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%953.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;擴充方法&#34;&gt;擴充方法&lt;/h2&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%953.png"&gt;&lt;/p&gt;
+&lt;h2 id="擴充方法"&gt;擴充方法&lt;/h2&gt;
 &lt;p&gt;而在C#3.0開始提供了擴充方法，讓我們在其他類別中撰寫的方法，能出現在目標類別的成員裡面。意思是說透過擴充方法，C#3.0可以把我們剛剛撰寫的溫度轉型類別的溫度轉型方法，偽裝成攝氏或華氏類別自己的方法。&lt;/p&gt;
 &lt;p&gt;擴充方法的實作方式非常簡單，只要將方法透過this關鍵字指定需要偽裝的型別，就能成為該型別的擴充方法。當然還有兩單點但書：&lt;/p&gt;
 &lt;ul&gt;
@@ -286,35 +216,31 @@
 &lt;li&gt;擴充方法所在類別需為靜態類別&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;根據以上方式，我們可以快速的把我們剛剛在轉型類別中撰寫的轉型方法，快速成為擴充方法。而this是寫在方法第一個傳入型別前，C#會幫我們把該方法偽裝成第一個傳入型別的方法，在執行時還是執行轉型類別中的方法。所以我們只要做以下修改，就能轉成為擴充方法：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%955.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96%E6%93%B4%E5%85%85%E6%96%B9%E6%B3%955.png"&gt;&lt;/p&gt;
 &lt;p&gt;使用這個方法時就能直接使用，C#會提示我們這是擴充方法，非常地方便。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-24.png&#34;&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-25.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>現成委派類 - Func &lt;T&gt; 與 Action &lt;T&gt;</title>
-      <link>http://localhost:1313/%E7%8F%BE%E6%88%90%E5%A7%94%E6%B4%BE%E9%A1%9E-func-%E8%88%87-action/</link>
-      <pubDate>Sat, 19 Oct 2019 20:19:03 +0800</pubDate>
-      <guid>http://localhost:1313/%E7%8F%BE%E6%88%90%E5%A7%94%E6%B4%BE%E9%A1%9E-func-%E8%88%87-action/</guid>
-      <description>&lt;p&gt;&lt;em&gt;最近開始會慢慢的把我在iT邦幫忙鐵人賽中的文章轉回自己的wordpress上&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-24.png"&gt; &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2-25.png"&gt;&lt;/p&gt;</description></item><item><title>現成委派類 - Func &lt;T&gt; 與 Action &lt;T&gt;</title><link>https://dannyliu.me/%E7%8F%BE%E6%88%90%E5%A7%94%E6%B4%BE%E9%A1%9E-func-%E8%88%87-action/</link><pubDate>Sat, 19 Oct 2019 20:19:03 +0800</pubDate><guid>https://dannyliu.me/%E7%8F%BE%E6%88%90%E5%A7%94%E6%B4%BE%E9%A1%9E-func-%E8%88%87-action/</guid><description>&lt;p&gt;&lt;em&gt;最近開始會慢慢的把我在iT邦幫忙鐵人賽中的文章轉回自己的wordpress上&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;前幾天提到委派時，在那時候用delegate設計了需要把外部方法傳入物件裡面的類別如下：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96de3.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96de3.png"&gt;&lt;/p&gt;
 &lt;p&gt;我們建立委派類別來限制從外部傳入方法的傳入型別種類與數量，並且限制其回傳型別，上述程式碼中定義了能被委派的方法是無回傳值(void)，並且要接受一個int傳入值(int i)，這是以我們自行設定委派類別的動作。我們之前在泛型時提到過填入型別會產生對應型別的程式碼，而在.NET Framework 3.5類別庫(與C#3.0一同推出)已經透過泛型定義好委派類別讓我們直接使用，減少我們額外的宣告委派的動作。而這些定義好的泛型delegate類別就是今天要講的 Func 與 Action。&lt;/p&gt;
-&lt;h2 id=&#34;現成委派類---func-t-與-action-t&#34;&gt;現成委派類 - Func &amp;lt;T&amp;gt; 與 Action &amp;lt;T&amp;gt;&lt;/h2&gt;
+&lt;h2 id="現成委派類---func-t-與-action-t"&gt;現成委派類 - Func &amp;lt;T&amp;gt; 與 Action &amp;lt;T&amp;gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Action - 接受沒有回傳值的void方法&lt;/li&gt;
 &lt;li&gt;Func - 接受有回傳值的方法&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;透過Action跟Func這些定義好的委派類別可以讓我們省略自己定義委派類別的步驟，而剛剛上述程式碼因為沒有回傳值所以要改用Action中的泛型Action＜T＞，並將傳入型別T改為int，結果如下：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96ActionD.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;net-framework原始碼-最基本的action-沒有傳入值也沒有回傳值-最基本的func-有一個回傳值但沒有傳入值&#34;&gt;.NET Framework原始碼 最基本的Action-沒有傳入值也沒有回傳值 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Action.png&#34;&gt;最基本的Func-有一個回傳值但沒有傳入值 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Func.png&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96ActionD.png"&gt;&lt;/p&gt;
+&lt;h2 id="net-framework原始碼-最基本的action-沒有傳入值也沒有回傳值-最基本的func-有一個回傳值但沒有傳入值"&gt;.NET Framework原始碼 最基本的Action-沒有傳入值也沒有回傳值 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Action.png"&gt;最基本的Func-有一個回傳值但沒有傳入值 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Func.png"&gt;&lt;/h2&gt;
 &lt;p&gt;以這個例子為例，如果我們要有string回傳值並且有int一個傳入值的方法，可以用Func&amp;lt;T,TResult&amp;gt;，前面的T寫傳入的型別，後面的TReult寫回傳的型別，&lt;/p&gt;
-&lt;p&gt;&lt;code&gt; public void 執行2(Func&amp;lt;int,string&amp;gt; 通知方法) { int 結果 = 123; 通知方法(結果); } &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;
+public void 執行2(Func&amp;lt;int,string&amp;gt; 通知方法)
+{
+int 結果 = 123;
+通知方法(結果);
+}
+&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;.NET Framework還定義了其他不同傳入數量的Action與Func&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Action2.png&#34;&gt; &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Func2.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;回頭看看&#34;&gt;回頭看看&lt;/h2&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Action2.png"&gt; &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96Func2.png"&gt;&lt;/p&gt;
+&lt;h2 id="回頭看看"&gt;回頭看看&lt;/h2&gt;
 &lt;p&gt;我們在使用這個計算類別時，因為C#2.0的語法省略宣告委派直接將方法傳入，如下：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96de4-1.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;最後可以看到明明是透過delegate委派來傳遞方法，但是透過Func與Action來撰寫程式碼的過程中讓我們有種delegate已經消失的感覺。&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/10/%E6%93%B7%E5%8F%96de4-1.png"&gt;&lt;/p&gt;
+&lt;p&gt;最後可以看到明明是透過delegate委派來傳遞方法，但是透過Func與Action來撰寫程式碼的過程中讓我們有種delegate已經消失的感覺。&lt;/p&gt;</description></item></channel></rss>

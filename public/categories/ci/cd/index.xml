@@ -1,56 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>CI/CD on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/categories/ci/cd/</link>
-    <description>Recent content in CI/CD on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Sun, 08 Mar 2020 23:58:44 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/ci/cd/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>使用GitHub Actions 自動執行專案腳本</title>
-      <link>http://localhost:1313/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/</link>
-      <pubDate>Sun, 08 Mar 2020 23:58:44 +0800</pubDate>
-      <guid>http://localhost:1313/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/</guid>
-      <description>&lt;p&gt;之前我寫了一個.NET Core的爬蟲程式，放在GitHub上並啟動GitHub Actions，讓Actions每隔一段時間就幫我執行爬蟲程式，並將結果推送到另外一個respository去，想一想應該要來筆記一下。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/03/githubactionlogo.png&#34;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>CI/CD on Danny Liu's Blog</title><link>https://dannyliu.me/categories/ci/cd/</link><description>Recent content in CI/CD on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Sun, 08 Mar 2020 23:58:44 +0800</lastBuildDate><atom:link href="https://dannyliu.me/categories/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>使用GitHub Actions 自動執行專案腳本</title><link>https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/</link><pubDate>Sun, 08 Mar 2020 23:58:44 +0800</pubDate><guid>https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/</guid><description>&lt;p&gt;之前我寫了一個.NET Core的爬蟲程式，放在GitHub上並啟動GitHub Actions，讓Actions每隔一段時間就幫我執行爬蟲程式，並將結果推送到另外一個respository去，想一想應該要來筆記一下。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/03/githubactionlogo.png"&gt;&lt;/p&gt;
 &lt;p&gt;我們程式專案儲存至GitHub Respository後，可以設定在GitHub Action 執行CI/CD這類持續整合/持續部屬的服務。只要在專案中設定GitHub Action的Workflows工作流程文件檔yml檔，並在yml中設定觸發持行的時機，GitHub Actions就會幫我們自動執行。&lt;/p&gt;
-&lt;p&gt;整個Workflows的執行是運行在Azure virtual machine中的Standard_DS2_v2等級虛擬機器上，提供windows、ubuntu、macOS 三個執行環境，並有對應label，要用windows的話可以在yml檔中寫&lt;code&gt;windows-latest&lt;/code&gt;。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/03/githubaction4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;整個Workflows的執行是運行在Azure virtual machine中的Standard_DS2_v2等級虛擬機器上，提供windows、ubuntu、macOS 三個執行環境，並有對應label，要用windows的話可以在yml檔中寫&lt;code&gt;windows-latest&lt;/code&gt;。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/03/githubaction4.png"&gt;&lt;/p&gt;
 &lt;p&gt;文件上有寫說：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The GitHub-hosted runner application is a fork of the Azure Pipelines Agent.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;個人感覺GitHub被微軟買走之後才開始提供了Github Actions這個服務，也許我們可以說整個Github Actions就算都算源自於Azure Pipelines ？？？&lt;/p&gt;
-&lt;h1 id=&#34;開始使用github-actions&#34;&gt;開始使用GitHub Actions&lt;/h1&gt;
+&lt;h1 id="開始使用github-actions"&gt;開始使用GitHub Actions&lt;/h1&gt;
 &lt;p&gt;使用GitHub Actions第一個步驟就是先設定yml檔，雖然可以完全自己動手來寫，不過個人蠻常寫錯的，我們就先從GitHub提供的範本來改。&lt;/p&gt;
-&lt;h2 id=&#34;設定yml&#34;&gt;設定yml&lt;/h2&gt;
-&lt;p&gt;我們去自己的GitHub儲存庫中，點選的Actions標籤。這邊我點的是.NET Core的專案 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/03/githubaction1.png&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;選擇範本&#34;&gt;選擇範本&lt;/h3&gt;
-&lt;p&gt;進來Actions標籤後，可以看到GitHub建議我們可以使用.NET Core的yml範本來更改，成為我們的Workflows工作流程設定。點選&lt;code&gt;Set up this workflow&lt;/code&gt;來開使設定。 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/03/githubaction2-1.png&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;範本預設yml檔&#34;&gt;範本預設yml檔&lt;/h3&gt;
-&lt;p&gt;可以看到.NET Core的yml範本，如圖 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2020/03/githubaction3.png&#34;&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.NET Core&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;on&lt;/span&gt;:   &lt;span style=&#34;color:#75715e&#34;&gt;#指什麼時候要執行這個Workflows工作流程&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;push&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;branches&lt;/span&gt;: [ &lt;span style=&#34;color:#ae81ff&#34;&gt;master ]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#觸發執行的分支&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;pull_request&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;branches&lt;/span&gt;: [ &lt;span style=&#34;color:#ae81ff&#34;&gt;master ]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#觸發執行的分支&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;jobs&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;runs-on&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;ubuntu-latest &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#告訴GitHub Action這個Workflows要在什麼電腦環境執行&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;steps&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#f92672&#34;&gt;uses&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;actions/checkout@v2  &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#會幫我們的專案下載至剛建立的電腦環境中的臨時資料加&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Setup .NET Core&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;uses&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;actions/setup-dotnet@v1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;with&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;dotnet-version&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;3.1.101&lt;/span&gt;   &lt;span style=&#34;color:#75715e&#34;&gt;#設定要使用的dotnet core版本，會在執行Workflows時自動幫我們安裝該版本的.Net Core&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Build with dotnet&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;run&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;dotnet build --configuration Release  &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# run後面接的是會在這個專案中執行的指令&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;編寫好之後按右邊的&lt;code&gt;Start commit&lt;/code&gt;就會出發push事件執行這個Workflow&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;h2 id="設定yml"&gt;設定yml&lt;/h2&gt;
+&lt;p&gt;我們去自己的GitHub儲存庫中，點選的Actions標籤。這邊我點的是.NET Core的專案 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/03/githubaction1.png"&gt;&lt;/p&gt;
+&lt;h3 id="選擇範本"&gt;選擇範本&lt;/h3&gt;
+&lt;p&gt;進來Actions標籤後，可以看到GitHub建議我們可以使用.NET Core的yml範本來更改，成為我們的Workflows工作流程設定。點選&lt;code&gt;Set up this workflow&lt;/code&gt;來開使設定。 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/03/githubaction2-1.png"&gt;&lt;/p&gt;
+&lt;h3 id="範本預設yml檔"&gt;範本預設yml檔&lt;/h3&gt;
+&lt;p&gt;可以看到.NET Core的yml範本，如圖 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2020/03/githubaction3.png"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;.NET Core&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;on&lt;/span&gt;: &lt;span style="color:#75715e"&gt;#指什麼時候要執行這個Workflows工作流程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;push&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;branches&lt;/span&gt;: [ &lt;span style="color:#ae81ff"&gt;master ]&lt;/span&gt; &lt;span style="color:#75715e"&gt;#觸發執行的分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;pull_request&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;branches&lt;/span&gt;: [ &lt;span style="color:#ae81ff"&gt;master ]&lt;/span&gt; &lt;span style="color:#75715e"&gt;#觸發執行的分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;jobs&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;build&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;runs-on&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;ubuntu-latest &lt;/span&gt; &lt;span style="color:#75715e"&gt;#告訴GitHub Action這個Workflows要在什麼電腦環境執行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;steps&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;uses&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;actions/checkout@v2 &lt;/span&gt; &lt;span style="color:#75715e"&gt;#會幫我們的專案下載至剛建立的電腦環境中的臨時資料加&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Setup .NET Core&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;uses&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;actions/setup-dotnet@v1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;with&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;dotnet-version&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;3.1.101&lt;/span&gt; &lt;span style="color:#75715e"&gt;#設定要使用的dotnet core版本，會在執行Workflows時自動幫我們安裝該版本的.Net Core&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Build with dotnet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;run&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;dotnet build --configuration Release &lt;/span&gt; &lt;span style="color:#75715e"&gt;# run後面接的是會在這個專案中執行的指令&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;編寫好之後按右邊的&lt;code&gt;Start commit&lt;/code&gt;就會出發push事件執行這個Workflow&lt;/p&gt;</description></item></channel></rss>

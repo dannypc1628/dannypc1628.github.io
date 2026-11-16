@@ -1,129 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-tw" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>Linux | Danny Liu&#39;s Blog</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/categories/linux/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/linux/index.xml" title="rss">
-<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/categories/linux/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-</head>
-<body class="list" id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">首頁</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/categories/">Categories</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-  <h1>
-    Linux
-  </h1>
-</header>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">acme.sh 未正確更新憑證的 Bug
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。
+<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Linux | Danny Liu's Blog</title><meta name=keywords content><meta name=description content><meta name=author content><link rel=canonical href=https://dannyliu.me/categories/linux/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dannyliu.me/categories/linux/index.xml title=rss><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/categories/linux/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/categories/linux/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="Linux"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Linux"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/categories/>Categories</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Linux</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>acme.sh 未正確更新憑證的 Bug</h2></header><div class=entry-content><p>因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。
 憑證過期沒換的話，當你用瀏覽器瀏覽到憑證過期的網站，就會出現網站不安全的錯誤訊息。 然後我的部落格已經半年沒更換憑證了 XDD
 之前上班太忙，沒太寫文章。部落格也只是下 acme.sh 指令更新一下。然後就沒看了 XDD
 現在是懶得寫，畢竟是流水帳寫的又臭又長好麻煩。
@@ -133,21 +13,7 @@
 GitHub Issue！！！結果問題是套件官方的問題。Renew 憑證成功，但是返回的憑證還是舊的。 從去年四月到現在一年過去了，這個 isuue 還是 open 的….
 目前看來更新了 acme.sh 套件還是會有一樣的問題。可能之後要考慮更換套件。
 不過可以照 issue 討論的解法，去~/.acme.sh/網站域名/網站域名.conf找到你的域名的設定檔。 把內容中的以下項目刪除掉後，存檔，重新執行 renew 指令。就可以正確更新憑證。
-Le_OrderFinalize Le_LinkOrder Le_LinkCert Le_CertCreateTime Le_CertCreateTimeStr Le_NextRenewTimeStr Le_NextRenewTime acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please </p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2023-05-03T23:09:49+08:00'>May 3, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to acme.sh 未正確更新憑證的 Bug" href="http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。
+Le_OrderFinalize Le_LinkOrder Le_LinkCert Le_CertCreateTime Le_CertCreateTimeStr Le_NextRenewTimeStr Le_NextRenewTime acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please</p></div><footer class=entry-footer><span title=2023-05-03T23:09:49+08:00>May 3, 2023</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to acme.sh 未正確更新憑證的 Bug" href=https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Let's Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04</h2></header><div class=entry-content><p>部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。
 這個部落格是架在雲端服務商的虛擬機上，應該有五年了，使用Ubuntu 14.04，這版本都已經過了原廠的支援效期了還沒有升級XDD。
 因為作業系統是雲端服務商提供的，應該是有改過一點核心，好讓我們可以用網頁後台的方式來控制虛擬機。所以如果要升級OS，主機商是建議直接砍掉舊的虛擬機，直接開新的伺服器就好。
 不過想想搬家還真是一件費工夫的事，想到就懶了…，先處理眼下憑證過期的問題。
@@ -161,22 +27,7 @@ Le_OrderFinalize Le_LinkOrder Le_LinkCert Le_CertCreateTime Le_CertCreateTimeStr
 wget https://dl.eff.org/certbot-auto sudo mv certbot-auto /usr/local/bin/certbot sudo chown root /usr/local/bin/certbot sudo chmod 0755 /usr/local/bin/certbot 也試了其他方法
 每篇都說得煞有其事，胡亂try了幾天，最終還是放棄了XDD
 結論是不行，可能去年可以，但今年2021年6月我嘗試下來就是不行，一直會得到以下回應，表示你的系統不支援
-Skipping bootstrap because certbot-auto is deprecated on this system. Your system is not supported by certbot-auto anymore. Certbot cannot be installed. Please visit https://certbot.eff.org/ to check for other alternatives. 誒，又不是只有Certbot可以用，也有其他程式可以用，下次就來介紹前輩推薦給我的acme.sh
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2021-06-27T19:17:47+08:00'>June 27, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04" href="http://localhost:1313/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。
+Skipping bootstrap because certbot-auto is deprecated on this system. Your system is not supported by certbot-auto anymore. Certbot cannot be installed. Please visit https://certbot.eff.org/ to check for other alternatives. 誒，又不是只有Certbot可以用，也有其他程式可以用，下次就來介紹前輩推薦給我的acme.sh</p></div><footer class=entry-footer><span title=2021-06-27T19:17:47+08:00>June 27, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to Let's Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04" href=https://dannyliu.me/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法</h2></header><div class=entry-content><p>依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。
 這個問題的相關內容可以看到Will保哥在部落格文中CentOS 6.4 安裝後以金鑰登入出現 Server refused our key中，解釋問題的原因是SELinux這個增強Linux安全性的模組所導致。
 不過保哥本人是手動建立.ssh資料夾，我則是取巧以danny身分在CentOS中下了ssh指令
 ssh localhost 再度遠端連線到本機，讓ssh自動幫我產生.ssh相關資料夾，所以我的資料夾與檔案的SELinux Tag應該是正確的。
@@ -187,41 +38,15 @@ restorecon -R -v .ssh/ 使用後，依然無法登入。
 記得切到root帳號，再用cat查看secure紀錄
 cat /var/log/secure 可以看到最後一筆是剛剛ssh連線的紀錄
 Jan 8 23:45:47 localhost sshd[147675]: Authentication refused: bad ownership or modes for file /home/danny/.ssh/authorized_keys 告訴我們驗證被拒絕：因為使用者danny的authorized_keys這個檔案所有權或模式錯誤。第一時間會想到是檔案權限的問題，查詢其他設定金鑰的教學設定會要求要設定authorized_keys權限為600，改成600後真的可以登入成功，至於為什麼呢？
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2020-01-14T22:31:34+08:00'>January 14, 2020</span>&nbsp;·&nbsp;<span>2 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法" href="http://localhost:1313/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在CentOS 上用squid 建 reverse proxy 反向代理伺服器
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Linux上的proxy代理伺服器鳥哥是講squid，不過我看apache和Nginx也有proxy 模組 不過這次是講用squid當reverse proxy，把內部網站提供給外部瀏覽 例如內部網站www.danny.local(192.168.150.100)想給外部瀏覽，但為了安全性不能讓內部網站暴露在外 所以在外部架一台reverse proxy(192.168.123.187) 當替身(中間人)給外部瀏覽 先在DNS上設定要找www.danny.local這個網站的話去找替身192.168.123.187這台reverse proxy reverse proxy從設定檔中知道www.danny.local網站其實是在192.168.150.100上 由reverse proxy自己跟本尊192.168.150.100拿到www.danny.local資料後轉交給外部瀏覽者 對外部使用者來說reverse proxy就是他要的www.danny.local 安裝squid這個代理伺服器軟體
+...</p></div><footer class=entry-footer><span title=2020-01-14T22:31:34+08:00>January 14, 2020</span>&nbsp;·&nbsp;<span>2 分鐘</span></footer><a class=entry-link aria-label="post link to CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法" href=https://dannyliu.me/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在CentOS 上用squid 建 reverse proxy 反向代理伺服器</h2></header><div class=entry-content><p>Linux上的proxy代理伺服器鳥哥是講squid，不過我看apache和Nginx也有proxy 模組 不過這次是講用squid當reverse proxy，把內部網站提供給外部瀏覽 例如內部網站www.danny.local(192.168.150.100)想給外部瀏覽，但為了安全性不能讓內部網站暴露在外 所以在外部架一台reverse proxy(192.168.123.187) 當替身(中間人)給外部瀏覽 先在DNS上設定要找www.danny.local這個網站的話去找替身192.168.123.187這台reverse proxy reverse proxy從設定檔中知道www.danny.local網站其實是在192.168.150.100上 由reverse proxy自己跟本尊192.168.150.100拿到www.danny.local資料後轉交給外部瀏覽者 對外部使用者來說reverse proxy就是他要的www.danny.local 安裝squid這個代理伺服器軟體
 yum install squid 因為CentOS 7 上的squid已經提供最簡單的基本設定檔，只要改幾個值就能成為reverse proxy反向代理伺服器 首先到/etc/squid資料夾，編輯squid設定檔squid.conf
 vi /etc/squid/squid.conf 外部使用者要瀏覽網站都是找80port，所以我們要將設定檔中預設把監聽埠從3128改成80如下
 http_port 80 accel vhost vport 有些文章說prot 3130要關掉，但我看這份基本設定檔預設本來是關閉的 然後在設定檔最後面額外加入這幾段 加入本尊的ip地址192.168.150.100，名字叫dannywebsite 把本尊dannywebsite的資料，轉交給找www.danny.local的人
-#reverse proxy settingcache_peer 192.168.150.100 parent 80 0 no-query originserver round-robin weight=1 name=dannywebsitecache_peer_domain dannywebsite www.danny.localcache_peer_access dannywebsite allow all 啟動squid
-/etc/init.d/squid start 完成
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-01-14T15:06:05+08:00'>January 14, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在CentOS 上用squid 建 reverse proxy 反向代理伺服器" href="http://localhost:1313/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">CentOS 7 新增網卡並設定IP的方式
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
+#reverse proxy setting
+cache_peer 192.168.150.100 parent 80 0 no-query originserver round-robin weight=1 name=dannywebsite
+cache_peer_domain dannywebsite www.danny.local
+cache_peer_access dannywebsite allow all 啟動squid
+/etc/init.d/squid start 完成</p></div><footer class=entry-footer><span title=2019-01-14T15:06:05+08:00>January 14, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在CentOS 上用squid 建 reverse proxy 反向代理伺服器" href=https://dannyliu.me/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>CentOS 7 新增網卡並設定IP的方式</h2></header><div class=entry-content><p>我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
 新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip
 一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：
 yum install net-tools 如果不想裝ifconfig，CentOS可以用指令：
@@ -233,152 +58,24 @@ cd /etc/sysconfig/network-scripts ls 可以看到有已經有eth0網卡的設定
 cp ifcfg-eth0 ifcfg-eth1 這邊用vi編輯器編輯ifcfg-eth1：
 vi ifcfg-eth1 按i進入編輯模式並修改如下圖黃字
 取得IP的方式要從自動取得IP改成指定的固定IP需要將BOOTPROTO=dhcp改成BOOTPROTO=static靜態 Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網卡UUID 開機時自動啟動網卡選YesONBOOT=yes 我這次設定沒用到ZONE就先刪掉 加入IP地址與遮罩 IPADDR=192.168.150.104 NETMASK=255.255.255.0 按Esc鍵離開編輯模式，輸入:wq後按Enterr鍵 儲存並離開編輯器 重啟eth1網卡並檢查網卡ip
-ifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!
-</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-01-13T18:10:34+08:00'>January 13, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to CentOS 7 新增網卡並設定IP的方式" href="http://localhost:1313/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">設定 CentOS 7 開機時自動執行重啟網卡指令
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我用hyper-v裝的CentOS每次開機或重新開機都沒網路，也不曉得其他Linux會不會也這樣 雖然些先前文章中｢遇到CentOS 7 在Hyper-V虛擬機中，沒有自動取得IP的修復方法」 知道重啟網卡就好，只是每次都要開虛擬機覺得太麻煩 不如讓系統自己開機時就重新下ifdown ifup 來重新啟動網卡 以下都是以root身份來操作 去 /var/log 資料夾 下指令看messages這個記錄檔
-grep -n &#39;eth0&#39; messages 第1049行可以看到每次開機時，網卡eth0 總是disconnected 要讓Linux開機時執行自訂的腳本和指令都是放在 /etc/rc.d/rc.local 這個檔案裡 而現在最新版的CentOS設定是放在 /etc/systemd/system 要讓開機時，系統程式systemd會執行/etc/rc.d/rc.local裡面寫的腳本和指令，需要做以下設定 確定systemd的rc-local.service中的檔案位置為/etc/rc.d/rc.local
+ifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!</p></div><footer class=entry-footer><span title=2019-01-13T18:10:34+08:00>January 13, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to CentOS 7 新增網卡並設定IP的方式" href=https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>設定 CentOS 7 開機時自動執行重啟網卡指令</h2></header><div class=entry-content><p>我用hyper-v裝的CentOS每次開機或重新開機都沒網路，也不曉得其他Linux會不會也這樣 雖然些先前文章中｢遇到CentOS 7 在Hyper-V虛擬機中，沒有自動取得IP的修復方法」 知道重啟網卡就好，只是每次都要開虛擬機覺得太麻煩 不如讓系統自己開機時就重新下ifdown ifup 來重新啟動網卡 以下都是以root身份來操作 去 /var/log 資料夾 下指令看messages這個記錄檔
+grep -n 'eth0' messages 第1049行可以看到每次開機時，網卡eth0 總是disconnected 要讓Linux開機時執行自訂的腳本和指令都是放在 /etc/rc.d/rc.local 這個檔案裡 而現在最新版的CentOS設定是放在 /etc/systemd/system 要讓開機時，系統程式systemd會執行/etc/rc.d/rc.local裡面寫的腳本和指令，需要做以下設定 確定systemd的rc-local.service中的檔案位置為/etc/rc.d/rc.local
 systemctl status rc-local.service 但是rc.local檔預設是不可執行，所以rc-local.service這個服務並不會啟動 移動到/etc/rc.d/資料夾 設定rc.local檔案為可執行
-chmod &#43;x rc.local 修改rc.local內容，寫入讓eth0網卡重新啟動的指令 讓systemd設定檔重新載入
+chmod +x rc.local 修改rc.local內容，寫入讓eth0網卡重新啟動的指令 讓systemd設定檔重新載入
 systemctl daemon-reload 檢查systemd啟動時要執行的服務有沒有顯示rc-local.service
-systemctl list-dependencies multi-user.target | grep rc-local重開機後，遠端連線成功看一下message記錄檔grep -n &#39;eth0\|rc.local&#39; messages成功，灑花 </p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2019-01-06T16:25:45+08:00'>January 6, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 設定 CentOS 7 開機時自動執行重啟網卡指令" href="http://localhost:1313/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>今天在Linux上按照微軟的安裝步驟安裝完.net Core 2.1 用dotnet --version 檢查有無安裝成功卻出現以下的錯誤訊息
-Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory Failed to bind to CoreCLR at &#39;/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so&#39; google到的可能原因是還有些套件沒有安裝，微軟網站上有需要安裝的套件列表，但依照這個說明NET Core 2.1應該是不用安裝libunwind和libuuid
+systemctl list-dependencies multi-user.target | grep rc-local
+重開機後，遠端連線成功
+看一下message記錄檔
+grep -n 'eth0\|rc.local' messages
+成功，灑花</p></div><footer class=entry-footer><span title=2019-01-06T16:25:45+08:00>January 6, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 設定 CentOS 7 開機時自動執行重啟網卡指令" href=https://dannyliu.me/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法</h2></header><div class=entry-content><p>今天在Linux上按照微軟的安裝步驟安裝完.net Core 2.1 用dotnet --version 檢查有無安裝成功卻出現以下的錯誤訊息
+Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory Failed to bind to CoreCLR at '/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so' google到的可能原因是還有些套件沒有安裝，微軟網站上有需要安裝的套件列表，但依照這個說明NET Core 2.1應該是不用安裝libunwind和libuuid
 CentOS distributions require the following libraries installed:
 lttng-ust libcurl openssl-libs krb5-libs libicu zlib For versions earlier than .NET Core 2.1, following dependencies are also required:
 libunwind libuuid 用 su - 提升到root權限 用 yum list installed 查詢現在已安裝的套件清單
 不過列出的套件太多
 改用grep各別搜尋清單中有無該套件，若無再進行安裝
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2018-08-27T01:16:13+08:00'>August 27, 2018</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
-  <a class="entry-link" aria-label="post link to 在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法" href="http://localhost:1313/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"></a>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        
-        let menuScrollTimeout;
-        menu.addEventListener("scroll", function () {
-            clearTimeout(menuScrollTimeout);
-            menuScrollTimeout = setTimeout(function () {
-                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-            }, 150);
-        }, { passive: true });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                target.scrollIntoView();
-            }
-            
-            
-            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
-                target.setAttribute("tabindex", "-1");
-            }
-            target.focus({ preventScroll: true });
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    var scrollTicking = false;
-    
-    window.addEventListener("scroll", function () {
-        if (scrollTicking) {
-            return;
-        }
-        scrollTicking = true;
-        requestAnimationFrame(function () {
-            const scrollThreshold = window.innerHeight;
-            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
-            toplink.classList.toggle("hidden", !shown);
-            scrollTicking = false;
-        });
-    }, { passive: true });
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
+...</p></div><footer class=entry-footer><span title=2018-08-27T01:16:13+08:00>August 27, 2018</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法" href=https://dannyliu.me/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

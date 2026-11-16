@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-tw" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>CentOS 7 新增網卡並設定IP的方式 | Danny Liu&#39;s Blog</title>
-<meta name="keywords" content="CentOS">
-<meta name="description" content="我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
+<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>CentOS 7 新增網卡並設定IP的方式 | Danny Liu's Blog</title><meta name=keywords content="CentOS"><meta name=description content="我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
 新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip
 一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：
 yum install net-tools
@@ -42,324 +33,50 @@ Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網�
 ifdown eth1
 ifup eth1
 ip address
-點擊圖片 設定成功!">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">首頁</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/posts/">Posts</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      CentOS 7 新增網卡並設定IP的方式
-    </h1>
-    <div class="post-meta">
-
-<span title='2019-01-13T18:10:34+08:00'>January 13, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span>
-
-</div>
-  </header> 
-  <div class="post-content md-content"><p>我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP</p>
-<p>新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip</p>
-<p>一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有<code>ifconfig</code>這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install net-tools
-</span></span></code></pre></div><p>如果不想裝ifconfig，CentOS可以用指令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip address
-</span></span></code></pre></div><p>看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址</p>
-<p><img loading="lazy" src="/wp-content/uploads/2019/01/ipaddress-1.png"></p>
-<p>用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmcli connection show
-</span></span></code></pre></div><p><img loading="lazy" src="/wp-content/uploads/2019/01/nmcli-1.png"></p>
-<p>先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/sysconfig/network-scripts
-</span></span><span style="display:flex;"><span>ls
-</span></span></code></pre></div><p>可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔</p>
-<p><img loading="lazy" src="/wp-content/uploads/2019/01/eth0-1.png"></p>
-<p>所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp ifcfg-eth0 ifcfg-eth1
-</span></span></code></pre></div><p><img loading="lazy" src="/wp-content/uploads/2019/01/eth1-1.png"></p>
-<p>這邊用vi編輯器編輯ifcfg-eth1：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi ifcfg-eth1
-</span></span></code></pre></div><p>按i進入編輯模式並修改如下圖黃字</p>
-<p><img loading="lazy" src="/wp-content/uploads/2019/01/ifcfigeth1-4-1.png"></p>
-<ol>
-<li>取得IP的方式要從自動取得IP改成指定的固定IP需要將<code>BOOTPROTO=dhcp</code>改成<code>BOOTPROTO=static</code>靜態</li>
-<li>Name跟Device都是命名為<code>eth1</code>，並在<code>UUID</code>欄位打上剛剛複製的新網卡UUID</li>
-<li>開機時自動啟動網卡選Yes<code>ONBOOT=yes</code></li>
-<li>我這次設定沒用到ZONE就先刪掉</li>
-<li>加入IP地址與遮罩 <code>IPADDR=192.168.150.104</code> <code>NETMASK=255.255.255.0</code></li>
-<li>按<code>Esc</code>鍵離開編輯模式，輸入<code>:wq</code>後按<code>Enterr鍵</code> 儲存並離開編輯器</li>
-</ol>
-<p>重啟eth1網卡並檢查網卡ip</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ifdown eth1
-</span></span><span style="display:flex;"><span>ifup eth1
-</span></span><span style="display:flex;"><span>ip address
-</span></span></code></pre></div><p><a href="/wp-content/uploads/2019/01/saveeth2-1.png"><img loading="lazy" src="/wp-content/uploads/2019/01/saveeth2-1.png"></a>點擊圖片 設定成功!</p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/centos/">CentOS</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="http://localhost:1313/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/">
-    <span class="title">« 上一頁</span>
-    <span>在CentOS 上用squid 建 reverse proxy 反向代理伺服器</span>
-  </a>
-  <a class="next" href="http://localhost:1313/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/">
-    <span class="title">下一頁 »</span>
-    <span>設定 CentOS 7 開機時自動執行重啟網卡指令</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Danny Liu&#39;s Blog</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        
-        let menuScrollTimeout;
-        menu.addEventListener("scroll", function () {
-            clearTimeout(menuScrollTimeout);
-            menuScrollTimeout = setTimeout(function () {
-                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-            }, 150);
-        }, { passive: true });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                target.scrollIntoView();
-            }
-            
-            
-            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
-                target.setAttribute("tabindex", "-1");
-            }
-            target.focus({ preventScroll: true });
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    var scrollTicking = false;
-    
-    window.addEventListener("scroll", function () {
-        if (scrollTicking) {
-            return;
-        }
-        scrollTicking = true;
-        requestAnimationFrame(function () {
-            const scrollThreshold = window.innerHeight;
-            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
-            toplink.classList.toggle("hidden", !shown);
-            scrollTicking = false;
-        });
-    }, { passive: true });
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '複製';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已複製！';
-            setTimeout(() => {
-                copybutton.innerHTML = '複製';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+點擊圖片 設定成功!"><meta name=author content><link rel=canonical href=https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="CentOS 7 新增網卡並設定IP的方式"><meta property="og:description" content="我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
+新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip
+一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：
+yum install net-tools 如果不想裝ifconfig，CentOS可以用指令：
+ip address 看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址
+用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到
+nmcli connection show 先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單
+cd /etc/sysconfig/network-scripts ls 可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔
+所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：
+cp ifcfg-eth0 ifcfg-eth1 這邊用vi編輯器編輯ifcfg-eth1：
+vi ifcfg-eth1 按i進入編輯模式並修改如下圖黃字
+取得IP的方式要從自動取得IP改成指定的固定IP需要將BOOTPROTO=dhcp改成BOOTPROTO=static靜態 Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網卡UUID 開機時自動啟動網卡選YesONBOOT=yes 我這次設定沒用到ZONE就先刪掉 加入IP地址與遮罩 IPADDR=192.168.150.104 NETMASK=255.255.255.0 按Esc鍵離開編輯模式，輸入:wq後按Enterr鍵 儲存並離開編輯器 重啟eth1網卡並檢查網卡ip
+ifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-01-13T18:10:34+08:00"><meta property="article:modified_time" content="2019-01-13T18:10:34+08:00"><meta property="article:tag" content="CentOS"><meta name=twitter:card content="summary"><meta name=twitter:title content="CentOS 7 新增網卡並設定IP的方式"><meta name=twitter:description content="我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP
+新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip
+一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：
+yum install net-tools 如果不想裝ifconfig，CentOS可以用指令：
+ip address 看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址
+用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到
+nmcli connection show 先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單
+cd /etc/sysconfig/network-scripts ls 可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔
+所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：
+cp ifcfg-eth0 ifcfg-eth1 這邊用vi編輯器編輯ifcfg-eth1：
+vi ifcfg-eth1 按i進入編輯模式並修改如下圖黃字
+取得IP的方式要從自動取得IP改成指定的固定IP需要將BOOTPROTO=dhcp改成BOOTPROTO=static靜態 Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網卡UUID 開機時自動啟動網卡選YesONBOOT=yes 我這次設定沒用到ZONE就先刪掉 加入IP地址與遮罩 IPADDR=192.168.150.104 NETMASK=255.255.255.0 按Esc鍵離開編輯模式，輸入:wq後按Enterr鍵 儲存並離開編輯器 重啟eth1網卡並檢查網卡ip
+ifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"},{"@type":"ListItem","position":2,"name":"CentOS 7 新增網卡並設定IP的方式","item":"https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"CentOS 7 新增網卡並設定IP的方式","name":"CentOS 7 新增網卡並設定IP的方式","description":"我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP\n新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip\n一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：\nyum install net-tools 如果不想裝ifconfig，CentOS可以用指令：\nip address 看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址\n用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到\nnmcli connection show 先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單\ncd /etc/sysconfig/network-scripts ls 可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔\n所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：\ncp ifcfg-eth0 ifcfg-eth1 這邊用vi編輯器編輯ifcfg-eth1：\nvi ifcfg-eth1 按i進入編輯模式並修改如下圖黃字\n取得IP的方式要從自動取得IP改成指定的固定IP需要將BOOTPROTO=dhcp改成BOOTPROTO=static靜態 Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網卡UUID 開機時自動啟動網卡選YesONBOOT=yes 我這次設定沒用到ZONE就先刪掉 加入IP地址與遮罩 IPADDR=192.168.150.104 NETMASK=255.255.255.0 按Esc鍵離開編輯模式，輸入:wq後按Enterr鍵 儲存並離開編輯器 重啟eth1網卡並檢查網卡ip\nifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!\n","keywords":["CentOS"],"articleBody":"我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP\n新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip\n一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有ifconfig這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：\nyum install net-tools 如果不想裝ifconfig，CentOS可以用指令：\nip address 看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址\n用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到\nnmcli connection show 先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單\ncd /etc/sysconfig/network-scripts ls 可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔\n所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：\ncp ifcfg-eth0 ifcfg-eth1 這邊用vi編輯器編輯ifcfg-eth1：\nvi ifcfg-eth1 按i進入編輯模式並修改如下圖黃字\n取得IP的方式要從自動取得IP改成指定的固定IP需要將BOOTPROTO=dhcp改成BOOTPROTO=static靜態 Name跟Device都是命名為eth1，並在UUID欄位打上剛剛複製的新網卡UUID 開機時自動啟動網卡選YesONBOOT=yes 我這次設定沒用到ZONE就先刪掉 加入IP地址與遮罩 IPADDR=192.168.150.104 NETMASK=255.255.255.0 按Esc鍵離開編輯模式，輸入:wq後按Enterr鍵 儲存並離開編輯器 重啟eth1網卡並檢查網卡ip\nifdown eth1 ifup eth1 ip address 點擊圖片 設定成功!\n","wordCount":"55","inLanguage":"zh-tw","datePublished":"2019-01-13T18:10:34+08:00","dateModified":"2019-01-13T18:10:34+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/"},"publisher":{"@type":"Organization","name":"Danny Liu's Blog","logo":{"@type":"ImageObject","url":"https://dannyliu.me/favicon.png"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/posts/>Posts</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">CentOS 7 新增網卡並設定IP的方式</h1><div class=post-meta><span title=2019-01-13T18:10:34+08:00>January 13, 2019</span>&nbsp;·&nbsp;<span>1 分鐘</span></div></header><div class="post-content md-content"><p>我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP</p><p>新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip</p><p>一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有<code>ifconfig</code>這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>yum install net-tools
+</span></span></code></pre></div><p>如果不想裝ifconfig，CentOS可以用指令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ip address
+</span></span></code></pre></div><p>看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址</p><p><img loading=lazy src=/wp-content/uploads/2019/01/ipaddress-1.png></p><p>用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>nmcli connection show
+</span></span></code></pre></div><p><img loading=lazy src=/wp-content/uploads/2019/01/nmcli-1.png></p><p>先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cd /etc/sysconfig/network-scripts
+</span></span><span style=display:flex><span>ls
+</span></span></code></pre></div><p>可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔</p><p><img loading=lazy src=/wp-content/uploads/2019/01/eth0-1.png></p><p>所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cp ifcfg-eth0 ifcfg-eth1
+</span></span></code></pre></div><p><img loading=lazy src=/wp-content/uploads/2019/01/eth1-1.png></p><p>這邊用vi編輯器編輯ifcfg-eth1：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>vi ifcfg-eth1
+</span></span></code></pre></div><p>按i進入編輯模式並修改如下圖黃字</p><p><img loading=lazy src=/wp-content/uploads/2019/01/ifcfigeth1-4-1.png></p><ol><li>取得IP的方式要從自動取得IP改成指定的固定IP需要將<code>BOOTPROTO=dhcp</code>改成<code>BOOTPROTO=static</code>靜態</li><li>Name跟Device都是命名為<code>eth1</code>，並在<code>UUID</code>欄位打上剛剛複製的新網卡UUID</li><li>開機時自動啟動網卡選Yes<code>ONBOOT=yes</code></li><li>我這次設定沒用到ZONE就先刪掉</li><li>加入IP地址與遮罩 <code>IPADDR=192.168.150.104</code> <code>NETMASK=255.255.255.0</code></li><li>按<code>Esc</code>鍵離開編輯模式，輸入<code>:wq</code>後按<code>Enterr鍵</code> 儲存並離開編輯器</li></ol><p>重啟eth1網卡並檢查網卡ip</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ifdown eth1
+</span></span><span style=display:flex><span>ifup eth1
+</span></span><span style=display:flex><span>ip address
+</span></span></code></pre></div><p><a href=/wp-content/uploads/2019/01/saveeth2-1.png><img loading=lazy src=/wp-content/uploads/2019/01/saveeth2-1.png></a>點擊圖片 設定成功!</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dannyliu.me/tags/centos/>CentOS</a></li></ul><nav class=paginav><a class=prev href=https://dannyliu.me/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/><span class=title>« 上一頁</span>
+<span>在CentOS 上用squid 建 reverse proxy 反向代理伺服器</span>
+</a><a class=next href=https://dannyliu.me/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/><span class=title>下一頁 »</span>
+<span>設定 CentOS 7 開機時自動執行重啟網卡指令</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="複製";function s(){t.innerHTML="已複製！",setTimeout(()=>{t.innerHTML="複製"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

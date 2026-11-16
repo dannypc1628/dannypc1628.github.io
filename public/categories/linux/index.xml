@@ -1,149 +1,106 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Linux on Danny Liu&#39;s Blog</title>
-    <link>http://localhost:1313/categories/linux/</link>
-    <description>Recent content in Linux on Danny Liu&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>zh-TW</language>
-    <lastBuildDate>Wed, 03 May 2023 23:09:49 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>acme.sh 未正確更新憑證的 Bug</title>
-      <link>http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</link>
-      <pubDate>Wed, 03 May 2023 23:09:49 +0800</pubDate>
-      <guid>http://localhost:1313/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</guid>
-      <description>&lt;p&gt;因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。&lt;/p&gt;
-&lt;p&gt;憑證過期沒換的話，當你用瀏覽器瀏覽到憑證過期的網站，就會出現網站不安全的錯誤訊息。 &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2023/05/image-1683125427452.png&#34;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on Danny Liu's Blog</title><link>https://dannyliu.me/categories/linux/</link><description>Recent content in Linux on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Wed, 03 May 2023 23:09:49 +0800</lastBuildDate><atom:link href="https://dannyliu.me/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>acme.sh 未正確更新憑證的 Bug</title><link>https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</link><pubDate>Wed, 03 May 2023 23:09:49 +0800</pubDate><guid>https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/</guid><description>&lt;p&gt;因為使用免費憑證，有效時間只有三個月，所以每三個月都要更新憑證。&lt;/p&gt;
+&lt;p&gt;憑證過期沒換的話，當你用瀏覽器瀏覽到憑證過期的網站，就會出現網站不安全的錯誤訊息。 &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2023/05/image-1683125427452.png"&gt;&lt;/p&gt;
 &lt;p&gt;然後我的部落格已經半年沒更換憑證了 XDD&lt;/p&gt;
 &lt;p&gt;之前上班太忙，沒太寫文章。部落格也只是下 acme.sh 指令更新一下。然後就沒看了 XDD&lt;/p&gt;
 &lt;p&gt;現在是懶得寫，畢竟是流水帳寫的又臭又長好麻煩。&lt;/p&gt;
 &lt;p&gt;回歸正題。自動更新功能我一直打不開，就只能每三個月上線手動更新一下。&lt;/p&gt;
 &lt;p&gt;明明指令顯示的結果是更新成功，檔案的更新時間也是當下最新。結果網站看到的結果還是憑證過期 XD。&lt;/p&gt;
 &lt;p&gt;誒&amp;hellip;..一拖就拖了半年。終於有時間好好看這個問題了。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/acmesh-official/acme.sh/issues/4041&#34; title=&#34;GitHub Issue&#34;&gt;GitHub Issue&lt;/a&gt;！！！結果問題是套件官方的問題。Renew 憑證成功，但是返回的憑證還是舊的。 從去年四月到現在一年過去了，這個 isuue 還是 open 的&amp;hellip;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/acmesh-official/acme.sh/issues/4041" title="GitHub Issue"&gt;GitHub Issue&lt;/a&gt;！！！結果問題是套件官方的問題。Renew 憑證成功，但是返回的憑證還是舊的。 從去年四月到現在一年過去了，這個 isuue 還是 open 的&amp;hellip;.&lt;/p&gt;
 &lt;p&gt;目前看來更新了 acme.sh 套件還是會有一樣的問題。可能之後要考慮更換套件。&lt;/p&gt;
 &lt;p&gt;不過可以照 issue 討論的解法，去&lt;code&gt;~/.acme.sh/網站域名/網站域名.conf&lt;/code&gt;找到你的域名的設定檔。 把內容中的以下項目刪除掉後，存檔，重新執行 renew 指令。就可以正確更新憑證。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_OrderFinalize
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_LinkOrder
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_LinkCert
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_CertCreateTime
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_CertCreateTimeStr
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_NextRenewTimeStr
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Le_NextRenewTime
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04</title>
-      <link>http://localhost:1313/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/</link>
-      <pubDate>Sun, 27 Jun 2021 19:17:47 +0800</pubDate>
-      <guid>http://localhost:1313/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/</guid>
-      <description>&lt;p&gt;部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_OrderFinalize
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_LinkOrder
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_LinkCert
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_CertCreateTime
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_CertCreateTimeStr
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_NextRenewTimeStr
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Le_NextRenewTime
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;acme.sh --renew -d 網站域名 --yes-I-know-dns-manual-mode-enough-go-ahead-please
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Let's Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04</title><link>https://dannyliu.me/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/</link><pubDate>Sun, 27 Jun 2021 19:17:47 +0800</pubDate><guid>https://dannyliu.me/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/</guid><description>&lt;p&gt;部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。&lt;/p&gt;
 &lt;p&gt;這個部落格是架在雲端服務商的虛擬機上，應該有五年了，使用Ubuntu 14.04，這版本都已經過了原廠的支援效期了還沒有升級XDD。&lt;/p&gt;
 &lt;p&gt;因為作業系統是雲端服務商提供的，應該是有改過一點核心，好讓我們可以用網頁後台的方式來控制虛擬機。所以如果要升級OS，主機商是建議直接砍掉舊的虛擬機，直接開新的伺服器就好。&lt;/p&gt;
 &lt;p&gt;不過想想搬家還真是一件費工夫的事，想到就懶了&amp;hellip;，先處理眼下憑證過期的問題。&lt;/p&gt;
-&lt;p&gt;網路上有很多文章撰寫介紹Let&amp;rsquo;s Encrypt提供的免費SSL憑證，想說趁這個機會來用一下，就不要花錢買憑證了XD &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2021/06/image-1624792708747.png&#34;&gt; Let&amp;rsquo;s Encrypt提供的免費憑證為3個月的效期，時間到的話要重新申請(不限次數)。&lt;/p&gt;
+&lt;p&gt;網路上有很多文章撰寫介紹Let&amp;rsquo;s Encrypt提供的免費SSL憑證，想說趁這個機會來用一下，就不要花錢買憑證了XD &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/06/image-1624792708747.png"&gt; Let&amp;rsquo;s Encrypt提供的免費憑證為3個月的效期，時間到的話要重新申請(不限次數)。&lt;/p&gt;
 &lt;p&gt;取得Let&amp;rsquo;s Encrypt憑證最簡單的方法就是使用從&lt;code&gt;SSL For Free&lt;/code&gt;網站取得Let&amp;rsquo;s Encrypt憑證，結果因為該網站改版現在只能拿到ZeroSSL的免費憑證(有申請次數限制3次)。&lt;/p&gt;
-&lt;p&gt;變成只能乖乖地使用Let&amp;rsquo;s Encrypt官方推薦的&lt;a href=&#34;https://certbot.eff.org/&#34; title=&#34;certbot&#34;&gt;certbot&lt;/a&gt;機器人程式，自動幫你取得憑證裝在你的網站主機上。&lt;/p&gt;
+&lt;p&gt;變成只能乖乖地使用Let&amp;rsquo;s Encrypt官方推薦的&lt;a href="https://certbot.eff.org/" title="certbot"&gt;certbot&lt;/a&gt;機器人程式，自動幫你取得憑證裝在你的網站主機上。&lt;/p&gt;
 &lt;p&gt;官方說明寫得很簡單，指定網頁伺服器(apache、nginx&amp;hellip;)與作業系統(centos、ubuntu&amp;hellip;)，依照對應的教學安裝工具就能自動取得憑證。&lt;/p&gt;
 &lt;p&gt;但很不巧的，列表中並沒有支援Ubuntu 14.04，至少要16.04版以上才能支援，起初以為是certbot工具改版的關係，所以無法支援。&lt;/p&gt;
-&lt;p&gt;於是找到了用舊版程式的安裝&lt;a href=&#34;https://stackoverflow.com/questions/58387923/unable-to-locate-package-python-certbot-apache-on-ubuntu-14-04-aws&#34; title=&#34;方法&#34;&gt;方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;於是找到了用舊版程式的安裝&lt;a href="https://stackoverflow.com/questions/58387923/unable-to-locate-package-python-certbot-apache-on-ubuntu-14-04-aws" title="方法"&gt;方法&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;這個說法是能使用已下方式取得並使用舊版的&lt;code&gt;certbot-auto&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://dl.eff.org/certbot-auto
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mv certbot-auto /usr/local/bin/certbot
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo chown root /usr/local/bin/certbot
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo chmod &lt;span style=&#34;color:#ae81ff&#34;&gt;0755&lt;/span&gt; /usr/local/bin/certbot
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也試了&lt;a href=&#34;https://certbot.eff.org/lets-encrypt/otherpip-apache&#34;&gt;其他方法&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wget https://dl.eff.org/certbot-auto
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo mv certbot-auto /usr/local/bin/certbot
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo chown root /usr/local/bin/certbot
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo chmod &lt;span style="color:#ae81ff"&gt;0755&lt;/span&gt; /usr/local/bin/certbot
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也試了&lt;a href="https://certbot.eff.org/lets-encrypt/otherpip-apache"&gt;其他方法&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;每篇都說得煞有其事，胡亂try了幾天，最終還是放棄了XDD&lt;/p&gt;
 &lt;p&gt;結論是不行，可能去年可以，但今年2021年6月我嘗試下來就是不行，一直會得到以下回應，表示你的系統不支援&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Skipping bootstrap because certbot-auto is deprecated on this system.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Your system is not supported by certbot-auto anymore.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Certbot cannot be installed.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Please visit https://certbot.eff.org/ to check &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; other alternatives.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;誒，又不是只有Certbot可以用，也有&lt;a href=&#34;https://letsencrypt.org/zh-tw/docs/client-options/&#34;&gt;其他程式&lt;/a&gt;可以用，下次就來介紹前輩推薦給我的&lt;a href=&#34;https://github.com/acmesh-official/acme.sh&#34;&gt;acme.sh&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法</title>
-      <link>http://localhost:1313/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</link>
-      <pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate>
-      <guid>http://localhost:1313/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</guid>
-      <description>&lt;p&gt;依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。&lt;/p&gt;
-&lt;p&gt;這個問題的相關內容可以看到Will保哥在部落格文中&lt;a href=&#34;https://blog.miniasp.com/post/2013/04/28/CentOS-64-unable-login-with-keys-due-to-SELinux&#34; title=&#34;Will保哥:CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&#34;&gt;CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&lt;/a&gt;中，解釋問題的原因是SELinux這個增強Linux安全性的模組所導致。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Skipping bootstrap because certbot-auto is deprecated on this system.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Your system is not supported by certbot-auto anymore.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Certbot cannot be installed.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Please visit https://certbot.eff.org/ to check &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; other alternatives.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;誒，又不是只有Certbot可以用，也有&lt;a href="https://letsencrypt.org/zh-tw/docs/client-options/"&gt;其他程式&lt;/a&gt;可以用，下次就來介紹前輩推薦給我的&lt;a href="https://github.com/acmesh-official/acme.sh"&gt;acme.sh&lt;/a&gt;&lt;/p&gt;</description></item><item><title>CentOS 7 用金鑰進行SSH遠端登入出現Server refused our key的解法</title><link>https://dannyliu.me/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</link><pubDate>Tue, 14 Jan 2020 22:31:34 +0800</pubDate><guid>https://dannyliu.me/centos-7-%E7%94%A8%E9%87%91%E9%91%B0%E9%80%B2%E8%A1%8Cssh%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5%E5%87%BA%E7%8F%BEserver-refused-our-key%E7%9A%84%E8%A7%A3%E6%B3%95/</guid><description>&lt;p&gt;依照之前設定Ubuntu中設定SSH遠端登入用金鑰後，依樣畫葫蘆設定在CentOS居然登入失敗出現Server refused our key的訊息，以往在Ubuntu上的經驗是手殘金鑰複製不完全重作就好，結果CentOS的原因完全不一樣在此紀錄一下。&lt;/p&gt;
+&lt;p&gt;這個問題的相關內容可以看到Will保哥在部落格文中&lt;a href="https://blog.miniasp.com/post/2013/04/28/CentOS-64-unable-login-with-keys-due-to-SELinux" title="Will保哥:CentOS 6.4 安裝後以金鑰登入出現 Server refused our key"&gt;CentOS 6.4 安裝後以金鑰登入出現 Server refused our key&lt;/a&gt;中，解釋問題的原因是SELinux這個增強Linux安全性的模組所導致。&lt;/p&gt;
 &lt;p&gt;不過保哥本人是手動建立.ssh資料夾，我則是取巧以danny身分在CentOS中下了ssh指令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssh localhost
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ssh localhost
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;再度遠端連線到本機，讓ssh自動幫我產生.ssh相關資料夾，所以我的資料夾與檔案的SELinux Tag應該是正確的。&lt;/p&gt;
 &lt;p&gt;但是要看SELinux標籤的話，&lt;code&gt;ls&lt;/code&gt;要多下一個&lt;code&gt;Z&lt;/code&gt;參數&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;danny@localhost .ssh&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;$ ls -laFZ
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:ssh_home_t:s0 ./
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:user_home_dir_t:s0 ../
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-rw-r--. danny danny unconfined_u:object_r:ssh_home_t:s0 authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-r--r--. danny danny unconfined_u:object_r:ssh_home_t:s0 known_hosts
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;[&lt;/span&gt;danny@localhost .ssh&lt;span style="color:#f92672"&gt;]&lt;/span&gt;$ ls -laFZ
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:ssh_home_t:s0 ./
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;drwx------. danny danny unconfined_u:object_r:user_home_dir_t:s0 ../
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-rw-rw-r--. danny danny unconfined_u:object_r:ssh_home_t:s0 authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;-rw-r--r--. danny danny unconfined_u:object_r:ssh_home_t:s0 known_hosts
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;看起來標籤都正確，擔心自己眼殘，在家目錄下用以下指令重設SELinux安全強化標籤的預設值&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;restorecon -R -v .ssh/
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;restorecon -R -v .ssh/
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用後，依然無法登入。&lt;/p&gt;
-&lt;h1 id=&#34;乖乖地先看ssh登入紀錄&#34;&gt;乖乖地，先看SSH登入紀錄&lt;/h1&gt;
+&lt;h1 id="乖乖地先看ssh登入紀錄"&gt;乖乖地，先看SSH登入紀錄&lt;/h1&gt;
 &lt;p&gt;CentOS7中要找ssh登入紀錄要去&lt;code&gt;/var/log/&lt;/code&gt;找&lt;code&gt;secure&lt;/code&gt;這個記錄檔&lt;/p&gt;
 &lt;p&gt;記得切到root帳號，再用cat查看secure紀錄&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat /var/log/secure
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cat /var/log/secure
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到最後一筆是剛剛ssh連線的紀錄&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Jan  &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt; 23:45:47 localhost sshd&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;147675&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;: Authentication refused: bad ownership or modes &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; file /home/danny/.ssh/authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告訴我們驗證被拒絕：因為使用者danny的authorized_keys這個檔案所有權或模式錯誤。第一時間會想到是檔案權限的問題，查詢其他設定金鑰的教學設定會要求要設定authorized_keys權限為&lt;code&gt;600&lt;/code&gt;，改成600後真的可以登入成功，至於為什麼呢？&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>在CentOS 上用squid 建 reverse proxy 反向代理伺服器</title>
-      <link>http://localhost:1313/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</link>
-      <pubDate>Mon, 14 Jan 2019 15:06:05 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid>
-      <description>&lt;p&gt;Linux上的proxy代理伺服器鳥哥是講squid，不過我看apache和Nginx也有proxy 模組 不過這次是講用squid當reverse proxy，把內部網站提供給外部瀏覽 例如內部網站www.danny.local(192.168.150.100)想給外部瀏覽，但為了安全性不能讓內部網站暴露在外 所以在外部架一台reverse proxy(192.168.123.187) 當替身(中間人)給外部瀏覽 先在DNS上設定要找www.danny.local這個網站的話去找替身192.168.123.187這台reverse proxy reverse proxy從設定檔中知道www.danny.local網站其實是在192.168.150.100上 由reverse proxy自己跟本尊192.168.150.100拿到www.danny.local資料後&lt;strong&gt;轉交&lt;/strong&gt;給外部瀏覽者 對外部使用者來說reverse proxy就是他要的www.danny.local 安裝squid這個代理伺服器軟體&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt; yum install squid
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Jan &lt;span style="color:#ae81ff"&gt;8&lt;/span&gt; 23:45:47 localhost sshd&lt;span style="color:#f92672"&gt;[&lt;/span&gt;147675&lt;span style="color:#f92672"&gt;]&lt;/span&gt;: Authentication refused: bad ownership or modes &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; file /home/danny/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告訴我們驗證被拒絕：因為使用者danny的authorized_keys這個檔案所有權或模式錯誤。第一時間會想到是檔案權限的問題，查詢其他設定金鑰的教學設定會要求要設定authorized_keys權限為&lt;code&gt;600&lt;/code&gt;，改成600後真的可以登入成功，至於為什麼呢？&lt;/p&gt;</description></item><item><title>在CentOS 上用squid 建 reverse proxy 反向代理伺服器</title><link>https://dannyliu.me/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Mon, 14 Jan 2019 15:06:05 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8centos-%E4%B8%8A%E7%94%A8squid-%E5%BB%BA-reverse-proxy-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;p&gt;Linux上的proxy代理伺服器鳥哥是講squid，不過我看apache和Nginx也有proxy 模組 不過這次是講用squid當reverse proxy，把內部網站提供給外部瀏覽 例如內部網站www.danny.local(192.168.150.100)想給外部瀏覽，但為了安全性不能讓內部網站暴露在外 所以在外部架一台reverse proxy(192.168.123.187) 當替身(中間人)給外部瀏覽 先在DNS上設定要找www.danny.local這個網站的話去找替身192.168.123.187這台reverse proxy reverse proxy從設定檔中知道www.danny.local網站其實是在192.168.150.100上 由reverse proxy自己跟本尊192.168.150.100拿到www.danny.local資料後&lt;strong&gt;轉交&lt;/strong&gt;給外部瀏覽者 對外部使用者來說reverse proxy就是他要的www.danny.local 安裝squid這個代理伺服器軟體&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt; yum install squid
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;因為CentOS 7 上的squid已經提供最簡單的基本設定檔，只要改幾個值就能成為reverse proxy反向代理伺服器 首先到/etc/squid資料夾，編輯squid設定檔squid.conf&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;vi /etc/squid/squid.conf
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;vi /etc/squid/squid.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;外部使用者要瀏覽網站都是找80port，所以我們要將設定檔中預設把監聽埠從3128改成80如下&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;http_port 80 accel vhost vport
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;http_port 80 accel vhost vport
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;有些文章說prot 3130要關掉，但我看這份基本設定檔預設本來是關閉的 然後在設定檔最後面額外加入這幾段 加入本尊的ip地址192.168.150.100，名字叫dannywebsite 把本尊dannywebsite的資料，轉交給找www.danny.local的人&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;#reverse proxy setting
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;#reverse proxy setting
 cache_peer 192.168.150.100 parent 80 0 no-query originserver round-robin weight=1 name=dannywebsite
 cache_peer_domain dannywebsite www.danny.local
 cache_peer_access dannywebsite allow all
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;啟動squid&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;/etc/init.d/squid start
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;完成&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CentOS 7 新增網卡並設定IP的方式</title>
-      <link>http://localhost:1313/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/</link>
-      <pubDate>Sun, 13 Jan 2019 18:10:34 +0800</pubDate>
-      <guid>http://localhost:1313/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/</guid>
-      <description>&lt;p&gt;我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;/etc/init.d/squid start
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;完成&lt;/p&gt;</description></item><item><title>CentOS 7 新增網卡並設定IP的方式</title><link>https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/</link><pubDate>Sun, 13 Jan 2019 18:10:34 +0800</pubDate><guid>https://dannyliu.me/centos-7-%E6%96%B0%E5%A2%9E%E7%B6%B2%E5%8D%A1%E4%B8%A6%E8%A8%AD%E5%AE%9Aip%E7%9A%84%E6%96%B9%E5%BC%8F/</guid><description>&lt;p&gt;我在CentOS 7 Hyper-V 虛擬機新加了一張網路卡，來連內部網路，加上連外總共有兩張網卡 這次做的事情分為兩個步驟： 1.找到新網卡名稱 2.設定IP&lt;/p&gt;
 &lt;p&gt;新設的內部網路中沒有提供DHCP服務的設備，所以要手動設定固定ip&lt;/p&gt;
 &lt;p&gt;一般Linux都是用ifconfig指令來檢視並設定網卡ip 不過我的CentOS是最小化安裝，沒有&lt;code&gt;ifconfig&lt;/code&gt;這個工具可以用 要使用這個功能要安裝net-tools工具，如需安裝請以root身分輸入以下指令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;yum install net-tools
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;yum install net-tools
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果不想裝ifconfig，CentOS可以用指令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ip address
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip address
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;看到這台的IP地址，與網卡名稱，可以查到新安裝的網卡名稱為eth1，並且沒有ip地址&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/ipaddress-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/ipaddress-1.png"&gt;&lt;/p&gt;
 &lt;p&gt;用以下指令看網卡eth1的UUID (不曉得為什麼這邊eth1是顯示中文名稱)，複製新網卡的UUID待會設定時會用到&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nmcli connection show
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/nmcli-1.png&#34;&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nmcli connection show
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/nmcli-1.png"&gt;&lt;/p&gt;
 &lt;p&gt;先移動到/etc/sysconfig/network-scripts 資料夾底下看一下檔案清單&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /etc/sysconfig/network-scripts
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ls
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd /etc/sysconfig/network-scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ls
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到有已經有eth0網卡的設定檔ifcfg-eth0，但是沒有eth1網卡設定檔&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/eth0-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/eth0-1.png"&gt;&lt;/p&gt;
 &lt;p&gt;所以要建一個eth1網卡的設定檔，可以複製ifcfg-eth0設定檔，並將新檔案命名為ifcfg-eth1設定檔，使用以下指令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp ifcfg-eth0 ifcfg-eth1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/eth1-1.png&#34;&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cp ifcfg-eth0 ifcfg-eth1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/eth1-1.png"&gt;&lt;/p&gt;
 &lt;p&gt;這邊用vi編輯器編輯ifcfg-eth1：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;vi ifcfg-eth1
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vi ifcfg-eth1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;按i進入編輯模式並修改如下圖黃字&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/ifcfigeth1-4-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/ifcfigeth1-4-1.png"&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;取得IP的方式要從自動取得IP改成指定的固定IP需要將&lt;code&gt;BOOTPROTO=dhcp&lt;/code&gt;改成&lt;code&gt;BOOTPROTO=static&lt;/code&gt;靜態&lt;/li&gt;
 &lt;li&gt;Name跟Device都是命名為&lt;code&gt;eth1&lt;/code&gt;，並在&lt;code&gt;UUID&lt;/code&gt;欄位打上剛剛複製的新網卡UUID&lt;/li&gt;
@@ -153,46 +110,27 @@ cache_peer_access dannywebsite allow all
 &lt;li&gt;按&lt;code&gt;Esc&lt;/code&gt;鍵離開編輯模式，輸入&lt;code&gt;:wq&lt;/code&gt;後按&lt;code&gt;Enterr鍵&lt;/code&gt; 儲存並離開編輯器&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;重啟eth1網卡並檢查網卡ip&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ifdown eth1
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ifup eth1
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ip address
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/wp-content/uploads/2019/01/saveeth2-1.png&#34;&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/saveeth2-1.png&#34;&gt;&lt;/a&gt;點擊圖片 設定成功!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>設定 CentOS 7 開機時自動執行重啟網卡指令</title>
-      <link>http://localhost:1313/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/</link>
-      <pubDate>Sun, 06 Jan 2019 16:25:45 +0800</pubDate>
-      <guid>http://localhost:1313/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/</guid>
-      <description>&lt;p&gt;我用hyper-v裝的CentOS每次開機或重新開機都沒網路，也不曉得其他Linux會不會也這樣 雖然些先前文章中｢&lt;a href=&#34;https://dannyliu.me/%e9%81%87%e5%88%b0centos-7-%e5%9c%a8hyper-v%e8%99%9b%e6%93%ac%e6%a9%9f%e4%b8%ad%ef%bc%8c%e6%b2%92%e6%9c%89%e8%87%aa%e5%8b%95%e5%8f%96%e5%be%97ip%e7%9a%84%e4%bf%ae%e5%be%a9%e6%96%b9%e6%b3%95/&#34;&gt;遇到CentOS 7 在Hyper-V虛擬機中，沒有自動取得IP的修復方法&lt;/a&gt;」 知道重啟網卡就好，只是每次都要開虛擬機覺得太麻煩 不如讓系統自己開機時就重新下ifdown ifup 來重新啟動網卡 以下都是以root身份來操作 去 /var/log 資料夾 下指令看messages這個記錄檔&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;grep -n &amp;#39;eth0&amp;#39; messages
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第1049行可以看到每次開機時，網卡eth0 總是disconnected &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/disconnected2.png&#34;&gt; 要讓Linux開機時執行自訂的腳本和指令都是放在 /etc/rc.d/rc.local 這個檔案裡 而現在最新版的CentOS設定是放在 /etc/systemd/system 要讓開機時，系統程式systemd會執行/etc/rc.d/rc.local裡面寫的腳本和指令，需要做以下設定 確定systemd的rc-local.service中的檔案位置為/etc/rc.d/rc.local&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;systemctl status rc-local.service
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ifdown eth1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ifup eth1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ip address
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href="https://dannyliu.me/wp-content/uploads/2019/01/saveeth2-1.png"&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/saveeth2-1.png"&gt;&lt;/a&gt;點擊圖片 設定成功!&lt;/p&gt;</description></item><item><title>設定 CentOS 7 開機時自動執行重啟網卡指令</title><link>https://dannyliu.me/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/</link><pubDate>Sun, 06 Jan 2019 16:25:45 +0800</pubDate><guid>https://dannyliu.me/%E8%A8%AD%E5%AE%9A-centos-7-%E9%96%8B%E6%A9%9F%E6%99%82%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E9%87%8D%E5%95%9F%E7%B6%B2%E5%8D%A1%E6%8C%87%E4%BB%A4/</guid><description>&lt;p&gt;我用hyper-v裝的CentOS每次開機或重新開機都沒網路，也不曉得其他Linux會不會也這樣 雖然些先前文章中｢&lt;a href="https://dannyliu.me/%e9%81%87%e5%88%b0centos-7-%e5%9c%a8hyper-v%e8%99%9b%e6%93%ac%e6%a9%9f%e4%b8%ad%ef%bc%8c%e6%b2%92%e6%9c%89%e8%87%aa%e5%8b%95%e5%8f%96%e5%be%97ip%e7%9a%84%e4%bf%ae%e5%be%a9%e6%96%b9%e6%b3%95/"&gt;遇到CentOS 7 在Hyper-V虛擬機中，沒有自動取得IP的修復方法&lt;/a&gt;」 知道重啟網卡就好，只是每次都要開虛擬機覺得太麻煩 不如讓系統自己開機時就重新下ifdown ifup 來重新啟動網卡 以下都是以root身份來操作 去 /var/log 資料夾 下指令看messages這個記錄檔&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;grep -n &amp;#39;eth0&amp;#39; messages
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第1049行可以看到每次開機時，網卡eth0 總是disconnected &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/disconnected2.png"&gt; 要讓Linux開機時執行自訂的腳本和指令都是放在 /etc/rc.d/rc.local 這個檔案裡 而現在最新版的CentOS設定是放在 /etc/systemd/system 要讓開機時，系統程式systemd會執行/etc/rc.d/rc.local裡面寫的腳本和指令，需要做以下設定 確定systemd的rc-local.service中的檔案位置為/etc/rc.d/rc.local&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;systemctl status rc-local.service
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是rc.local檔預設是不可執行，所以rc-local.service這個服務並不會啟動 移動到/etc/rc.d/資料夾 設定rc.local檔案為可執行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;chmod +x rc.local
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/rellx.png&#34;&gt; 修改rc.local內容，寫入讓eth0網卡重新啟動的指令 &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2019/01/rcin.png&#34;&gt; 讓systemd設定檔重新載入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;systemctl daemon-reload
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;chmod +x rc.local
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/rellx.png"&gt; 修改rc.local內容，寫入讓eth0網卡重新啟動的指令 &lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/01/rcin.png"&gt; 讓systemd設定檔重新載入&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;systemctl daemon-reload
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;檢查systemd啟動時要執行的服務有沒有顯示rc-local.service&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-brush:shell&#34; data-lang=&#34;brush:shell&#34;&gt;systemctl list-dependencies multi-user.target | grep rc-local
-
-
+&lt;pre tabindex="0"&gt;&lt;code class="language-brush:shell" data-lang="brush:shell"&gt;systemctl list-dependencies multi-user.target | grep rc-local
 重開機後，遠端連線成功
 看一下message記錄檔
-
 grep -n &amp;#39;eth0\|rc.local&amp;#39; messages
-
-
 成功，灑花
-&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    <item>
-      <title>在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法</title>
-      <link>http://localhost:1313/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</link>
-      <pubDate>Mon, 27 Aug 2018 01:16:13 +0800</pubDate>
-      <guid>http://localhost:1313/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</guid>
-      <description>&lt;p&gt;今天在Linux上按照微軟的&lt;a href=&#34;https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial&#34;&gt;安裝步驟&lt;/a&gt;安裝完.net Core 2.1 用&lt;code&gt;dotnet --version&lt;/code&gt; 檢查有無安裝成功卻出現以下的錯誤訊息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Failed to bind to CoreCLR at &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;google到的可能&lt;a href=&#34;https://github.com/Azure/azure-functions-core-tools/issues/468&#34;&gt;原因&lt;/a&gt;是還有些套件沒有安裝，微軟網站上有需要安裝的套件&lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x#ubuntu&#34;&gt;列表&lt;/a&gt;，但依照這個說明NET Core 2.1應該是不用安裝&lt;code&gt;libunwind&lt;/code&gt;和&lt;code&gt;libuuid&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>在CentOS上安裝.net Core 後 dotnet無法正常執行的解決辦法</title><link>https://dannyliu.me/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</link><pubDate>Mon, 27 Aug 2018 01:16:13 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%9D-net-core-%E5%BE%8C-dotnet%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/</guid><description>&lt;p&gt;今天在Linux上按照微軟的&lt;a href="https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial"&gt;安裝步驟&lt;/a&gt;安裝完.net Core 2.1 用&lt;code&gt;dotnet --version&lt;/code&gt; 檢查有無安裝成功卻出現以下的錯誤訊息&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Failed to load ��, error: libunwind.so.8: cannot open shared object file: No such file or directory
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Failed to bind to CoreCLR at &lt;span style="color:#e6db74"&gt;&amp;#39;/usr/share/dotnet/shared/Microsoft.NETCore.App/2.0.5/libcoreclr.so&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;google到的可能&lt;a href="https://github.com/Azure/azure-functions-core-tools/issues/468"&gt;原因&lt;/a&gt;是還有些套件沒有安裝，微軟網站上有需要安裝的套件&lt;a href="https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x#ubuntu"&gt;列表&lt;/a&gt;，但依照這個說明NET Core 2.1應該是不用安裝&lt;code&gt;libunwind&lt;/code&gt;和&lt;code&gt;libuuid&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CentOS distributions require the following libraries installed:&lt;/p&gt;
 &lt;ul&gt;
@@ -210,9 +148,6 @@ grep -n &amp;#39;eth0\|rc.local&amp;#39; messages
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;用 &lt;code&gt;su -&lt;/code&gt; 提升到root權限 用 &lt;code&gt;yum list installed&lt;/code&gt; 查詢現在已安裝的套件清單&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/wp-content/uploads/2018/08/%E6%93%B7%E5%8F%9621.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2018/08/%E6%93%B7%E5%8F%9621.png"&gt;&lt;/p&gt;
 &lt;p&gt;不過列出的套件太多&lt;/p&gt;
-&lt;p&gt;改用&lt;code&gt;grep&lt;/code&gt;各別搜尋清單中有無該套件，若無再進行安裝&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+&lt;p&gt;改用&lt;code&gt;grep&lt;/code&gt;各別搜尋清單中有無該套件，若無再進行安裝&lt;/p&gt;</description></item></channel></rss>
