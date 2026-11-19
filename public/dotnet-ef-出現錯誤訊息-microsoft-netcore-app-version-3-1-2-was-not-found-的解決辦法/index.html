@@ -1,4 +1,13 @@
-<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法 | Danny Liu's Blog</title><meta name=keywords content><meta name=description content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
 如果你急著想找解決辦法，請直接看最後一行。
 &mdash;&mdash;正文&mdash;&mdash; 改用命令列模式dotnet ef卻得到以下錯誤訊息。
 因為找不到指定的命令或檔案，所以無法執行。
@@ -9,9 +18,9 @@
 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：
 dotnet tool install --global dotnet-ef
 
-我們就可以高高興興的使用Entity Framework Core了，but&mldr;總是有但是 
+我們就可以高高興興的使用Entity Framework Core了，but&hellip;總是有但是 
 It was not possible to find any compatible framework version
-The framework 'Microsoft.NETCore.App', version '3.1.2' was not found.
+The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.
   - The following frameworks were found:
       2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
       3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
@@ -20,43 +29,411 @@ You can resolve the problem by installing the specified framework and/or SDK.
 
 The specified framework can be found at:
   - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64
-奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。"><meta name=author content><link rel=canonical href=https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法"><meta property="og:description" content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
+奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。">
+<meta name="author" content="">
+<link rel="canonical" href="https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dannyliu.me/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dannyliu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dannyliu.me/favicon.png">
+<link rel="apple-touch-icon" href="https://dannyliu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dannyliu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXWPS9NSKF"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GXWPS9NSKF');
+        }
+      </script><meta property="og:url" content="https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/">
+  <meta property="og:site_name" content="Danny Liu&#39;s Blog">
+  <meta property="og:title" content="dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法">
+  <meta property="og:description" content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
 如果你急著想找解決辦法，請直接看最後一行。
 ——正文—— 改用命令列模式dotnet ef卻得到以下錯誤訊息。
 因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：
-dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework 'Microsoft.NETCore.App', version '3.1.2' was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-03-12T23:28:04+08:00"><meta property="article:modified_time" content="2020-03-12T23:28:04+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法"><meta name=twitter:description content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
+dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-03-12T23:28:04+08:00">
+    <meta property="article:modified_time" content="2020-03-12T23:28:04+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法">
+  <meta name="twitter:description" content="最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
 如果你急著想找解決辦法，請直接看最後一行。
 ——正文—— 改用命令列模式dotnet ef卻得到以下錯誤訊息。
 因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：
-dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework 'Microsoft.NETCore.App', version '3.1.2' was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"},{"@type":"ListItem","position":2,"name":"dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法","item":"https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法","name":"dotnet ef 出現錯誤訊息 \u0027Microsoft.NETCore.App\u0027, version \u00273.1.2\u0027 was not found.的解決辦法","description":"最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。\n如果你急著想找解決辦法，請直接看最後一行。\n\u0026mdash;\u0026mdash;正文\u0026mdash;\u0026mdash; 改用命令列模式dotnet ef卻得到以下錯誤訊息。\n因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：\ndotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but\u0026hellip;總是有但是 It was not possible to find any compatible framework version The framework \u0026#39;Microsoft.NETCore.App\u0026#39;, version \u0026#39;3.1.2\u0026#39; was not found. - The following frameworks were found: 2.1.15 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] 3.1.1 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App\u0026amp;framework_version=3.1.2\u0026amp;arch=x64\u0026amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。\n","keywords":[],"articleBody":"最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。\n如果你急著想找解決辦法，請直接看最後一行。\n——正文—— 改用命令列模式dotnet ef卻得到以下錯誤訊息。\n因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：\ndotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework 'Microsoft.NETCore.App', version '3.1.2' was not found. - The following frameworks were found: 2.1.15 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] 3.1.1 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App\u0026framework_version=3.1.2\u0026arch=x64\u0026rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。\n上網查一下可以在GitHub上找到這個Issue\n裡面的解釋是Microsoft.NETCore.App已經從.NET Core 3.1.2中移出，整合進Microsoft.AspNetCore.App。 不曉得這是不是官方回應，愣了幾秒鐘有看沒有懂。意思是dotnet-ef最新版3.1.2雖然可以安裝，但是相依套件沒了所以裝了也不能用？？？。\n最後，文末的解決方法是移除dotnet-ef 3.1.2。改安裝3.1.1。\ndotnet tool uninstall -g dotnet-ef dotnet tool install -g dotnet-ef --version 3.1.1 重新安裝完就回來囉~~~~ 真~解決辦法 感謝Sean Mars大大的提點\n前面文章寫的老半天都是屁，你只是真的真的忘記安裝最新版的.NET Coer SDK 3.1.102，輸入以下指令檢查安裝的.NET版本\ndotnet --version 可以發現我目前電腦上的版號是3.1.101 所以記得去安裝最新版的SDK3.1.102 裡面包含3.1.2 Runtime，我的問題跟GitHub Issue的提問者一樣，看他提供的訊息也真的沒有安裝3.1.2，整個討論串討論的煞有其事，但大家都沒發現根本原因只是沒安裝到對應版本XD\n","wordCount":"131","inLanguage":"zh-tw","datePublished":"2020-03-12T23:28:04+08:00","dateModified":"2020-03-12T23:28:04+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"},"publisher":{"@type":"Organization","name":"Danny Liu's Blog","logo":{"@type":"ImageObject","url":"https://dannyliu.me/favicon.png"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/posts/>Posts</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法</h1><div class=post-meta><span title=2020-03-12T23:28:04+08:00>March 12, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></div></header><div class="post-content md-content"><p>最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到<code>Build failed.</code>，然後什麼錯誤訊息都沒有。</p><p><code>如果你急著想找解決辦法，請直接看最後一行。</code></p><p>&mdash;&mdash;正文&mdash;&mdash; 改用命令列模式<code>dotnet ef</code>卻得到以下錯誤訊息。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span>因為找不到指定的命令或檔案，所以無法執行。
-</span></span><span style=display:flex><span>可能的原因包括:
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 拼錯了內建 dotnet 命令。
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。
-</span></span></code></pre></div><p>依照<a href=https://docs.microsoft.com/zh-tw/ef/core/miscellaneous/cli/dotnet title=官方文件>官方文件</a>和<a href=https://blog.darkthread.net/blog/dotnet-ef-not-found/ title=黑大的文章>黑大的文章</a>的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>dotnet tool install --global dotnet-ef
-</span></span></code></pre></div><p><img loading=lazy src=/wp-content/uploads/2020/03/netcoreef1.png></p><p>我們就可以高高興興的使用Entity Framework Core了，but&mldr;總是有但是 <img loading=lazy src=/wp-content/uploads/2020/03/netcoreef2.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span>It was not possible to find any compatible framework version
-</span></span><span style=display:flex><span>The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> The following frameworks were found:
-</span></span><span style=display:flex><span>      2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
-</span></span><span style=display:flex><span>      3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>You can resolve the problem by installing the specified framework and/or SDK.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>The specified framework can be found at:
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64
-</span></span></code></pre></div><p>奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。</p><p>上網查一下可以在GitHub上找到這個<a href=https://github.com/dotnet/aspnetcore/issues/19467 title=Issue>Issue</a></p><p>裡面的解釋是Microsoft.NETCore.App已經從.NET Core 3.1.2中移出，整合進Microsoft.AspNetCore.App。 不曉得這是不是官方回應，愣了幾秒鐘有看沒有懂。意思是dotnet-ef最新版3.1.2雖然可以安裝，但是相依套件沒了所以裝了也不能用？？？。</p><p>最後，文末的解決方法是移除dotnet-ef 3.1.2。改安裝3.1.1。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>dotnet tool uninstall -g dotnet-ef
-</span></span><span style=display:flex><span>dotnet tool install -g dotnet-ef --version 3.1.1
-</span></span></code></pre></div><p>重新安裝完就回來囉~~~~ <img loading=lazy src=/wp-content/uploads/2020/03/netcoreef3.png></p><h1 id=真解決辦法>真~解決辦法<a hidden class=anchor aria-hidden=true href=#真解決辦法>#</a></h1><blockquote><p>感謝Sean Mars大大的提點</p></blockquote><p>前面文章寫的老半天都是屁，你只是真的真的忘記安裝最新版的.NET Coer SDK 3.1.102，輸入以下指令檢查安裝的.NET版本</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-shell data-lang=shell><span style=display:flex><span>dotnet --version
-</span></span></code></pre></div><p>可以發現我目前電腦上的版號是3.1.101 <img loading=lazy src=/wp-content/uploads/2020/03/netcoreef4.png></p><p>所以記得去安裝最新版的SDK3.1.102 <img loading=lazy src=/wp-content/uploads/2020/03/netcore3.1.2.png></p><p>裡面包含3.1.2 Runtime，我的問題跟GitHub Issue的提問者一樣，看他提供的訊息也真的沒有安裝3.1.2，整個討論串討論的煞有其事，但大家都沒發現根本原因只是沒安裝到對應版本XD</p><p><img loading=lazy src=/wp-content/uploads/2020/03/netcoreef6.png></p></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/><span class=title>« 上一頁</span>
-<span>C# 列舉器 IEnumerator 與 IEnumerable</span>
-</a><a class=next href=https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/><span class=title>下一頁 »</span>
-<span>使用GitHub Actions 自動執行專案腳本</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="複製";function s(){t.innerHTML="已複製！",setTimeout(()=>{t.innerHTML="複製"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://dannyliu.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法",
+      "item": "https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法",
+  "name": "dotnet ef 出現錯誤訊息 \u0027Microsoft.NETCore.App\u0027, version \u00273.1.2\u0027 was not found.的解決辦法",
+  "description": "最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。\n如果你急著想找解決辦法，請直接看最後一行。\n\u0026mdash;\u0026mdash;正文\u0026mdash;\u0026mdash; 改用命令列模式dotnet ef卻得到以下錯誤訊息。\n因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：\ndotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but\u0026hellip;總是有但是 It was not possible to find any compatible framework version The framework \u0026#39;Microsoft.NETCore.App\u0026#39;, version \u0026#39;3.1.2\u0026#39; was not found. - The following frameworks were found: 2.1.15 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] 3.1.1 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App\u0026amp;framework_version=3.1.2\u0026amp;arch=x64\u0026amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。\n如果你急著想找解決辦法，請直接看最後一行。\n——正文—— 改用命令列模式dotnet ef卻得到以下錯誤訊息。\n因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：\ndotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework 'Microsoft.NETCore.App', version '3.1.2' was not found. - The following frameworks were found: 2.1.15 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] 3.1.1 at [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App\u0026framework_version=3.1.2\u0026arch=x64\u0026rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。\n上網查一下可以在GitHub上找到這個Issue\n裡面的解釋是Microsoft.NETCore.App已經從.NET Core 3.1.2中移出，整合進Microsoft.AspNetCore.App。 不曉得這是不是官方回應，愣了幾秒鐘有看沒有懂。意思是dotnet-ef最新版3.1.2雖然可以安裝，但是相依套件沒了所以裝了也不能用？？？。\n最後，文末的解決方法是移除dotnet-ef 3.1.2。改安裝3.1.1。\ndotnet tool uninstall -g dotnet-ef dotnet tool install -g dotnet-ef --version 3.1.1 重新安裝完就回來囉~~~~ 真~解決辦法 感謝Sean Mars大大的提點\n前面文章寫的老半天都是屁，你只是真的真的忘記安裝最新版的.NET Coer SDK 3.1.102，輸入以下指令檢查安裝的.NET版本\ndotnet --version 可以發現我目前電腦上的版號是3.1.101 所以記得去安裝最新版的SDK3.1.102 裡面包含3.1.2 Runtime，我的問題跟GitHub Issue的提問者一樣，看他提供的訊息也真的沒有安裝3.1.2，整個討論串討論的煞有其事，但大家都沒發現根本原因只是沒安裝到對應版本XD\n",
+  "wordCount" : "131",
+  "inLanguage": "zh-tw",
+  "datePublished": "2020-03-12T23:28:04+08:00",
+  "dateModified": "2020-03-12T23:28:04+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Danny Liu's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dannyliu.me/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dannyliu.me/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法
+    </h1>
+    <div class="post-meta">
+
+<span title='2020-03-12T23:28:04+08:00'>March 12, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到<code>Build failed.</code>，然後什麼錯誤訊息都沒有。</p>
+<p><code>如果你急著想找解決辦法，請直接看最後一行。</code></p>
+<p>&mdash;&mdash;正文&mdash;&mdash; 改用命令列模式<code>dotnet ef</code>卻得到以下錯誤訊息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>因為找不到指定的命令或檔案，所以無法執行。
+</span></span><span style="display:flex;"><span>可能的原因包括:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">*</span> 拼錯了內建 dotnet 命令。
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">*</span> 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">*</span> 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。
+</span></span></code></pre></div><p>依照<a href="https://docs.microsoft.com/zh-tw/ef/core/miscellaneous/cli/dotnet" title="官方文件">官方文件</a>和<a href="https://blog.darkthread.net/blog/dotnet-ef-not-found/" title="黑大的文章">黑大的文章</a>的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>dotnet tool install --global dotnet-ef
+</span></span></code></pre></div><p><img loading="lazy" src="/wp-content/uploads/2020/03/netcoreef1.png"></p>
+<p>我們就可以高高興興的使用Entity Framework Core了，but&hellip;總是有但是 <img loading="lazy" src="/wp-content/uploads/2020/03/netcoreef2.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>It was not possible to find any compatible framework version
+</span></span><span style="display:flex;"><span>The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> The following frameworks were found:
+</span></span><span style="display:flex;"><span>      2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
+</span></span><span style="display:flex;"><span>      3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You can resolve the problem by installing the specified framework and/or SDK.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The specified framework can be found at:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64
+</span></span></code></pre></div><p>奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。</p>
+<p>上網查一下可以在GitHub上找到這個<a href="https://github.com/dotnet/aspnetcore/issues/19467" title="Issue">Issue</a></p>
+<p>裡面的解釋是Microsoft.NETCore.App已經從.NET Core 3.1.2中移出，整合進Microsoft.AspNetCore.App。 不曉得這是不是官方回應，愣了幾秒鐘有看沒有懂。意思是dotnet-ef最新版3.1.2雖然可以安裝，但是相依套件沒了所以裝了也不能用？？？。</p>
+<p>最後，文末的解決方法是移除dotnet-ef 3.1.2。改安裝3.1.1。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>dotnet tool uninstall -g dotnet-ef
+</span></span><span style="display:flex;"><span>dotnet tool install -g dotnet-ef --version 3.1.1
+</span></span></code></pre></div><p>重新安裝完就回來囉~~~~ <img loading="lazy" src="/wp-content/uploads/2020/03/netcoreef3.png"></p>
+<h1 id="真解決辦法">真~解決辦法<a hidden class="anchor" aria-hidden="true" href="#真解決辦法">#</a></h1>
+<blockquote>
+<p>感謝Sean Mars大大的提點</p>
+</blockquote>
+<p>前面文章寫的老半天都是屁，你只是真的真的忘記安裝最新版的.NET Coer SDK 3.1.102，輸入以下指令檢查安裝的.NET版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>dotnet --version
+</span></span></code></pre></div><p>可以發現我目前電腦上的版號是3.1.101 <img loading="lazy" src="/wp-content/uploads/2020/03/netcoreef4.png"></p>
+<p>所以記得去安裝最新版的SDK3.1.102 <img loading="lazy" src="/wp-content/uploads/2020/03/netcore3.1.2.png"></p>
+<p>裡面包含3.1.2 Runtime，我的問題跟GitHub Issue的提問者一樣，看他提供的訊息也真的沒有安裝3.1.2，整個討論串討論的煞有其事，但大家都沒發現根本原因只是沒安裝到對應版本XD</p>
+<p><img loading="lazy" src="/wp-content/uploads/2020/03/netcoreef6.png"></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/">
+    <span class="title">« 上一頁</span>
+    <span>C# 列舉器 IEnumerator 與 IEnumerable</span>
+  </a>
+  <a class="next" href="https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/">
+    <span class="title">下一頁 »</span>
+    <span>使用GitHub Actions 自動執行專案腳本</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dannyliu.me/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

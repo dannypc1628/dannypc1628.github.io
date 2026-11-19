@@ -1,27 +1,45 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>EF Core on Danny Liu's Blog</title><link>https://dannyliu.me/tags/ef-core/</link><description>Recent content in EF Core on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Mon, 13 Dec 2021 19:33:59 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/ef-core/index.xml" rel="self" type="application/rss+xml"/><item><title>在 .NET 5 / 6的 Windows Form 中使用 EF Core</title><link>https://dannyliu.me/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/</link><pubDate>Mon, 13 Dec 2021 19:33:59 +0800</pubDate><guid>https://dannyliu.me/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/</guid><description>&lt;p&gt;現在的.NET 5 / 6，已經可以建立 WindowsForm 專案了，我這邊使用 Visual Studio 2022 以 NET 6 建立一個全新的 WindowsForm 範本，並示範如何在 WindowsForm 中使用 EF Core。若你是使用 Visual Studio 2019 則能建立的最高板本是 .NET 5，兩者的安裝方式相同，可以安心服用。&lt;/p&gt;
-&lt;p&gt;點選 Visual Studio 右側的方案總管，對方案按右鍵後，點選管理 NuGet 套件 &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639395171753.png"&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>EF Core on Danny Liu&#39;s Blog</title>
+    <link>https://dannyliu.me/tags/ef-core/</link>
+    <description>Recent content in EF Core on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 13 Dec 2021 19:33:59 +0800</lastBuildDate>
+    <atom:link href="https://dannyliu.me/tags/ef-core/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 .NET 5 / 6的 Windows Form 中使用 EF Core</title>
+      <link>https://dannyliu.me/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/</link>
+      <pubDate>Mon, 13 Dec 2021 19:33:59 +0800</pubDate>
+      <guid>https://dannyliu.me/%E5%9C%A8-net-5-6%E7%9A%84-windowsform-%E4%B8%AD%E4%BD%BF%E7%94%A8-ef-core/</guid>
+      <description>&lt;p&gt;現在的.NET 5 / 6，已經可以建立 WindowsForm 專案了，我這邊使用 Visual Studio 2022 以 NET 6 建立一個全新的 WindowsForm 範本，並示範如何在 WindowsForm 中使用 EF Core。若你是使用 Visual Studio 2019 則能建立的最高板本是 .NET 5，兩者的安裝方式相同，可以安心服用。&lt;/p&gt;
+&lt;p&gt;點選 Visual Studio 右側的方案總管，對方案按右鍵後，點選管理 NuGet 套件 &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639395171753.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;這邊要安裝兩個套件，若是.NET 5，就安裝5.x版本，若是.NET 6，就安裝6.x版本，&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Microsoft.EntityFrameworkCore.SqlServer&lt;/li&gt;
-&lt;li&gt;Microsoft.EntityFrameworkCore.Tools &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639395203296.png"&gt;&lt;/li&gt;
+&lt;li&gt;Microsoft.EntityFrameworkCore.Tools &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639395203296.png&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;補充：若你要使用的資料庫是Sqlite，那就是安裝Microsoft.EntityFrameworkCore.Sqlite，其他資料庫請參考 &lt;a href="https://docs.microsoft.com/zh-tw/ef/core/providers" title="EF Core 資料庫提供者"&gt;EF Core 資料庫提供者&lt;/a&gt;。Tools這個套件是使用 Visual Studio 產生資料庫模型的工具。&lt;/p&gt;
-&lt;p&gt;安裝過程中會出現安裝其他相關套件的詢問，都按確定 &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639558365005.png"&gt;&lt;/p&gt;
+&lt;p&gt;補充：若你要使用的資料庫是Sqlite，那就是安裝Microsoft.EntityFrameworkCore.Sqlite，其他資料庫請參考 &lt;a href=&#34;https://docs.microsoft.com/zh-tw/ef/core/providers&#34; title=&#34;EF Core 資料庫提供者&#34;&gt;EF Core 資料庫提供者&lt;/a&gt;。Tools這個套件是使用 Visual Studio 產生資料庫模型的工具。&lt;/p&gt;
+&lt;p&gt;安裝過程中會出現安裝其他相關套件的詢問，都按確定 &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639558365005.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;接著開啟套件管理主控台，輸入以下指令來從資料庫產生來產生資料模型，請以自己的資料庫更改連線字串&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Scaffold-DbContext &lt;span style="color:#e6db74"&gt;&amp;#39;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&amp;#39;&lt;/span&gt; Microsoft.EntityFrameworkCore.SqlServer
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639395244098.png"&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Scaffold-DbContext &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&amp;#39;&lt;/span&gt; Microsoft.EntityFrameworkCore.SqlServer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639395244098.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;右鍵貼上並執行後，你可以看到在方案總管中多了 &lt;code&gt;TestDBContext&lt;/code&gt; 與 &lt;code&gt;User&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639395285258.png"&gt; &lt;img alt="file" loading="lazy" src="https://dannyliu.me/wp-content/uploads/2021/12/image-1639395298710.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639395285258.png&#34;&gt; &lt;img alt=&#34;file&#34; loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2021/12/image-1639395298710.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;在&lt;code&gt;TestDBContext&lt;/code&gt;可以看到資料庫的連線字串，若想要移除可參考微軟提供的連結&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-csharp" data-lang="csharp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;protected&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;override&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (!optionsBuilder.IsConfigured)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;#warning&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;#&lt;/span&gt;To protect potentially sensitive information &lt;span style="color:#66d9ef"&gt;in&lt;/span&gt; your connection &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;, you should move it &lt;span style="color:#66d9ef"&gt;out&lt;/span&gt; of source code.
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;#&lt;/span&gt;You can avoid scaffolding the connection &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;by&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;using&lt;/span&gt; the Name= syntax to read it &lt;span style="color:#66d9ef"&gt;from&lt;/span&gt; configuration
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;#&lt;/span&gt; - see https:&lt;span style="color:#75715e"&gt;//go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; optionsBuilder.UseSqlServer(&lt;span style="color:#e6db74"&gt;&amp;#34;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;回到 Windows Form 視窗，這邊新增了一個&lt;code&gt;DataGridView&lt;/code&gt;，並拖曳進Form1視窗中&lt;/p&gt;</description></item></channel></rss>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!optionsBuilder.IsConfigured)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;#warning&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt;To protect potentially sensitive information &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; your connection &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, you should move it &lt;span style=&#34;color:#66d9ef&#34;&gt;out&lt;/span&gt; of source code.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt;You can avoid scaffolding the connection &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;by&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; the Name= syntax to read it &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; configuration 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt; - see https:&lt;span style=&#34;color:#75715e&#34;&gt;//go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            optionsBuilder.UseSqlServer(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Data Source=DANNY-LIU-ASUS;Initial Catalog=TestDB;Integrated Security=True&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;回到 Windows Form 視窗，這邊新增了一個&lt;code&gt;DataGridView&lt;/code&gt;，並拖曳進Form1視窗中&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

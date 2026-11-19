@@ -1,20 +1,265 @@
-<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Angular | Danny Liu's Blog</title><meta name=keywords content><meta name=description content><meta name=author content><link rel=canonical href=https://dannyliu.me/tags/angular/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dannyliu.me/tags/angular/index.xml title=rss><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/tags/angular/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/tags/angular/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="Angular"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Angular"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/tags/>Tags</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Angular</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>在Angular 9中使用Leaflet js 與 OpenStreetMap地圖</h2></header><div class=entry-content><p>最近剛看保哥的Angular線上課程，剛好六角學院的老師與同學們跟上時事在做口罩地圖，就試著用Angular做作看口罩地圖點此看DEMO展示或看GitHub原始碼，本文就簡單講解在Angular上如何使用Leaflet js 與 OpenStreetMap。
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Angular | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://dannyliu.me/tags/angular/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dannyliu.me/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dannyliu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dannyliu.me/favicon.png">
+<link rel="apple-touch-icon" href="https://dannyliu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dannyliu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dannyliu.me/tags/angular/index.xml" title="rss">
+<link rel="alternate" hreflang="zh-tw" href="https://dannyliu.me/tags/angular/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXWPS9NSKF"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GXWPS9NSKF');
+        }
+      </script><meta property="og:url" content="https://dannyliu.me/tags/angular/">
+  <meta property="og:site_name" content="Danny Liu&#39;s Blog">
+  <meta property="og:title" content="Angular">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Angular">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dannyliu.me/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/tags/">Tags</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Angular
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">在Angular 9中使用Leaflet js 與 OpenStreetMap地圖
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近剛看保哥的Angular線上課程，剛好六角學院的老師與同學們跟上時事在做口罩地圖，就試著用Angular做作看口罩地圖點此看DEMO展示或看GitHub原始碼，本文就簡單講解在Angular上如何使用Leaflet js 與 OpenStreetMap。
 因為現在Google Map Api已經開使在收費了，雖然有免費額度，但超過額度就要收費，也不曉得會不會有惡意瀏覽來超過額度這種攻擊荷包的方式，這次便改用Leaflet.js 與OpenStreetMap組合而成的替代方案。
 OpenStreetMap是一個非營利基金會營運的開放地圖，提供大眾使用、編輯、共享地圖資訊。OpenStreetMap提供了圖資，而如何使用圖資呢？，例如：以某個中心點為座標顯示地圖、放大縮小地圖、在地圖上標示圖案等等，這些與使用這有關的操作與互動鳩跟Leaflet.js有關了。Leaflet.js是開源的JavaScript地圖函式庫，我們可以將圖資傳給Leaflet.js，藉由操作Leaflet.js來達成剛剛所述的控制地圖、放大、縮小、顯示圖標等操作。
 建立專案 首先先新增一個專案
 ng new appname --routing --style css 用npm安裝leaflet
 npm install leaflet --save 建立元建並命名為map
-ng g c map 使用leaflet 在map元件map.component.html中清除&lt;p>map works!&lt;/p>並改成 &lt;div id="map">&lt;/div> 在map元件map.component.ts中載入leaflet全部組件並命名為L
-import * as L from 'leaflet'; constructor()之前加入map成員，並在map元件map.component.ts的初始化方法ngOnInit()中。使用leaflet建立map圖層並載入OpenStreetMap圖資後加進map圖層
-export class MapComponent implements OnInit { map; constructor() { } ngOnInit(): void { this.map = L.map('map', { center: [25.0249211,121.5075035], zoom: 16 });//指定欲繪製地圖在id為map的元素中，中心座標為[25.0249211,121.5075035]，縮放程度為16 const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a>' }); tiles.addTo(this.map); } } 隨後到app.component.html中，清除原先生成內容後，把我們的map元件加入近來
-&lt;app-map>&lt;/app-map> 現在開啟ng serve應該可以看到網頁地圖，但是呈現破碎狀，東缺西缺一塊 因為缺少leaflet的CSS檔 我這邊直接在styles.css檔中把leaflet.css import進來，並直接設定#map、html,body的高度都為100%(不然地圖會顯示不出來)
-@import "~leaflet/dist/leaflet.css" html,body{ height: 100%; } #map { height: 100%; } 設定完CSS後就可以看到地圖了 ...</p></div><footer class=entry-footer><span title=2020-02-16T22:48:13+08:00>February 16, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 在Angular 9中使用Leaflet js 與 OpenStreetMap地圖" href=https://dannyliu.me/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+ng g c map 使用leaflet 在map元件map.component.html中清除&lt;p&gt;map works!&lt;/p&gt;並改成 &lt;div id=&#34;map&#34;&gt;&lt;/div&gt; 在map元件map.component.ts中載入leaflet全部組件並命名為L
+import * as L from &#39;leaflet&#39;; constructor()之前加入map成員，並在map元件map.component.ts的初始化方法ngOnInit()中。使用leaflet建立map圖層並載入OpenStreetMap圖資後加進map圖層
+export class MapComponent implements OnInit { map; constructor() { } ngOnInit(): void { this.map = L.map(&#39;map&#39;, { center: [25.0249211,121.5075035], zoom: 16 });//指定欲繪製地圖在id為map的元素中，中心座標為[25.0249211,121.5075035]，縮放程度為16 const tiles = L.tileLayer(&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;, { maxZoom: 19, attribution: &#39;© &lt;a href=&#34;http://www.openstreetmap.org/copyright&#34;&gt;OpenStreetMap&lt;/a&gt;&#39; }); tiles.addTo(this.map); } } 隨後到app.component.html中，清除原先生成內容後，把我們的map元件加入近來
+&lt;app-map&gt;&lt;/app-map&gt; 現在開啟ng serve應該可以看到網頁地圖，但是呈現破碎狀，東缺西缺一塊 因為缺少leaflet的CSS檔 我這邊直接在styles.css檔中把leaflet.css import進來，並直接設定#map、html,body的高度都為100%(不然地圖會顯示不出來)
+@import &#34;~leaflet/dist/leaflet.css&#34; html,body{ height: 100%; } #map { height: 100%; } 設定完CSS後就可以看到地圖了 ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-02-16T22:48:13+08:00'>February 16, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 在Angular 9中使用Leaflet js 與 OpenStreetMap地圖" href="https://dannyliu.me/%E5%9C%A8angular-9%E4%B8%AD%E4%BD%BF%E7%94%A8leaflet-js-%E8%88%87-openstreetmap/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dannyliu.me/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,7 +1,161 @@
-<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Posts | Danny Liu's Blog</title><meta name=keywords content><meta name=description content="Posts - Danny Liu's Blog"><meta name=author content><link rel=canonical href=https://dannyliu.me/posts/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dannyliu.me/posts/index.xml title=rss><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/posts/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/posts/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="Posts"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Posts"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Posts</h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Let's Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04</h2></header><div class=entry-content><p>部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Posts | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - Danny Liu&#39;s Blog">
+<meta name="author" content="">
+<link rel="canonical" href="https://dannyliu.me/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dannyliu.me/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dannyliu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dannyliu.me/favicon.png">
+<link rel="apple-touch-icon" href="https://dannyliu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dannyliu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dannyliu.me/posts/index.xml" title="rss">
+<link rel="alternate" hreflang="zh-tw" href="https://dannyliu.me/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXWPS9NSKF"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GXWPS9NSKF');
+        }
+      </script><meta property="og:url" content="https://dannyliu.me/posts/">
+  <meta property="og:site_name" content="Danny Liu&#39;s Blog">
+  <meta property="og:title" content="Posts">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Posts">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://dannyliu.me/posts/"
+    }
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dannyliu.me/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>部落格的憑證到期前一個月，我就收到原先憑證單位的通知信，提醒我要買新憑證。結果這事情被我丟在一旁沒處理，一拖部落格的憑證已經過期兩個禮拜了XDD。
 這個部落格是架在雲端服務商的虛擬機上，應該有五年了，使用Ubuntu 14.04，這版本都已經過了原廠的支援效期了還沒有升級XDD。
 因為作業系統是雲端服務商提供的，應該是有改過一點核心，好讓我們可以用網頁後台的方式來控制虛擬機。所以如果要升級OS，主機商是建議直接砍掉舊的虛擬機，直接開新的伺服器就好。
 不過想想搬家還真是一件費工夫的事，想到就懶了…，先處理眼下憑證過期的問題。
@@ -15,7 +169,22 @@
 wget https://dl.eff.org/certbot-auto sudo mv certbot-auto /usr/local/bin/certbot sudo chown root /usr/local/bin/certbot sudo chmod 0755 /usr/local/bin/certbot 也試了其他方法
 每篇都說得煞有其事，胡亂try了幾天，最終還是放棄了XDD
 結論是不行，可能去年可以，但今年2021年6月我嘗試下來就是不行，一直會得到以下回應，表示你的系統不支援
-Skipping bootstrap because certbot-auto is deprecated on this system. Your system is not supported by certbot-auto anymore. Certbot cannot be installed. Please visit https://certbot.eff.org/ to check for other alternatives. 誒，又不是只有Certbot可以用，也有其他程式可以用，下次就來介紹前輩推薦給我的acme.sh</p></div><footer class=entry-footer><span title=2021-06-27T19:17:47+08:00>June 27, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to Let's Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04" href=https://dannyliu.me/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>解決REST-Client登入Cookie驗證失敗的方法</h2></header><div class=entry-content><p>使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。
+Skipping bootstrap because certbot-auto is deprecated on this system. Your system is not supported by certbot-auto anymore. Certbot cannot be installed. Please visit https://certbot.eff.org/ to check for other alternatives. 誒，又不是只有Certbot可以用，也有其他程式可以用，下次就來介紹前輩推薦給我的acme.sh
+</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2021-06-27T19:17:47+08:00'>June 27, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to Let&#39;s Encrypt SSL憑證程式Certbot不支援Ubuntu 14.04" href="https://dannyliu.me/lets-encrypt-ssl%E6%86%91%E8%AD%89%E7%A8%8B%E5%BC%8Fcertbot%E4%B8%8D%E6%94%AF%E6%8F%B4ubuntu-14-04/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">解決REST-Client登入Cookie驗證失敗的方法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用REST-Client一陣子之後，最近常常遇到打本地伺服器API會發生身分驗證失敗的情況，但是打遠端伺服器卻正常的情形。明明Cookie也換過了，但是本機上還是會打不過。
 往往最後還是要打開Postman的窘境。還一度考慮是否要更換測試工具。但是REST-Client真是太好用了，是我開發API的過程中，就能幫我快速檢驗API是否正確的小工具。
 我跟前輩一直想找出問題的原因，最近終於發現問題所在了。
 使用REST-Client的產生cURL的功能看到的Cookie值，的確是使用我設定的Cookie。
@@ -28,7 +197,21 @@ Skipping bootstrap because certbot-auto is deprecated on this system. Your syste
 第二步驟是前往電腦的家目錄尋找把~/.rest-client/cookie.json儲存Cookie的檔案刪掉，就大功告成了。
 (在我的Windows上檔案路徑會是C:\Users\長庚\.rest-client\cookie.json)
 有自動儲存的Cookie都是放在cookie.json裡，內容格式如下
-{ "www.mywebsite.com": { "/": { ".AspNet.Cookies": { "key": ".AspNet.Cookies", "value": "qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111", "domain": "www.mywebsite.com", "path": "/", "secure": true, "httpOnly": true, "hostOnly": true, "creation": "2021-05-29T17:28:38.405Z", "lastAccessed": "2021-05-29T17:28:38.405Z" } } } }</p></div><footer class=entry-footer><span title=2021-05-30T01:27:52+08:00>May 30, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 解決REST-Client登入Cookie驗證失敗的方法" href=https://dannyliu.me/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>[商業思維學院]專案管理學習筆記：專案管理的基本觀念</h2></header><div class=entry-content><p>什麼是專案管理? 專案管理是將管理的知識、方法與工具運用於專案上，確保專案能如期、如質、如預算的完成。當中涉及人、事、物的管理、規劃、控制與校正，是一套有效完成工作的知識體系。
+{ &#34;www.mywebsite.com&#34;: { &#34;/&#34;: { &#34;.AspNet.Cookies&#34;: { &#34;key&#34;: &#34;.AspNet.Cookies&#34;, &#34;value&#34;: &#34;qfewghy5krtegrsdnmgj;7p9o86i7rj34hjyrkuil6treu5ywaegdfbgnfhmuttytsrgfagsfwrsghsj3111&#34;, &#34;domain&#34;: &#34;www.mywebsite.com&#34;, &#34;path&#34;: &#34;/&#34;, &#34;secure&#34;: true, &#34;httpOnly&#34;: true, &#34;hostOnly&#34;: true, &#34;creation&#34;: &#34;2021-05-29T17:28:38.405Z&#34;, &#34;lastAccessed&#34;: &#34;2021-05-29T17:28:38.405Z&#34; } } } } </p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2021-05-30T01:27:52+08:00'>May 30, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 解決REST-Client登入Cookie驗證失敗的方法" href="https://dannyliu.me/%E8%A7%A3%E6%B1%BArest-client%E7%99%BB%E5%85%A5cookie%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E7%9A%84%E6%96%B9%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">[商業思維學院]專案管理學習筆記：專案管理的基本觀念
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>什麼是專案管理? 專案管理是將管理的知識、方法與工具運用於專案上，確保專案能如期、如質、如預算的完成。當中涉及人、事、物的管理、規劃、控制與校正，是一套有效完成工作的知識體系。
 專案管理就是管理任務！ 其具有獨特性與臨時性
 專案會有明確截止時間，專案的獨特性是指結果不重複
 why 為什麼做? What 要做哪些事 when 設麼時候 how 如何做 how money 預算多少 who 誰要去? risk 風險多少?
@@ -43,33 +226,76 @@ why 為什麼做? What 要做哪些事 when 設麼時候 how 如何做 how money
 關鍵3:善用各種資源，活下來才是王道 雪橇犬能保留體力增加行進速度，又能當食物
 結論 控管資源、減少外部依賴、達成目的不限手段
 專案管理常見的5個盲點 盲點1:專案做不好都是人的問題，都是溝通的問題。 文件、流程、資訊、人四者息息相關。 文件follow 資訊透通 流程建立確保執行 搞不定的專案常常會說，因為老闆很難搞、團隊的人能力太差、其他不能溝通難合作，所以都認為是人的問題 過度盲信問題是人造成的，因為這是最容易解套的方法
-盲點2:專案做不好是因為沒有好的工具。 專案管理框架 Why -> How -> What 解決問題 -> 方法論 -> 專案管理工具 達成目標 工具只是輔助，問題是你要對專案管理、目標設定該有個請出的理解與洞見
-...</p></div><footer class=entry-footer><span title=2021-04-19T21:48:15+08:00>April 19, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to [商業思維學院]專案管理學習筆記：專案管理的基本觀念" href=https://dannyliu.me/%E5%95%86%E6%A5%AD%E6%80%9D%E7%B6%AD%E5%AD%B8%E9%99%A2%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%9A%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>使用 REST-Client 來測試 API [VS Code擴充套件]</h2></header><div class=entry-content><p>之前都是使用POSTMAN做API的測試，但發覺使用上在嘗試各個參數時，一個一個輸入測試情境有點麻煩。因為開發過程API可能還會變動，現階段還沒有考慮使用POSTMAN的Test功能。最近知道有個VS Code套件也能做測試API的功能，便決定來試用一下。
+盲點2:專案做不好是因為沒有好的工具。 專案管理框架 Why -&gt; How -&gt; What 解決問題 -&gt; 方法論 -&gt; 專案管理工具 達成目標 工具只是輔助，問題是你要對專案管理、目標設定該有個請出的理解與洞見
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2021-04-19T21:48:15+08:00'>April 19, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to [商業思維學院]專案管理學習筆記：專案管理的基本觀念" href="https://dannyliu.me/%E5%95%86%E6%A5%AD%E6%80%9D%E7%B6%AD%E5%AD%B8%E9%99%A2%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%9A%E5%B0%88%E6%A1%88%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">使用 REST-Client 來測試 API [VS Code擴充套件]
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>之前都是使用POSTMAN做API的測試，但發覺使用上在嘗試各個參數時，一個一個輸入測試情境有點麻煩。因為開發過程API可能還會變動，現階段還沒有考慮使用POSTMAN的Test功能。最近知道有個VS Code套件也能做測試API的功能，便決定來試用一下。
 詳細的使用說明都在GitHub上面，這篇就簡單介紹一下
 安裝套件 請安裝 VS Code 擴充套件REST-Client
 VS Code 套件商城
 建立測試檔 REST-Client測試檔是以.http作為副檔名，測試檔以{測試目標}.http來命名
 以Get傳遞參數 前方先指定HTTP動詞，空格後接欲測試的API，為了方便git版控，測試參數請換行撰寫
 GET https://dannyliu.me ?name=danny &amp;age=18 在VS Code中會看到HTTP動詞前面有Send Request的按鈕，點選就會送出請求，右側就會出現回應結果視窗 以JSON格式傳遞 須設定Content-Type後，空格一行再填入JSON物件
-@host = https://dannyliu.me POST {{host}}/test Content-Type: application/json { "name": "danny", "age":18 } 變數宣告 @開頭視為變數宣告
+@host = https://dannyliu.me POST {{host}}/test Content-Type: application/json { &#34;name&#34;: &#34;danny&#34;, &#34;age&#34;:18 } 變數宣告 @開頭視為變數宣告
 @ABC = 123 代表宣告了一個名叫ABC的變數，其值為123 等號兩邊請留空格，以換行作為結尾
 變數使用 {{ABC}}代表使用變數ABC的值，可以取得位於環境設定與當前檔案中所宣告的變數
 若同一變數宣告多次，則以最後宣告為主
 若同一個變數同時設定於環境設定與當前檔案，則以當前檔案為主
-使用環境設定 要測試的環境設定檔位於專案目錄/.vscode/settings.json 可以依圖片的方式進行建立，點擊齒輪=>設定=>工作目錄=>開啟JSON 內容依下方式撰寫，可以直接複製貼上再做修改
-{ "rest-client.environmentVariables": { "$shared": { "userName": "danny", }, "localhost": { "host": "http://localhost:5000", "userName": "{{$shared userName}}", }, "正式機": { "host": "https://dannyliu.me", "userName": "{{$shared userName}}", } } } 切換測試環境 若測試環境不同，需要環境設定中不同組變數，按Crtl + Alt + E組合鍵就會出現小視窗可以切換測試變數 ...</p></div><footer class=entry-footer><span title=2021-03-31T02:15:13+08:00>March 31, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 使用 REST-Client 來測試 API [VS Code擴充套件]" href=https://dannyliu.me/%E4%BD%BF%E7%94%A8-rest-client-%E4%BE%86%E6%B8%AC%E8%A9%A6-api-vs-code%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>使用Git Rebase來合併分支</h2></header><div class=entry-content><p>在使用git做版控的時候，團隊這邊用merge將多個分支合併到master，但事後再瀏覽版本線圖時，覺得整個線圖過於混亂，於是決定整個團隊改使用rebae來進行合併。
+使用環境設定 要測試的環境設定檔位於專案目錄/.vscode/settings.json 可以依圖片的方式進行建立，點擊齒輪=&gt;設定=&gt;工作目錄=&gt;開啟JSON 內容依下方式撰寫，可以直接複製貼上再做修改
+{ &#34;rest-client.environmentVariables&#34;: { &#34;$shared&#34;: { &#34;userName&#34;: &#34;danny&#34;, }, &#34;localhost&#34;: { &#34;host&#34;: &#34;http://localhost:5000&#34;, &#34;userName&#34;: &#34;{{$shared userName}}&#34;, }, &#34;正式機&#34;: { &#34;host&#34;: &#34;https://dannyliu.me&#34;, &#34;userName&#34;: &#34;{{$shared userName}}&#34;, } } } 切換測試環境 若測試環境不同，需要環境設定中不同組變數，按Crtl &#43; Alt &#43; E組合鍵就會出現小視窗可以切換測試變數 ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2021-03-31T02:15:13+08:00'>March 31, 2021</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 使用 REST-Client 來測試 API [VS Code擴充套件]" href="https://dannyliu.me/%E4%BD%BF%E7%94%A8-rest-client-%E4%BE%86%E6%B8%AC%E8%A9%A6-api-vs-code%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">使用Git Rebase來合併分支
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在使用git做版控的時候，團隊這邊用merge將多個分支合併到master，但事後再瀏覽版本線圖時，覺得整個線圖過於混亂，於是決定整個團隊改使用rebae來進行合併。
 第一次聽到rebase這陌生的名稱，感到非常緊張，經mentor講解後做個筆記紀錄一下(我的mentor一直暗示我的部落格沒有新文章，小弟我只好趕快生一篇出來…)。
-rebasing 是 merge branch 的第二種方法。rebasing 就是取出一連串的 commit，“複製"它們，然後把它們接在別的地方。
+rebasing 是 merge branch 的第二種方法。rebasing 就是取出一連串的 commit，“複製&#34;它們，然後把它們接在別的地方。
 rebasing 的優點是可以建立更線性的 commit history。假如只允許使用 rebasing 的話，則我們的 repo 中的 commit log 或者是 commit history 會更加簡潔好看。
 簡單來說：你想要別人樹枝的更新合併到你的樹枝裡，使用rebase的方式是把你的樹枝折斷，直接插在別人的樹枝上，你的樹枝下方就有別人的更新，在線圖上看就會像是同一條線。
 以下例圖，如果你的bugFix分支需要master分支的最新功能 現在，我在bugFix分支，分別使用merge以及rebase把master合併到bugFix，各位可以看一下線圖呈現的差異
 切換到bugFix分支後，用merge 指令把master合併進來
 git merge master 使用merge把master合併到bugFix的線圖會是長這樣 如果使用rebase，一樣先切換到bugFix分之，在使用rebase指令把master合併到bugFix
-git rebase master 輸入完則線圖會呈現圖片所述 在做rebase時，git實際動作是複製C2與C3這兩個commit並把複製品接到master上面，然後標註C3'是bugFix分支
+git rebase master 輸入完則線圖會呈現圖片所述 在做rebase時，git實際動作是複製C2與C3這兩個commit並把複製品接到master上面，然後標註C3&#39;是bugFix分支
 原本的C2與C3現在不屬於任何的分支，所以被git隱藏起來。
 以下是我的操作錄影
 [embed]https://youtu.be/TuJS7VmwQL4[/embed]
-[Learn Git Branching] [另一種合併方式（使用 rebase）-為你自己學 Git]</p></div><footer class=entry-footer><span title=2020-12-29T23:52:26+08:00>December 29, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 使用Git Rebase來合併分支" href=https://dannyliu.me/%E4%BD%BF%E7%94%A8git-rebase%E4%BE%86%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>SOLID設計原則筆記</h2></header><div class=entry-content><p>之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
+[Learn Git Branching] [另一種合併方式（使用 rebase）-為你自己學 Git]
+</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-12-29T23:52:26+08:00'>December 29, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 使用Git Rebase來合併分支" href="https://dannyliu.me/%E4%BD%BF%E7%94%A8git-rebase%E4%BE%86%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SOLID設計原則筆記
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
 不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)
 前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？
 OOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，“將真實世界的需求簡化成程式類別”)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為
@@ -90,26 +316,82 @@ SOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SO
 以上是最初理念，隨者時間演變Martin將版本改為：
 一個模組應該只對一個角色負責。
 所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)
-...</p></div><footer class=entry-footer><span title=2020-05-13T10:46:11+08:00>May 13, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to SOLID設計原則筆記" href=https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>C# 列舉器 IEnumerator 與 IEnumerable</h2></header><div class=entry-content><p>今天要講的是列舉器，我們很常用到foreach來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-05-13T10:46:11+08:00'>May 13, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to SOLID設計原則筆記" href="https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C# 列舉器 IEnumerator 與 IEnumerable
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>今天要講的是列舉器，我們很常用到foreach來幫我們把陣列裡面的東西全部拿出來。那麼，為什麼陣列可以使用 foreach ，我們操作其他物件到底能不能使用 foreach ？
 答案是因為，陣列有實作列舉器，所以我們可以使用 foreach 把陣列裡面的東西全部拿出來。簡而言之，若我們的自訂義的類別有實作列舉器。那就可以使用 foreach 來取出裡面的東西。
-class Program { static void Main(string[] args) { string[] 陣列 = { "小明", "小華", "小花" }; foreach(var item in 陣列) { Console.WriteLine(item); } Console.ReadKey(); } } 輸出結果：
+class Program { static void Main(string[] args) { string[] 陣列 = { &#34;小明&#34;, &#34;小華&#34;, &#34;小花&#34; }; foreach(var item in 陣列) { Console.WriteLine(item); } Console.ReadKey(); } } 輸出結果：
 小明 小華 小花 列舉器 enumerator 列舉器會將陣列裡面的東西一個一個的依照順序取出來，不過 C# 裡面陣列是一個有指定大小的容器，定義陣列的大小後，裡面能放東西的數量就是固定的。所以廣泛來說，列舉器會把序列(不限定長度大小)裡面的東西一個一個取出來。 列舉器的實作方式也非常簡單，要做三個功能，1.拿出一個，2.判斷有沒有下一個，3.重頭開始(從零開始)
 在C#中有定義列舉器的interface IEnumerator，所以我們說陣列裡面有實作enumerator，就是擁有這三個功能
 public interface IEnumerator { bool MoveNext(); Object Current { get; } void Reset(); } 可列舉的enumerable 至於要怎麼知道這個物件有沒有列舉器，能不能使用foreach，就要看這個類別是不是可列舉的類別，類別有沒有繼承IEnumerable這介面。(補充：C#習慣在介面前面加上i，所以IEnumerable就是enumerable的interface，指的是可列舉的介面。)
 如果有繼承IEnumerable，就代表有實作GetEnumerator()這個方法來讓我們拿到列舉器。
 public interface IEnumerable { IEnumerator GetEnumerator(); } 所以剛剛的 foreach 程式可以改成以下使用列舉器的版本
-...</p></div><footer class=entry-footer><span title=2020-03-22T23:37:09+08:00>March 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to C# 列舉器 IEnumerator 與 IEnumerable" href=https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法</h2></header><div class=entry-content><p>最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-03-22T23:37:09+08:00'>March 22, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to C# 列舉器 IEnumerator 與 IEnumerable" href="https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近嘗試把之前的爬蟲結果存去資料庫，嘗試使用Scaffold-DbContext指令來做EF Core的來自資料庫的Code First，指令一下下去馬上就得到Build failed.，然後什麼錯誤訊息都沒有。
 如果你急著想找解決辦法，請直接看最後一行。
 ——正文—— 改用命令列模式dotnet ef卻得到以下錯誤訊息。
 因為找不到指定的命令或檔案，所以無法執行。 可能的原因包括: * 拼錯了內建 dotnet 命令。 * 您預計要執行 .NET Core 程式，但 dotnet-ef 並不存在。 * 您預計要執行全域工具，但在 PATH 上找不到此名稱且開頭為 dotnet 的可 執行檔。 依照官方文件和黑大的文章的描述。 .NET Core 3.0的SDK中已經不包含EF Core CLI，所以要使用命令列來操作EF的話需要以下指令來令外安裝：
-dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework 'Microsoft.NETCore.App', version '3.1.2' was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。
-...</p></div><footer class=entry-footer><span title=2020-03-12T23:28:04+08:00>March 12, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to dotnet ef 出現錯誤訊息 'Microsoft.NETCore.App', version '3.1.2' was not found.的解決辦法" href=https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>使用GitHub Actions 自動執行專案腳本</h2></header><div class=entry-content><p>之前我寫了一個.NET Core的爬蟲程式，放在GitHub上並啟動GitHub Actions，讓Actions每隔一段時間就幫我執行爬蟲程式，並將結果推送到另外一個respository去，想一想應該要來筆記一下。 我們程式專案儲存至GitHub Respository後，可以設定在GitHub Action 執行CI/CD這類持續整合/持續部屬的服務。只要在專案中設定GitHub Action的Workflows工作流程文件檔yml檔，並在yml中設定觸發持行的時機，GitHub Actions就會幫我們自動執行。
+dotnet tool install --global dotnet-ef 我們就可以高高興興的使用Entity Framework Core了，but…總是有但是 It was not possible to find any compatible framework version The framework &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found. - The following frameworks were found: 2.1.15 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] 3.1.1 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App] You can resolve the problem by installing the specified framework and/or SDK. The specified framework can be found at: - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=3.1.2&amp;arch=x64&amp;rid=win10-x64 奇怪，前幾天我就已經安裝了最新版的.NET SDK怎麼會出現這個問題呢！？。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-03-12T23:28:04+08:00'>March 12, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to dotnet ef 出現錯誤訊息 &#39;Microsoft.NETCore.App&#39;, version &#39;3.1.2&#39; was not found.的解決辦法" href="https://dannyliu.me/dotnet-ef-%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF-microsoft-netcore-app-version-3-1-2-was-not-found-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">使用GitHub Actions 自動執行專案腳本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>之前我寫了一個.NET Core的爬蟲程式，放在GitHub上並啟動GitHub Actions，讓Actions每隔一段時間就幫我執行爬蟲程式，並將結果推送到另外一個respository去，想一想應該要來筆記一下。 我們程式專案儲存至GitHub Respository後，可以設定在GitHub Action 執行CI/CD這類持續整合/持續部屬的服務。只要在專案中設定GitHub Action的Workflows工作流程文件檔yml檔，並在yml中設定觸發持行的時機，GitHub Actions就會幫我們自動執行。
 整個Workflows的執行是運行在Azure virtual machine中的Standard_DS2_v2等級虛擬機器上，提供windows、ubuntu、macOS 三個執行環境，並有對應label，要用windows的話可以在yml檔中寫windows-latest。 文件上有寫說：
 The GitHub-hosted runner application is a fork of the Azure Pipelines Agent.
 個人感覺GitHub被微軟買走之後才開始提供了Github Actions這個服務，也許我們可以說整個Github Actions就算都算源自於Azure Pipelines ？？？
 開始使用GitHub Actions 使用GitHub Actions第一個步驟就是先設定yml檔，雖然可以完全自己動手來寫，不過個人蠻常寫錯的，我們就先從GitHub提供的範本來改。
 設定yml 我們去自己的GitHub儲存庫中，點選的Actions標籤。這邊我點的是.NET Core的專案 選擇範本 進來Actions標籤後，可以看到GitHub建議我們可以使用.NET Core的yml範本來更改，成為我們的Workflows工作流程設定。點選Set up this workflow來開使設定。 範本預設yml檔 可以看到.NET Core的yml範本，如圖 name: .NET Core on: #指什麼時候要執行這個Workflows工作流程 push: branches: [ master ] #觸發執行的分支 pull_request: branches: [ master ] #觸發執行的分支 jobs: build: runs-on: ubuntu-latest #告訴GitHub Action這個Workflows要在什麼電腦環境執行 steps: - uses: actions/checkout@v2 #會幫我們的專案下載至剛建立的電腦環境中的臨時資料加 - name: Setup .NET Core uses: actions/setup-dotnet@v1 with: dotnet-version: 3.1.101 #設定要使用的dotnet core版本，會在執行Workflows時自動幫我們安裝該版本的.Net Core - name: Build with dotnet run: dotnet build --configuration Release # run後面接的是會在這個專案中執行的指令 編寫好之後按右邊的Start commit就會出發push事件執行這個Workflow
-...</p></div><footer class=entry-footer><span title=2020-03-08T23:58:44+08:00>March 8, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 使用GitHub Actions 自動執行專案腳本" href=https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp</h2></header><div class=entry-content><p>一隻可以抓取指定網頁中資料的程式，我們習慣稱呼為爬蟲程式。聽過很多人講爬蟲程式都是使用python來撰寫。不過既然小弟現在主要已寫C#為主，當然要寫一隻運行在.NET的C#爬蟲程式。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-03-08T23:58:44+08:00'>March 8, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 使用GitHub Actions 自動執行專案腳本" href="https://dannyliu.me/%E4%BD%BF%E7%94%A8github-actions-%E8%87%AA%E5%8B%95%E5%9F%B7%E8%A1%8C%E5%B0%88%E6%A1%88%E8%85%B3%E6%9C%AC/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>一隻可以抓取指定網頁中資料的程式，我們習慣稱呼為爬蟲程式。聽過很多人講爬蟲程式都是使用python來撰寫。不過既然小弟現在主要已寫C#為主，當然要寫一隻運行在.NET的C#爬蟲程式。
 現在微軟的.NET Core已經可以正式的運行在Linux平台上，我想寫個爬蟲希望可以同值時運行在Windows平台與Linux平台上的話，當然選擇使用.net Core而不是.net Framework。
 我們用瀏覽器在點擊一個連結、或是打開一個網頁時，輸入的http://或https://開頭的網址，都會發送Http請求到對應的網頁伺服器中，對方的網頁伺服器就回傳訊息給我們，其中Content欄位就是該網頁的HTML格式資料，瀏覽器解析HTML格式資料後我們便可以在瀏覽器上瀏覽這個網頁。
 所以在爬蟲程式中，我們要模擬瀏覽器行為發送一個Http請求來取得網頁資料，再來就是使用AngleSharp這個套件來尋找Html的DOM元素來取得特定內容。 關於在.NET中發送Http請求 在.NET裡面可以使用WebClient 、HttpWebRequest、HttpClient這三種類別來發送Http請求到遠端伺服器去取得資料。其中，HttpClient是.NET Framework 4.5開始加入的類別，也是NET Core中官方建議使用的類別。
@@ -118,9 +400,120 @@ The GitHub-hosted runner application is a fork of the Azure Pipelines Agent.
 延伸閱讀：HttpClient，該 using 還是 static?
 建立專案 這邊我們使用命令列來建立一個新的.NET Core console專案，並命名為Console1
 dotnet new console -n Console1 使用HttpClicent取得網頁資料 我們就依照官方的建議，使用HttpClient來取的網頁資料。(關於async Task Main()與await請看註一)
-using System; using System.Net.Http; using System.Threading.Tasks; namespace ConsoleApp1 { class Program { static async Task Main(string[] args) { HttpClient httpClient = new HttpClient(); string url = "https://dannyliu.me"; var responseMessage = await httpClient.GetAsync(url); //發送請求 //檢查回應的伺服器狀態StatusCode是否是200 OK if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK) { string responseResult = responseMessage.Content.ReadAsStringAsync().Result;//取得內容 Console.WriteLine(responseResult); } Console.ReadKey(); } } } ...</p></div><footer class=entry-footer><span title=2020-03-01T23:53:43+08:00>March 1, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer><a class=entry-link aria-label="post link to 用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp" href=https://dannyliu.me/%E7%94%A8-net-core%E5%81%9A%E7%B6%B2%E9%A0%81%E7%88%AC%E8%9F%B2%E6%8A%93%E5%8F%96%E8%B3%87%E6%96%99-%E4%BD%BF%E7%94%A8httpclicent%E8%88%87anglesharp/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dannyliu.me/posts/>«&nbsp;上一頁&nbsp;
-</a><a class=next href=https://dannyliu.me/posts/page/3/>下一頁&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+using System; using System.Net.Http; using System.Threading.Tasks; namespace ConsoleApp1 { class Program { static async Task Main(string[] args) { HttpClient httpClient = new HttpClient(); string url = &#34;https://dannyliu.me&#34;; var responseMessage = await httpClient.GetAsync(url); //發送請求 //檢查回應的伺服器狀態StatusCode是否是200 OK if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK) { string responseResult = responseMessage.Content.ReadAsStringAsync().Result;//取得內容 Console.WriteLine(responseResult); } Console.ReadKey(); } } } ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2020-03-01T23:53:43+08:00'>March 1, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></footer>
+  <a class="entry-link" aria-label="post link to 用.NET Core做網頁爬蟲抓取資料-使用HttpClicent與AngleSharp" href="https://dannyliu.me/%E7%94%A8-net-core%E5%81%9A%E7%B6%B2%E9%A0%81%E7%88%AC%E8%9F%B2%E6%8A%93%E5%8F%96%E8%B3%87%E6%96%99-%E4%BD%BF%E7%94%A8httpclicent%E8%88%87anglesharp/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dannyliu.me/posts/">
+      «&nbsp;上一頁&nbsp;
+    </a>
+    <a class="next" href="https://dannyliu.me/posts/page/3/">下一頁&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dannyliu.me/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

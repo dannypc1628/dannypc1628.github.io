@@ -1,4 +1,13 @@
-<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Angular 元件的生命週期 | Danny Liu's Blog</title><meta name=keywords content><meta name=description content="angular 元件的生命週期
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Angular 元件的生命週期 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="angular 元件的生命週期
 
 
 ngOnChanges
@@ -77,7 +86,81 @@ Angular - 生命週期鉤子
 			
 	
 
-在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件"><meta name=author content><link rel=canonical href=https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="Angular 元件的生命週期"><meta property="og:description" content="angular 元件的生命週期 ngOnChanges
+在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件">
+<meta name="author" content="">
+<link rel="canonical" href="https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dannyliu.me/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dannyliu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dannyliu.me/favicon.png">
+<link rel="apple-touch-icon" href="https://dannyliu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dannyliu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXWPS9NSKF"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GXWPS9NSKF');
+        }
+      </script><meta property="og:url" content="https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+  <meta property="og:site_name" content="Danny Liu&#39;s Blog">
+  <meta property="og:title" content="Angular 元件的生命週期">
+  <meta property="og:description" content="angular 元件的生命週期 ngOnChanges
 ngOnInit
 ngDoCheck
 ngAfterContentInit
@@ -86,7 +169,16 @@ ngAfterViewInit
 ngAfterViewChecked
 ngOnDestroy
 Angular - 生命週期鉤子
-鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-04-30T22:23:05+08:00"><meta property="article:modified_time" content="2022-04-30T22:23:05+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Angular 元件的生命週期"><meta name=twitter:description content="angular 元件的生命週期 ngOnChanges
+鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-04-30T22:23:05+08:00">
+    <meta property="article:modified_time" content="2022-04-30T22:23:05+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Angular 元件的生命週期">
+  <meta name="twitter:description" content="angular 元件的生命週期 ngOnChanges
 ngOnInit
 ngDoCheck
 ngAfterContentInit
@@ -95,40 +187,403 @@ ngAfterViewInit
 ngAfterViewChecked
 ngOnDestroy
 Angular - 生命週期鉤子
-鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"},{"@type":"ListItem","position":2,"name":"Angular 元件的生命週期","item":"https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Angular 元件的生命週期","name":"Angular 元件的生命週期","description":"angular 元件的生命週期 ngOnChanges\nngOnInit\nngDoCheck\nngAfterContentInit\nngAfterContentChecked\nngAfterViewInit\nngAfterViewChecked\nngOnDestroy\nAngular - 生命週期鉤子\n鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件\n","keywords":[],"articleBody":"angular 元件的生命週期 ngOnChanges\nngOnInit\nngDoCheck\nngAfterContentInit\nngAfterContentChecked\nngAfterViewInit\nngAfterViewChecked\nngOnDestroy\nAngular - 生命週期鉤子\n鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件\nimport { Component, Input, OnChanges, OnInit ,SimpleChanges} from '@angular/core'; @Component({ selector: 'app-server', templateUrl: './server.component.html', styleUrls: ['./server.component.css'], }) export class ServerComponent implements OnChanges, OnInit { @Input() name : string =\"\" ; constructor() { console.log(`constructor`); } ngOnChanges(changes: SimpleChanges): void { console.log('ngOnChanges'); console.log(changes); } ngOnInit(): void { console.log(`ngOnInit`); } } SimpleChange So again, I did these changes so that we can really see when ngOnChanges gets fired and we couldn’t\nuse the element as an object because objects are the reference types, so we passed the object via input,\n因此，我再次進行了這些更改，以便我們可以真正看到 ngOnChanges 何時被觸發而我們不能\n使用元素作為對象，因為對像是引用類型，所以我們通過輸入傳遞對象，\n改物件裡面的值OnChange是偵測不到得~\n但是直接改傳遞值是知道的\n這是JavaScript的背景知識\n開發模式下Angular會做額外的變更偵測，所以會看到兩次\nngDoCheck() 的觸發情境有很多，例如點擊或是promise回應等\n老師不建議寫太多耗能的運算在裡面，但如果你想手動檢查或偵測狀態的話，就寫在這個地方\nngAfterContentInit() 把ng-content的內容投射至Component的View之後呼叫 只會在第一次初始化後執行\n影片 [embed]https://youtu.be/MJWp5Ti3npg[/embed]\n","wordCount":"194","inLanguage":"zh-tw","datePublished":"2022-04-30T22:23:05+08:00","dateModified":"2022-04-30T22:23:05+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/"},"publisher":{"@type":"Organization","name":"Danny Liu's Blog","logo":{"@type":"ImageObject","url":"https://dannyliu.me/favicon.png"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/posts/>Posts</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">Angular 元件的生命週期</h1><div class=post-meta><span title=2022-04-30T22:23:05+08:00>April 30, 2022</span>&nbsp;·&nbsp;<span>1 分鐘</span></div></header><div class="post-content md-content"><h1 id=angular-元件的生命週期>angular 元件的生命週期<a hidden class=anchor aria-hidden=true href=#angular-元件的生命週期>#</a></h1><ol><li><p>ngOnChanges</p></li><li><p>ngOnInit</p></li><li><p>ngDoCheck</p></li><li><p>ngAfterContentInit</p></li><li><p>ngAfterContentChecked</p></li><li><p>ngAfterViewInit</p></li><li><p>ngAfterViewChecked</p></li><li><p>ngOnDestroy</p></li></ol><p><a href=https://angular.tw/guide/lifecycle-hooks>Angular - 生命週期鉤子</a></p><table><thead><tr><th>鉤子方法</th><th>用途</th><th>時機</th></tr></thead><tbody><tr><td>ngOnChanges()</td><td>當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。</td><td>在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。</td></tr><tr><td>ngOnInit()</td><td>在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。</td><td>在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。</td></tr><tr><td>ngDoCheck()</td><td>檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。</td><td>緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。</td></tr><tr><td>ngAfterContentInit()</td><td>當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。</td><td>第一次 ngDoCheck() 之後呼叫，只調用一次。</td></tr><tr><td>ngAfterContentChecked()</td><td>每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。</td><td>ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫</td></tr><tr><td>ngAfterViewInit()</td><td>當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。</td><td>第一次 ngAfterContentChecked() 之後呼叫，只調用一次。</td></tr><tr><td>ngAfterViewChecked()</td><td>每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。</td><td>ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。</td></tr><tr><td>ngOnDestroy()</td><td>每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。</td><td>在 Angular 銷燬指令或元件之前立即呼叫。</td></tr></tbody></table><p>在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-tsx data-lang=tsx><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Component</span>, <span style=color:#a6e22e>Input</span>, <span style=color:#a6e22e>OnChanges</span>, <span style=color:#a6e22e>OnInit</span> ,<span style=color:#a6e22e>SimpleChanges</span>} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@angular/core&#39;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@Component</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;app-server&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>templateUrl</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./server.component.html&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>styleUrls</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;./server.component.css&#39;</span>],
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ServerComponent</span>  <span style=color:#66d9ef>implements</span>  <span style=color:#a6e22e>OnChanges</span>, <span style=color:#a6e22e>OnInit</span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>@Input</span>() <span style=color:#a6e22e>name</span> : <span style=color:#66d9ef>string</span> <span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>constructor</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`constructor`</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ngOnChanges</span>(<span style=color:#a6e22e>changes</span>: <span style=color:#66d9ef>SimpleChanges</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;ngOnChanges&#39;</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>changes</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ngOnInit</span>()<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`ngOnInit`</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><ul><li>SimpleChange <img alt=file loading=lazy src=/wp-content/uploads/2022/04/image-1651328700549.png></li></ul><p>So again, I did these changes so that we can really see when ngOnChanges gets fired and we couldn&rsquo;t</p><p>use the element as an object because objects are the reference types, so we passed the object via input,</p><p>因此，我再次進行了這些更改，以便我們可以真正看到 ngOnChanges 何時被觸發而我們不能</p><p>使用元素作為對象，因為對像是引用類型，所以我們通過輸入傳遞對象，</p><p>改物件裡面的值OnChange是偵測不到得~</p><p>但是直接改傳遞值是知道的</p><p>這是JavaScript的背景知識</p><p>開發模式下Angular會做額外的變更偵測，所以會看到兩次</p><p><img alt=file loading=lazy src=/wp-content/uploads/2022/04/image-1651328752604.png></p><p>ngDoCheck() 的觸發情境有很多，例如點擊或是promise回應等</p><p>老師不建議寫太多耗能的運算在裡面，但如果你想手動檢查或偵測狀態的話，就寫在這個地方</p><p><img alt=file loading=lazy src=/wp-content/uploads/2022/04/image-1651328801776.png></p><p>ngAfterContentInit() 把ng-content的內容投射至Component的View之後呼叫 只會在第一次初始化後執行</p><h2 id=影片>影片<a hidden class=anchor aria-hidden=true href=#影片>#</a></h2><p>[embed]https://youtu.be/MJWp5Ti3npg[/embed]</p></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/><span class=title>« 上一頁</span>
-<span>acme.sh 未正確更新憑證的 Bug</span>
-</a><a class=next href=https://dannyliu.me/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/><span class=title>下一頁 »</span>
-<span>在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="複製";function s(){t.innerHTML="已複製！",setTimeout(()=>{t.innerHTML="複製"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://dannyliu.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Angular 元件的生命週期",
+      "item": "https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Angular 元件的生命週期",
+  "name": "Angular 元件的生命週期",
+  "description": "angular 元件的生命週期 ngOnChanges\nngOnInit\nngDoCheck\nngAfterContentInit\nngAfterContentChecked\nngAfterViewInit\nngAfterViewChecked\nngOnDestroy\nAngular - 生命週期鉤子\n鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "angular 元件的生命週期 ngOnChanges\nngOnInit\nngDoCheck\nngAfterContentInit\nngAfterContentChecked\nngAfterViewInit\nngAfterViewChecked\nngOnDestroy\nAngular - 生命週期鉤子\n鉤子方法 用途 時機 ngOnChanges() 當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。 在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。 ngOnInit() 在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。 在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。 ngDoCheck() 檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。 緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。 ngAfterContentInit() 當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。 第一次 ngDoCheck() 之後呼叫，只調用一次。 ngAfterContentChecked() 每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。 ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫 ngAfterViewInit() 當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。 第一次 ngAfterContentChecked() 之後呼叫，只調用一次。 ngAfterViewChecked() 每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。 ngOnDestroy() 每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。 在 Angular 銷燬指令或元件之前立即呼叫。 在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件\nimport { Component, Input, OnChanges, OnInit ,SimpleChanges} from '@angular/core'; @Component({ selector: 'app-server', templateUrl: './server.component.html', styleUrls: ['./server.component.css'], }) export class ServerComponent implements OnChanges, OnInit { @Input() name : string =\"\" ; constructor() { console.log(`constructor`); } ngOnChanges(changes: SimpleChanges): void { console.log('ngOnChanges'); console.log(changes); } ngOnInit(): void { console.log(`ngOnInit`); } } SimpleChange So again, I did these changes so that we can really see when ngOnChanges gets fired and we couldn’t\nuse the element as an object because objects are the reference types, so we passed the object via input,\n因此，我再次進行了這些更改，以便我們可以真正看到 ngOnChanges 何時被觸發而我們不能\n使用元素作為對象，因為對像是引用類型，所以我們通過輸入傳遞對象，\n改物件裡面的值OnChange是偵測不到得~\n但是直接改傳遞值是知道的\n這是JavaScript的背景知識\n開發模式下Angular會做額外的變更偵測，所以會看到兩次\nngDoCheck() 的觸發情境有很多，例如點擊或是promise回應等\n老師不建議寫太多耗能的運算在裡面，但如果你想手動檢查或偵測狀態的話，就寫在這個地方\nngAfterContentInit() 把ng-content的內容投射至Component的View之後呼叫 只會在第一次初始化後執行\n影片 [embed]https://youtu.be/MJWp5Ti3npg[/embed]\n",
+  "wordCount" : "194",
+  "inLanguage": "zh-tw",
+  "datePublished": "2022-04-30T22:23:05+08:00",
+  "dateModified": "2022-04-30T22:23:05+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dannyliu.me/angular-%E5%85%83%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Danny Liu's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dannyliu.me/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dannyliu.me/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Angular 元件的生命週期
+    </h1>
+    <div class="post-meta">
+
+<span title='2022-04-30T22:23:05+08:00'>April 30, 2022</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h1 id="angular-元件的生命週期">angular 元件的生命週期<a hidden class="anchor" aria-hidden="true" href="#angular-元件的生命週期">#</a></h1>
+<ol>
+<li>
+<p>ngOnChanges</p>
+</li>
+<li>
+<p>ngOnInit</p>
+</li>
+<li>
+<p>ngDoCheck</p>
+</li>
+<li>
+<p>ngAfterContentInit</p>
+</li>
+<li>
+<p>ngAfterContentChecked</p>
+</li>
+<li>
+<p>ngAfterViewInit</p>
+</li>
+<li>
+<p>ngAfterViewChecked</p>
+</li>
+<li>
+<p>ngOnDestroy</p>
+</li>
+</ol>
+<p><a href="https://angular.tw/guide/lifecycle-hooks">Angular - 生命週期鉤子</a></p>
+<table>
+	<thead>
+			<tr>
+					<th>鉤子方法</th>
+					<th>用途</th>
+					<th>時機</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ngOnChanges()</td>
+					<td>當 Angular 設定或重新設定資料繫結的輸入屬性時響應。 該方法接受當前和上一屬性值的 SimpleChanges 物件注意，這發生的非常頻繁，所以你在這裡執行的任何操作都會顯著影響效能。 欲知詳情，參閱本文件的使用變更檢測鉤子。</td>
+					<td>在 ngOnInit() 之前以及所繫結的一個或多個輸入屬性的值發生變化時都會呼叫。注意，如果你的元件沒有輸入，或者你使用它時沒有提供任何輸入，那麼框架就不會呼叫 ngOnChanges()。</td>
+			</tr>
+			<tr>
+					<td>ngOnInit()</td>
+					<td>在 Angular 第一次顯示資料繫結和設定指令/元件的輸入屬性之後，初始化指令/元件。 欲知詳情，參閱本文件中的初始化元件或指令。</td>
+					<td>在第一輪 ngOnChanges() 完成之後呼叫，只調用一次。</td>
+			</tr>
+			<tr>
+					<td>ngDoCheck()</td>
+					<td>檢測，並在發生 Angular 無法或不願意自己檢測的變化時作出反應。 欲知詳情和範例，參閱本文件中的自訂變更檢測。</td>
+					<td>緊跟在每次執行變更檢測時的 ngOnChanges() 和 首次執行變更檢測時的 ngOnInit() 後呼叫。</td>
+			</tr>
+			<tr>
+					<td>ngAfterContentInit()</td>
+					<td>當 Angular 把外部內容投影進元件檢視或指令所在的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應內容中的變更。</td>
+					<td>第一次 ngDoCheck() 之後呼叫，只調用一次。</td>
+			</tr>
+			<tr>
+					<td>ngAfterContentChecked()</td>
+					<td>每當 Angular 檢查完被投影到元件或指令中的內容之後呼叫。欲知詳情和範例，參閱本文件中的響應被投影內容的變更。</td>
+					<td>ngAfterContentInit() 和每次 ngDoCheck() 之後呼叫</td>
+			</tr>
+			<tr>
+					<td>ngAfterViewInit()</td>
+					<td>當 Angular 初始化完元件檢視及其子檢視或包含該指令的檢視之後呼叫。欲知詳情和範例，參閱本文件中的響應檢視變更。</td>
+					<td>第一次 ngAfterContentChecked() 之後呼叫，只調用一次。</td>
+			</tr>
+			<tr>
+					<td>ngAfterViewChecked()</td>
+					<td>每當 Angular 做完元件檢視和子檢視或包含該指令的檢視的變更檢測之後呼叫。</td>
+					<td>ngAfterViewInit() 和每次 ngAfterContentChecked() 之後呼叫。</td>
+			</tr>
+			<tr>
+					<td>ngOnDestroy()</td>
+					<td>每當 Angular 每次銷燬指令/元件之前呼叫並清掃。 在這兒反訂閱可觀察物件和分離事件處理器，以防記憶體洩漏。 欲知詳情，參閱本文件中的在實例銷燬時進行清理。</td>
+					<td>在 Angular 銷燬指令或元件之前立即呼叫。</td>
+			</tr>
+	</tbody>
+</table>
+<p>在宣告 implements 雖然你會覺得這樣子寫很麻煩，但是你會非常清楚這個 Component 有 hook那些事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">OnInit</span> ,<span style="color:#a6e22e">SimpleChanges</span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Component</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-server&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./server.component.html&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./server.component.css&#39;</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ServerComponent</span>  <span style="color:#66d9ef">implements</span>  <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">OnInit</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">name</span> : <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`constructor`</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnChanges</span>(<span style="color:#a6e22e">changes</span>: <span style="color:#66d9ef">SimpleChanges</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;ngOnChanges&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">changes</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ngOnInit</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`ngOnInit`</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>SimpleChange <img alt="file" loading="lazy" src="/wp-content/uploads/2022/04/image-1651328700549.png"></li>
+</ul>
+<p>So again, I did these changes so that we can really see when ngOnChanges gets fired and we couldn&rsquo;t</p>
+<p>use the element as an object because objects are the reference types, so we passed the object via input,</p>
+<p>因此，我再次進行了這些更改，以便我們可以真正看到 ngOnChanges 何時被觸發而我們不能</p>
+<p>使用元素作為對象，因為對像是引用類型，所以我們通過輸入傳遞對象，</p>
+<p>改物件裡面的值OnChange是偵測不到得~</p>
+<p>但是直接改傳遞值是知道的</p>
+<p>這是JavaScript的背景知識</p>
+<p>開發模式下Angular會做額外的變更偵測，所以會看到兩次</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2022/04/image-1651328752604.png"></p>
+<p>ngDoCheck() 的觸發情境有很多，例如點擊或是promise回應等</p>
+<p>老師不建議寫太多耗能的運算在裡面，但如果你想手動檢查或偵測狀態的話，就寫在這個地方</p>
+<p><img alt="file" loading="lazy" src="/wp-content/uploads/2022/04/image-1651328801776.png"></p>
+<p>ngAfterContentInit() 把ng-content的內容投射至Component的View之後呼叫 只會在第一次初始化後執行</p>
+<h2 id="影片">影片<a hidden class="anchor" aria-hidden="true" href="#影片">#</a></h2>
+<p>[embed]https://youtu.be/MJWp5Ti3npg[/embed]</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dannyliu.me/acme-sh-%E6%9C%AA%E6%AD%A3%E7%A2%BA%E6%9B%B4%E6%96%B0%E6%86%91%E8%AD%89%E7%9A%84-bug/">
+    <span class="title">« 上一頁</span>
+    <span>acme.sh 未正確更新憑證的 Bug</span>
+  </a>
+  <a class="next" href="https://dannyliu.me/%E5%9C%A8-net-6-%E4%B8%AD%E4%BD%BF%E7%94%A8-ado-net-%E5%AF%A6%E9%AB%94%E8%B3%87%E6%96%99%E6%A8%A1%E5%9E%8B-%E4%BB%A5-windows-form-%E7%82%BA%E4%BE%8B/">
+    <span class="title">下一頁 »</span>
+    <span>在 .NET 6 中使用 ADO.NET 實體資料模型 -- 以 Windows Form 為例</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dannyliu.me/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

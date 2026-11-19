@@ -27,3 +27,7 @@ defaultContentLanguage = "zh-tw"
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[services.googleAnalytics]
+  id = "G-GXWPS9NSKF"
+    

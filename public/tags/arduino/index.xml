@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Arduino on Danny Liu's Blog</title><link>https://dannyliu.me/tags/arduino/</link><description>Recent content in Arduino on Danny Liu's Blog</description><generator>Hugo</generator><language>zh-TW</language><lastBuildDate>Sat, 17 Aug 2019 12:16:01 +0800</lastBuildDate><atom:link href="https://dannyliu.me/tags/arduino/index.xml" rel="self" type="application/rss+xml"/><item><title>用Arduino做e-paper番茄時鐘 Part 1</title><link>https://dannyliu.me/%E7%94%A8arduino%E5%81%9Ae-paper%E7%95%AA%E8%8C%84%E6%99%82%E9%90%98-part-1/</link><pubDate>Sat, 17 Aug 2019 12:16:01 +0800</pubDate><guid>https://dannyliu.me/%E7%94%A8arduino%E5%81%9Ae-paper%E7%95%AA%E8%8C%84%E6%99%82%E9%90%98-part-1/</guid><description>&lt;p&gt;&lt;img loading="lazy" src="https://dannyliu.me/wp-content/uploads/2019/07/DSC_3159-e1563536006925.jpg"&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Arduino on Danny Liu&#39;s Blog</title>
+    <link>https://dannyliu.me/tags/arduino/</link>
+    <description>Recent content in Arduino on Danny Liu&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sat, 17 Aug 2019 12:16:01 +0800</lastBuildDate>
+    <atom:link href="https://dannyliu.me/tags/arduino/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用Arduino做e-paper番茄時鐘 Part 1</title>
+      <link>https://dannyliu.me/%E7%94%A8arduino%E5%81%9Ae-paper%E7%95%AA%E8%8C%84%E6%99%82%E9%90%98-part-1/</link>
+      <pubDate>Sat, 17 Aug 2019 12:16:01 +0800</pubDate>
+      <guid>https://dannyliu.me/%E7%94%A8arduino%E5%81%9Ae-paper%E7%95%AA%E8%8C%84%E6%99%82%E9%90%98-part-1/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://dannyliu.me/wp-content/uploads/2019/07/DSC_3159-e1563536006925.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;最近看到什麼番茄時鐘管理法，看10分鐘英文單字休息25分鐘，結果感到自己廢到點開app都嫌麻煩，於是做了這個番茄鐘計時器，最近迷上e-ink的顯示效果，買了一塊e-paper螢幕試試&lt;/p&gt;
 &lt;p&gt;結果這螢幕毛特多，沒有中文字庫，arduino記憶體三不五時就炸，搞了整整一個禮拜終於有這個效果Orz&lt;/p&gt;
 &lt;p&gt;當初想自己做番茄鐘時，很明確地想法就是用e-ink螢幕來達成，不想使用會發光的OLED螢幕或是LCD螢幕 也是再三確認能否用arduino達成，確認可行之後才開始買材料動手做&lt;/p&gt;
@@ -18,54 +33,57 @@
 &lt;p&gt;在微雪電子提供的2.9吋電子紙螢幕範例程式中，已經提供了控制微雪控制器的liberay，建議將liberay資料夾下的檔案移動至demo資料夾中後，點擊epd2in9-demo.ino打開Arduino IDE看程式碼如何操作控制器，使畫面顯示到電子紙上面&lt;/p&gt;
 &lt;p&gt;其中 epdif.h這個檔案告訴我們是設定用哪一些arduino腳位連結至電子紙，這四個腳位是可以自己設定的，官方影片上有說DIN腳位要接UNO板的D11，CLK腳位要接UNO板的D13，這兩個腳位是模組要走SPI協定必要腳位，其中D11是UNO的SPI協定MOSI腳，D13是UNO的SPI協定SCK腳，MOSI腳跟SCK腳是不能自訂更改的，換到arduino micro板上就是改接MOSI腳跟SCK腳 所以使用&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;排插標示&lt;/th&gt;
-&lt;th&gt;UNO板接腳&lt;/th&gt;
-&lt;th&gt;micro板接腳&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;3.3v&lt;/td&gt;
-&lt;td&gt;3.3v&lt;/td&gt;
-&lt;td&gt;3.3v&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;GND&lt;/td&gt;
-&lt;td&gt;GND&lt;/td&gt;
-&lt;td&gt;GND&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DIN&lt;/td&gt;
-&lt;td&gt;D11&lt;/td&gt;
-&lt;td&gt;MOSI&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CLK&lt;/td&gt;
-&lt;td&gt;D13&lt;/td&gt;
-&lt;td&gt;SCK&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CS&lt;/td&gt;
-&lt;td&gt;D10&lt;/td&gt;
-&lt;td&gt;SS&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DC&lt;/td&gt;
-&lt;td&gt;D9&lt;/td&gt;
-&lt;td&gt;D9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;RST&lt;/td&gt;
-&lt;td&gt;D8&lt;/td&gt;
-&lt;td&gt;D8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;排插標示&lt;/th&gt;
+					&lt;th&gt;UNO板接腳&lt;/th&gt;
+					&lt;th&gt;micro板接腳&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;3.3v&lt;/td&gt;
+					&lt;td&gt;3.3v&lt;/td&gt;
+					&lt;td&gt;3.3v&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;GND&lt;/td&gt;
+					&lt;td&gt;GND&lt;/td&gt;
+					&lt;td&gt;GND&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;DIN&lt;/td&gt;
+					&lt;td&gt;D11&lt;/td&gt;
+					&lt;td&gt;MOSI&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CLK&lt;/td&gt;
+					&lt;td&gt;D13&lt;/td&gt;
+					&lt;td&gt;SCK&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CS&lt;/td&gt;
+					&lt;td&gt;D10&lt;/td&gt;
+					&lt;td&gt;SS&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;DC&lt;/td&gt;
+					&lt;td&gt;D9&lt;/td&gt;
+					&lt;td&gt;D9&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;RST&lt;/td&gt;
+					&lt;td&gt;D8&lt;/td&gt;
+					&lt;td&gt;D8&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-vb" data-lang="vb"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;//&lt;/span&gt; Pin definition
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#define RST_PIN 8 &lt;span style="color:#f92672"&gt;//&lt;/span&gt;D8腳位
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#define DC_PIN 9 &lt;span style="color:#f92672"&gt;//&lt;/span&gt;D9腳位
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#define CS_PIN 10 &lt;span style="color:#f92672"&gt;//&lt;/span&gt;D10腳位
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;#define BUSY_PIN 7 &lt;span style="color:#f92672"&gt;//&lt;/span&gt;D7腳位
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個範例程式是確定可以在我的電子紙上顯示的版本 程式中有說明微雪控制器中有兩個儲存區塊，畫面變更是把變更的資料儲存在其中一個區塊中後，由控制器把該區塊的資料顯示在電子紙上面 每次變更都是兩個區塊交替使用，奇數次變更使用A區塊，偶數次變更至B區塊，然而我們不能控制微雪控制器每一次的變更要使用哪個區塊 所以範例程式中Setup時是連續兩次清除與顯示的動作，來確保不會顯示出舊的資料&lt;/p&gt;</description></item></channel></rss>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-vb&#34; data-lang=&#34;vb&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt; Pin definition
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#define RST_PIN 8 &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;D8腳位
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#define DC_PIN 9 &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;D9腳位
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#define CS_PIN 10 &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;D10腳位
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#define BUSY_PIN 7 &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;D7腳位
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;這個範例程式是確定可以在我的電子紙上顯示的版本 程式中有說明微雪控制器中有兩個儲存區塊，畫面變更是把變更的資料儲存在其中一個區塊中後，由控制器把該區塊的資料顯示在電子紙上面 每次變更都是兩個區塊交替使用，奇數次變更使用A區塊，偶數次變更至B區塊，然而我們不能控制微雪控制器每一次的變更要使用哪個區塊 所以範例程式中Setup時是連續兩次清除與顯示的動作，來確保不會顯示出舊的資料&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

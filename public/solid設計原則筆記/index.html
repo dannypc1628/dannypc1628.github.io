@@ -1,4 +1,13 @@
-<!doctype html><html lang=zh-tw dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>SOLID設計原則筆記 | Danny Liu's Blog</title><meta name=keywords content><meta name=description content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
+<!DOCTYPE html>
+<html lang="zh-tw" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SOLID設計原則筆記 | Danny Liu&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
 不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)
 前言
 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？
@@ -44,7 +53,81 @@ Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則�
 
 一個模組應該只對一個角色負責。
 
-所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割  (What is Single Responsibility Principle)"><meta name=author content><link rel=canonical href=https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/><link crossorigin=anonymous href=/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as=style><link rel=icon href=https://dannyliu.me/favicon.png><link rel=icon type=image/png sizes=16x16 href=https://dannyliu.me/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dannyliu.me/favicon.png><link rel=apple-touch-icon href=https://dannyliu.me/apple-touch-icon.png><link rel=mask-icon href=https://dannyliu.me/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-tw href=https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"><meta property="og:site_name" content="Danny Liu's Blog"><meta property="og:title" content="SOLID設計原則筆記"><meta property="og:description" content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
+所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割  (What is Single Responsibility Principle)">
+<meta name="author" content="">
+<link rel="canonical" href="https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2fd9135862a3da866393a267370bb97cd812193a02eb63558b88b00f30ec3648.css" integrity="sha256-L9kTWGKj2oZjk6JnNwu5fNgSGToC62NVi4iwDzDsNkg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dannyliu.me/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dannyliu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dannyliu.me/favicon.png">
+<link rel="apple-touch-icon" href="https://dannyliu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dannyliu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-tw" href="https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXWPS9NSKF"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GXWPS9NSKF');
+        }
+      </script><meta property="og:url" content="https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/">
+  <meta property="og:site_name" content="Danny Liu&#39;s Blog">
+  <meta property="og:title" content="SOLID設計原則筆記">
+  <meta property="og:description" content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
 不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)
 前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？
 OOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，“將真實世界的需求簡化成程式類別”)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為
@@ -64,7 +147,16 @@ SOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SO
 學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由
 以上是最初理念，隨者時間演變Martin將版本改為：
 一個模組應該只對一個角色負責。
-所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-13T10:46:11+08:00"><meta property="article:modified_time" content="2020-05-13T10:46:11+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="SOLID設計原則筆記"><meta name=twitter:description content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
+所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-13T10:46:11+08:00">
+    <meta property="article:modified_time" content="2020-05-13T10:46:11+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SOLID設計原則筆記">
+  <meta name="twitter:description" content="之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了
 不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)
 前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？
 OOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，“將真實世界的需求簡化成程式類別”)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為
@@ -84,18 +176,384 @@ SOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SO
 學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由
 以上是最初理念，隨者時間演變Martin將版本改為：
 一個模組應該只對一個角色負責。
-所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://dannyliu.me/posts/"},{"@type":"ListItem","position":2,"name":"SOLID設計原則筆記","item":"https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"SOLID設計原則筆記","name":"SOLID設計原則筆記","description":"之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了\n不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)\n前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？\nOOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，\u0026ldquo;將真實世界的需求簡化成程式類別\u0026rdquo;)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為\n封裝(Encapsulation) 隱藏或保護類別內部實作的細節\n繼承(Inheritance) 當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法\n多型(Polymorphism) 多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。\n內聚力與偶合力 先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件\n內聚力 內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)\n耦合力 A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)\n高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。\n相依性 有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依\n原則 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\nSOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼\n當然，前提是你要了解需求\n原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞\n補充 Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。\n學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由\n以上是最初理念，隨者時間演變Martin將版本改為：\n一個模組應該只對一個角色負責。\n所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)\n","keywords":[],"articleBody":"之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了\n不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)\n前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？\nOOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，“將真實世界的需求簡化成程式類別”)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為\n封裝(Encapsulation) 隱藏或保護類別內部實作的細節\n繼承(Inheritance) 當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法\n多型(Polymorphism) 多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。\n內聚力與偶合力 先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件\n內聚力 內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)\n耦合力 A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)\n高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。\n相依性 有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依\n原則 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\nSOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼\n當然，前提是你要了解需求\n原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞\n補充 Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。\n學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由\n以上是最初理念，隨者時間演變Martin將版本改為：\n一個模組應該只對一個角色負責。\n所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)\n所有功能都寫在一個類別中時，類別複雜度越高，程式碼越寫越長，要改code時、要找bug時找不到要改哪裡修哪裡，一個類別的方法太多時，也不知道要呼叫哪一個方法\n所以當一段程式碼有重複利用的需求，那就可以考慮SRP，當然，前提是你要了解需求，若你沒有足夠的經驗來定義一個物件的責任，(或你還不了解需求)，不用太早就進行SRP規劃\n開放封閉原則 Open Closed Principle (OCP) 一個軟體製品應該對於擴展是開放的，但對於修改是封閉的。\n應該藉由新增程式碼來擴充功能，而不是修改原本的程式碼。 可以透過繼承來輕鬆擴充 在C#中也可以使用擴充方法來擴充既有類別 或利用抽象，用抽象的型別來裝載一個物件\nOCP的時機 既有類別已經定義清楚，處於一個強調穩定的狀態 或是你需要擴充現有類別，加入新需求的屬性或方法 又或是擔心修改現有程式碼會破壞現有系統，於是擴充它而不改原本的code\n不過，並不是所有類別都需要可擴充性，這要看需求、看你對系統本身的理解。當然，若你的程式碼一開始就不具備可擴充性，其實也沒關係，我們可以透過重構的技術讓程式碼變得可擴充\nOCP有很多實作方式，可以透過繼承，保留原本的code，並撰寫新的code，套用OCP有其成本也有其價值在，價值就是你不會改到原本的code，但成本就是-類別越來越多，若能從類別名稱判斷差異(v1、v2XDD)，可讀性不一定會差。\n後面會提到DIP原則，透過相依於interface來實踐OCP原則 選擇用抽象類別也可以實做OCP，抽象類別可以包含實作，interface不能包含實作，所以用interface好或抽像類別好哪個好不一定，抽象類別可以寫實作，所以耦和度會比較高，看人怎麼寫。\n里氏替換原則 Liskov Substitution Principle (LSP) Martin將里氏論文中的原文理解並改為以下解釋：\n子類別可以被替換為其父類別\n保哥註釋：若你的程式碼有採用繼承或介面，在父型別出現的地方，都可以用子型別來取代，而不會破壞程式原有的行為，又指子型別可以替換為父型別，而在程式執行的過程中不會有異常\nLSP精神 確實正確的實作繼承與多型\n(注意：為避免繼承的錯誤實作，C#中要確實的使用virtual和override，程式看到父類別有virtual才會正確的執行子代override的方法，轉型的過程中才不會出縣意想不到的錯誤，若無則會執行父類別的方法。)\nLSP可以使用介面來實現，耦和度比較低，(我覺得用interface會比較好，我目前寫類別方法都沒加virtual的習慣，不能保證未來能否正確繼承) (保哥喜歡用介面) 但抽象類別或是類別也能實現LSP(就是繼承要寫好，沒寫好容易掛掉，但是介面不會(不記得有，保險點說很少)) (注意Visual studio的任何警告，才不會出錯)\n介面隔離原則 Interface Segregation Principle (ISP) 客戶不應該強迫相依於沒有使用的方法。\n多個給客戶專用的介面，優於一個通用需求介面 在ISP原則下，interface裡面有多個方法的話，應該拆成多個介面，每個介面就只有一點點的方法，只用有用到的介面，沒用到的方法不要繼承，免得用錯 介面不要太大，剛好就好 使用interface可以容易達到鬆散耦合、容易安全重構、容易功能擴充\nISP時機 當介面需要分割時，或當類別使用的時機也可以被分割時 例如一個類別有十幾個方法，你繼承他是因為要用到某一個，那就把那個方法切成介面，你的新類別跟就類別就可以透過介面相依，達到鬆散耦合，就只個一個方法有關聯\n相依反轉原則 Dependency Inversion Principle (DIP) 高層次的模組不應該依賴於低層次的模組，兩者都應該依賴於抽象介面\n高接模組呼叫(new)低階模組，低階模組被高階呼叫(被new)\n抽象介面不應該相依於具體實現，而是具體實現應該相依於抽象介面。\nDIP的基本精神 所有類別都相依於抽象，而不是具體實作(可以透過DI來達到目的地)\n直接相依： 相依於抽象： 所有人相依於介面就符合DIP精神 類別與類別之間沒有直接相依，而是相依於介面 ，複雜度就會下來，可維護性提高、可讀性也提高 這樣原本的緊密耦合關係變成鬆散偶合關係，可以依據需求，隨時抽換具體實作類別\nvar demo1 = new Demo(new GmailService()); var demo2 = new Demo(new OutlookService()); 使用DIP的時機 想要降低耦和度時 希望類別都相依於抽象，讓團隊可以有效率的開發系統 先撰寫抽象介面就是把真實世界的需求轉換成類別的過程，規劃出介面後再開始寫類別，定義好介面、方法、API、屬性，先定義好，任何人看到介面就可以開使開發 符合DIP的話通常意味著也符合OCP與LSP原則\n當然，如果程式沒有變更的需求，就不會動他拉\n大量DIP可能對剛進入團隊的人有障礙。那如果是小系統可能怎麼寫都可以。這裡討論的是稍微大的需求，系統比較複雜，如何讓剛進來的成員快速了解需求掌握系統加入維護開發，可能系統用了很多pattern，新進人員改不動，而用DI可能更容易一些，只剩interface，就只是實做哪個interface的事情，這樣比較好理解，比叫好改，程式碼比較乾淨 我們就怕如果一個需求來，會改到很多地方，那就可以思考重構，看看有什麼改善空間 如果有依據SOLID設計出好的OOP，那最完美的情況是一次只要改一個地方，降低這個class每次更動需要更改數量\n關於單元測試與SOLID OOP做不好，模組太大不方便測試，程式碼耦和度太大不方便測試，SRP OCP、ISP做不好，單元測試當然做不好，因為程式碼品質不好，所以你不好寫測試。\n寫測試的好處，是測試寫完就只有幾個方法要實作，那我們的主程式不可能太複雜，當然我們不會第一時間了解需求，所以不會一次寫出好的code，怎麼辦呢？，就是透過SOLID把現有的爛code改的稍為好一點，就比較容易進入單元測試。\n重點 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\n依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠幫助你判斷程式碼的好壞\n談話 大部分人寫code時間多？還是debug時間多？ SOLID教你怎麼寫出好的Code，不是講對或錯，而是講程式的好與壞 實務開發都會先把程式碼寫在一起，驗證邏輯是否成功，再進行重構成好的code 抽象是有分等級的，抽象是理解需求，簡化概念\n","wordCount":"164","inLanguage":"zh-tw","datePublished":"2020-05-13T10:46:11+08:00","dateModified":"2020-05-13T10:46:11+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"},"publisher":{"@type":"Organization","name":"Danny Liu's Blog","logo":{"@type":"ImageObject","url":"https://dannyliu.me/favicon.png"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dannyliu.me/ accesskey=h title="Danny Liu's Blog (Alt + H)">Danny Liu's Blog</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>首頁</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/posts/>Posts</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">SOLID設計原則筆記</h1><div class=post-meta><span title=2020-05-13T10:46:11+08:00>May 13, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span></div></header><div class="post-content md-content"><p>之前去上保哥的DI課程，有附贈他的SOLID課程影片(<a href=https://www.udemy.com/course/solid-csharp/ title=Udemy>Udemy</a>)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章<a href=https://ithelp.ithome.com.tw/articles/10222917 title="物件導向設計原則中的五個原則縮寫叫SOLID ">物件導向設計原則中的五個原則縮寫叫SOLID</a>比起來，感覺今年又更了解SOLID一點了</p><p>不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)</p><h1 id=前言>前言<a hidden class=anchor aria-hidden=true href=#前言>#</a></h1><p>開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？</p><h1 id=oop的四個特性>OOP的四個特性<a hidden class=anchor aria-hidden=true href=#oop的四個特性>#</a></h1><h2 id=抽象abstraction>抽象(Abstraction)<a hidden class=anchor aria-hidden=true href=#抽象abstraction>#</a></h2><p>抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，&ldquo;將真實世界的需求簡化成程式類別&rdquo;)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為</p><h2 id=封裝encapsulation>封裝(Encapsulation)<a hidden class=anchor aria-hidden=true href=#封裝encapsulation>#</a></h2><p>隱藏或保護類別內部實作的細節</p><h2 id=繼承inheritance>繼承(Inheritance)<a hidden class=anchor aria-hidden=true href=#繼承inheritance>#</a></h2><p>當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法</p><h2 id=多型polymorphism>多型(Polymorphism)<a hidden class=anchor aria-hidden=true href=#多型polymorphism>#</a></h2><p>多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。</p><h1 id=內聚力與偶合力>內聚力與偶合力<a hidden class=anchor aria-hidden=true href=#內聚力與偶合力>#</a></h1><p>先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件</p><h2 id=內聚力>內聚力<a hidden class=anchor aria-hidden=true href=#內聚力>#</a></h2><p>內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)</p><h2 id=耦合力>耦合力<a hidden class=anchor aria-hidden=true href=#耦合力>#</a></h2><p>A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)</p><p>高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。</p><h2 id=相依性>相依性<a hidden class=anchor aria-hidden=true href=#相依性>#</a></h2><p>有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依</p><h1 id=原則>原則<a hidden class=anchor aria-hidden=true href=#原則>#</a></h1><p>原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法</p><h1 id=solid設計原則>SOLID設計原則<a hidden class=anchor aria-hidden=true href=#solid設計原則>#</a></h1><p>依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼</p><p>當然，前提是你要了解需求</p><p>原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞</p><h3 id=補充>補充<a hidden class=anchor aria-hidden=true href=#補充>#</a></h3><p>Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。</p><h2 id=學習solid設計原則的好處>學習SOLID設計原則的好處<a hidden class=anchor aria-hidden=true href=#學習solid設計原則的好處>#</a></h2><ol><li>降低程式碼複雜度</li><li>具有較佳的程式碼可讀性</li><li>提升模組可重複利用性</li><li>讓模組具有高內聚力，低耦合力</li><li>當面臨需求變更時，可減少破壞現有模組的風險</li></ol><h1 id=單一職責原則-single-responsibility-principle-srp>單一職責原則 Single Responsibility Principle (SRP)<a hidden class=anchor aria-hidden=true href=#單一職責原則-single-responsibility-principle-srp>#</a></h1><blockquote><p>一個模組應該只有一個需要改變的理由</p></blockquote><p>以上是最初理念，隨者時間演變Martin將版本改為：</p><blockquote><p>一個模組應該只對一個角色負責。</p></blockquote><p>所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 <a href=https://www.c-sharpcorner.com/UploadFile/pranayamr/what-is-single-responsibility-principle/><img loading=lazy src=/wp-content/uploads/2020/05/real-life-example.jpg></a> (<a href=https://www.c-sharpcorner.com/UploadFile/pranayamr/what-is-single-responsibility-principle/ title="What is Single Responsibility Principle">What is Single Responsibility Principle</a>)</p><p>所有功能都寫在一個類別中時，類別複雜度越高，程式碼越寫越長，要改code時、要找bug時找不到要改哪裡修哪裡，一個類別的方法太多時，也不知道要呼叫哪一個方法</p><p>所以當一段程式碼有重複利用的需求，那就可以考慮SRP，當然，前提是你要了解需求，若你沒有足夠的經驗來定義一個物件的責任，(或你還不了解需求)，不用太早就進行SRP規劃</p><h1 id=開放封閉原則-open-closed-principle-ocp>開放封閉原則 Open Closed Principle (OCP)<a hidden class=anchor aria-hidden=true href=#開放封閉原則-open-closed-principle-ocp>#</a></h1><blockquote><p>一個軟體製品應該對於擴展是開放的，但對於修改是封閉的。</p></blockquote><p>應該藉由新增程式碼來擴充功能，而不是修改原本的程式碼。 可以透過繼承來輕鬆擴充 在C#中也可以使用擴充方法來擴充既有類別 或利用抽象，用抽象的型別來裝載一個物件</p><h2 id=ocp的時機>OCP的時機<a hidden class=anchor aria-hidden=true href=#ocp的時機>#</a></h2><p>既有類別已經定義清楚，處於一個強調穩定的狀態 或是你需要擴充現有類別，加入新需求的屬性或方法 又或是擔心修改現有程式碼會破壞現有系統，於是擴充它而不改原本的code</p><p>不過，並不是所有類別都需要可擴充性，這要看需求、看你對系統本身的理解。當然，若你的程式碼一開始就不具備可擴充性，其實也沒關係，我們可以透過重構的技術讓程式碼變得可擴充</p><p>OCP有很多實作方式，可以透過繼承，保留原本的code，並撰寫新的code，套用OCP有其成本也有其價值在，價值就是你不會改到原本的code，但成本就是-類別越來越多，若能從類別名稱判斷差異(v1、v2XDD)，可讀性不一定會差。</p><p>後面會提到DIP原則，透過相依於interface來實踐OCP原則 選擇用抽象類別也可以實做OCP，抽象類別可以包含實作，interface不能包含實作，所以用interface好或抽像類別好哪個好不一定，抽象類別可以寫實作，所以耦和度會比較高，看人怎麼寫。</p><h1 id=里氏替換原則-liskov-substitution-principle-lsp>里氏替換原則 Liskov Substitution Principle (LSP)<a hidden class=anchor aria-hidden=true href=#里氏替換原則-liskov-substitution-principle-lsp>#</a></h1><p>Martin將里氏論文中的原文理解並改為以下解釋：</p><blockquote><p>子類別可以被替換為其父類別</p></blockquote><p>保哥註釋：若你的程式碼有採用繼承或介面，在父型別出現的地方，都可以用子型別來取代，而不會破壞程式原有的行為，又指子型別可以替換為父型別，而在程式執行的過程中不會有異常</p><h2 id=lsp精神>LSP精神<a hidden class=anchor aria-hidden=true href=#lsp精神>#</a></h2><p>確實正確的實作繼承與多型</p><p>(注意：為避免繼承的錯誤實作，C#中要確實的使用virtual和override，程式看到父類別有virtual才會正確的執行子代override的方法，轉型的過程中才不會出縣意想不到的錯誤，若無則會執行父類別的方法。)</p><p>LSP可以使用介面來實現，耦和度比較低，(我覺得用interface會比較好，我目前寫類別方法都沒加virtual的習慣，不能保證未來能否正確繼承) (保哥喜歡用介面) 但抽象類別或是類別也能實現LSP(就是繼承要寫好，沒寫好容易掛掉，但是介面不會(不記得有，保險點說很少)) (注意Visual studio的任何警告，才不會出錯)</p><h1 id=介面隔離原則-interface-segregation-principle-isp>介面隔離原則 Interface Segregation Principle (ISP)<a hidden class=anchor aria-hidden=true href=#介面隔離原則-interface-segregation-principle-isp>#</a></h1><blockquote><p>客戶不應該強迫相依於沒有使用的方法。</p></blockquote><p>多個給客戶專用的介面，優於一個通用需求介面 在ISP原則下，interface裡面有多個方法的話，應該拆成多個介面，每個介面就只有一點點的方法，只用有用到的介面，沒用到的方法不要繼承，免得用錯 介面不要太大，剛好就好 使用interface可以容易達到鬆散耦合、容易安全重構、容易功能擴充</p><h2 id=isp時機>ISP時機<a hidden class=anchor aria-hidden=true href=#isp時機>#</a></h2><p>當介面需要分割時，或當類別使用的時機也可以被分割時 例如一個類別有十幾個方法，你繼承他是因為要用到某一個，那就把那個方法切成介面，你的新類別跟就類別就可以透過介面相依，達到鬆散耦合，就只個一個方法有關聯</p><h1 id=相依反轉原則-dependency-inversion-principle-dip>相依反轉原則 Dependency Inversion Principle (DIP)<a hidden class=anchor aria-hidden=true href=#相依反轉原則-dependency-inversion-principle-dip>#</a></h1><blockquote><p>高層次的模組不應該依賴於低層次的模組，兩者都應該依賴於抽象介面</p></blockquote><p>高接模組呼叫(new)低階模組，低階模組被高階呼叫(被new)</p><blockquote><p>抽象介面不應該相依於具體實現，而是具體實現應該相依於抽象介面。</p></blockquote><h2 id=dip的基本精神>DIP的基本精神<a hidden class=anchor aria-hidden=true href=#dip的基本精神>#</a></h2><p>所有類別都相依於抽象，而不是具體實作(可以透過DI來達到目的地)</p><p>直接相依： <img loading=lazy src=/wp-content/uploads/2020/05/%E6%93%B7%E5%8F%96MainServiceDIP4.png></p><p>相依於抽象： <img loading=lazy src=/wp-content/uploads/2020/05/%E6%93%B7%E5%8F%96DemoIServiceDIP7.png></p><p>所有人相依於介面就符合DIP精神 類別與類別之間沒有直接相依，而是相依於介面 ，複雜度就會下來，可維護性提高、可讀性也提高 這樣原本的緊密耦合關係變成鬆散偶合關係，可以依據需求，隨時抽換具體實作類別</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>var</span> demo1 = <span style=color:#66d9ef>new</span> Demo(<span style=color:#66d9ef>new</span> GmailService());
-</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> demo2 = <span style=color:#66d9ef>new</span> Demo(<span style=color:#66d9ef>new</span> OutlookService());
-</span></span></code></pre></div><h2 id=使用dip的時機>使用DIP的時機<a hidden class=anchor aria-hidden=true href=#使用dip的時機>#</a></h2><p>想要降低耦和度時 希望類別都相依於抽象，讓團隊可以有效率的開發系統 先撰寫抽象介面就是把真實世界的需求轉換成類別的過程，規劃出介面後再開始寫類別，定義好介面、方法、API、屬性，先定義好，任何人看到介面就可以開使開發 符合DIP的話通常意味著也符合OCP與LSP原則</p><p>當然，如果程式沒有變更的需求，就不會動他拉</p><p>大量DIP可能對剛進入團隊的人有障礙。那如果是小系統可能怎麼寫都可以。這裡討論的是稍微大的需求，系統比較複雜，如何讓剛進來的成員快速了解需求掌握系統加入維護開發，可能系統用了很多pattern，新進人員改不動，而用DI可能更容易一些，只剩interface，就只是實做哪個interface的事情，這樣比較好理解，比叫好改，程式碼比較乾淨 我們就怕如果一個需求來，會改到很多地方，那就可以思考重構，看看有什麼改善空間 如果有依據SOLID設計出好的OOP，那最完美的情況是一次只要改一個地方，降低這個class每次更動需要更改數量</p><h2 id=關於單元測試與solid>關於單元測試與SOLID<a hidden class=anchor aria-hidden=true href=#關於單元測試與solid>#</a></h2><p>OOP做不好，模組太大不方便測試，程式碼耦和度太大不方便測試，SRP OCP、ISP做不好，單元測試當然做不好，因為程式碼品質不好，所以你不好寫測試。</p><p>寫測試的好處，是測試寫完就只有幾個方法要實作，那我們的主程式不可能太複雜，當然我們不會第一時間了解需求，所以不會一次寫出好的code，怎麼辦呢？，就是透過SOLID把現有的爛code改的稍為好一點，就比較容易進入單元測試。</p><h1 id=重點>重點<a hidden class=anchor aria-hidden=true href=#重點>#</a></h1><p>原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法</p><p>依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠幫助你判斷程式碼的好壞</p><h2 id=談話>談話<a hidden class=anchor aria-hidden=true href=#談話>#</a></h2><p>大部分人寫code時間多？還是debug時間多？ SOLID教你怎麼寫出好的Code，不是講對或錯，而是講程式的好與壞 實務開發都會先把程式碼寫在一起，驗證邏輯是否成功，再進行重構成好的code 抽象是有分等級的，抽象是理解需求，簡化概念</p></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://dannyliu.me/%E4%BD%BF%E7%94%A8git-rebase%E4%BE%86%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF/><span class=title>« 上一頁</span>
-<span>使用Git Rebase來合併分支</span>
-</a><a class=next href=https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/><span class=title>下一頁 »</span>
-<span>C# 列舉器 IEnumerator 與 IEnumerable</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dannyliu.me/>Danny Liu's Blog</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10));let t;menu.addEventListener("scroll",function(){clearTimeout(t),t=setTimeout(function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},150)},{passive:!0})}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var n=this.getAttribute("href").substr(1);const t=document.querySelector(`[id='${decodeURIComponent(n)}']`);window.matchMedia("(prefers-reduced-motion: reduce)").matches?t.scrollIntoView():t.scrollIntoView({behavior:"smooth"}),t.tabIndex<0&&!t.hasAttribute("tabindex")&&t.setAttribute("tabindex","-1"),t.focus({preventScroll:!0}),n==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${n}`)})})</script><script>var toplink=document.getElementById("top-link"),scrollTicking=!1;window.addEventListener("scroll",function(){if(scrollTicking)return;scrollTicking=!0,requestAnimationFrame(function(){const e=window.innerHeight,t=document.body.scrollTop>e||document.documentElement.scrollTop>e;toplink.classList.toggle("hidden",!t),scrollTicking=!1})},{passive:!0})</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="複製";function s(){t.innerHTML="已複製！",setTimeout(()=>{t.innerHTML="複製"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://dannyliu.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "SOLID設計原則筆記",
+      "item": "https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SOLID設計原則筆記",
+  "name": "SOLID設計原則筆記",
+  "description": "之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了\n不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)\n前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？\nOOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，\u0026ldquo;將真實世界的需求簡化成程式類別\u0026rdquo;)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為\n封裝(Encapsulation) 隱藏或保護類別內部實作的細節\n繼承(Inheritance) 當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法\n多型(Polymorphism) 多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。\n內聚力與偶合力 先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件\n內聚力 內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)\n耦合力 A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)\n高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。\n相依性 有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依\n原則 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\nSOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼\n當然，前提是你要了解需求\n原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞\n補充 Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。\n學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由\n以上是最初理念，隨者時間演變Martin將版本改為：\n一個模組應該只對一個角色負責。\n所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "之前去上保哥的DI課程，有附贈他的SOLID課程影片(Udemy)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章物件導向設計原則中的五個原則縮寫叫SOLID比起來，感覺今年又更了解SOLID一點了\n不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)\n前言 開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？\nOOP的四個特性 抽象(Abstraction) 抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，“將真實世界的需求簡化成程式類別”)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為\n封裝(Encapsulation) 隱藏或保護類別內部實作的細節\n繼承(Inheritance) 當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法\n多型(Polymorphism) 多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。\n內聚力與偶合力 先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件\n內聚力 內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)\n耦合力 A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)\n高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。\n相依性 有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依\n原則 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\nSOLID設計原則 依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼\n當然，前提是你要了解需求\n原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞\n補充 Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。\n學習SOLID設計原則的好處 降低程式碼複雜度 具有較佳的程式碼可讀性 提升模組可重複利用性 讓模組具有高內聚力，低耦合力 當面臨需求變更時，可減少破壞現有模組的風險 單一職責原則 Single Responsibility Principle (SRP) 一個模組應該只有一個需要改變的理由\n以上是最初理念，隨者時間演變Martin將版本改為：\n一個模組應該只對一個角色負責。\n所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 (What is Single Responsibility Principle)\n所有功能都寫在一個類別中時，類別複雜度越高，程式碼越寫越長，要改code時、要找bug時找不到要改哪裡修哪裡，一個類別的方法太多時，也不知道要呼叫哪一個方法\n所以當一段程式碼有重複利用的需求，那就可以考慮SRP，當然，前提是你要了解需求，若你沒有足夠的經驗來定義一個物件的責任，(或你還不了解需求)，不用太早就進行SRP規劃\n開放封閉原則 Open Closed Principle (OCP) 一個軟體製品應該對於擴展是開放的，但對於修改是封閉的。\n應該藉由新增程式碼來擴充功能，而不是修改原本的程式碼。 可以透過繼承來輕鬆擴充 在C#中也可以使用擴充方法來擴充既有類別 或利用抽象，用抽象的型別來裝載一個物件\nOCP的時機 既有類別已經定義清楚，處於一個強調穩定的狀態 或是你需要擴充現有類別，加入新需求的屬性或方法 又或是擔心修改現有程式碼會破壞現有系統，於是擴充它而不改原本的code\n不過，並不是所有類別都需要可擴充性，這要看需求、看你對系統本身的理解。當然，若你的程式碼一開始就不具備可擴充性，其實也沒關係，我們可以透過重構的技術讓程式碼變得可擴充\nOCP有很多實作方式，可以透過繼承，保留原本的code，並撰寫新的code，套用OCP有其成本也有其價值在，價值就是你不會改到原本的code，但成本就是-類別越來越多，若能從類別名稱判斷差異(v1、v2XDD)，可讀性不一定會差。\n後面會提到DIP原則，透過相依於interface來實踐OCP原則 選擇用抽象類別也可以實做OCP，抽象類別可以包含實作，interface不能包含實作，所以用interface好或抽像類別好哪個好不一定，抽象類別可以寫實作，所以耦和度會比較高，看人怎麼寫。\n里氏替換原則 Liskov Substitution Principle (LSP) Martin將里氏論文中的原文理解並改為以下解釋：\n子類別可以被替換為其父類別\n保哥註釋：若你的程式碼有採用繼承或介面，在父型別出現的地方，都可以用子型別來取代，而不會破壞程式原有的行為，又指子型別可以替換為父型別，而在程式執行的過程中不會有異常\nLSP精神 確實正確的實作繼承與多型\n(注意：為避免繼承的錯誤實作，C#中要確實的使用virtual和override，程式看到父類別有virtual才會正確的執行子代override的方法，轉型的過程中才不會出縣意想不到的錯誤，若無則會執行父類別的方法。)\nLSP可以使用介面來實現，耦和度比較低，(我覺得用interface會比較好，我目前寫類別方法都沒加virtual的習慣，不能保證未來能否正確繼承) (保哥喜歡用介面) 但抽象類別或是類別也能實現LSP(就是繼承要寫好，沒寫好容易掛掉，但是介面不會(不記得有，保險點說很少)) (注意Visual studio的任何警告，才不會出錯)\n介面隔離原則 Interface Segregation Principle (ISP) 客戶不應該強迫相依於沒有使用的方法。\n多個給客戶專用的介面，優於一個通用需求介面 在ISP原則下，interface裡面有多個方法的話，應該拆成多個介面，每個介面就只有一點點的方法，只用有用到的介面，沒用到的方法不要繼承，免得用錯 介面不要太大，剛好就好 使用interface可以容易達到鬆散耦合、容易安全重構、容易功能擴充\nISP時機 當介面需要分割時，或當類別使用的時機也可以被分割時 例如一個類別有十幾個方法，你繼承他是因為要用到某一個，那就把那個方法切成介面，你的新類別跟就類別就可以透過介面相依，達到鬆散耦合，就只個一個方法有關聯\n相依反轉原則 Dependency Inversion Principle (DIP) 高層次的模組不應該依賴於低層次的模組，兩者都應該依賴於抽象介面\n高接模組呼叫(new)低階模組，低階模組被高階呼叫(被new)\n抽象介面不應該相依於具體實現，而是具體實現應該相依於抽象介面。\nDIP的基本精神 所有類別都相依於抽象，而不是具體實作(可以透過DI來達到目的地)\n直接相依： 相依於抽象： 所有人相依於介面就符合DIP精神 類別與類別之間沒有直接相依，而是相依於介面 ，複雜度就會下來，可維護性提高、可讀性也提高 這樣原本的緊密耦合關係變成鬆散偶合關係，可以依據需求，隨時抽換具體實作類別\nvar demo1 = new Demo(new GmailService()); var demo2 = new Demo(new OutlookService()); 使用DIP的時機 想要降低耦和度時 希望類別都相依於抽象，讓團隊可以有效率的開發系統 先撰寫抽象介面就是把真實世界的需求轉換成類別的過程，規劃出介面後再開始寫類別，定義好介面、方法、API、屬性，先定義好，任何人看到介面就可以開使開發 符合DIP的話通常意味著也符合OCP與LSP原則\n當然，如果程式沒有變更的需求，就不會動他拉\n大量DIP可能對剛進入團隊的人有障礙。那如果是小系統可能怎麼寫都可以。這裡討論的是稍微大的需求，系統比較複雜，如何讓剛進來的成員快速了解需求掌握系統加入維護開發，可能系統用了很多pattern，新進人員改不動，而用DI可能更容易一些，只剩interface，就只是實做哪個interface的事情，這樣比較好理解，比叫好改，程式碼比較乾淨 我們就怕如果一個需求來，會改到很多地方，那就可以思考重構，看看有什麼改善空間 如果有依據SOLID設計出好的OOP，那最完美的情況是一次只要改一個地方，降低這個class每次更動需要更改數量\n關於單元測試與SOLID OOP做不好，模組太大不方便測試，程式碼耦和度太大不方便測試，SRP OCP、ISP做不好，單元測試當然做不好，因為程式碼品質不好，所以你不好寫測試。\n寫測試的好處，是測試寫完就只有幾個方法要實作，那我們的主程式不可能太複雜，當然我們不會第一時間了解需求，所以不會一次寫出好的code，怎麼辦呢？，就是透過SOLID把現有的爛code改的稍為好一點，就比較容易進入單元測試。\n重點 原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法\n依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠幫助你判斷程式碼的好壞\n談話 大部分人寫code時間多？還是debug時間多？ SOLID教你怎麼寫出好的Code，不是講對或錯，而是講程式的好與壞 實務開發都會先把程式碼寫在一起，驗證邏輯是否成功，再進行重構成好的code 抽象是有分等級的，抽象是理解需求，簡化概念\n",
+  "wordCount" : "164",
+  "inLanguage": "zh-tw",
+  "datePublished": "2020-05-13T10:46:11+08:00",
+  "dateModified": "2020-05-13T10:46:11+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dannyliu.me/solid%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87%E7%AD%86%E8%A8%98/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Danny Liu's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dannyliu.me/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dannyliu.me/" accesskey="h" title="Danny Liu&#39;s Blog (Alt + H)">Danny Liu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">首頁</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      SOLID設計原則筆記
+    </h1>
+    <div class="post-meta">
+
+<span title='2020-05-13T10:46:11+08:00'>May 13, 2020</span>&nbsp;·&nbsp;<span>1 分鐘</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>之前去上保哥的DI課程，有附贈他的SOLID課程影片(<a href="https://www.udemy.com/course/solid-csharp/" title="Udemy">Udemy</a>)，想想影片看完就那麼過去不太好，花點時間做了一點筆記，跟去年我參加iT邦幫忙鐵人賽寫的文章<a href="https://ithelp.ithome.com.tw/articles/10222917" title="物件導向設計原則中的五個原則縮寫叫SOLID ">物件導向設計原則中的五個原則縮寫叫SOLID</a>比起來，感覺今年又更了解SOLID一點了</p>
+<p>不過文章大部分是老師講話的截語，雖然我有潤飾一下並加了一點自己的理解，但如果有不通順或前後不達意，請多多包涵 :)</p>
+<h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
+<p>開發的時間長？還是維護的時間長？ 是多人開發？還是一人開發？ 長期維護的專案，需求變更程度如何？一個月一次？一年一次？</p>
+<h1 id="oop的四個特性">OOP的四個特性<a hidden class="anchor" aria-hidden="true" href="#oop的四個特性">#</a></h1>
+<h2 id="抽象abstraction">抽象(Abstraction)<a hidden class="anchor" aria-hidden="true" href="#抽象abstraction">#</a></h2>
+<p>抽象是將真實世界的需求轉換成程是類別的過程(庚：abstract可以翻譯成簡化、簡單化，&ldquo;將真實世界的需求簡化成程式類別&rdquo;)，而類別可以包含屬性或方法，屬性為靜態狀態，方法為動態行為</p>
+<h2 id="封裝encapsulation">封裝(Encapsulation)<a hidden class="anchor" aria-hidden="true" href="#封裝encapsulation">#</a></h2>
+<p>隱藏或保護類別內部實作的細節</p>
+<h2 id="繼承inheritance">繼承(Inheritance)<a hidden class="anchor" aria-hidden="true" href="#繼承inheritance">#</a></h2>
+<p>當你要擴充或修改類別中定義的行為。可以使用繼承建立為新類別並保留類別原有的功能。 但在覆寫使要記得只有virtual代表可以被子代複寫，執行時才會執行子代的方法</p>
+<h2 id="多型polymorphism">多型(Polymorphism)<a hidden class="anchor" aria-hidden="true" href="#多型polymorphism">#</a></h2>
+<p>多個型別擁有相同的介面，或指某個型別擁有多個子型別。在C#所有類別全部都繼承自object，換句話說C#所有型別都是object的多型。</p>
+<h1 id="內聚力與偶合力">內聚力與偶合力<a hidden class="anchor" aria-hidden="true" href="#內聚力與偶合力">#</a></h1>
+<p>先了解什麼是模組(Model) 以C#來說，其實C#沒有Model這個概念 但我們談OOP的Model時，可以想成是C#中某個類別、方法或組件</p>
+<h2 id="內聚力">內聚力<a hidden class="anchor" aria-hidden="true" href="#內聚力">#</a></h2>
+<p>內聚力是在一個模組內完成一件工作的度量指標 高內聚力，一個模組內只完成一件工作 內聚力高，意味著模組更容易獨立運作、更容易重複使用(例如一個類別只負責一件事 低內聚力，在一個模組內完成多份工作 內聚力低，意味著這個模組會造成難以維護/測試/重用/理解(例如一個類別或甚至一個方法程式碼五千多行 實務上，我們要盡力的設計出高內聚力的程式碼(SRP原則會提高內聚力)</p>
+<h2 id="耦合力">耦合力<a hidden class="anchor" aria-hidden="true" href="#耦合力">#</a></h2>
+<p>A模組與B模組相依性高，若改了B模組的內容，則A模組會受到影響，這是耦合力太高，導致改B壞A(而使用DIP原則可降低耦合力)</p>
+<p>高內聚與低耦合本質上互斥，理論上提高內聚力，就會把工作切成多個類別，而切成更多類別時，就意味著耦和度越高，所以現實上會依工作需求有很多考量。</p>
+<h2 id="相依性">相依性<a hidden class="anchor" aria-hidden="true" href="#相依性">#</a></h2>
+<p>有用到類別或介面就會產生相依，宣告什麼型別，new什麼物件都算相依</p>
+<h1 id="原則">原則<a hidden class="anchor" aria-hidden="true" href="#原則">#</a></h1>
+<p>原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法</p>
+<h1 id="solid設計原則">SOLID設計原則<a hidden class="anchor" aria-hidden="true" href="#solid設計原則">#</a></h1>
+<p>依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠判斷程式碼的好壞 讓你知道什麼程式碼是好的，什麼程式碼是壞的，而且你知道要怎麼寫出好的程式碼</p>
+<p>當然，前提是你要了解需求</p>
+<p>原則不會教你怎麼寫code，每個人的需求都不一樣，原則是幫你分辨什麼code是好是壞</p>
+<h3 id="補充">補充<a hidden class="anchor" aria-hidden="true" href="#補充">#</a></h3>
+<p>Robert C. Martin整理了很多原則並濃縮提倡為物件導向設計原則，過程有增減與修改，於2004年以S、O、L、I、D順序排列，拼出SOLID(固體)設計原則。在物件導向設計原則中，SOLID是最有名也是蠻實用的幾個原則。</p>
+<h2 id="學習solid設計原則的好處">學習SOLID設計原則的好處<a hidden class="anchor" aria-hidden="true" href="#學習solid設計原則的好處">#</a></h2>
+<ol>
+<li>降低程式碼複雜度</li>
+<li>具有較佳的程式碼可讀性</li>
+<li>提升模組可重複利用性</li>
+<li>讓模組具有高內聚力，低耦合力</li>
+<li>當面臨需求變更時，可減少破壞現有模組的風險</li>
+</ol>
+<h1 id="單一職責原則-single-responsibility-principle-srp">單一職責原則 Single Responsibility Principle (SRP)<a hidden class="anchor" aria-hidden="true" href="#單一職責原則-single-responsibility-principle-srp">#</a></h1>
+<blockquote>
+<p>一個模組應該只有一個需要改變的理由</p>
+</blockquote>
+<p>以上是最初理念，隨者時間演變Martin將版本改為：</p>
+<blockquote>
+<p>一個模組應該只對一個角色負責。</p>
+</blockquote>
+<p>所以來說，一個類別如果負擔太多責任時，就意味著該類別可以被切割 <a href="https://www.c-sharpcorner.com/UploadFile/pranayamr/what-is-single-responsibility-principle/"><img loading="lazy" src="/wp-content/uploads/2020/05/real-life-example.jpg"></a> (<a href="https://www.c-sharpcorner.com/UploadFile/pranayamr/what-is-single-responsibility-principle/" title="What is Single Responsibility Principle">What is Single Responsibility Principle</a>)</p>
+<p>所有功能都寫在一個類別中時，類別複雜度越高，程式碼越寫越長，要改code時、要找bug時找不到要改哪裡修哪裡，一個類別的方法太多時，也不知道要呼叫哪一個方法</p>
+<p>所以當一段程式碼有重複利用的需求，那就可以考慮SRP，當然，前提是你要了解需求，若你沒有足夠的經驗來定義一個物件的責任，(或你還不了解需求)，不用太早就進行SRP規劃</p>
+<h1 id="開放封閉原則-open-closed-principle-ocp">開放封閉原則 Open Closed Principle (OCP)<a hidden class="anchor" aria-hidden="true" href="#開放封閉原則-open-closed-principle-ocp">#</a></h1>
+<blockquote>
+<p>一個軟體製品應該對於擴展是開放的，但對於修改是封閉的。</p>
+</blockquote>
+<p>應該藉由新增程式碼來擴充功能，而不是修改原本的程式碼。 可以透過繼承來輕鬆擴充 在C#中也可以使用擴充方法來擴充既有類別 或利用抽象，用抽象的型別來裝載一個物件</p>
+<h2 id="ocp的時機">OCP的時機<a hidden class="anchor" aria-hidden="true" href="#ocp的時機">#</a></h2>
+<p>既有類別已經定義清楚，處於一個強調穩定的狀態 或是你需要擴充現有類別，加入新需求的屬性或方法 又或是擔心修改現有程式碼會破壞現有系統，於是擴充它而不改原本的code</p>
+<p>不過，並不是所有類別都需要可擴充性，這要看需求、看你對系統本身的理解。當然，若你的程式碼一開始就不具備可擴充性，其實也沒關係，我們可以透過重構的技術讓程式碼變得可擴充</p>
+<p>OCP有很多實作方式，可以透過繼承，保留原本的code，並撰寫新的code，套用OCP有其成本也有其價值在，價值就是你不會改到原本的code，但成本就是-類別越來越多，若能從類別名稱判斷差異(v1、v2XDD)，可讀性不一定會差。</p>
+<p>後面會提到DIP原則，透過相依於interface來實踐OCP原則 選擇用抽象類別也可以實做OCP，抽象類別可以包含實作，interface不能包含實作，所以用interface好或抽像類別好哪個好不一定，抽象類別可以寫實作，所以耦和度會比較高，看人怎麼寫。</p>
+<h1 id="里氏替換原則-liskov-substitution-principle-lsp">里氏替換原則 Liskov Substitution Principle (LSP)<a hidden class="anchor" aria-hidden="true" href="#里氏替換原則-liskov-substitution-principle-lsp">#</a></h1>
+<p>Martin將里氏論文中的原文理解並改為以下解釋：</p>
+<blockquote>
+<p>子類別可以被替換為其父類別</p>
+</blockquote>
+<p>保哥註釋：若你的程式碼有採用繼承或介面，在父型別出現的地方，都可以用子型別來取代，而不會破壞程式原有的行為，又指子型別可以替換為父型別，而在程式執行的過程中不會有異常</p>
+<h2 id="lsp精神">LSP精神<a hidden class="anchor" aria-hidden="true" href="#lsp精神">#</a></h2>
+<p>確實正確的實作繼承與多型</p>
+<p>(注意：為避免繼承的錯誤實作，C#中要確實的使用virtual和override，程式看到父類別有virtual才會正確的執行子代override的方法，轉型的過程中才不會出縣意想不到的錯誤，若無則會執行父類別的方法。)</p>
+<p>LSP可以使用介面來實現，耦和度比較低，(我覺得用interface會比較好，我目前寫類別方法都沒加virtual的習慣，不能保證未來能否正確繼承) (保哥喜歡用介面) 但抽象類別或是類別也能實現LSP(就是繼承要寫好，沒寫好容易掛掉，但是介面不會(不記得有，保險點說很少)) (注意Visual studio的任何警告，才不會出錯)</p>
+<h1 id="介面隔離原則-interface-segregation-principle-isp">介面隔離原則 Interface Segregation Principle (ISP)<a hidden class="anchor" aria-hidden="true" href="#介面隔離原則-interface-segregation-principle-isp">#</a></h1>
+<blockquote>
+<p>客戶不應該強迫相依於沒有使用的方法。</p>
+</blockquote>
+<p>多個給客戶專用的介面，優於一個通用需求介面 在ISP原則下，interface裡面有多個方法的話，應該拆成多個介面，每個介面就只有一點點的方法，只用有用到的介面，沒用到的方法不要繼承，免得用錯 介面不要太大，剛好就好 使用interface可以容易達到鬆散耦合、容易安全重構、容易功能擴充</p>
+<h2 id="isp時機">ISP時機<a hidden class="anchor" aria-hidden="true" href="#isp時機">#</a></h2>
+<p>當介面需要分割時，或當類別使用的時機也可以被分割時 例如一個類別有十幾個方法，你繼承他是因為要用到某一個，那就把那個方法切成介面，你的新類別跟就類別就可以透過介面相依，達到鬆散耦合，就只個一個方法有關聯</p>
+<h1 id="相依反轉原則-dependency-inversion-principle-dip">相依反轉原則 Dependency Inversion Principle (DIP)<a hidden class="anchor" aria-hidden="true" href="#相依反轉原則-dependency-inversion-principle-dip">#</a></h1>
+<blockquote>
+<p>高層次的模組不應該依賴於低層次的模組，兩者都應該依賴於抽象介面</p>
+</blockquote>
+<p>高接模組呼叫(new)低階模組，低階模組被高階呼叫(被new)</p>
+<blockquote>
+<p>抽象介面不應該相依於具體實現，而是具體實現應該相依於抽象介面。</p>
+</blockquote>
+<h2 id="dip的基本精神">DIP的基本精神<a hidden class="anchor" aria-hidden="true" href="#dip的基本精神">#</a></h2>
+<p>所有類別都相依於抽象，而不是具體實作(可以透過DI來達到目的地)</p>
+<p>直接相依： <img loading="lazy" src="/wp-content/uploads/2020/05/%E6%93%B7%E5%8F%96MainServiceDIP4.png"></p>
+<p>相依於抽象： <img loading="lazy" src="/wp-content/uploads/2020/05/%E6%93%B7%E5%8F%96DemoIServiceDIP7.png"></p>
+<p>所有人相依於介面就符合DIP精神 類別與類別之間沒有直接相依，而是相依於介面 ，複雜度就會下來，可維護性提高、可讀性也提高 這樣原本的緊密耦合關係變成鬆散偶合關係，可以依據需求，隨時抽換具體實作類別</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> demo1 = <span style="color:#66d9ef">new</span> Demo(<span style="color:#66d9ef">new</span> GmailService());
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> demo2 = <span style="color:#66d9ef">new</span> Demo(<span style="color:#66d9ef">new</span> OutlookService());
+</span></span></code></pre></div><h2 id="使用dip的時機">使用DIP的時機<a hidden class="anchor" aria-hidden="true" href="#使用dip的時機">#</a></h2>
+<p>想要降低耦和度時 希望類別都相依於抽象，讓團隊可以有效率的開發系統 先撰寫抽象介面就是把真實世界的需求轉換成類別的過程，規劃出介面後再開始寫類別，定義好介面、方法、API、屬性，先定義好，任何人看到介面就可以開使開發 符合DIP的話通常意味著也符合OCP與LSP原則</p>
+<p>當然，如果程式沒有變更的需求，就不會動他拉</p>
+<p>大量DIP可能對剛進入團隊的人有障礙。那如果是小系統可能怎麼寫都可以。這裡討論的是稍微大的需求，系統比較複雜，如何讓剛進來的成員快速了解需求掌握系統加入維護開發，可能系統用了很多pattern，新進人員改不動，而用DI可能更容易一些，只剩interface，就只是實做哪個interface的事情，這樣比較好理解，比叫好改，程式碼比較乾淨 我們就怕如果一個需求來，會改到很多地方，那就可以思考重構，看看有什麼改善空間 如果有依據SOLID設計出好的OOP，那最完美的情況是一次只要改一個地方，降低這個class每次更動需要更改數量</p>
+<h2 id="關於單元測試與solid">關於單元測試與SOLID<a hidden class="anchor" aria-hidden="true" href="#關於單元測試與solid">#</a></h2>
+<p>OOP做不好，模組太大不方便測試，程式碼耦和度太大不方便測試，SRP OCP、ISP做不好，單元測試當然做不好，因為程式碼品質不好，所以你不好寫測試。</p>
+<p>寫測試的好處，是測試寫完就只有幾個方法要實作，那我們的主程式不可能太複雜，當然我們不會第一時間了解需求，所以不會一次寫出好的code，怎麼辦呢？，就是透過SOLID把現有的爛code改的稍為好一點，就比較容易進入單元測試。</p>
+<h1 id="重點">重點<a hidden class="anchor" aria-hidden="true" href="#重點">#</a></h1>
+<p>原則是一種概念或價值，用來導引你產生適切的行為與價值評量的方法</p>
+<p>依循SOLID原則，可以寫出比較好的程式碼 依循SOLID原則，能夠幫助你判斷程式碼的好壞</p>
+<h2 id="談話">談話<a hidden class="anchor" aria-hidden="true" href="#談話">#</a></h2>
+<p>大部分人寫code時間多？還是debug時間多？ SOLID教你怎麼寫出好的Code，不是講對或錯，而是講程式的好與壞 實務開發都會先把程式碼寫在一起，驗證邏輯是否成功，再進行重構成好的code 抽象是有分等級的，抽象是理解需求，簡化概念</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dannyliu.me/%E4%BD%BF%E7%94%A8git-rebase%E4%BE%86%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF/">
+    <span class="title">« 上一頁</span>
+    <span>使用Git Rebase來合併分支</span>
+  </a>
+  <a class="next" href="https://dannyliu.me/c-%E5%88%97%E8%88%89%E5%99%A8-ienumerator%E8%88%87ienumerable/">
+    <span class="title">下一頁 »</span>
+    <span>C# 列舉器 IEnumerator 與 IEnumerable</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dannyliu.me/">Danny Liu&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        
+        let menuScrollTimeout;
+        menu.addEventListener("scroll", function () {
+            clearTimeout(menuScrollTimeout);
+            menuScrollTimeout = setTimeout(function () {
+                localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+            }, 150);
+        }, { passive: true });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                target.scrollIntoView();
+            }
+            
+            
+            if (target.tabIndex < 0 && !target.hasAttribute("tabindex")) {
+                target.setAttribute("tabindex", "-1");
+            }
+            target.focus({ preventScroll: true });
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    var scrollTicking = false;
+    
+    window.addEventListener("scroll", function () {
+        if (scrollTicking) {
+            return;
+        }
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+            const scrollThreshold = window.innerHeight;
+            const shown = document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold;
+            toplink.classList.toggle("hidden", !shown);
+            scrollTicking = false;
+        });
+    }, { passive: true });
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '複製';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已複製！';
+            setTimeout(() => {
+                copybutton.innerHTML = '複製';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
